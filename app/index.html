@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <title></title>
-
+    <title>上门网330门业招商</title>
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
     <meta name="kik-transparent-statusbar" content="true">
     <link rel="stylesheet" href="styles/base.css">
@@ -22,13 +21,21 @@
 </div>
 <!--首页-->
 <div class="app-page" data-page="home">
-    <div class="app-topbar">
-        <div id="J_CategoryTrigger left" class="left app-button btn-menu">分类</div>
-        <div class="app-title"><span class="app-icon"></span>Demo app</div>
-        <div class="right app-button  btn-login">登录</div>
+    <div class="app-logo icon-bg">
+        <div class="app-button btn-register">注册</div>
+        <div class="app-button btn-login">登录</div>
     </div>
-
+    <div class="app-topbar">
+        <div class="left app-button btn-menu icon-bg grid-2">分类</div>
+        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/><div class="btn-search-submit">提交</div></div>
+        <div class="right app-button grid-2  btn-my icon-bg">我的</div>
+    </div>
     <div class="app-content">
+        
+        <div class="app-banner">
+            <img src="images/banner.jpg" alt="" width="100%"/>
+        </div>
+        
         <!--导航菜单-->
         <div id="J_CategoryDialog" class="category-dialog" style="display: block;">
             <h2 class="category-hd">商品服务分类</h2>
@@ -53,26 +60,9 @@
             <a href="javascript:void(0);" id="J_CategoryClose" class="category-close" target="_self">关闭</a>
         </div>
         <div id="J_CategoryMask" class="category-mask" style="display: none;"></div>
-
-
         <p class="app-section">
             Welcome to the app.js default theme. Click around to see what each widget looks like.
         </p>
-
-        <div class="app-section">
-            <b>Topbar colours:</b><br>
-            <ul class="colour-picker">
-                <li data-colour="teal"></li>
-                <li data-colour="green"></li>
-                <li data-colour="yellow"></li>
-                <li data-colour="orange"></li>
-                <li data-colour="red"></li>
-                <li data-colour="blue"></li>
-                <li data-colour="dark-blue"></li>
-                <li data-colour="white"></li>
-                <div class="clear"></div>
-            </ul>
-        </div>
 
         <div class="app-section">
             <div class="app-button" data-target="lists">Lists</div>
@@ -80,14 +70,41 @@
             <div class="app-button" data-target="inputs">Inputs</div>
             <div class="app-button" data-target="scroll">Scrolling</div>
             <div class="app-button" data-target="other">Other</div>
+            <div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="buttons">Buttons</div>
+            <div class="app-button" data-target="inputs">Inputs</div>
+            <div class="app-button" data-target="scroll">Scrolling</div>
+            <div class="app-button" data-target="other">Other</div>
+            <div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="buttons">Buttons</div>
+            <div class="app-button" data-target="inputs">Inputs</div>
+            <div class="app-button" data-target="scroll">Scrolling</div>
+            <div class="app-button" data-target="other">Other</div>
+            <div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="buttons">Buttons</div>
+            <div class="app-button" data-target="inputs">Inputs</div>
+            <div class="app-button" data-target="scroll">Scrolling</div>
+            <div class="app-button" data-target="other">Other</div><div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="buttons">Buttons</div>
+            <div class="app-button" data-target="inputs">Inputs</div>
+            <div class="app-button" data-target="scroll">Scrolling</div>
+            <div class="app-button" data-target="other">Other</div><div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="buttons">Buttons</div>
+            <div class="app-button" data-target="inputs">Inputs</div>
+            <div class="app-button" data-target="scroll">Scrolling</div>
+            <div class="app-button" data-target="other">Other</div>
+
+
+
         </div>
     </div>
 </div>
 
 <div class="app-page" data-page="lists">
     <div class="app-topbar">
-        <div class="left app-button" data-back data-autotitle></div>
-        <div class="app-title"><span class="app-icon"></span>Lists</div>
+        <div class="grid-2"><div class="left app-button" data-back data-autotitle>返回</div></div>
+        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/><div class="btn-search-submit">提交</div></div>
+        <div class="right app-button  btn-my icon-bg">我的</div>
     </div>
 
     <div class="app-content">
@@ -258,28 +275,6 @@
                     }
                 });
             });
-
-            $(page).find('ul.colour-picker li')
-                    .clickable()
-                    .on('click', function () {
-                        var oldColour = colour;
-                        colour = $(this).data('colour');
-
-                        if (oldColour === colour) {
-                            return;
-                        }
-                        localStorage[COLOUR_KEY] = colour;
-
-                        for (var i = 0; i < colourPages.length; i++) {
-                            if (oldColour) {
-                                colourPages[i].removeClass(oldColour);
-                            }
-                            if (colour) {
-                                colourPages[i].addClass(colour);
-                            }
-                        }
-                    });
-
         });
         App.controller('other', function (page) {
             setupPageColour(page);
