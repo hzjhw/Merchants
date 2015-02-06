@@ -8,7 +8,7 @@ body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-
 .app-clickblocker{z-index:9000;position:fixed;top:0;left:0;height:100%;width:100%;background-color:#FFF;opacity:0}
 .app-page{display:none;position:relative;height:100%;width:100%;overflow:hidden}
 .app-loaded .app-page{display:block}
-.app-ios-7 .app-page,.app-ios-8 .app-page{box-shadow:0 0 12px rgba(0,0,0,.2)}
+/*.app-ios-7 .app-page,.app-ios-8 .app-page{box-shadow:0 0 12px rgba(0,0,0,.2)}*/
 .app-topbar{z-index:3000;position:relative;height:44px;width:100%;background-color:#000;color:#FFF}
 .app-topbar .app-title{margin:0 auto;height:100%;width:100%;line-height:44px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .app-android .app-topbar .app-title{line-height:48px}
