@@ -2,17 +2,22 @@
 <html>
 <head lang="en">
     <title>上门网330门业招商</title>
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <meta name="kik-transparent-statusbar" content="true">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/style.css"/>
+    <meta name="viewport"
+          content="width=640,maximum-scale=1.0,user-scalable=no,target-densitydpi=device-dpi, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-touch-fullscreen" content="no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" href="styles/base.css?v=102">
+    <link rel="stylesheet" href="styles/style.css?v=102"/>
 </head>
 <body>
 <!--加载动画-->
 <div id="Loading" style="display: block;">
     <div id="heart">
         <a href="#" onclick="stopLoading();"><img
-                src="images/loading.gif"></a>
+                src="images/loading.gif" width="200%"></a>
     </div>
     <div id="Waiting">
         <span style="text-align:center; color:#F00">
@@ -21,197 +26,427 @@
 </div>
 <!--首页-->
 <div class="app-page" data-page="home">
-    <div class="app-logo icon-bg">
-        <div class="app-button btn-register">注册</div>
-        <div class="app-button btn-login">登录</div>
+<div class="app-logo-container">
+    <div class="app-logo icon-bg grid-6">
     </div>
-    <div class="app-topbar">
-        <div class="left app-button btn-menu icon-bg grid-2">分类</div>
-        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/>
-            <div class="btn-search-submit"></div>
-        </div>
-        <div class="right app-button grid-2  btn-my icon-bg">我的</div>
+    <div class="grid-4" style="text-align: right; height: 100%;">
+        <div class="app-button btn-register" data-target="register">注册</div>
+        <div class="app-button btn-login" data-target="login">登录</div>
     </div>
-    <div class="app-content">
 
-        <div class="app-banner">
-            <img src="images/banner.jpg" alt="" width="100%"/>
-        </div>
+</div>
+<div class="app-topbar">
+    <div class="app-button btn-menu icon-bg grid-2" data-target="category">分&nbsp;类</div>
+    <div class="app-search grid-6"><input hidefocus class="input-search icon-bg" placeholder="搜索品牌&nbsp;/&nbsp;搜索产品"
+                                          type="text"/>
 
-        <!--导航菜单-->
-        <!--<div id="J_CategoryDialog" class="category-dialog" style="display: block;">
-            <h2 class="category-hd">商品服务分类</h2>
-
-            <p class="category-bd" data-spm="20000010">
-                <a class="item-nvz" href="javascript:;" data-target="lists">女装</a>
-                <a class="item-dq" href="javascript:;">电器</a>
-                <a class="item-nz" href="javascript:;">男装</a>
-                <a class="item-yd" href="javascript:;">运动</a>
-                <a class="item-hw" href="javascript:;">户外</a>
-                <a class="item-nvx" href="javascript:;">女鞋</a>
-                <a class="item-nx" href="javascript:;">男鞋</a>
-                <a class="item-xb" href="javascript:;">箱包</a>
-                <a class="item-mz" href="javascript:;">美妆</a>
-                <a class="item-ny" href="javascript:;">内衣</a>
-                <a class="item-my" href="javascript:;">母婴</a>
-                <a class="item-sp" href="javascript:;">食品</a>
-                <a class="item-jz" href="javascript:;">家装</a>
-                <a class="item-qc" href="javascript:;">汽车</a>
-                <a class="item-yy" href="javascript:;">图书</a>
-            </p>
-            <a href="javascript:void(0);" id="J_CategoryClose" class="category-close" target="_self">关闭</a>
-        </div>
-        <div id="J_CategoryMask" class="category-mask" style="display: none;"></div>-->
-
-
-
-        <p class="app-section">
-            Welcome to the app.js default theme. Click around to see what each widget looks like.
-        </p>
-
-        <div class="app-section">
-            <div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div>
-            <div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div>
-            <div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div>
-            <div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div>
-            <div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div>
-            <div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div>
-
-
-        </div>
+        <div class="btn-search-submit"></div>
     </div>
+    <div class="app-button grid-2  btn-my icon-bg">我&nbsp;的</div>
+</div>
+<div class="app-content">
+<!--banner-->
+<div class="app-banner" style="overflow:hidden;">
+    <img src="images/banner.jpg" alt="" width="100%"/>
+</div>
+<!--品牌/产品展示馆-->
+<div class="app-section section-title">
+    品牌/产品展示馆
+</div>
+<div class="app-section">
+    <ul class="cate-ul">
+        <li class="cate_01 cate-l">
+            <div class="cate-title">
+                品牌展示馆
+                <p>海量品牌等你来选</p>
+            </div>
+        </li>
+        <li class="cate_02 cate-r">
+            <div class="cate-title">
+                特色门馆
+                <p>各厂家最待色的门</p>
+            </div>
+        </li>
+        <li class="cate_03 cate-l">
+            <div class="cate-title">
+                木门馆
+                <p>工艺上具备原木的天然待性与环保性</p>
+            </div>
+        </li>
+        <li class="cate_04 cate-r">
+            <div class="cate-title">
+                生态木门/强化门
+                <p>拥有更长的使用寿命</p>
+            </div>
+        </li>
+        <li class="cate_05 cate-l">
+            <div class="cate-title">
+                钢木门馆
+                <p>无毒绿色健康环保</p>
+            </div>
+        </li>
+        <li class="cate_06 cate-r">
+            <div class="cate-title">
+                铝合金门馆
+                <p>防尘、防水、隔音效果突出</p>
+            </div>
+        </li>
+        <li class="cate_07 cate-l">
+            <div class="cate-title">
+                防盗门馆
+                <p>工艺上具备原木的天然待性与环保性</p>
+            </div>
+        </li>
+        <li class="cate_08 cate-r">
+            <div class="cate-title">
+                防火门馆
+                <p>工艺上具备原木的天然待性与环保性</p>
+            </div>
+        </li>
+        <li class="cate_09 cate-l">
+            <div class="cate-title">
+                非标门馆
+                <p>工艺上具备原木的天然待性与环保性</p>
+            </div>
+        </li>
+        <li class="cate_10 cate-r">
+            <div class="cate-title">
+                铜门/不锈钢门馆
+                <p>工艺上具备原木的天然待性与环保性</p>
+            </div>
+        </li>
+
+    </ul>
 </div>
 
-<div class="app-page" data-page="lists">
-    <div class="app-topbar">
-        <div class="grid-2">
-            <div class="left app-button" data-back data-autotitle>返回</div>
+<!--品牌展示-->
+<div class="app-section">
+    <div class="merchant-title-bg"></div>
+    <div class="merchant-title">
+        <div class="grid-3 ">
+            <div class="merchant-t-tl">品牌护航</div>
         </div>
-        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/>
-            <div class="btn-search-submit"></div>
+        <div class="grid-4 relative merchant-t-m">
+            品牌展示馆
         </div>
-        <div class="right grid-2 app-button  btn-my icon-bg">我的</div>
+        <div class="grid-3 ">
+            <div class="merchant-t-tr">代理无忧</div>
+        </div>
     </div>
-
-    <div class="app-content">
-        <ul class="app-list">
-            <label>Label 1</label>
-            <li class="app-button" data-target="lists">Item 1</li>
-            <li class="app-button">Item 2</li>
-            <li class="app-button">Item 3</li>
-            <label>Label 2</label>
-            <li>Item 4</li>
-            <li>Item 5</li>
-            <li>Item 6</li>
-            <label>Label 3</label>
-            <li>Item 7</li>
-            <li>Item 8</li>
-            <li>Item 9</li>
-            <label>Label 4</label>
-            <li>Item 10</li>
-            <li>Item 11</li>
-            <li>Item 12</li>
-            <label>Label 5</label>
-            <li>Item 13</li>
-            <li>Item 14</li>
-            <li>Item 15</li>
+    <div class="merchant-content">
+        <ul class="merchant-content-ul">
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="app-section">
+    <div class="merchant-title-bg"></div>
+    <div class="merchant-title">
+        <div class="grid-3 ">
+            <div class="merchant-t-tl">品牌护航</div>
+        </div>
+        <div class="grid-4 relative merchant-t-m">
+            品牌展示馆
+        </div>
+        <div class="grid-3 ">
+            <div class="merchant-t-tr">代理无忧</div>
+        </div>
+    </div>
+    <div class="merchant-content">
+        <ul class="merchant-content-ul">
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="app-section">
+    <div class="merchant-title-bg"></div>
+    <div class="merchant-title">
+        <div class="grid-3 ">
+            <div class="merchant-t-tl">品牌护航</div>
+        </div>
+        <div class="grid-4 relative merchant-t-m">
+            品牌展示馆
+        </div>
+        <div class="grid-3 ">
+            <div class="merchant-t-tr">代理无忧</div>
+        </div>
+    </div>
+    <div class="merchant-content">
+        <ul class="merchant-content-ul">
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    金环市金福星工贸有限公司
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：金福星
+                </div>
+            </li>
         </ul>
     </div>
 </div>
 
-<div class="app-page" data-page="buttons">
-    <div class="app-topbar">
-        <div class="left app-button" data-back data-autotitle></div>
-        <div class="app-title"><span class="app-icon"></span>Buttons</div>
-        <div class="right app-button app-menu">Dialog</div>
-    </div>
+<!--页脚-->
+<div class="app-section merchant-footer">
+    <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+    <img src="images/bottom-logo.png" alt="手机 3月30日"/>
 
-    <div class="app-content">
-        <div class="app-section">
-            <ul class="app-list">
-                <li class="app-button">Item 1</li>
-                <li class="app-button">Item 2</li>
-                <li class="app-button">Item 3</li>
-            </ul>
+    <div><strong>足不出户逛展会</strong></div>
+</div>
+
+</div>
+</div>
+
+
+<div class="app-page" data-page="category">
+    <div class="app-section">
+        <div class="category-title">
+            <div class="cate-item category-zg current">
+                展馆分类
+            </div>
+            <div class="cate-item category-pro">
+                产品分类
+            </div>
+            <div class="app-button category-close icon-bg" data-back></div>
         </div>
+    </div>
+    <div class="app-content">
+        <div class="app-section relative">
+            <div class="cate-item-sub cate-item-sub-0 cate-cur">
+                <div class="cate-item-sub-title">
+                    请选择以下展馆分类进入查看品牌或产品 <span class="icon-bg icon-down"></span>
+                </div>
+                <ul class="cate-ul">
+                    <li class="cate_01 cate-l">
+                        <div class="cate-title">
+                            品牌展示馆
+                            <p>海量品牌等你来选</p>
+                        </div>
+                    </li>
+                    <li class="cate_02 cate-r">
+                        <div class="cate-title">
+                            特色门馆
+                            <p>各厂家最待色的门</p>
+                        </div>
+                    </li>
+                    <li class="cate_03 cate-l">
+                        <div class="cate-title">
+                            木门馆
+                            <p>工艺上具备原木的天然待性与环保性</p>
+                        </div>
+                    </li>
+                    <li class="cate_04 cate-r">
+                        <div class="cate-title">
+                            生态木门/强化门
+                            <p>拥有更长的使用寿命</p>
+                        </div>
+                    </li>
+                    <li class="cate_05 cate-l">
+                        <div class="cate-title">
+                            钢木门馆
+                            <p>无毒绿色健康环保</p>
+                        </div>
+                    </li>
+                    <li class="cate_06 cate-r">
+                        <div class="cate-title">
+                            铝合金门馆
+                            <p>防尘、防水、隔音效果突出</p>
+                        </div>
+                    </li>
+                    <li class="cate_07 cate-l">
+                        <div class="cate-title">
+                            防盗门馆
+                            <p>工艺上具备原木的天然待性与环保性</p>
+                        </div>
+                    </li>
+                    <li class="cate_08 cate-r">
+                        <div class="cate-title">
+                            防火门馆
+                            <p>工艺上具备原木的天然待性与环保性</p>
+                        </div>
+                    </li>
+                    <li class="cate_09 cate-l">
+                        <div class="cate-title">
+                            非标门馆
+                            <p>工艺上具备原木的天然待性与环保性</p>
+                        </div>
+                    </li>
+                    <li class="cate_10 cate-r">
+                        <div class="cate-title">
+                            铜门/不锈钢门馆
+                            <p>工艺上具备原木的天然待性与环保性</p>
+                        </div>
+                    </li>
 
-        <div class="app-section">
-            <div class="app-button red">Button 1</div>
-            <div class="app-button green">Button 2</div>
-            <div class="app-button blue">Button 3</div>
+                </ul>
+            </div>
+            <div class="cate-item-sub cate-item-sub-1">
+                <div class="cate-item-sub-title">
+                    请选择以下产品分类进入查看品牌或产品 <span class="icon-bg icon-down"></span>
+                </div>
+                <ul class="cate-pro-ul">
+                    <li>全部分类</li>
+                    <li>防盗安全门</li>
+                    <li>防火门</li>
+                    <li>拼接门</li>
+                    <li>装甲门</li>
+                    <li>仿铜门</li>
+                    <li>铜门</li>
+                    <li>铸铝门</li>
+                    <li>铜铝门</li>
+                    <li>不锈钢门</li>
+                    <li>木门</li>
+                    <li>原木门</li>
+                    <li>实木门</li>
+                    <li>实木复合门</li>
+                    <li>橡木门</li>
+                    <li>防盗门锁</li>
+                    <li>生态木门</li>
+                    <li>钢质木门</li>
+                    <li>免漆门</li>
+                    <li>铝合金门</li>
+                    <li>合金铜门</li>
+                    <li>别墅大门</li>
+                    <li>纯铜门</li>
+                    <li>科技铜门</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="app-page" data-page="inputs">
-    <div class="app-topbar">
-        <div class="app-title"><span class="app-icon"></span>Inputs</div>
-        <div class="right app-button" data-back>Done</div>
-    </div>
-
-    <div class="app-content">
-        <input class="app-input" type="search" placeholder="Search..">
-
-        <div class="app-section">
-            <input class="app-input" placeholder="Input">
-        </div>
-
-        <form class="app-section">
-            <input class="app-input" name="subject" placeholder="Subject">
-            <textarea class="app-input" name="message" placeholder="Message"></textarea>
-
-            <div class="app-button green app-submit">Send</div>
-        </form>
-    </div>
+<div class="app-page" data-page="login">
+    sdfsdfsdf
+    <div class="app-button" data-back>返回</div>
 </div>
-
-<div class="app-page scroll-page" data-page="scroll">
-    <div class="app-topbar">
-        <div class="left app-button" data-back data-autotitle></div>
-        <div class="app-title"><span class="app-icon"></span>Scrolling</div>
-    </div>
-    <div class="app-content">
-        <div class="loading"></div>
-        <ul class="app-list">
-            <li>Item <span></span></li>
-        </ul>
-    </div>
+<div class="app-page" data-page="register">
+    sdfsdf
+    <div class="app-button" data-back>返回</div>
 </div>
-
-<div class="app-page other-page" data-page="other">
-    <div class="app-topbar">
-        <div class="left app-button" data-back data-autotitle></div>
-        <div class="app-title"><span class="app-icon"></span>Scrolling</div>
-    </div>
-    <div class="app-content">
-        other
-    </div>
+<div class="app-page" data-page="search">
+    search
+    <div class="app-button" data-back>返回</div>
 </div>
-
 
 <script src="scripts/base.js"></script>
 <script src="const.js"></script>
@@ -223,22 +458,12 @@
     var colourPages = [],
             colour = localStorage[COLOUR_KEY] || 'teal';
 
-    function setupPageColour(page) {
-        var $topbar = $(page).find('.app-topbar');
-        colourPages.push($topbar);
-        if (colour) {
-            $topbar.addClass(colour);
-        }
-    }
     function stopLoading() {
         $("#Loading").fadeOut();
     }
 
-
     seajs.use(['App'], function (App) {
         App.controller('home', function (page) {
-            var logo_h;
-            setupPageColour(page);
             $(page).find('[data-target="inputs"]')
                     .attr('data-target', null)
                     .stickyClick(function (unlock) {
@@ -247,148 +472,44 @@
                             unlock();
                         });
                     });
-
-            function hideMenu() {
-                $('#J_CategoryDialog').removeClass('category-dialog-unfold');
-                $('#J_CategoryMask').hide();
-            }
-
-            $(page).find('.category-bd a').on('click', function () {
-                App.load($(this).attr('data-target'));
+            $(page).find('.input-search').click(function () {
+                $(this).blur();
+                App.load('search');
             });
-            $(page).find('.btn-menu').on('click', function (e) {
-                App._Events.stopEvent(e);
-                $('#J_CategoryDialog').addClass('category-dialog-unfold');
-                $('#J_CategoryMask').show();
-                /*$(window).one('click', function (e) {
-                 hideMenu();
-                 return false;
-                 });*/
+            $(page).find('.app-logo-container').height($(window).width() * 0.2);
+            $(window).resize(function () {
+                $(page).find('.app-logo-container').height($(window).width() * 0.2);
             });
-            $(page).find('#J_CategoryClose').on('click', function (e) {
-                hideMenu();
-            });
-            $(page).find('.btn-login').on('click', function () {
-                App.dialog({
-                    doButton: '登录',
-                    regButton: '注册',
-                    cancelButton: '关闭'
-                }, function (choice) {
-                    switch (choice) {
-                        case 'do':
-                            alert('登录');
-                            break;
-                        case 'reg':
-                            alert('注册');
-                            break;
-                        case 'cancel':
-                            alert('关闭');
-                            break;
-                    }
-                });
-            });
-            /*$(window).swipe(function () {
-                var $logo = $(page).find('.app-logo');
-                if ($(this).scrollTop !== 0) {
-                    logo_h = $logo.height();
-                    $logo.css('height', 0);
-                } else {
-                    $logo.css('height', logo_h);
-                }
-            });*/
         });
-        App.controller('other', function (page) {
-            setupPageColour(page);
-            this.transition = 'scale-in';
-            this.onShow = function () {
-                console.log('onShow');
-            }
-        });
-        App.controller('lists', function (page) {
-            setupPageColour(page);
-
-            this.onShow = function () {
-                console.log('lists page is visible');
-            };
-
-            this.onHide = function () {
-                console.log('lists page is invisible');
-            };
-
-            this.onBack = function () {
-                console.log('lists page is going back');
-            };
-
-            this.onForward = function () {
-                console.log('lists page is going forward');
-            };
-        });
-
-        App.controller('buttons', function (page) {
-            setupPageColour(page);
-
-            $(page).find('.app-menu')
-                    .on('click', function () {
-                        App.dialog({
-                            doButton: 'Do Something',
-                            otherButton: 'Or Another Thing',
-                            okButton: 'Share on Kik',
-                            cancelButton: 'Cancel'
-                        }, function (choice) {
-                            console.log(choice);
-                        });
-                    });
-        });
-
-        App.controller('inputs', function (page) {
-            setupPageColour(page);
-            if (App.platform === 'ios') {
-                this.transition = 'slideon-down';
-            }
-            App.form($(page).find('form'), this.reply);
-        });
-
-        App.controller('scroll', function (page) {
-            setupPageColour(page);
-            var $loading = $(page).find('.loading'),
-                    $list = $(page).find('.app-list'),
-                    $listItem = $(page).find('.app-list li'),
-                    totalPage = null,
-                    page = 1,
-                    i = 1;
-
-            $loading.remove();
-            $listItem.remove();
-            App.infiniteScroll($list, { loading: $loading }, function (callback) {
-                if (totalPage && (page > totalPage)) return null;
-                var query = '/tester/index';
-                App.query(query, {pageSize: 10, pageNumber: 1}, function (result) {
-                    totalPage = result.totalPage;
-                    setTimeout(function () {
-                        var list = [];
-                        for (var j = 0; j < result.list.length; j++) {
-                            var $node = $listItem.clone();
-                            $node.find('span').text(i + j);
-                            list.push($node);
-                        }
-                        i += 10;
-                        page += 1;
-                        callback(list);
-                    }, 1200);
+        App.controller('category', function (page) {
+            this.transition = 'slideon-down';
+            $(page).find('.cate-item').each(function () {
+                $(this).click(function () {
+                    $(this).addClass('current').siblings('.cate-item').removeClass('current');
+                    $(page).find('.cate-item-sub-' + $(this).index()).addClass('cate-cur').siblings().removeClass('cate-cur');
                 });
             });
         });
+        App.controller('login', function (page) {
 
+        });
+        App.controller('register', function (page) {
+
+        });
+
+        App.controller('search', function (page) {
+            this.transition = 'fade';
+
+        });
         App.enableDragTransition();
-
         try {
             App.restore();
         } catch (err) {
             App.load('home');
         }
-
     });
 
 </script>
+
 </body>
 </html>

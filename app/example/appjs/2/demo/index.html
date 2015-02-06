@@ -86,6 +86,9 @@
 			</div>
 
 			<div class="app-content">
+                <div class="app-banner">
+                    <img src="images/banner.jpg" alt="" width="100%"/>
+                </div>
 				<p class="app-section">
 					Welcome to the App.js default theme. Click around to see what each widget looks like.
 				</p>
@@ -110,6 +113,35 @@
 					<div class="app-button" data-target="buttons">Buttons</div>
 					<div class="app-button" data-target="inputs">Inputs</div>
 					<div class="app-button" data-target="scroll">Scrolling</div>
+                    <div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div>
+                    <div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div>
+                    <div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div>
+                    <div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div>
+                    <div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div>
+                    <div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div><div class="app-button" data-target="lists">Lists</div>
+                    <div class="app-button" data-target="buttons">Buttons</div>
+                    <div class="app-button" data-target="inputs">Inputs</div>
+                    <div class="app-button" data-target="scroll">Scrolling</div>
+
+
 				</div>
 			</div>
 		</div>
@@ -328,6 +360,38 @@
 
 				$loading.remove();
 				$listItem.remove();
+
+
+                /*App.controller('scroll', function (page) {
+                    var $loading = $(page).find('.loading'),
+                            $list = $(page).find('.app-list'),
+                            $listItem = $(page).find('.app-list li'),
+                            totalPage = null,
+                            page = 1,
+                            i = 1;
+
+                    $loading.remove();
+                    $listItem.remove();
+                    App.infiniteScroll($list, { loading: $loading }, function (callback) {
+                        if (totalPage && (page > totalPage)) return null;
+                        var query = '/tester/index';
+                        App.query(query, {pageSize: 10, pageNumber: 1}, function (result) {
+                            totalPage = result.totalPage;
+                            setTimeout(function () {
+                                var list = [];
+                                for (var j = 0; j < result.list.length; j++) {
+                                    var $node = $listItem.clone();
+                                    $node.find('span').text(i + j);
+                                    list.push($node);
+                                }
+                                i += 10;
+                                page += 1;
+                                callback(list);
+                            }, 1200);
+                        });
+                    });
+                });*/
+
 
 				App.infiniteScroll($list, { loading: $loading }, function (callback) {
 					if (i >= 40) {
