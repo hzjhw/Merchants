@@ -27,15 +27,17 @@
     </div>
     <div class="app-topbar">
         <div class="left app-button btn-menu icon-bg grid-2">分类</div>
-        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/><div class="btn-search-submit">提交</div></div>
+        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/>
+            <div class="btn-search-submit"></div>
+        </div>
         <div class="right app-button grid-2  btn-my icon-bg">我的</div>
     </div>
     <div class="app-content">
-        
+
         <div class="app-banner">
             <img src="images/banner.jpg" alt="" width="100%"/>
         </div>
-        
+
         <!--导航菜单-->
         <div id="J_CategoryDialog" class="category-dialog" style="display: block;">
             <h2 class="category-hd">商品服务分类</h2>
@@ -84,16 +86,17 @@
             <div class="app-button" data-target="buttons">Buttons</div>
             <div class="app-button" data-target="inputs">Inputs</div>
             <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div><div class="app-button" data-target="lists">Lists</div>
-            <div class="app-button" data-target="buttons">Buttons</div>
-            <div class="app-button" data-target="inputs">Inputs</div>
-            <div class="app-button" data-target="scroll">Scrolling</div>
-            <div class="app-button" data-target="other">Other</div><div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="other">Other</div>
+            <div class="app-button" data-target="lists">Lists</div>
             <div class="app-button" data-target="buttons">Buttons</div>
             <div class="app-button" data-target="inputs">Inputs</div>
             <div class="app-button" data-target="scroll">Scrolling</div>
             <div class="app-button" data-target="other">Other</div>
-
+            <div class="app-button" data-target="lists">Lists</div>
+            <div class="app-button" data-target="buttons">Buttons</div>
+            <div class="app-button" data-target="inputs">Inputs</div>
+            <div class="app-button" data-target="scroll">Scrolling</div>
+            <div class="app-button" data-target="other">Other</div>
 
 
         </div>
@@ -102,8 +105,13 @@
 
 <div class="app-page" data-page="lists">
     <div class="app-topbar">
-        <div class="grid-2"><div class="left app-button" data-back data-autotitle>返回</div></div>
-        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/><div class="btn-search-submit">提交</div></div>
+        <div class="grid-2">
+            <div class="left app-button" data-back data-autotitle>返回</div>
+        </div>
+        <div class="app-search grid-6"><input class="input-search icon-bg" type="text"/>
+
+            <div class="btn-search-submit">提交</div>
+        </div>
         <div class="right app-button  btn-my icon-bg">我的</div>
     </div>
 
@@ -211,7 +219,7 @@
     var COLOUR_KEY = '__BASIC_APP_COLOUR___';
 
     var colourPages = [],
-            colour = localStorage[COLOUR_KEY] ||  'teal';
+            colour = localStorage[COLOUR_KEY] || 'teal';
 
     function setupPageColour(page) {
         var $topbar = $(page).find('.app-topbar');
@@ -224,8 +232,10 @@
         $("#Loading").fadeOut();
     }
 
+
     seajs.use(['App'], function (App) {
         App.controller('home', function (page) {
+            var logo_h;
             setupPageColour(page);
             $(page).find('[data-target="inputs"]')
                     .attr('data-target', null)
@@ -274,6 +284,15 @@
                             break;
                     }
                 });
+            });
+            $(window).swipe(function () {
+                var $logo = $(page).find('.app-logo');
+                if ($(this).scrollTop !== 0) {
+                    logo_h = $logo.height();
+                    $logo.css('height', 0);
+                } else {
+                    $logo.css('height', logo_h);
+                }
             });
         });
         App.controller('other', function (page) {
