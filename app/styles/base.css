@@ -10,9 +10,6 @@ body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-
 .app-loaded .app-page{display:block}
 .app-ios-7 .app-page,.app-ios-8 .app-page{box-shadow:0 0 12px rgba(0,0,0,.2)}
 .app-topbar{z-index:3000;position:relative;height:44px;width:100%;background-color:#000;color:#FFF}
-.app-topbar .app-button{position:absolute;bottom:0;padding:0 8px;height:100%;line-height:44px}
-.app-topbar .app-button.left{left:0}
-.app-topbar .app-button.right{right:0}
 .app-topbar .app-title{margin:0 auto;height:100%;width:100%;line-height:44px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .app-android .app-topbar .app-title{line-height:48px}
 .app-ios-statusbar .app-topbar{padding-top:20px}
