@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="styles/product.css"/>
     <link rel="stylesheet" href="styles/register.css"/>
 
-
 </head>
 <body>
 <!--加载动画-->
@@ -87,7 +86,8 @@
         <!--品牌/产品展示馆-->
         <div class="app-section section-title">
             品牌/产品展示馆 &nbsp;&nbsp;&nbsp;<span class="app-button" data-target="product_list">产品列表</span><span
-                class="app-button" data-target="product_detail">产品详细</span>
+                class="app-button" data-target="product_detail">产品详细</span><span
+                class="app-button" data-target="dealers">经销商</span>
         </div>
         <div class="app-section">
             <ul class="cate-ul">
@@ -348,6 +348,8 @@
 <div class="app-page" data-page="product_list"></div>
 <div class="app-page" data-page="product_detail"></div>
 
+<div class="app-page" data-page="dealers"></div>
+
 <script src="scripts/base.js"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
@@ -496,6 +498,13 @@
                 new Register(page, ctx);
             });
         });
+        App.controller('dealers', function (page) {
+            var ctx = this;
+            this.transition = 'slide-left';
+            seajs.use(['Dealers'], function (Dealers) {
+                new Dealers(page, ctx);
+            });
+        });
         /*搜索页面*/
         App.controller('search', function (page) {
             this.transition = 'fade';
@@ -517,7 +526,6 @@
                 }
             });
         });
-
 
         App.enableDragTransition();
         try {

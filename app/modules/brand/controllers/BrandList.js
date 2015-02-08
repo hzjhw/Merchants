@@ -22,34 +22,45 @@ define('BrandList', ['App', 'template/brand_list'], function (require, exports, 
     App.query('/index', {
       cache: true,
       success: function (result) {
-        var $container = $('.merchant-cont-container', $(page));
-        var template = $container.html();
-        $container.empty();
+        var $loading = $(page).find('.loading'),
+          $list = $(page).find('.app-list'),
+          $listItem = $(page).find('.app-list li'),
+          totalPage = null,
+          page = 1,
+          i = 1;
 
-        var $loading = $(page).find('.loading');
 
 
-        App.infiniteScroll(result.brandList.list, { loading: $loading }, function (callback) {
-          if (i >= 40) {
-            return null;
-          }
-          setTimeout(function () {
-            var list = [];
-            for (var j = 0; j < 12; j++) {
-              var $node = $listItem.clone();
-              $node.find('span').text(i + j);
-              list.push($node);
-            }
-            i += 12;
-            callback(list);
-          }, 1200);
+
+        var $loading = $(page).find('.loading'),
+          $listItem = $(page).find('.merchant-content-ul li'),
+          totalPage = null,
+          page = 1,
+          i = 1;
+
+        $loading.remove();
+        $listItem.remove();
+        App.infiniteScroll($list, { loading: $loading }, function (callback) {
+          if (totalPage && (page > totalPage)) return null;
+          var query = '/tester/index';
+          App.query(query, {pageSize: 10, pageNumber: 1}, function (result) {
+            totalPage = result.totalPage;
+            setTimeout(function () {
+              var list = [];
+              for (var j = 0; j < result.list.length; j++) {
+                var $node = $listItem.clone();
+                $node.find('span').text(i + j);
+                list.push($node);
+              }
+              i += 10;
+              page += 1;
+              callback(list);
+            }, 1200);
+          });
         });
+      });
 
 
-        App.render({ render: '.merchant-cont-container', page: page, template: template, data: {
-          title: '品牌展示馆',
-          list: result.brandList.list
-        }});
       }
     });
 
