@@ -38,6 +38,11 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
           var list = [];
           for (var j = 0; j < result.brandList.list.length; j++) {
             var $node = $(item(result.brandList.list[j]));
+            $node.click(function () {
+              App.load('brand_detail', {
+                id: result.brandList.list[j].cust_id
+              });
+            });
             list.push($node);
           }
           i += 10;

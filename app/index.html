@@ -383,7 +383,7 @@
         App.controller('brand_detail', function (page) {
             var ctx = this;
             seajs.use(['BrandDetail'], function (BrandDetail) {
-                new BrandDetail(page, ctx);
+                new BrandDetail(page, ctx.args.id, ctx);
             })
         });
         /*产品*/
