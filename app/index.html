@@ -89,65 +89,67 @@
                 class="app-button" data-target="product_detail">产品详细</span><span
                 class="app-button" data-target="dealers">经销商</span><span
                 class="app-button" data-target="brand_detail">品牌详细</span>
+            <span
+                    class="app-button" data-target="brand_info">info</span>
         </div>
         <div class="app-section">
             <ul class="cate-ul">
                 <li class="cate_01 cate-l" data-id="4361326338 " data-title="品牌展示馆" data-banner="banner">
-                    <div class="cate-title app-button">
+                    <div class="cate-title  app-button">
                         品牌展示馆
                         <p>海量品牌等你来选</p>
                     </div>
                 </li>
                 <li class="cate_02 cate-r" data-id="" data-title="特色门馆" data-banner="banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         特色门馆
                         <p>各厂家最待色的门</p>
                     </div>
                 </li>
                 <li class="cate_03 cate-l" data-id="4531876237" data-title="木门馆" data-banner="mumen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         木门馆
                         <p>工艺上具备原木的天然待性与环保性</p>
                     </div>
                 </li>
                 <li class="cate_04 cate-r" data-id="5276256741" data-title="生态木门/强化门" data-banner="shengtaimen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         生态木门/强化门
                         <p>拥有更长的使用寿命</p>
                     </div>
                 </li>
                 <li class="cate_05 cate-l" data-id="4412667554" data-title="钢木门馆" data-banner="gangmumen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         钢木门馆
                         <p>无毒绿色健康环保</p>
                     </div>
                 </li>
                 <li class="cate_06 cate-r" data-id="3486245445" data-title="铝合金门馆" data-banner="lvhejinmen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         铝合金门馆
                         <p>防尘、防水、隔音效果突出</p>
                     </div>
                 </li>
                 <li class="cate_07 cate-l" data-id="1417272248" data-title="防盗门馆" data-banner="fangdaomen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         防盗门馆
                         <p>工艺上具备原木的天然待性与环保性</p>
                     </div>
                 </li>
                 <li class="cate_08 cate-r" data-id="4432837154" data-title="防火门馆" data-banner="fanghuomen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         防火门馆
                         <p>工艺上具备原木的天然待性与环保性</p>
                     </div>
                 </li>
                 <li class="cate_09 cate-l" data-id="3818678422" data-title="非标门馆" data-banner="feibiaomen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         非标门馆
                         <p>工艺上具备原木的天然待性与环保性</p>
                     </div>
                 </li>
                 <li class="cate_10 cate-r" data-id="8636812455" data-title="铜门/不锈钢门馆" data-banner="buxiugangmen_banner">
-                    <div class="cate-title">
+                    <div class="cate-title app-button">
                         铜门/不锈钢门馆
                         <p>工艺上具备原木的天然待性与环保性</p>
                     </div>
@@ -248,6 +250,7 @@
 <!--品牌-->
 <div class="app-page" data-page="brand_list"></div>
 <div class="app-page" data-page="brand_detail"></div>
+<div class="app-page" data-page="brand_info"></div>
 <!--产品-->
 <div class="app-page" data-page="product_list"></div>
 <div class="app-page" data-page="product_detail"></div>
@@ -268,202 +271,208 @@
 
 <script src="config.js"></script>
 <script>
-    var COLOUR_KEY = '__BASIC_APP_COLOUR___';
-    var WINDOW_WIDTH = null;
+var COLOUR_KEY = '__BASIC_APP_COLOUR___';
+var WINDOW_WIDTH = null;
 
-    var colourPages = [],
-            colour = localStorage[COLOUR_KEY] || 'teal';
+var colourPages = [],
+        colour = localStorage[COLOUR_KEY] || 'teal';
 
-    function stopLoading() {
-        $("#Loading").fadeOut();
-    }
+function stopLoading() {
+    $("#Loading").fadeOut();
+}
 
-    function bindBrandDetail(dom) {
-        $('.merchant-content-ul li', dom).click(function () {
-            App.load('brand_detail', {
-                id: $(this).attr('data-id')
-            });
+function bindBrandDetail(dom) {
+    $('.merchant-content-ul li', dom).click(function () {
+        App.load('brand_detail', {
+            id: $(this).attr('data-id')
         });
-    }
+    });
+}
 
-    seajs.use(['App'], function (App) {
-        /*首页*/
-        App.controller('home', function (page) {
-            $(page).find('[data-target="inputs"]')
-                    .attr('data-target', null)
-                    .stickyClick(function (unlock) {
-                        App.pick('inputs', function (params) {
-                            console.log(JSON.stringify(params));
-                            unlock();
-                        });
+seajs.use(['App'], function (App) {
+    /*首页*/
+    App.controller('home', function (page) {
+        $(page).find('[data-target="inputs"]')
+                .attr('data-target', null)
+                .stickyClick(function (unlock) {
+                    App.pick('inputs', function (params) {
+                        console.log(JSON.stringify(params));
+                        unlock();
                     });
-            // 我的330
-            $(page).find('.btn-my').click(function () {
-                var $dom = $(this).find('.span-my').get(0);
-                seajs.use(['dialog'], function (dialog) {
-                    window.dialog = dialog({
-                        id: '330dialog',
-                        title: '我的330',
-                        align: 'bottom right',
-                        width: WINDOW_WIDTH - 280,
-                        content: $('.container-my', $(page)).html(),
-                        onshow: function () {
-                            var ctx = this;
-                            $('.ul-my li').click(function () {
-                                ctx.close().remove();
-                                App.load($(this).attr('data-target'));
-                            });
-                        }
-                    }).showModal($dom);
-                })
-            });
-            /*品牌分类*/
-            $(page).find('.cate-ul li').click(function () {
-                App.load('brand_list', {
-                    id: $(this).attr('data-id'),
-                    title: $(this).attr('data-title'),
-                    banner: $(this).attr('data-banner')
                 });
-            });
-            // 门馆展示
-            App.query('/index', {
-                success: function (result) {
-                    var $container = $('#merchants-show', $(page));
-                    var template = $container.html();
-                    $container.empty();
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '品牌展示馆',
-                        list: result.brandList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '铝合金门馆',
-                        list: result.lvhejinList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '生态木门/强化门馆',
-                        list: result.shengtaiList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '防火门馆',
-                        list: result.fanghuoList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '非标门馆',
-                        list: result.feibiaoList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '防盗门馆',
-                        list: result.fangdaoList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '不锈钢门馆',
-                        list: result.buxiugangList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '钢木门馆',
-                        list: result.gangmuList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '木门馆',
-                        list: result.mumenList.list
-                    }, callback: bindBrandDetail});
-                }
-            });
-            // 布局相关
-            WINDOW_WIDTH = $(window).width();
-            $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
-            $(window).resize(function () {
-                $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
-            });
-        });
-        /*分类页面*/
-        App.controller('category', function (page) {
-            this.transition = 'slideon-down';
-            seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
-                new CategoryCtrl(page, this);
-            });
-        });
-        /*品牌列表*/
-        App.controller('brand_list', function (page) {
-            var ctx = this;
-            seajs.use(['BrandList'], function (BrandList) {
-                new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx);
-            });
-        });
-        /*品牌详细*/
-        App.controller('brand_detail', function (page) {
-            var ctx = this;
-            seajs.use(['BrandDetail'], function (BrandDetail) {
-                new BrandDetail(page, ctx.args.id, ctx);
+        // 我的330
+        $(page).find('.btn-my').click(function () {
+            var $dom = $(this).find('.span-my').get(0);
+            seajs.use(['dialog'], function (dialog) {
+                window.dialog = dialog({
+                    id: '330dialog',
+                    title: '我的330',
+                    align: 'bottom right',
+                    width: WINDOW_WIDTH - 280,
+                    content: $('.container-my', $(page)).html(),
+                    onshow: function () {
+                        var ctx = this;
+                        $('.ul-my li').click(function () {
+                            ctx.close().remove();
+                            App.load($(this).attr('data-target'));
+                        });
+                    }
+                }).showModal($dom);
             })
         });
-        /*产品列表*/
-        App.controller('product_list', function (page) {
-            var ctx = this;
-            seajs.use(['ProductList'], function (ProductList) {
-                new ProductList(page, ctx);
+        /*品牌分类*/
+        $(page).find('.cate-ul li').click(function () {
+            App.load('brand_list', {
+                id: $(this).attr('data-id'),
+                title: $(this).attr('data-title'),
+                banner: $(this).attr('data-banner')
             });
         });
-        /*产品详细*/
-        App.controller('product_detail', function (page) {
-            var ctx = this;
-            seajs.use(['ProductDetail'], function (ProductDetail) {
-                new ProductDetail(page, ctx);
-            });
+        // 门馆展示
+        App.query('/index', {
+            success: function (result) {
+                var $container = $('#merchants-show', $(page));
+                var template = $container.html();
+                $container.empty();
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '品牌展示馆',
+                    list: result.brandList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '铝合金门馆',
+                    list: result.lvhejinList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '生态木门/强化门馆',
+                    list: result.shengtaiList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '防火门馆',
+                    list: result.fanghuoList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '非标门馆',
+                    list: result.feibiaoList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '防盗门馆',
+                    list: result.fangdaoList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '不锈钢门馆',
+                    list: result.buxiugangList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '钢木门馆',
+                    list: result.gangmuList.list
+                }, callback: bindBrandDetail});
+                App.render({ render: '#merchants-show', page: page, template: template, data: {
+                    title: '木门馆',
+                    list: result.mumenList.list
+                }, callback: bindBrandDetail});
+            }
         });
-        /*登录页面*/
-        App.controller('login_dealers', function (page) {
-            var ctx = this;
-            this.transition = 'slide-left';
-            seajs.use(['Login'], function (Login) {
-                new Login(page, ctx);
-            });
+        // 布局相关
+        WINDOW_WIDTH = $(window).width();
+        $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
+        $(window).resize(function () {
+            $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
         });
-        /*注册页面*/
-        App.controller('register_dealers', function (page) {
-            var ctx = this;
-            this.transition = 'slide-left';
-            seajs.use(['Register'], function (Register) {
-                new Register(page, ctx);
-            });
-        });
-        /*经销商*/
-        App.controller('dealers', function (page) {
-            var ctx = this;
-            this.transition = 'slide-left';
-            seajs.use(['Dealers'], function (Dealers) {
-                new Dealers(page, ctx);
-            });
-        });
-        /*搜索页面*/
-        App.controller('search', function (page) {
-            this.transition = 'fade';
-            var $sub = $(page).find('.cate-item-sub');
-            $(page).find('.cate-item').each(function (index) {
-                $(this).click(function () {
-                    $(this).addClass('current').siblings('.cate-item').removeClass('current');
-                    $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
-                });
-            });
-            App.query('/product/price', {
-                cache: true,
-                success: function (result) {
-                    var $container = $('.search-price-ul', $(page));
-                    var template = $container.html();
-                    App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
-                        list: result.priceList
-                    }});
-                }
-            });
-        });
-
-        App.enableDragTransition();
-        try {
-            App.restore();
-        } catch (err) {
-            App.load('home');
-        }
     });
+    /*分类页面*/
+    App.controller('category', function (page) {
+        this.transition = 'slideon-down';
+        seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
+            new CategoryCtrl(page, this);
+        });
+    });
+    /*品牌列表*/
+    App.controller('brand_list', function (page) {
+        var ctx = this;
+        seajs.use(['BrandList'], function (BrandList) {
+            new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx);
+        });
+    });
+    /*品牌详细*/
+    App.controller('brand_detail', function (page) {
+        var ctx = this;
+        seajs.use(['BrandDetail'], function (BrandDetail) {
+            new BrandDetail(page, ctx.args.id, ctx);
+        })
+    });
+    App.controller('brand_info', function (page) {
+        var ctx = this;
+        seajs.use(['BrandInfo'], function (BrandInfo) {
+            new BrandInfo(page, ctx.args.id, ctx);
+        });
+    });
+    /*产品列表*/
+    App.controller('product_list', function (page) {
+        var ctx = this;
+        seajs.use(['ProductList'], function (ProductList) {
+            new ProductList(page, ctx);
+        });
+    });
+    /*产品详细*/
+    App.controller('product_detail', function (page) {
+        var ctx = this;
+        seajs.use(['ProductDetail'], function (ProductDetail) {
+            new ProductDetail(page, ctx);
+        });
+    });
+    /*登录页面*/
+    App.controller('login_dealers', function (page) {
+        var ctx = this;
+        this.transition = 'slide-left';
+        seajs.use(['Login'], function (Login) {
+            new Login(page, ctx);
+        });
+    });
+    /*注册页面*/
+    App.controller('register_dealers', function (page) {
+        var ctx = this;
+        this.transition = 'slide-left';
+        seajs.use(['Register'], function (Register) {
+            new Register(page, ctx);
+        });
+    });
+    /*经销商*/
+    App.controller('dealers', function (page) {
+        var ctx = this;
+        this.transition = 'slide-left';
+        seajs.use(['Dealers'], function (Dealers) {
+            new Dealers(page, ctx);
+        });
+    });
+    /*搜索页面*/
+    App.controller('search', function (page) {
+        this.transition = 'fade';
+        var $sub = $(page).find('.cate-item-sub');
+        $(page).find('.cate-item').each(function (index) {
+            $(this).click(function () {
+                $(this).addClass('current').siblings('.cate-item').removeClass('current');
+                $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
+            });
+        });
+        App.query('/product/price', {
+            cache: true,
+            success: function (result) {
+                var $container = $('.search-price-ul', $(page));
+                var template = $container.html();
+                App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
+                    list: result.priceList
+                }});
+            }
+        });
+    });
+
+    App.enableDragTransition();
+    try {
+        App.restore();
+    } catch (err) {
+        App.load('home');
+    }
+});
 
 </script>
 

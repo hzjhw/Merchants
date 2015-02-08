@@ -11,3 +11,7 @@ App.addTemplate('template/brand_detail', function (require, exports, module) {
 App.addTemplate('template/brand_list', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_list.html')
 });
+App.addModule('BrandInfo', 'modules/brand/controllers/BrandInfo.js');
+App.addTemplate('template/brand_info', function (require, exports, module) {
+  module.exports = require('modules/brand/views/brand_info.html');
+});
