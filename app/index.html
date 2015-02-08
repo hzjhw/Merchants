@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="styles/base.css?v=102">
     <link rel="stylesheet" href="styles/style.css?v=102"/>
 
-    <link rel="stylesheet" href="modules/brand/styles/brand.css"/>
-    <link rel="stylesheet" href="modules/favorite/styles/favorite.css"/>
-    <link rel="stylesheet" href="modules/login/styles/login.css"/>
-    <link rel="stylesheet" href="modules/message/styles/message.css"/>
-    <link rel="stylesheet" href="modules/product/styles/product.css"/>
-    <link rel="stylesheet" href="modules/register/styles/register.css"/>
+    <link rel="stylesheet" href="styles/brand.css"/>
+    <link rel="stylesheet" href="styles/favorite.css"/>
+    <link rel="stylesheet" href="styles/login.css"/>
+    <link rel="stylesheet" href="styles/message.css"/>
+    <link rel="stylesheet" href="styles/product.css"/>
+    <link rel="stylesheet" href="styles/register.css"/>
 
 </head>
 <body>
@@ -297,25 +297,6 @@
 </div>
 <!--注册-->
 <div class="app-page login_dealers" data-page="register_dealers">
-    <div class="top app-section">
-        <div class="wrap">
-            <div class="btn-back app-button" data-back>主会场</div>
-            <div class="title">经销商资料修改</div>
-        </div>
-    </div>
-    <div class="app-content">
-        <div class="wrap registered">
-            <input type="text" name="" class="mobile" placeholder="手机号码"><br>
-            <input type="password" name="" class="password" placeholder="密码"><br>
-            <input type="password" name="" class="password" placeholder="确定密码"><br>
-            <button type="submit">免费注册</button>
-        </div>
-        <div class="wrap note">
-            <p><a href="javascript:;" data-target="login_dealers">我要登陆</a><a href="#">找回密码</a></p>
-
-            <p>3·30门业招商节运营中心—上门网</p>
-        </div>
-    </div>
 </div>
 <!--搜索-->
 <div class="app-page" data-page="search">
@@ -508,7 +489,11 @@
         });
         /*注册页面*/
         App.controller('register_dealers', function (page) {
+            var ctx = this;
             this.transition = 'slide-left';
+            seajs.use(['Register'], function (Register) {
+                new Register(page, ctx);
+            });
         });
         /*搜索页面*/
         App.controller('search', function (page) {
