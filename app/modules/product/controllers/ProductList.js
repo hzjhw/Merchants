@@ -11,11 +11,21 @@ define('ProductList', ['App', 'template/product_list'], function (require, expor
 
   ProductList = function (page, ctx) {
     $(page).html(template);
-    $(page).find('.btn-back').click(function () {
+    $(page).find('.go-back').click(function () {
       App.back('home', function () {
 
       });
     });
+      $("#factory .header .hall").click(function(){
+          $(this).toggleClass("minus");
+          $("#factory .prolist").toggleClass("show");
+      })
+
+
+
+
+
+
   }
 
   module.exports = ProductList;

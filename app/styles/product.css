@@ -1,0 +1,20 @@
+.fl{float:left;}
+.fr{float:right;}
+a{text-decoration:none;}
+#factory .header{color:#fff;font-size:24px;background:#e0246b;height:86px;line-height:86px;font-family:Microsoft Yahei;}
+#factory .header a.go-back{color:#fff;padding-left:3%;width:17%;}
+#factory .header .logo{width:50%;padding-right:6.4%;line-height:normal;}
+#factory .header .hall{padding-left:11%;width:12.6%;background:url(img/plus.jpg) no-repeat scroll left center;}
+#factory .header .minus{background:url(img/minus.jpg) no-repeat scroll left center;}
+#factory .prolist{padding:0 2%;display:none;}
+#factory .prolist.show{display:block;}
+#factory .prolist a{color:#2d2d2d;float:left;font-size:24px;line-height:60px;font-family:Microsoft Yahei;}
+#factory .prolist a.hong{color:#bf2423;}
+#factory .prolist a.a001{width:28%;}
+#factory .prolist a.a002{width:26%;}
+#factory .prolist a.a003{width:42%;}
+#factory .prolist a.a004{width:21%;}
+#factory .factory_logo{background:#fff;}
+#factory .factory_logo img {max-width:100%;}
+#factory .factory_banner{padding:0 2.8%; margin-top:12px;margin-bottom:18px;}
+#factory .factory_banner img{max-width:100%;}
