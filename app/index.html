@@ -85,7 +85,7 @@
         </div>
         <!--品牌/产品展示馆-->
         <div class="app-section section-title">
-            品牌/产品展示馆
+            品牌/产品展示馆 &nbsp;&nbsp;&nbsp;<span class="app-button" data-target="product_list">产品列表</span>
         </div>
         <div class="app-section">
             <ul class="cate-ul">
@@ -361,6 +361,8 @@
 <div class="app-page" data-page="brand_list"></div>
 <div class="app-page" data-page="brand_detail"></div>
 
+<!--产品-->
+<div class="app-page" data-page="product_list"></div>
 
 <script src="scripts/base.js"></script>
 <script src="const.js"></script>
@@ -480,6 +482,13 @@
             seajs.use(['BrandDetail'], function (BrandDetail) {
                 new BrandDetail(page, ctx);
             })
+        });
+        /*产品*/
+        App.controller('product_list', function (page) {
+            var ctx = this;
+            seajs.use(['ProductList'], function (ProductList) {
+                new ProductList(page, ctx);
+            });
         });
         /*登录页面*/
         App.controller('login_dealers', function (page) {
