@@ -344,7 +344,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .icon-bg{background: url(img/icon.png) no-repeat scroll 0 0 transparent;}
 .app-logo-container{background-color: #df246b; height: 70px;line-height: 70px;overflow: hidden;position:relative;}
 .app-logo{height: 100%; background-position: 14px 18px; background-size: 80% 1200%;}
-.btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 85%; vertical-align: middle; font-weight: bold; font-size: 160%; padding-top: 15%; float: right;}
+.btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 85%; vertical-align: middle; font-size: 160%; padding-top: 15%; float: right;}
 .app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 20px; padding-left: 0; padding-right: 0; }
 .grid-1{width: 10%;float:left;}
 .grid-15{width: 15%;float:left;}
@@ -470,3 +470,5 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .buttombar-ul li{float: left;width: 25%;}
 .buttombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size: 20px;display: inline-block; vertical-align: middle; padding-right: 15px;}
 .app-page .btn-pink{}
+.go-back{color: #fff; padding-left: 20px; font-size: 24px; float: left;}
+.btn-category{text-align: right; padding-right: 10px; font-size: 24px; color: #fff;}

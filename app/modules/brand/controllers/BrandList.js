@@ -16,11 +16,11 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
     $(page).find('.topbar-title').html('3.30' + title);
     $(page).find('.app-banner img').attr('src', 'images/' + banner + '.jpg');
     // 返回
-    $(page).find('.btn-back').click(function () {
-      App.back('home');
+    $(page).find('.go-back').click(function () {
+      App.back();
     });
     // 分类
-    $(page).find('.btn-menu').click(function () {
+    $(page).find('.btn-category').click(function () {
       App.load('category');
     });
     // 底部导航
