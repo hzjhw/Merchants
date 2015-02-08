@@ -7,3 +7,6 @@ App.addModule('BrandCtrl', 'modules/brand/controllers/BrandCtrl.js');
 App.addTemplate('template/brand_detail', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_detail.html');
 });
+App.addTemplate('template/brand_list', function (require, exports, module) {
+  module.exports = require('modules/brand/views/brand_list.html')
+});
