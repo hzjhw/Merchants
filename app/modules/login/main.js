@@ -7,3 +7,7 @@ App.addModule('Login', 'modules/login/controllers/Login.js');
 App.addTemplate('template/login', function (require, exports, module) {
   module.exports = require('modules/login/views/login.html');
 });
+App.addTemplate('template/dealers', function (require, exports, module) {
+  module.exports = require('modules/login/views/dealers.html')
+});
+App.addModule('Dealers', 'modules/login/controllers/Dealers.js');
