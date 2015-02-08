@@ -11,6 +11,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
     <link rel="stylesheet" href="styles/base.css?v=102">
     <link rel="stylesheet" href="styles/style.css?v=102"/>
+
+    <link rel="stylesheet" href="modules/brand/styles/brand.css"/>
+    <link rel="stylesheet" href="modules/favorite/styles/favorite.css"/>
+    <link rel="stylesheet" href="modules/login/styles/login.css"/>
+    <link rel="stylesheet" href="modules/message/styles/message.css"/>
+    <link rel="stylesheet" href="modules/product/styles/product.css"/>
+    <link rel="stylesheet" href="modules/register/styles/register.css"/>
+
 </head>
 <body>
 <!--加载动画-->
@@ -411,6 +419,15 @@
 <script src="scripts/base.js"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
+
+<script src="modules/brand/main.js"></script>
+<script src="modules/favorite/main.js"></script>
+<script src="modules/login/main.js"></script>
+<script src="modules/message/main.js"></script>
+<script src="modules/product/main.js"></script>
+<script src="modules/register/main.js"></script>
+<script src="modules/category/main.js"></script>
+
 <script src="config.js"></script>
 <script>
     var COLOUR_KEY = '__BASIC_APP_COLOUR___';
@@ -501,23 +518,9 @@
         /*分类页面*/
         App.controller('category', function (page) {
             this.transition = 'slideon-down';
-            $(page).find('.cate-item').each(function () {
-                $(this).click(function () {
-                    $(this).addClass('current').siblings('.cate-item').removeClass('current');
-                    $(page).find('.cate-item-sub-' + $(this).index()).addClass('cate-cur').siblings().removeClass('cate-cur');
-                });
+            seajs.use(['CategoryCtrl'], function(CategoryCtrl){
+                new CategoryCtrl(page, this);
             });
-            App.query('/product/price', {
-                cache: true,
-                success: function (result) {
-                    var $container = $('.cate-pro-ul', $(page));
-                    var template = $container.html();
-                    App.render({ render: '.cate-pro-ul', page: page, template: template, empty: true, data: {
-                        list: result.catList
-                    }});
-                }
-            });
-
         });
         /*品牌列表*/
         App.controller('brand_list', function (page) {
