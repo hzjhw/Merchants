@@ -19,7 +19,9 @@ seajs.config({
     'jquery': 'vendor/jquery/jquery-1.10.2.js',
     'handlebars': 'vendor/handlebars/handlebars-min.js',
     'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
-    'Est': 'vendor/Est/Est.min.js'
+    'Est': 'vendor/Est/Est.min.js',
+    'dialog': 'vendor/artDialog_v6/dialog.js',
+    'dialog-plus': 'vendor/artDialog_v6/dialog-plus.js'
   }, App.getModules()),
 
   // 路径配置

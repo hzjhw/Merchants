@@ -8,9 +8,9 @@
  * */
 var CONST = {
   HOST: 'http://jihui88.com/merchants',
-  API: 'http://jihui88.com/331',
+  API: 'http://jihui88.com/330jfinal',
   DOMAIN: 'http://jihui88.com',
-  PIC_URL: 'http://192.168.1.99:8111',
+  PIC_URL: 'http://331.11door.com',
   SEP: '/',
   PIC_NONE: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg',
   DELIVERY_URL: 'http://api.ickd.cn/?id=108377&secret=1d323e291b7778da812664d0386f7b11&type=json&ord=desc&encode=utf8&ver=2',

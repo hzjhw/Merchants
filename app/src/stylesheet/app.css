@@ -355,11 +355,10 @@ p.app-section {
 /* Buttons */
 
 .app-content .app-button {
-	background-color: #FFF;
-	color: #17B;
 }
 .app-content .app-button.active {
-	background-color: #DDD;
+    opacity: 1;
+    background-color: rgba(0,0,0,0.2);
 }
 .app-content .app-button.teal {
 	background-color: #2B9;

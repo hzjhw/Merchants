@@ -26,299 +26,168 @@
 </div>
 <!--首页-->
 <div class="app-page" data-page="home">
-<div class="app-logo-container">
-    <div class="app-logo icon-bg grid-6">
-    </div>
-    <div class="grid-4" style="text-align: right; height: 100%;">
-        <div class="app-button btn-register" data-target="register">注册</div>
-        <div class="app-button btn-login" data-target="login">登录</div>
-    </div>
-
-</div>
-<div class="app-topbar">
-    <div class="app-button btn-menu icon-bg grid-2" data-target="category">分&nbsp;类</div>
-    <div class="app-search grid-6"><input hidefocus class="input-search icon-bg" placeholder="搜索品牌&nbsp;/&nbsp;搜索产品"
-                                          type="text"/>
-
-        <div class="btn-search-submit"></div>
-    </div>
-    <div class="app-button grid-2  btn-my icon-bg">我&nbsp;的</div>
-</div>
-<div class="app-content">
-<!--banner-->
-<div class="app-banner" style="overflow:hidden;">
-    <img src="images/banner.jpg" alt="" width="100%"/>
-</div>
-<!--品牌/产品展示馆-->
-<div class="app-section section-title">
-    品牌/产品展示馆
-</div>
-<div class="app-section">
-    <ul class="cate-ul">
-        <li class="cate_01 cate-l">
-            <div class="cate-title">
-                品牌展示馆
-                <p>海量品牌等你来选</p>
-            </div>
-        </li>
-        <li class="cate_02 cate-r">
-            <div class="cate-title">
-                特色门馆
-                <p>各厂家最待色的门</p>
-            </div>
-        </li>
-        <li class="cate_03 cate-l">
-            <div class="cate-title">
-                木门馆
-                <p>工艺上具备原木的天然待性与环保性</p>
-            </div>
-        </li>
-        <li class="cate_04 cate-r">
-            <div class="cate-title">
-                生态木门/强化门
-                <p>拥有更长的使用寿命</p>
-            </div>
-        </li>
-        <li class="cate_05 cate-l">
-            <div class="cate-title">
-                钢木门馆
-                <p>无毒绿色健康环保</p>
-            </div>
-        </li>
-        <li class="cate_06 cate-r">
-            <div class="cate-title">
-                铝合金门馆
-                <p>防尘、防水、隔音效果突出</p>
-            </div>
-        </li>
-        <li class="cate_07 cate-l">
-            <div class="cate-title">
-                防盗门馆
-                <p>工艺上具备原木的天然待性与环保性</p>
-            </div>
-        </li>
-        <li class="cate_08 cate-r">
-            <div class="cate-title">
-                防火门馆
-                <p>工艺上具备原木的天然待性与环保性</p>
-            </div>
-        </li>
-        <li class="cate_09 cate-l">
-            <div class="cate-title">
-                非标门馆
-                <p>工艺上具备原木的天然待性与环保性</p>
-            </div>
-        </li>
-        <li class="cate_10 cate-r">
-            <div class="cate-title">
-                铜门/不锈钢门馆
-                <p>工艺上具备原木的天然待性与环保性</p>
-            </div>
-        </li>
-
-    </ul>
-</div>
-
-<!--品牌展示-->
-<div class="app-section">
-    <div class="merchant-title-bg"></div>
-    <div class="merchant-title">
-        <div class="grid-3 ">
-            <div class="merchant-t-tl">品牌护航</div>
+    <div class="app-logo-container">
+        <div class="app-logo icon-bg grid-6">
         </div>
-        <div class="grid-4 relative merchant-t-m">
-            品牌展示馆
+        <div class="grid-4" style="text-align: right; height: 100%;">
+            <div class="app-button btn-register" data-target="register_dealers">注册</div>
+            <div class="app-button btn-login" data-target="login_dealers">登录</div>
         </div>
-        <div class="grid-3 ">
-            <div class="merchant-t-tr">代理无忧</div>
+
+    </div>
+    <div class="app-topbar">
+        <div class="app-button btn-menu icon-bg grid-2" data-target="category">分&nbsp;类</div>
+        <div class="app-search grid-6"><input class="input-search icon-bg" type="button"/>
+
+            <div class="search-placeholder app-button" data-target="search">搜索品牌&nbsp;/&nbsp;搜索产品</div>
+        </div>
+        <div class="app-button grid-2  btn-my icon-bg"><span class="span-my">我&nbsp;的</span>
+
+            <div class="container-my" style="display:none;">
+                <ul class="ul-my">
+                    <li>
+                        <div class="icon-bg icon-member"></div>
+                        <p>我的资料</p>
+                    </li>
+                    <li>
+                        <div class="icon-bg icon-door"></div>
+                        <p>收藏的产品</p></li>
+                    <li>
+                        <div class="icon-bg icon-diamond"></div>
+                        <p>收藏的品牌</p></li>
+                    <li>
+                        <div class="icon-bg icon-hand"></div>
+                        <p>我的合作意向</p></li>
+                    <li>
+                        <div class="icon-bg icon-money"></div>
+                        <p>我的代金券</p></li>
+                    <li>
+                        <div class="icon-bg icon-message"></div>
+                        <p>我的留言</p></li>
+                </ul>
+            </div>
+
         </div>
     </div>
-    <div class="merchant-content">
-        <ul class="merchant-content-ul">
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
+    <div class="app-content">
+        <!--banner-->
+        <div class="app-banner" style="overflow:hidden;">
+            <img src="images/banner.jpg" alt="" width="100%"/>
+        </div>
+        <!--品牌/产品展示馆-->
+        <div class="app-section section-title">
+            品牌/产品展示馆
+        </div>
+        <div class="app-section">
+            <ul class="cate-ul">
+                <li class="cate_01 cate-l">
+                    <div class="cate-title app-button" data-target="brand_list">
+                        品牌展示馆
+                        <p>海量品牌等你来选</p>
+                    </div>
+                </li>
+                <li class="cate_02 cate-r">
+                    <div class="cate-title">
+                        特色门馆
+                        <p>各厂家最待色的门</p>
+                    </div>
+                </li>
+                <li class="cate_03 cate-l">
+                    <div class="cate-title">
+                        木门馆
+                        <p>工艺上具备原木的天然待性与环保性</p>
+                    </div>
+                </li>
+                <li class="cate_04 cate-r">
+                    <div class="cate-title">
+                        生态木门/强化门
+                        <p>拥有更长的使用寿命</p>
+                    </div>
+                </li>
+                <li class="cate_05 cate-l">
+                    <div class="cate-title">
+                        钢木门馆
+                        <p>无毒绿色健康环保</p>
+                    </div>
+                </li>
+                <li class="cate_06 cate-r">
+                    <div class="cate-title">
+                        铝合金门馆
+                        <p>防尘、防水、隔音效果突出</p>
+                    </div>
+                </li>
+                <li class="cate_07 cate-l">
+                    <div class="cate-title">
+                        防盗门馆
+                        <p>工艺上具备原木的天然待性与环保性</p>
+                    </div>
+                </li>
+                <li class="cate_08 cate-r">
+                    <div class="cate-title">
+                        防火门馆
+                        <p>工艺上具备原木的天然待性与环保性</p>
+                    </div>
+                </li>
+                <li class="cate_09 cate-l">
+                    <div class="cate-title">
+                        非标门馆
+                        <p>工艺上具备原木的天然待性与环保性</p>
+                    </div>
+                </li>
+                <li class="cate_10 cate-r">
+                    <div class="cate-title">
+                        铜门/不锈钢门馆
+                        <p>工艺上具备原木的天然待性与环保性</p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+        <!--品牌展示-->
+        <div id="merchants-show">
+            <div class="app-section">
+                <div class="merchant-title-bg"></div>
+                <div class="merchant-title">
+                    <div class="grid-3 ">
+                        <div class="merchant-t-tl">品牌护航</div>
+                    </div>
+                    <div class="grid-4 relative merchant-t-m">
+                        {{title}}
+                    </div>
+                    <div class="grid-3 ">
+                        <div class="merchant-t-tr">代理无忧</div>
+                    </div>
                 </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
+                <div class="merchant-content">
+                    <ul id="brandList" class="merchant-content-ul">
+                        {{#each list}}
+                        <li>
+                            <div class="merchant-cont-img">
+                                <img src="{{CONST 'PIC_URL'}}{{brand_path}}" alt="" width="284" height="347"/>
+                            </div>
+                            <div class="merchant-cont-title">
+                                {{cust_name}}
+                            </div>
+                            <div class="merchant-cont-brand">
+                                所属品牌：{{brand_name}}
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
                 </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-        </ul>
+            </div>
+        </div>
+        <!--页脚-->
+        <div class="app-section merchant-footer">
+            <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+            <img src="images/bottom-logo.png" alt="手机 3月30日"/>
+
+            <div><strong>足不出户逛展会</strong></div>
+        </div>
     </div>
 </div>
-<div class="app-section">
-    <div class="merchant-title-bg"></div>
-    <div class="merchant-title">
-        <div class="grid-3 ">
-            <div class="merchant-t-tl">品牌护航</div>
-        </div>
-        <div class="grid-4 relative merchant-t-m">
-            品牌展示馆
-        </div>
-        <div class="grid-3 ">
-            <div class="merchant-t-tr">代理无忧</div>
-        </div>
-    </div>
-    <div class="merchant-content">
-        <ul class="merchant-content-ul">
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-        </ul>
-    </div>
 </div>
-<div class="app-section">
-    <div class="merchant-title-bg"></div>
-    <div class="merchant-title">
-        <div class="grid-3 ">
-            <div class="merchant-t-tl">品牌护航</div>
-        </div>
-        <div class="grid-4 relative merchant-t-m">
-            品牌展示馆
-        </div>
-        <div class="grid-3 ">
-            <div class="merchant-t-tr">代理无忧</div>
-        </div>
-    </div>
-    <div class="merchant-content">
-        <ul class="merchant-content-ul">
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-            <li>
-                <div class="merchant-cont-img">
-                    <img src="images/brand.jpg" alt="" width="284" height="347"/>
-                </div>
-                <div class="merchant-cont-title">
-                    金环市金福星工贸有限公司
-                </div>
-                <div class="merchant-cont-brand">
-                    所属品牌：金福星
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-
-<!--页脚-->
-<div class="app-section merchant-footer">
-    <p>①2015 浙B2-20050229-3 用户反馈中心</p>
-    <img src="images/bottom-logo.png" alt="手机 3月30日"/>
-
-    <div><strong>足不出户逛展会</strong></div>
-</div>
-
-</div>
-</div>
-
-
+<!--分类-->
 <div class="app-page" data-page="category">
     <div class="app-section">
         <div class="category-title">
@@ -406,54 +275,146 @@
                     请选择以下产品分类进入查看品牌或产品 <span class="icon-bg icon-down"></span>
                 </div>
                 <ul class="cate-pro-ul">
-                    <li>全部分类</li>
-                    <li>防盗安全门</li>
-                    <li>防火门</li>
-                    <li>拼接门</li>
-                    <li>装甲门</li>
-                    <li>仿铜门</li>
-                    <li>铜门</li>
-                    <li>铸铝门</li>
-                    <li>铜铝门</li>
-                    <li>不锈钢门</li>
-                    <li>木门</li>
-                    <li>原木门</li>
-                    <li>实木门</li>
-                    <li>实木复合门</li>
-                    <li>橡木门</li>
-                    <li>防盗门锁</li>
-                    <li>生态木门</li>
-                    <li>钢质木门</li>
-                    <li>免漆门</li>
-                    <li>铝合金门</li>
-                    <li>合金铜门</li>
-                    <li>别墅大门</li>
-                    <li>纯铜门</li>
-                    <li>科技铜门</li>
+                    {{#each list}}
+                    <li id="{{cat_id}}">{{cat_name}}</li>
+                    {{/each}}
                 </ul>
             </div>
         </div>
     </div>
 </div>
-<div class="app-page" data-page="login">
-    sdfsdfsdf
-    <div class="app-button" data-back>返回</div>
-</div>
-<div class="app-page" data-page="register">
-    sdfsdf
-    <div class="app-button" data-back>返回</div>
-</div>
-<div class="app-page" data-page="search">
-    search
-    <div class="app-button" data-back>返回</div>
-</div>
+<!--登录-->
+<div class="app-page login_dealers" data-page="login_dealers">
+    <div class="top app-section">
+        <div class="wrap">
+            <div class="btn-back app-button" data-back>主会场</div>
+            <div class="title" data-back>经销商登录</div>
+        </div>
+    </div>
+    <div class="app-content">
+        <div class="wrap registered">
+            <input type="text" name="" class="mobile" placeholder="手机号码/330用户名"><br>
+            <input type="password" name="" class="password" placeholder="密码"><br>
+            <button type="submit">登　录</button>
+        </div>
+        <div class="wrap note">
+            <p><a href="#">免费注册</a><a href="#">找回密码</a></p>
 
+            <p>3·30门业招商节运营中心—上门网</p>
+        </div>
+    </div>
+</div>
+<!--注册-->
+<div class="app-page login_dealers" data-page="register_dealers">
+    <div class="top app-section">
+        <div class="wrap">
+            <div class="btn-back app-button" data-back>主会场</div>
+            <div class="title">经销商资料修改</div>
+        </div>
+    </div>
+    <div class="app-content">
+        <div class="wrap registered">
+            <input type="text" name="" class="mobile" placeholder="手机号码"><br>
+            <input type="password" name="" class="password" placeholder="密码"><br>
+            <input type="password" name="" class="password" placeholder="确定密码"><br>
+            <button type="submit">免费注册</button>
+        </div>
+        <div class="wrap note">
+            <p><a href="javascript:;" data-target="login_dealers">我要登陆</a><a href="#">找回密码</a></p>
+
+            <p>3·30门业招商节运营中心—上门网</p>
+        </div>
+    </div>
+</div>
+<!--搜索-->
+<div class="app-page" data-page="search">
+    <div class="app-section">
+        <div class="category-title">
+            <div class="cate-item category-zg current">
+                空白区域搜索
+            </div>
+            <div class="cate-item category-pro">
+                搜索产品
+            </div>
+            <div class="app-button category-close icon-bg" data-back></div>
+        </div>
+    </div>
+    <div class="app-content">
+        <div class="app-section relative">
+            <div class="cate-item-sub cate-item-sub-0 cate-cur">
+                <div class="cate-item-sub-title">
+                    <input class="input-search" type="text" placeholder="请输入要搜索的空白区域地址"/>
+                </div>
+                <div class="search-tip">
+                    <p><span class="red">提示：</span>在下面输入框中先输入您要搜索的空 白区域地址，如：输入<span class="red">永康</span>
+                        ，那么就会列出永康为空白区域的品牌，输入时， 不要输入省、市、县、区等字， 如：<span class="red">
+                            不要输入永康市
+                    </span>
+
+                    </p>
+                </div>
+            </div>
+            <div class="cate-item-sub cate-item-sub-1">
+                <div class="cate-item-sub-title">
+                    请选择以下产品价格分类进入查看产品 <span class="icon-bg icon-down"></span>
+                </div>
+                <ul class="cate-pro-ul search-price-ul">
+                    {{#each list}}
+                    <li id="{{para_key}}">{{para_value}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--品牌列表-->
+<div class="app-page" data-page="brand_list">
+    <div class="app-logo-container">
+        <div class="grid-1">
+            <div class="btn-back app-button">返回</div>
+        </div>
+        <div class="grid-4" style="text-align: right; height: 100%;">
+            <div class="app-button btn-register" data-target="register_dealers">注册</div>
+            <div class="app-button btn-login" data-target="login_dealers">登录</div>
+        </div>
+
+    </div>
+    <div class="app-section">
+        <div class="app-button grid-2 btn-back" data-back>返回</div>
+        <div class="app-button grid-2" data-target="category">分&nbsp;类</div>
+        <div class="app-titles grid-4">3.30防火门馆</div>
+        <div class="app-button grid-2  btn-my icon-bg">我&nbsp;的</div>
+    </div>
+    <div class="app-content">
+        <div class="app-banner" style="overflow:hidden;">
+            <img src="images/fanghuomen_banner.jpg" alt="防火门馆" width="100%">
+        </div>
+        <div class="merchant-content">
+            <ul id="brandCateList" class="merchant-content-ul">
+                {{#each list}}
+                <li>
+                    <div class="merchant-cont-img">
+                        <img src="{{CONST 'PIC_URL'}}{{brand_path}}" alt="" width="284" height="347"/>
+                    </div>
+                    <div class="merchant-cont-title">
+                        {{cust_name}}
+                    </div>
+                    <div class="merchant-cont-brand">
+                        所属品牌：{{brand_name}}
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
 <script src="scripts/base.js"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
 <script src="config.js"></script>
 <script>
     var COLOUR_KEY = '__BASIC_APP_COLOUR___';
+    var WINDOW_WIDTH = null;
 
     var colourPages = [],
             colour = localStorage[COLOUR_KEY] || 'teal';
@@ -463,6 +424,7 @@
     }
 
     seajs.use(['App'], function (App) {
+        /*首页*/
         App.controller('home', function (page) {
             $(page).find('[data-target="inputs"]')
                     .attr('data-target', null)
@@ -472,15 +434,71 @@
                             unlock();
                         });
                     });
-            $(page).find('.input-search').click(function () {
-                $(this).blur();
-                App.load('search');
+            // 我的330
+            $(page).find('.btn-my').click(function () {
+                var $dom = $(this).find('.span-my').get(0);
+                seajs.use(['dialog'], function (dialog) {
+                    window.dialog = dialog({
+                        id: '330dialog',
+                        title: '我的330',
+                        align: 'bottom right',
+                        width: WINDOW_WIDTH - 280,
+                        content: $('.container-my', $(page)).html()
+                    }).showModal($dom);
+                })
             });
-            $(page).find('.app-logo-container').height($(window).width() * 0.2);
+            // 门馆展示
+            App.query('/index', {
+                success: function (result) {
+                    var $container = $('#merchants-show', $(page));
+                    var template = $container.html();
+                    $container.empty();
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '品牌展示馆',
+                        list: result.brandList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '铝合金门馆',
+                        list: result.lvhejinList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '生态木门/强化门馆',
+                        list: result.shengtaiList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '防火门馆',
+                        list: result.fanghuoList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '非标门馆',
+                        list: result.feibiaoList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '防盗门馆',
+                        list: result.fangdaoList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '不锈钢门馆',
+                        list: result.buxiugangList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '钢木门馆',
+                        list: result.gangmuList.list
+                    }});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '木门馆',
+                        list: result.mumenList.list
+                    }});
+                }
+            });
+            // 布局相关
+            WINDOW_WIDTH = $(window).width();
+            $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
             $(window).resize(function () {
-                $(page).find('.app-logo-container').height($(window).width() * 0.2);
+                $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
             });
         });
+        /*分类页面*/
         App.controller('category', function (page) {
             this.transition = 'slideon-down';
             $(page).find('.cate-item').each(function () {
@@ -489,18 +507,54 @@
                     $(page).find('.cate-item-sub-' + $(this).index()).addClass('cate-cur').siblings().removeClass('cate-cur');
                 });
             });
-        });
-        App.controller('login', function (page) {
+            App.query('/product/price', {
+                cache: true,
+                success: function (result) {
+                    var $container = $('.cate-pro-ul', $(page));
+                    var template = $container.html();
+                    App.render({ render: '.cate-pro-ul', page: page, template: template, empty: true, data: {
+                        list: result.catList
+                    }});
+                }
+            });
 
         });
-        App.controller('register', function (page) {
+        /*品牌列表*/
+        App.controller('brand_list', function (page) {
 
         });
+        /*登录页面*/
+        App.controller('login_dealers', function (page) {
+            this.transition = 'slide-left';
 
+        });
+        /*注册页面*/
+        App.controller('register_dealers', function (page) {
+            this.transition = 'slide-left';
+        });
+        /*搜索页面*/
         App.controller('search', function (page) {
             this.transition = 'fade';
-
+            var $sub = $(page).find('.cate-item-sub');
+            $(page).find('.cate-item').each(function (index) {
+                $(this).click(function () {
+                    $(this).addClass('current').siblings('.cate-item').removeClass('current');
+                    $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
+                });
+            });
+            App.query('/product/price', {
+                cache: true,
+                success: function (result) {
+                    var $container = $('.search-price-ul', $(page));
+                    var template = $container.html();
+                    App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
+                        list: result.priceList
+                    }});
+                }
+            });
         });
+
+
         App.enableDragTransition();
         try {
             App.restore();

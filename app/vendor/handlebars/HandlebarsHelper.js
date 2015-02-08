@@ -10,51 +10,6 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
   Handlebars = require('handlebars');
 
   /**
-   * 分页
-   * @method [分页] - pagination
-   * @author wyj 2014-03-27
-   * @example
-   *        {{#pagination page totalPage}}
-   <li class="bui-bar-item bui-button-number bui-inline-block {{#compare ../page this operator='!=='}}danaiPageNum
-   {{else}}active{{/compare}}" data-page="{{this}}" aria-disabled="false" id="{{this}}" aria-pressed="false">
-   <a href="javascript:;">{{this}}</a></li>
-   {{/pagination}}
-   */
-  Handlebars.registerHelper('pagination', function (page, totalPage, block) {
-    var accum = '';
-    var pages = Est.getPaginationNumber(page, totalPage, 9);
-    for (var i = 0, len = pages.length; i < len; i++) {
-      accum += block.fn(pages[i]);
-    }
-    return accum;
-  });
-
-  /**
-   * 根据path获取值
-   * @method getValue
-   * @author wyj 15.2.1
-   * @example
-   *      Handlebars.helpers["getValue"].apply(this, date)
-   */
-  Handlebars.registerHelper('getValue', function (path, options) {
-    if (typeof path !== 'undefined' && Est.typeOf(path) === 'string') {
-      var list = path.split('.');
-      if (list[0] in this) {
-        if (list.length > 1) {
-          if (Est.typeOf(this[list[0]]) !== 'object') {
-            this[list[0]] = JSON.parse(this[list[0]]);
-          }
-          return Est.getValue(this, path);
-        } else {
-          return this[list[0]];
-        }
-      }
-    } else {
-      return path;
-    }
-  });
-
-  /**
    * 比较
    * @method [判断] - compare
    * @author wyj 2014-03-27
@@ -107,28 +62,8 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     }
   });
 
-  /**
-   * 时间格式化
-   * @method [时间] - dateFormat
-   * @author wyj 2014-03-27
-   * @example
-   *      {{dateFormat $.detail_news.add_time $.lan.news.format}}
-   */
-  Handlebars.registerHelper('dateFormat', function (date, fmt, options) {
-    return Est.dateFormat(Handlebars.helpers["getValue"].call(this, date), fmt);
-  });
 
-  /**
-   * 判断字符串是否包含
-   * @method [判断] - contains
-   * @author wyj 14.11.17
-   * @example
-   *      {{#contains ../element this}}checked="checked"{{/contains}}
-   */
-  Handlebars.registerHelper('contains', function (target, thisVal, options) {
-    if (Est.isEmpty(target)) return;
-    return Est.contains(target, thisVal) ? options.fn(this) : options.inverse(this);
-  });
+
 
   /**
    * 两数相加
@@ -151,16 +86,6 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return parseInt(num1, 10) - parseInt(num2, 10);
   });
 
-  /**
-   * 字符串截取
-   * @method [字符串] - cutByte
-   * @author wyj 2014-03-27
-   * @example
-   *      {{cutByte name 5 end='...'}}
-   */
-  Handlebars.registerHelper('cutByte', function (str, len, options) {
-    return Est.cutByte(str, len, options.hash.end || '...');
-  });
 
   /**
    * 复杂条件
@@ -204,15 +129,15 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    * @method [状态] - status
    * @author wyj 15.1.7
    */
-  Est.each(app.getAllStatus(), function (val, key) {
+  Application.each(App.getAllStatus(), function (val, key) {
     Handlebars.registerHelper(key, function (str, options) {
       var result = '';
-      if (Est.isEmpty(options)) {
+      if (options && options.length === 0) {
         return this[key];
       }
-      Est.each(val, function (item) {
+      Application.each(val, function (item) {
         if (item.value === str) {
-          result = Est.isEmpty(item.html) ? item.text : item.html;
+          result = item.html.length === 0 ? item.text : item.html;
           return false;
         }
       });
@@ -248,19 +173,7 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    *        {{CONST 'HOST'}}
    */
   Handlebars.registerHelper('CONST', function (name, options) {
-    return Est.getValue(CONST, name);
-  });
-
-  /**
-   * 判断是否为空
-   * @method [判断] - isEmpty
-   * @author wyj 14.12.27
-   * @example
-   *      {{#isEmpty image}}<img src='...'></img>{{/isEmpty}}
-   */
-  Handlebars.registerHelper('isEmpty', function (value, options) {
-    return Est.isEmpty(value) ? options.fn(this) :
-      options.inverse(this);
+    return Application.getValue(CONST, name);
   });
 
   /**
@@ -279,23 +192,6 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return url ? url : '';
   });
 
-  /**
-   * radio标签
-   *
-   * @method [表单] - radio
-   * @author wyj 15.1.7
-   * @example
-   *        {{{radio name='isBest' value=isBest option='{"是": "01", "否": "00"}' }}}
-   */
-  Handlebars.registerHelper('radio', function (options) {
-    var result = [];
-    Est.each(JSON.parse(options.hash.option), function (val, key, list, index) {
-      var checked = options.hash.value === val ? 'checked' : '';
-      result.push('<label><input id="model' + index + '-' + options.hash.name + '" type="radio" name="' + options.hash.name +
-        '" value="' + val + '" ' + checked + '>&nbsp;' + key + '</label>&nbsp;&nbsp;');
-    });
-    return result.join('');
-  });
 
   /**
    * 显示隐藏
@@ -340,26 +236,6 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
    */
   Handlebars.registerHelper('encodeURIComponent', function (val, options) {
     return encodeURIComponent(val);
-  });
-
-  /**
-   * 请求模板
-   * @method [模板] - template
-   * @author wyj 15.2.1
-   * @example
-   *      {{template redding}}
-   */
-  Handlebars.registerHelper('template', function (name, options) {
-    return (function (name, options, ctx) {
-      new Est.promise(function (resolve, reject) {
-        seajs.use([name], function (template) {
-          var tpl = Handlebars.compile(template);
-          resolve(tpl(this));
-        });
-      }).then(function (result) {
-          options.fn(ctx);
-        })
-    })(name, options, this);
   });
 
   /**

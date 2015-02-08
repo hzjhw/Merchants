@@ -152,14 +152,6 @@ body {
 /* Buttons */
 
 .app-content .app-button {
-	margin: 0 auto;
-	height: 40px;
-	border-bottom: 1px solid #AAA;
-	line-height: 40px;
-	overflow: hidden;
-	text-align: center;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 .app-button:last-child {
 	border-bottom: none;
