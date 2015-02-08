@@ -1,0 +1,38 @@
+<div class="app-logo-container">
+    <div class="grid-1">
+        <div class="btn-back app-button">返回</div>
+    </div>
+    <div class="grid-4" style="text-align: right; height: 100%;">
+        <div class="app-button btn-register" data-target="register_dealers">注册</div>
+        <div class="app-button btn-login" data-target="login_dealers">登录</div>
+    </div>
+
+</div>
+<div class="app-section">
+    <div class="app-button grid-2 btn-back" data-back>返回</div>
+    <div class="app-button grid-2" data-target="category">分&nbsp;类</div>
+    <div class="app-titles grid-4">3.30防火门馆</div>
+    <div class="app-button grid-2  btn-my icon-bg">我&nbsp;的</div>
+</div>
+<div class="app-content">
+    <div class="app-banner" style="overflow:hidden;">
+        <img src="images/fanghuomen_banner.jpg" alt="防火门馆" width="100%">
+    </div>
+    <div class="merchant-content">
+        <ul id="brandCateList" class="merchant-content-ul">
+            {{#each list}}
+            <li>
+                <div class="merchant-cont-img">
+                    <img src="{{CONST 'PIC_URL'}}{{brand_path}}" alt="" width="284" height="347"/>
+                </div>
+                <div class="merchant-cont-title">
+                    {{cust_name}}
+                </div>
+                <div class="merchant-cont-brand">
+                    所属品牌：{{brand_name}}
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
