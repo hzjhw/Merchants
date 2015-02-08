@@ -22,7 +22,7 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
     });
     $(page).find('.cate-ul li').each(function () {
       $(this).click(function () {
-        var id = $(this).attr('id');
+        var id = $(this).attr('data-id');
         App.load('brand_list', {
           id: id
         });

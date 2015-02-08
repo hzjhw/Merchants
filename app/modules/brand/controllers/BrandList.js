@@ -13,8 +13,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
     template = require('template/brand_list');
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
-      App.back('home', function () {
-      });
+      App.back();
     });
     var $loading = $(page).find('.loading'),
       $list = $(page).find('.merchant-content-ul'),
@@ -40,7 +39,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
             var $node = $(item(result.brandList.list[j]));
             $node.click(function () {
               App.load('brand_detail', {
-                //id: result.brandList.list[j].cust_id
+                id: $(this).attr('data-id')
               });
             });
             list.push($node);
