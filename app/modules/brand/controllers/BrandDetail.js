@@ -11,9 +11,14 @@ define('BrandDetail', ['App', 'template/brand_detail'], function (require, expor
 
   BrandDetail = function (page, id, context) {
     $(page).html(template);
-    $(page).find('.btn-back').click(function () {
+    $(page).find('.go-back').click(function () {
       App.back();
     })
+    $("#factory .header .hall").click(function(){
+      $(this).toggleClass("minus");
+      $("#factory .prolist").toggleClass("show");
+    })
+
   }
 
   module.exports = BrandDetail;
