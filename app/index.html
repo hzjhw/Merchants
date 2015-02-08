@@ -293,24 +293,6 @@
 </div>
 <!--登录-->
 <div class="app-page login_dealers" data-page="login_dealers">
-    <div class="top app-section">
-        <div class="wrap">
-            <div class="btn-back app-button" data-back>主会场</div>
-            <div class="title" data-back>经销商登录</div>
-        </div>
-    </div>
-    <div class="app-content">
-        <div class="wrap registered">
-            <input type="text" name="" class="mobile" placeholder="手机号码/330用户名"><br>
-            <input type="password" name="" class="password" placeholder="密码"><br>
-            <button type="submit">登　录</button>
-        </div>
-        <div class="wrap note">
-            <p><a href="#">免费注册</a><a href="#">找回密码</a></p>
-
-            <p>3·30门业招商节运营中心—上门网</p>
-        </div>
-    </div>
 </div>
 <!--注册-->
 <div class="app-page login_dealers" data-page="register_dealers">
@@ -501,8 +483,11 @@
         });
         /*登录页面*/
         App.controller('login_dealers', function (page) {
+            var ctx = this;
             this.transition = 'slide-left';
-
+            seajs.use(['Login'], function (Login) {
+                new Login(page, ctx);
+            });
         });
         /*注册页面*/
         App.controller('register_dealers', function (page) {
