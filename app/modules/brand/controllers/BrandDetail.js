@@ -9,8 +9,11 @@ define('BrandDetail', ['App', 'template/brand_detail'], function (require, expor
   App = require('App');
   template = require('template/brand_detail');
 
-  BrandDetail = function (page, context) {
-
+  BrandDetail = function (page, id, context) {
+    $(page).html(template);
+    $(page).find('.btn-back').click(function () {
+      App.back();
+    })
   }
 
   module.exports = BrandDetail;
