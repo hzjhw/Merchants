@@ -1,8 +1,8 @@
 .login_dealers a ,.registered a{text-decoration:none;}
 .login_dealers .wrap , .registered .wrap{width:640px;margin:0 auto;overflow:hidden;text-align: center;}
 .login_dealers {font-size:14px;font-family:"微软雅黑";}
-.login_dealers .top {height:58px;line-height:58px; background: url(/merchants/styles/img/top_bj.jpg);background-size:100% 100%;padding:20px 0;margin-bottom:20px;}
-.btn-back {display:block;width: 135px;height: 58px;background: url(/merchants/styles/img/return.jpg) no-repeat;background-size: 100%;line-height: 58px;font-size: 26px;text-align: center;color: #6A6A6A;margin: 0px 30px 0px 20px;float:left;}
+.login_dealers .top {height:58px;line-height:58px; background: url(img/top_bj.jpg);background-size:100% 100%;padding:20px 0;margin-bottom:20px;}
+.btn-back {display:block;width: 135px;height: 58px;background: url(img/return.jpg) no-repeat;background-size: 100%;line-height: 58px;font-size: 26px;text-align: center;color: #6A6A6A;margin: 0px 30px 0px 20px;float:left;}
 .login_dealers .top .title {float:left;font-size:26px;width:325px;}
 .registered {text-align:center;}
 .registered input,#registered textarea {width:515px;height:70px;margin-top:25px;padding:0 15px 0 30px;background:#fff url(img/icon_login.png) no-repeat;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;border: 1px solid #ccc;-moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;-webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;font-size:26px;color:#2D2D2D;background-size:25px;background-position:5px 5px;}
