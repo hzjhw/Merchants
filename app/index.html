@@ -375,10 +375,11 @@
         </div>
     </div>
 </div>
-<!--品牌列表-->
-<div class="app-page" data-page="brand_list">
+<!--品牌-->
+<div class="app-page" data-page="brand_list"></div>
+<div class="app-page" data-page="brand_detail"></div>
 
-</div>
+
 <script src="scripts/base.js"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
@@ -485,12 +486,18 @@
                 new CategoryCtrl(page, this);
             });
         });
-        /*品牌列表*/
+        /*品牌*/
         App.controller('brand_list', function (page) {
             var ctx = this;
             seajs.use(['BrandList'], function (BrandList) {
                 new BrandList(page, ctx);
             });
+        });
+        App.controller('brand_detail', function (page) {
+            var ctx = this;
+            seajs.use(['BrandDetail'], function (BrandDetail) {
+                new BrandDetail(page, ctx);
+            })
         });
         /*登录页面*/
         App.controller('login_dealers', function (page) {
