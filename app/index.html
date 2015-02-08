@@ -54,23 +54,23 @@
 
             <div class="container-my" style="display:none;">
                 <ul class="ul-my">
-                    <li>
+                    <li data-target="dealers">
                         <div class="icon-bg icon-member"></div>
                         <p>我的资料</p>
                     </li>
-                    <li>
+                    <li data-target="favorite_product">
                         <div class="icon-bg icon-door"></div>
                         <p>收藏的产品</p></li>
-                    <li>
+                    <li data-target="favorite_brand">
                         <div class="icon-bg icon-diamond"></div>
                         <p>收藏的品牌</p></li>
-                    <li>
+                    <li data-target="cooperative">
                         <div class="icon-bg icon-hand"></div>
                         <p>我的合作意向</p></li>
-                    <li>
+                    <li data-target="money">
                         <div class="icon-bg icon-money"></div>
                         <p>我的代金券</p></li>
-                    <li>
+                    <li data-target="message">
                         <div class="icon-bg icon-message"></div>
                         <p>我的留言</p></li>
                 </ul>
@@ -198,14 +198,11 @@
     </div>
 </div>
 <!--分类-->
-<div class="app-page" data-page="category">
-</div>
+<div class="app-page" data-page="category"></div>
 <!--登录-->
-<div class="app-page login_dealers" data-page="login_dealers">
-</div>
+<div class="app-page login_dealers" data-page="login_dealers"></div>
 <!--注册-->
-<div class="app-page login_dealers" data-page="register_dealers">
-</div>
+<div class="app-page login_dealers" data-page="register_dealers"></div>
 <!--搜索-->
 <div class="app-page" data-page="search">
     <div class="app-section">
@@ -250,11 +247,10 @@
 <!--品牌-->
 <div class="app-page" data-page="brand_list"></div>
 <div class="app-page" data-page="brand_detail"></div>
-
 <!--产品-->
 <div class="app-page" data-page="product_list"></div>
 <div class="app-page" data-page="product_detail"></div>
-
+<!--经销商-->
 <div class="app-page" data-page="dealers"></div>
 
 <script src="scripts/base.js"></script>
@@ -309,10 +305,18 @@
                         title: '我的330',
                         align: 'bottom right',
                         width: WINDOW_WIDTH - 280,
-                        content: $('.container-my', $(page)).html()
+                        content: $('.container-my', $(page)).html(),
+                        onshow: function () {
+                            var ctx = this;
+                            $('.ul-my li').click(function () {
+                                ctx.close().remove();
+                                App.load($(this).attr('data-target'));
+                            });
+                        }
                     }).showModal($dom);
                 })
             });
+            /*品牌分类*/
             $(page).find('.cate-ul li').click(function () {
                 App.load('brand_list', {
                     id: $(this).attr('data-id'),
@@ -378,7 +382,7 @@
                 new CategoryCtrl(page, this);
             });
         });
-        /*品牌*/
+        /*品牌列表*/
         App.controller('brand_list', function (page) {
             var ctx = this;
             seajs.use(['BrandList'], function (BrandList) {
@@ -392,13 +396,14 @@
                 new BrandDetail(page, ctx.args.id, ctx);
             })
         });
-        /*产品*/
+        /*产品列表*/
         App.controller('product_list', function (page) {
             var ctx = this;
             seajs.use(['ProductList'], function (ProductList) {
                 new ProductList(page, ctx);
             });
         });
+        /*产品详细*/
         App.controller('product_detail', function (page) {
             var ctx = this;
             seajs.use(['ProductDetail'], function (ProductDetail) {
@@ -421,6 +426,7 @@
                 new Register(page, ctx);
             });
         });
+        /*经销商*/
         App.controller('dealers', function (page) {
             var ctx = this;
             this.transition = 'slide-left';
