@@ -11,7 +11,7 @@ define('BrandInfo', ['App', 'template/brand_info'], function (require, exports, 
 
   BrandInfo = function (page, id, context) {
     $(page).html(template);
-    $(page).find('.btn-back').click(function () {
+    $(page).find('.go-back').click(function () {
       App.back();
     });
   }
