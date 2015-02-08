@@ -40,7 +40,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
             var $node = $(item(result.brandList.list[j]));
             $node.click(function () {
               App.load('brand_detail', {
-                id: result.brandList.list[j].cust_id
+                //id: result.brandList.list[j].cust_id
               });
             });
             list.push($node);
