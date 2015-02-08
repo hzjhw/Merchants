@@ -290,6 +290,9 @@ Application.prototype = {
    *          page: page, // 作用域
    *          template: $('#brandList').html(),
    *          items: result.brandList.list // 数据列表
+   *          callback: function(dom){
+   *
+   *          }
    *      });
    */
   render: function (options) {
@@ -298,7 +301,11 @@ Application.prototype = {
       var $container = $(options.render, $(options.page || 'body')); // 渲染容器
       var view = HandlebarsHelper.compile(options.template || $container.html()); // 单视图
       if (options.empty) $container.empty();
-      $container.append($(view(options.data)));
+      var $node = $(view(options.data));
+      if (options.callback) {
+        options.callback.call(null, $node);
+      }
+      $container.append($node);
     });
   },
   addCache: function (name, data) {

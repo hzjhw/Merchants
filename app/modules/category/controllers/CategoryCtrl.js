@@ -12,7 +12,7 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
   CategoryCtrl = function (page, context) {
     $(page).html(template);
     $(page).find('.category-close').click(function () {
-      App.back('home');
+      App.back();
     });
     $(page).find('.cate-item').each(function () {
       $(this).click(function () {
@@ -24,7 +24,9 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
       $(this).click(function () {
         var id = $(this).attr('data-id');
         App.load('brand_list', {
-          id: id
+          id: id,
+          title: $(this).attr('data-title'),
+          banner: $(this).attr('data-banner')
         });
         return false;
       });

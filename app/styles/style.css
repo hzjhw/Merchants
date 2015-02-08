@@ -335,30 +335,17 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
     color: #666
 }
 
-.ui-dialog-loading::after {
-    position: absolute;
-    content: '';
-    width: 3px;
-    height: 3px;
-    margin: 14.5px 0 0 14.5px;
-    border-radius: 100%;
-    box-shadow: 0 -10px 0 1px #ccc, 10px 0 #ccc, 0 10px #ccc, -10px 0 #ccc, -7px -7px 0 .5px #ccc, 7px -7px 0 1.5px #ccc, 7px 7px #ccc, -7px 7px #ccc;
-    -webkit-transform: rotate(360deg);
-    -webkit-animation: ui-dialog-loading 1.5s infinite linear;
-    transform: rotate(360deg);
-    animation: ui-dialog-loading 1.5s infinite linear
-}
-
+.ui-dialog-loading::after { position: absolute; content: ''; width: 3px; height: 3px; margin: 14.5px 0 0 14.5px; border-radius: 100%; box-shadow: 0 -10px 0 1px #ccc, 10px 0 #ccc, 0 10px #ccc, -10px 0 #ccc, -7px -7px 0 .5px #ccc, 7px -7px 0 1.5px #ccc, 7px 7px #ccc, -7px 7px #ccc; -webkit-transform: rotate(360deg); -webkit-animation: ui-dialog-loading 1.5s infinite linear; transform: rotate(360deg); animation: ui-dialog-loading 1.5s infinite linear }
 /*加载动画*/
 #Loading { position: absolute; top: 0; left: 0; width: 100%; height:100%; background: #ffffff; margin: 0px 0 0 0px; z-index: 0 }
 #heart { position: absolute; left: 50%; top: 50%; margin: -100px 0 0 -60px; }
 #Waiting { position: absolute; width: 100px; text-align: center; left: 50%; top: 13%; margin: 10px 0 0 -45px; }
 /*logo*/
 .icon-bg{background: url(img/icon.png) no-repeat scroll 0 0 transparent;}
-.app-logo-container{background-color: #df246b; height: 70px;overflow: hidden;}
+.app-logo-container{background-color: #df246b; height: 70px;line-height: 70px;overflow: hidden;position:relative;}
 .app-logo{height: 100%; background-position: 14px 18px; background-size: 80% 1200%;}
 .btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 85%; vertical-align: middle; font-weight: bold; font-size: 160%; padding-top: 15%; float: right;}
-.app-topbar .btn-menu{ background-position: center -233px; padding-top: 32px;font-size: 130%;color: #fff; text-align: center; position: static; height: 20px; padding-left: 0; padding-right: 0; }
+.app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 32px;font-size: 130%;color: #fff; text-align: center;height: 20px; padding-left: 0; padding-right: 0; }
 .grid-1{width: 10%;float:left;}
 .grid-15{width: 15%;float:left;}
 .grid-2{width: 20%;float:left;}
@@ -401,245 +388,59 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .cate_10{ background: url(img/cate_10.jpg) no-repeat scroll right center transparent; }
 .cate-title{ padding-left: 15px; padding-top: 25px; font-size: 26px; height: 85px;font-weight: bold; }
 .cate-title p{ font-size: 18px; font-weight: normal; padding-top: 6px; padding-left: 4px; color: #A6A6A6; width: 150px;}
-.section-title{
-    font-size: 24px;
-    font-weight: bold;
-    padding-top: 30px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-}
-.merchant-title{
-    padding-top: 10px;
-}
-.merchant-title-bg{
-    background: url(img/icon.png) no-repeat scroll center -304px transparent;
-    height: 15px;
-}
-.merchant-title{
-    background: url(img/icon.png) no-repeat scroll center -320px #fff;
-    height: 50px;
-}
+.section-title{ font-size: 24px; font-weight: bold; padding-top: 30px; padding-bottom: 15px; padding-left: 20px; }
+.merchant-title{ padding-top: 10px; }
+.merchant-title-bg{ background: url(img/icon.png) no-repeat scroll center -304px transparent; height: 15px; }
+.merchant-title{ background: url(img/icon.png) no-repeat scroll center -320px #fff; height: 50px; }
 .relative{position: relative;}
-.merchant-img{
-    position: absolute;
-    left: 50%;
-    margin-left: -120px;
-    margin-top: -15px;
-}
-.app-content .merchant-title.app-section>*{
-    margin-top: 0;
-}
-.merchant-t-m{
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    color: #fff;
-    margin-top: -10px;
-}
-.merchant-t-tl, .merchant-t-tr{
-    text-align: right;
-    color: red;
-    font-weight: bold;
-    width: 85%;
-}
-.merchant-t-tr{
-    text-align: left;
-    width: 85%;
-    padding-left: 15%;
-}
-.merchant-content-ul{
-    overflow:hidden;
-    background: #fff;
-}
-.merchant-content-ul li{
-    float: left;
-    width: 50%;
-    margin-bottom: 10px;
-    height: 460px;
-    overflow:hidden;
-}
-.merchant-content-ul li .merchant-cont-img{
-    padding: 12px;
-}
-.merchant-cont-imt{
-
-}
+.merchant-img{ position: absolute; left: 50%; margin-left: -120px; margin-top: -15px; }
+.app-content .merchant-title.app-section>*{ margin-top: 0; }
+.merchant-t-m{ font-size: 26px; font-weight: bold; text-align: center; color: #fff; margin-top: -10px; }
+.merchant-t-tl, .merchant-t-tr{ text-align: right; color: red; font-weight: bold; width: 85%; }
+.merchant-t-tr{ text-align: left; width: 85%; padding-left: 15%; }
+.merchant-content-ul{ overflow:hidden; background: #fff; }
+.merchant-content-ul li{ float: left; width: 50%; margin-bottom: 10px; height: 460px; overflow:hidden; }
+.merchant-content-ul li .merchant-cont-img{ padding: 12px; }
+.merchant-cont-imt{ }
 .merchant-cont-title, .merchant-cont-brand{text-align: center;}
-.merchant-cont-title{
-    font-size: 20px;
-    font-weight: bold;
-    height: 40px;
-    padding-bottom: 10px;
-}
-.merchant-cont-brand{
-    font-size: 16px;
-}
-.merchant-footer{
-    text-align: center;
-    margin-bottom: 200px;
-    overflow:hidden;
-}
-.merchant-footer p{
-    font-size: 20px;
-    color: #8C8C8C;
-    padding-bottom: 10px;
-}
-.merchant-footer strong{
-    font-size: 30px;
-    font-weight: 900;
-    color: #8C8C8C;
-}
-.app-topbar{
-    margin-top: -1px;
-    margin-bottom: -1px;
-}
-
+.merchant-cont-title{ font-size: 20px; font-weight: bold; height: 40px; padding-bottom: 10px; }
+.merchant-cont-brand{ font-size: 16px; }
+.merchant-footer{ text-align: center; margin-bottom: 200px; overflow:hidden; }
+.merchant-footer p{ font-size: 20px; color: #8C8C8C; padding-bottom: 10px; }
+.merchant-footer strong{ font-size: 30px; font-weight: 900; color: #8C8C8C; }
+.app-topbar{ margin-top: -1px; margin-bottom: -1px; }
 /*
 分类*/
-.category-title{
-    position: relative;
-    height: 90px;
-    border-bottom: 1px solid #cccccc;
-    background: -webkit-linear-gradient(#e6e6e6, #dfdfdf); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#e6e6e6, #dfdfdf); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#e6e6e6, #dfdfdf); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#e6e6e6, #dfdfdf); /* Standard syntax */
-}
-.category-zg, .category-pro{
-    margin-top: 25px;
-    line-height: 65px;
-    height: 64px;
-    padding-left: 30px;
-    float: left;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-left: 20px;
-    border: 1px solid #d8d8d8;
-    padding-right: 30px;
-    font-size: 25px;
-    background: #eaeaea;
-}
-.category-pro{
-}
-.category-close{
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 102px;
-    z-index: 9000;
-    background-position: -11px -407px;
-    height: 90px;
-}
-.category-title .current{
-    color: #e0246b;
-    height: 66px;
-    border-bottom: none;
-    background: #eee;
-}
-.cate-item-sub{
-    display:none;
-
-    overflow: hidden;
-    padding: 0 20px 100px 20px;
-}
-.cate-cur{
-    display:block;
-}
-.icon-down{
-    background-position: -114px -387px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-.cate-item-sub-title {
-    padding: 20px;
-}
-.cate-pro-ul{
-    overflow:hidden;
-}
-.cate-pro-ul li{
-    float: left;
-    width: 175px;
-    height: 50px;
-    line-height: 50px;
-    background: #dbdbdb;
-    margin-right: 15px;
-    font-size: 25px;
-    border-radius: 5px;
-    text-align: center;
-    border: 1px solid #d3d3d3;
-    margin-bottom: 25px;
-}
-.red{
-    color: #e0246b;
-}
-.search-tip{
-    font-size: 30px;
-}
-.search-placeholder{
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: 23px;
-    height: 50px;
-    line-height: 50px;
-    width: 290px;
-    font-weight: normal;
-    color: #BFBFBF;
-}
+.category-title{ position: relative; height: 90px; border-bottom: 1px solid #cccccc; background: -webkit-linear-gradient(#e6e6e6, #dfdfdf);  background: -o-linear-gradient(#e6e6e6, #dfdfdf);  background: -moz-linear-gradient(#e6e6e6, #dfdfdf);background: linear-gradient(#e6e6e6, #dfdfdf); }
+.category-zg, .category-pro{ margin-top: 25px; line-height: 65px; height: 64px; padding-left: 30px; float: left; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-left: 20px; border: 1px solid #d8d8d8; padding-right: 30px; font-size: 25px; background: #eaeaea; }
+.category-pro{ }
+.category-close{ position: absolute; right: 0; top: 0; width: 102px; z-index: 9000; background-position: -11px -407px; height: 90px; }
+.category-title .current{ color: #e0246b; height: 66px; border-bottom: none; background: #eee; }
+.cate-item-sub{ display:none; overflow: hidden; padding: 0 20px 100px 20px; }
+.cate-cur{ display:block; }
+.icon-down{ background-position: -114px -387px; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; }
+.cate-item-sub-title { padding: 20px; }
+.cate-pro-ul{ overflow:hidden; }
+.cate-pro-ul li{ float: left; width: 175px; height: 50px; line-height: 50px; background: #dbdbdb; margin-right: 15px; font-size: 25px; border-radius: 5px; text-align: center; border: 1px solid #d3d3d3; margin-bottom: 25px; }
+.red{ color: #e0246b; }
+.search-tip{ font-size: 30px; }
+.search-placeholder{ position: absolute; left: 0; top: 0; font-size: 23px; height: 50px; line-height: 50px; width: 290px; font-weight: normal; color: #BFBFBF; }
 /*
 我的330*/
-
-.icon-member{
-    background-position: 15px -493px;
-    width: 100px;
-    margin-left: 10px;
-    height: 100px;
-}
-.icon-hand{
-    background-position: 13px -572px;
-    width: 100px;
-    margin-left: 10px;
-    height: 100px;
-}
-.icon-message{
-    width: 100px;
-    height: 100px;
-    margin-left: 10px;
-    background-position: -200px -571px;}
-.icon-diamond{ width: 100px;margin-left: 10px;
-    height: 100px;background-position: -197px -486px;}
-.icon-door{ width: 100px;margin-left: 10px;
-    height: 100px;background-position: -90px -490px;}
-.icon-money{ width: 100px;margin-left: 10px;
-    height: 100px;background-position: -96px -572px;}
-.ul-my li{
-    float: left;
-    width: 120px;
-    height: 130px;
-    overflow: hidden;
-    text-align: center;
-}
-.ul-my {
-    font-size: 26px;
-}
+.icon-member{ background-position: 15px -493px; width: 100px; margin-left: 10px; height: 100px; }
+.icon-hand{ background-position: 13px -572px; width: 100px; margin-left: 10px; height: 100px; }
+.icon-message{ width: 100px; height: 100px; margin-left: 10px; background-position: -200px -571px;}
+.icon-diamond{ width: 100px;margin-left: 10px; height: 100px;background-position: -197px -486px;}
+.icon-door{ width: 100px;margin-left: 10px; height: 100px;background-position: -90px -490px;}
+.icon-money{ width: 100px;margin-left: 10px; height: 100px;background-position: -96px -572px;}
+.ul-my li{ float: left; width: 120px; height: 130px; overflow: hidden; text-align: center; }
+.ul-my { font-size: 26px; }
 /*登录注册*/
 .login_dealers a ,.registered a{text-decoration:none;}
 .login_dealers .wrap , .registered .wrap{width:640px;margin:0 auto;overflow:hidden;text-align: center;}
 .login_dealers {font-size:14px;font-family:"微软雅黑";}
 .login_dealers .top {height:58px;line-height:58px; background: url(img/top_bj.jpg);background-size:100% 100%;}
-.btn-back {display: block;
-    width: 135px;
-    height: 58px;
-    background: url(img/return.jpg) no-repeat;
-    background-size: 100%;
-    line-height: 58px;
-    font-size: 26px;
-    text-align: center;
-    color: #6A6A6A;
-    margin: 0px 30px 0px 20px;
-    float: left;}
+.btn-back {display: block; width: 135px; height: 58px; background: url(img/return.jpg) no-repeat; background-size: 100%; line-height: 58px; font-size: 26px; text-align: center; color: #6A6A6A; margin: 0px 30px 0px 20px; float: left;}
 .login_dealers .top .title {float:left;font-size:26px;}
 .registered {text-align:center;}
 .registered input,#registered textarea {width:235px;height:32px;margin-top:25px;padding:0 15px 0 30px;background:#fff url(img/icon_login.png) no-repeat;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;border: 1px solid #ccc;-moz-box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;-webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;box-shadow: 0 2px 3px 0 rgba(0,0,0,.1) inset;font-size:20px;color:#2D2D2D;background-size:25px;background-position:5px 5px;}
@@ -656,3 +457,16 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .registered textarea {height:100px;background-image:none;padding:0 15px;width:250px;}
 .registered input.x {width:170px;float:left;margin-left:20px;}
 .registered .dw {width:64px;float:left;height:34px;line-height:34px;margin-top:25px;font-size:32px;color:#6D6C6C;}
+.topbar-title{ text-align: center; color: #fff; font-size: 30px; font-weight: bold; }
+.topbar-right{ position: absolute; right: 5px; top: 5px; }
+.app-buttombar-cover{background: #000;height: 70px;opacity: 0.8; position:fixed;bottom: 0;width: 100%;z-index: 900000000;}
+.app-buttombar{ position: fixed; bottom: 0; height: 70px;  line-height: 70px; left: 0; color: #fff; z-index: 99999999999; width: 100%; }
+.icon-buttombar-home{background-position: 14px -667px; width: 50px; display: inline-block; height: 70px;vertical-align: middle;}
+.icon-buttombar-login{background-position: -35px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-buttombar-register{background-position: -77px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-buttombar-search{background-position: -122px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-buttombar-sep{background-position: -180px -667px; width: 25px; display: inline-block; height: 70px; vertical-align: middle;}
+.buttombar-ul{overflow:hidden;}
+.buttombar-ul li{float: left;width: 25%;}
+.buttombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size: 20px;display: inline-block; vertical-align: middle; padding-right: 15px;}
+.app-page .btn-pink{}

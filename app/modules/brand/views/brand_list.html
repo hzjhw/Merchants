@@ -1,13 +1,16 @@
 <div class="app-logo-container">
     <div class="grid-3">
-        <div class="btn-back app-button">返回</div>
+        <div class="btn-back app-button btn-pink">主会场</div>
     </div>
-    <div class="grid-4" style="text-align: right; height: 100%;">
-        <div class="app-button btn-register" data-target="register_dealers">注册</div>
-        <div class="app-button btn-login" data-target="login_dealers">登录</div>
+    <div class="grid-4 topbar-title" style="text-align: right; height: 100%;">
+        3.30{{title}}
     </div>
-
+    <div class="grid-3">
+        <div class="app-button topbar-right btn-menu icon-bg grid-2">分&nbsp;类
+        </div>
+    </div>
 </div>
+
 <!--<div class="app-section">
     <div class="app-button grid-2 btn-back" data-back>返回</div>
     <div class="app-button grid-2" data-target="category">分&nbsp;类</div>
@@ -17,7 +20,7 @@
 <div class="app-content merchant-cont-container">
     <div class="loading"></div>
     <div class="app-banner" style="overflow:hidden;">
-        <img src="images/fanghuomen_banner.jpg" alt="防火门馆" width="100%">
+        <img src="images/{{banner}}.jpg" alt="{{title}}" width="100%">
     </div>
     <div class="merchant-content">
         <ul id="brandCateList" class="merchant-content-ul">
@@ -34,4 +37,30 @@
             </li>
         </ul>
     </div>
+    <!--页脚-->
+    <div class="app-section merchant-footer">
+        <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+        <img src="images/bottom-logo.png" alt="手机 3月30日"/>
+
+        <div><strong>足不出户逛展会</strong></div>
+    </div>
+</div>
+<div class="app-buttombar-cover"></div>
+<div class="app-buttombar">
+    <ul class="buttombar-ul">
+        <li data-target="home">
+            <span class="icon-bg icon-buttombar-home"></span>
+            <span class="buttombar-text">首页</span>
+            <span class="icon-bg icon-buttombar-sep"></span>
+        </li>
+        <li data-target="login_dealers"><span class="icon-bg icon-buttombar-login"></span>
+            <span class="buttombar-text">登录</span>
+            <span class="icon-bg icon-buttombar-sep"></span></li>
+        <li data-target="register_dealers"><span class="icon-bg icon-buttombar-register"></span>
+            <span class="buttombar-text">注册</span>
+            <span class="icon-bg icon-buttombar-sep"></span></li>
+        <li data-target="search"><span class="icon-bg icon-buttombar-search"></span>
+            <span class="buttombar-text">搜索</span>
+        </li>
+    </ul>
 </div>

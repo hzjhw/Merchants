@@ -9,12 +9,25 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
 
-  BrandList = function (page, id) {
+  BrandList = function (page, id, title, banner) {
     template = require('template/brand_list');
     $(page).html(template);
+    // 初始化标题与banner
+    $(page).find('.topbar-title').html('3.30' + title);
+    $(page).find('.app-banner img').attr('src', 'images/' + banner + '.jpg');
+    // 返回
     $(page).find('.btn-back').click(function () {
-      App.back();
+      App.back('home');
     });
+    // 分类
+    $(page).find('.btn-menu').click(function () {
+      App.load('category');
+    });
+    // 底部导航
+    $(page).find('.buttombar-ul li').click(function () {
+      App.load($(this).attr('data-target'));
+    });
+    // 列表
     var $loading = $(page).find('.loading'),
       $list = $(page).find('.merchant-content-ul'),
       item = $(page).find('.merchant-content-ul').html(),
