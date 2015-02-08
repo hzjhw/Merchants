@@ -7,3 +7,8 @@ App.addModule('ProductList', 'modules/product/controllers/ProductList.js');
 App.addTemplate('template/product_list', function (require, exports, module) {
   module.exports = require('modules/product/views/product_list.html');
 });
+
+App.addModule('ProductDetail', 'modules/product/controllers/ProductDetail.js');
+App.addTemplate('template/product_detail', function (require, exports, module) {
+  module.exports = require('modules/product/views/product_detail.html');
+});
