@@ -3,69 +3,51 @@
  * @class BrandList
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('BrandList', ['App', 'template/brand_list'], function (require, exports, module) {
-  var BrandList, App, template;
+define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function (require, exports, module) {
+  var BrandList, App, template, HandlebarsHelper;
 
   App = require('App');
-  template = require('template/brand_list');
+  HandlebarsHelper = require('HandlebarsHelper');
 
   BrandList = function (page, id) {
+    template = require('template/brand_list');
     $(page).html(template);
-    // 返回
     $(page).find('.btn-back').click(function () {
       App.back('home', function () {
-        // back to home
-        // page2's and page3's appDestroy events have been called
       });
     });
-
-    App.query('/index', {
-      cache: true,
-      success: function (result) {
-        var $loading = $(page).find('.loading'),
-          $list = $(page).find('.app-list'),
-          $listItem = $(page).find('.app-list li'),
-          totalPage = null,
-          page = 1,
-          i = 1;
-
-
-
-
-        var $loading = $(page).find('.loading'),
-          $listItem = $(page).find('.merchant-content-ul li'),
-          totalPage = null,
-          page = 1,
-          i = 1;
-
-        $loading.remove();
-        $listItem.remove();
-        App.infiniteScroll($list, { loading: $loading }, function (callback) {
-          if (totalPage && (page > totalPage)) return null;
-          var query = '/tester/index';
-          App.query(query, {pageSize: 10, pageNumber: 1}, function (result) {
-            totalPage = result.totalPage;
-            setTimeout(function () {
-              var list = [];
-              for (var j = 0; j < result.list.length; j++) {
-                var $node = $listItem.clone();
-                $node.find('span').text(i + j);
-                list.push($node);
-              }
-              i += 10;
-              page += 1;
-              callback(list);
-            }, 1200);
-          });
-        });
-      });
-
-
-      }
+    var $loading = $(page).find('.loading'),
+      $list = $(page).find('.merchant-content-ul'),
+      item = $(page).find('.merchant-content-ul').html(),
+      totalPage = null,
+      pageNumber = 1,
+      i = 1;
+    $loading.remove();
+    $(page).find('.merchant-content-ul').empty();
+    item = HandlebarsHelper.compile(item);
+    App.infiniteScroll($list, { loading: $loading }, function (callback) {
+      if (totalPage && (pageNumber > totalPage)) return null;
+      App.query('/brand/' + id, {
+        cache: true,
+        data: {
+          pageSize: 10,
+          pageNumber: pageNumber
+        },
+        success: function (result) {
+          totalPage = result.brandList.totalPage;
+          var list = [];
+          for (var j = 0; j < result.brandList.list.length; j++) {
+            var $node = $(item(result.brandList.list[j]));
+            list.push($node);
+          }
+          i += 10;
+          pageNumber += 1;
+          callback(list);
+        }
+      })
     });
-
-
   }
 
   module.exports = BrandList;
-});
+})
+;
