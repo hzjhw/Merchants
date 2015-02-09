@@ -97,6 +97,9 @@
                     <li data-target="brand_blank">
                         <div class="icon-bg icon-message"></div>
                         <p>空白区域</p></li>
+                    <li data-target="product_search">
+                        <div class="icon-bg icon-message"></div>
+                        <p>空白区域</p></li>
                 </ul>
             </div>
 
@@ -317,6 +320,7 @@ function bindBrandDetail(dom) {
 seajs.use(['App'], function (App) {
     /*首页*/
     App.controller('home', function (page) {
+        App.addHash('#/home');
         $(page).find('[data-target="inputs"]')
                 .attr('data-target', null)
                 .stickyClick(function (unlock) {
@@ -410,6 +414,7 @@ seajs.use(['App'], function (App) {
     });
     /*分类页面*/
     App.controller('category', function (page) {
+        App.addHash('#/category');
         this.transition = 'slideon-down';
         seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
             new CategoryCtrl(page, this);
@@ -417,6 +422,7 @@ seajs.use(['App'], function (App) {
     });
     /*品牌列表*/
     App.controller('brand_list', function (page) {
+        App.addHash('#/brand_list');
         var ctx = this;
         seajs.use(['BrandList'], function (BrandList) {
             new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx);
@@ -424,6 +430,7 @@ seajs.use(['App'], function (App) {
     });
     /*品牌详细*/
     App.controller('brand_detail', function (page) {
+        App.addHash('#/brand_detail');
         this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandDetail'], function (BrandDetail) {
@@ -431,6 +438,7 @@ seajs.use(['App'], function (App) {
         })
     });
     App.controller('brand_info', function (page) {
+        App.addHash('#/brand_info');
         this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandInfo'], function (BrandInfo) {
@@ -438,6 +446,7 @@ seajs.use(['App'], function (App) {
         });
     });
     App.controller('brand_product', function (page) {
+        App.addHash('#/brand_product');
         this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandProduct'], function (BrandProduct) {
@@ -445,6 +454,7 @@ seajs.use(['App'], function (App) {
         });
     });
     App.controller('brand_tec', function (page) {
+        App.addHash('#/brand_tec');
         this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandTec'], function (BrandTec) {
@@ -452,6 +462,7 @@ seajs.use(['App'], function (App) {
         });
     });
     App.controller('brand_blank', function (page) {
+        App.addHash('#/brand_blank');
         this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandBlank'], function (BrandBlank) {
@@ -459,6 +470,7 @@ seajs.use(['App'], function (App) {
         });
     });
     App.controller('brand_unique', function (page) {
+        App.addHash('#/brand_unique');
         var ctx = this;
         seajs.use(['BrandUnique'], function (BrandUnique) {
             new BrandUnique(page, ctx);
@@ -466,6 +478,7 @@ seajs.use(['App'], function (App) {
     });
     /*产品列表*/
     App.controller('product_list', function (page) {
+        App.addHash('#/brand_list');
         var ctx = this;
         seajs.use(['ProductList'], function (ProductList) {
             new ProductList(page, ctx);
@@ -474,12 +487,14 @@ seajs.use(['App'], function (App) {
 
     /*产品详细*/
     App.controller('product_detail', function (page) {
+        App.addHash('#/brand_detail');
         var ctx = this;
         seajs.use(['ProductDetail'], function (ProductDetail) {
             new ProductDetail(page, ctx);
         });
     });
     App.controller('product_search', function (page) {
+        App.addHash('#/brand_search');
         var ctx = this;
         seajs.use(['ProductSearch'], function (ProductSearch) {
             new ProductSearch(page, ctx);
@@ -487,6 +502,7 @@ seajs.use(['App'], function (App) {
     });
     /*登录页面*/
     App.controller('login_dealers', function (page) {
+        App.addHash('#/login_dealers');
         var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['Login'], function (Login) {
@@ -495,6 +511,7 @@ seajs.use(['App'], function (App) {
     });
     /*注册页面*/
     App.controller('register_dealers', function (page) {
+        App.addHash('#/register_dealers');
         var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['Register'], function (Register) {
@@ -503,6 +520,7 @@ seajs.use(['App'], function (App) {
     });
     /*经销商*/
     App.controller('dealers', function (page) {
+        App.addHash('#/dealers');
         var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['Dealers'], function (Dealers) {
@@ -511,6 +529,7 @@ seajs.use(['App'], function (App) {
     });
     /*搜索页面*/
     App.controller('search', function (page) {
+        App.addHash('#/search');
         this.transition = 'fade';
         var $sub = $(page).find('.cate-item-sub');
         $(page).find('.cate-item').each(function (index) {
@@ -530,7 +549,10 @@ seajs.use(['App'], function (App) {
             }
         });
     });
-
+    window.onhashchange = function () {
+        if (App.getCurrentHash() === location.hash) return;
+        App.load(location.hash.substring(2, location.hash.length));
+    }
     App.enableDragTransition();
     try {
         App.restore();

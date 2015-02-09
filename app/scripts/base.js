@@ -308,6 +308,13 @@ Application.prototype = {
       $container.append($node);
     });
   },
+  addHash: function (name) {
+    this.currentHash = name;
+    window.location.hash = name;
+  },
+  getCurrentHash: function () {
+    return this.currentHash;
+  },
   addCache: function (name, data) {
     this.cache[name] = data;
   },
@@ -369,7 +376,6 @@ Application.getValue = function (object, path) {
 
   return get(object, array);
 }
-
 
 ;
 (function () {
