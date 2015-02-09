@@ -88,6 +88,15 @@
                     <li data-target="brand_info">
                         <div class="icon-bg icon-message"></div>
                         <p>厂家信息</p></li>
+                    <li data-target="brand_tec">
+                        <div class="icon-bg icon-message"></div>
+                        <p>厂家实力</p></li>
+                    <li data-target="brand_product">
+                        <div class="icon-bg icon-message"></div>
+                        <p>产品展示</p></li>
+                    <li data-target="brand_blank">
+                        <div class="icon-bg icon-message"></div>
+                        <p>空白区域</p></li>
                 </ul>
             </div>
 
@@ -264,12 +273,12 @@
 <div class="app-page" data-page="brand_product"></div>
 <div class="app-page" data-page="brand_tec"></div>
 <div class="app-page" data-page="brand_blank"></div>
+<div class="app-page" data-page="brand_unique"></div>
 <!--产品-->
 <div class="app-page" data-page="product_list"></div>
 <div class="app-page" data-page="product_detail"></div>
 <!--经销商-->
 <div class="app-page" data-page="dealers"></div>
-
 
 
 <script src="scripts/base.js"></script>
@@ -337,6 +346,10 @@ seajs.use(['App'], function (App) {
         });
         /*品牌分类*/
         $(page).find('.cate-ul li').click(function () {
+            if ($(this).attr('data-id').length === 0) {
+                App.load('brand_unique');
+                return;
+            }
             App.load('brand_list', {
                 id: $(this).attr('data-id'),
                 title: $(this).attr('data-title'),
@@ -439,6 +452,12 @@ seajs.use(['App'], function (App) {
             new BrandBlank(page, ctx.args.id, ctx);
         });
     });
+    App.controller('brand_unique', function (page) {
+        var ctx = this;
+        seajs.use(['BrandUnique'], function (BrandUnique) {
+            new BrandUnique(page, ctx);
+        });
+    });
     /*产品列表*/
     App.controller('product_list', function (page) {
         var ctx = this;
@@ -446,6 +465,7 @@ seajs.use(['App'], function (App) {
             new ProductList(page, ctx);
         });
     });
+
     /*产品详细*/
     App.controller('product_detail', function (page) {
         var ctx = this;
