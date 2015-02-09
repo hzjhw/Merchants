@@ -589,9 +589,12 @@ seajs.use(['App'], function (App) {
 
     })(window);*/
     window.onhashchange = function () {
-        //alert(App.getCurrentHash());
-        //if (App.getCurrentHash() === location.hash) return;
-        //App.load(location.hash.substring(2, location.hash.length));
+        console.log(App.getCurrentHash());
+        if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
+        //alert('aa' + location.hash);
+        if (location.hash.length > 0){
+            App.load(location.hash.substring(2, location.hash.length));
+        }
     }
     App.enableDragTransition();
     try {
