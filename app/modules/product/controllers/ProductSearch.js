@@ -1,22 +1,22 @@
 /**
- * @description ProductDetail
- * @class ProductDetail
+ * @description ProductSearch
+ * @class ProductSearch
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('ProductDetail', ['App', 'template/product_detail'], function (require, exports, module) {
-  var ProductDetail, App, template;
+define('ProductSearch', ['App', 'template/product_search'], function (require, exports, module) {
+  var ProductSearch, App, template;
 
   App = require('App');
-  template = require('template/product_detail');
+  template = require('template/product_search');
 
-  ProductDetail = function (page, ctx) {
+  ProductSearch = function (page, ctx) {
     $(page).html(template);
-    $(page).find('.btn-back').click(function () {
+    $(page).find('.go-back').click(function () {
       App.back('home', function () {
 
       });
     });
   }
 
-  module.exports = ProductDetail;
+  module.exports = ProductSearch;
 });
