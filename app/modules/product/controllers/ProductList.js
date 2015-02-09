@@ -25,7 +25,27 @@ define('ProductList', ['App', 'template/product_list'], function (require, expor
           $(this).toggleClass("icons-larger");
           $("#factory .search-list-cont").toggleClass("larger-view");
       })
-
+// 筛选弹窗
+      $(page).find('#factory .search-list-title .titlename').click(function () {
+          var $dom = $(this).get(0);
+          seajs.use(['dialog'], function (dialog) {
+              window.dialog = dialog({
+                  id: '330dialog',
+                  skin: 'clickxiala',
+                  title: ' ',
+                  width: WINDOW_WIDTH - 74,
+                  height:$('.xiala').height(),
+                  content: $('.xiala', $(page)).html(),
+                  onshow: function () {
+                      var ctx = this;
+                      $('.ul-my li').click(function () {
+                          ctx.close().remove();
+                          App.load($(this).attr('data-target'));
+                      });
+                  }
+              }).showModal($dom);
+          })
+      });
   }
 
   module.exports = ProductList;

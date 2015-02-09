@@ -19,8 +19,10 @@ a{text-decoration:none;}
 #factory .factory_banner{padding:0 2.8%; margin-top:12px;margin-bottom:18px;}
 #factory .factory_banner img{max-width:100%;}
 #factory .search-list{margin-top:16px;}
-#factory .search-list-title{font-size:30px;font-family:Microsoft Yahei;border-bottom:1px solid #d0cece;}
-#factory .search-list-title .icons{width:40px;height:39px;background:url(img/icons-list.jpg) no-repeat;}
+#factory .search-list-title{font-size:30px;font-family:Microsoft Yahei;border-bottom:1px solid #d0cece;line-height:82px;padding:19px 2.5% 0;}
+#factory .search-list-title .titlename{background:url(img/search_list_title.jpg) no-repeat left center;padding-left:7.5%;padding-right:10%;}
+#factory .search-list-title .name{font-size:24px;color:#e0246b;margin-left:6%;}
+#factory .search-list-title .icons{width:40px;height:39px;background:url(img/icons-list.jpg) no-repeat;margin-top:3%;margin-right:2%;}
 #factory .search-list-title .icons-largest{background-position:0 center;}
 #factory .search-list-title .icons-larger{background-position:-50px center;}
 #factory .search-list-title .icons-list{background-position:-100px center;}
@@ -54,7 +56,7 @@ a{text-decoration:none;}
 
 .product-search-title{font-size:24px;font-family:Microsoft Yahei;line-height:105px;}
 .product-search-title a.go-back{color:#000;}
-.product-search-title .titlename{color:#e0246b;font-size:30px;margin-left:10%;}
+.product-search-title .titlename{color:#e0246b;font-size:30px;margin-left:5%;}
 .product-search-title .button{color:#fff;background:#e0246b; width:23.4%;height:57px;line-height:57px;text-align:center;border-radius:10px;margin-right:5%; margin-top:3%;}
 .product-search-cont {padding:0 2.8%;}
 .product-type,.product-price{background:#fff;border-radius:10px;margin-bottom:25px;padding-left:5%;}
@@ -62,3 +64,8 @@ a{text-decoration:none;}
 .cate-pro-ul li.current{color:#e0246b;background:#fff;}
 .product-type-title,.product-price-title{font-size:24px;font-family:Microsoft Yahei;height:85px;line-height:85px;}
 .product-type-title .name,.product-price-title .name{color:#e0246b;}
+.clickxiala {background:#eaeaea;}
+.ygtvtable-div1{background:#fff;border-radius:10px;margin-bottom:16px;}
+.ygtvtable-div1 .fenlei01{color:#555;font-size:24px;font-family:Microsoft Yahei;font-weight:bold; height:57px;line-height:57px;padding-left:24px;}
+.ygtvtable-div1 ul{border-top:2px solid #f2f2f2;}
+.ygtvtable-div1 ul li {float:left;width:33%;font-size:20px;font-family:Microsoft Yahei;line-height:60px;text-align:center;}
