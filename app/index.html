@@ -422,13 +422,20 @@ seajs.use(['App'], function (App) {
     });
     /*品牌列表*/
     App.controller('brand_list', function (page) {
+        var ctx = this;
         App.addHash('#/brand_list');
+
+        if (!ctx.args.id){
+            ctx.args.id = localStorage['brand_list_args']['id'];
+            ctx.args.title = localStorage['brand_list_args']['title'];
+        }
+
         localStorage['brand_list_args'] = {
             id: ctx.args.id,
             title: ctx.args.title,
             banner: ctx.args.banner
         };
-        var ctx = this;
+
         seajs.use(['BrandList'], function (BrandList) {
             new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx);
         });
@@ -499,7 +506,7 @@ seajs.use(['App'], function (App) {
         });
     });
     App.controller('product_search', function (page) {
-        App.addHash('#/brand_search');
+        App.addHash('#/product_search');
         var ctx = this;
         seajs.use(['ProductSearch'], function (ProductSearch) {
             new ProductSearch(page, ctx);
