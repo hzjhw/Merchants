@@ -12,6 +12,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
 
   BrandDetail = function (page, id, context) {
     var tpl = HandlebarsHelper.compile(template);
+
     App.query('/cmp/' + id, {
       cache: true,
       success: function (result) {
@@ -24,6 +25,13 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
         }
         result.indexInfo.id = id;
         $(page).html(tpl(result.indexInfo));
+
+          seajs.use(['BrandMessage'], function(BrandMessage){
+              new BrandMessage(page, '.message', {
+                id: id
+              });
+          });
+
         $(page).find('.go-back').click(function () {
           App.back();
         });
