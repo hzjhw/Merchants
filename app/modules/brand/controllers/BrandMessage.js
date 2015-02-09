@@ -16,40 +16,48 @@ define('BrandMessage', ['App', 'template/brand_message', 'HandlebarsHelper'], fu
 
     //TODO validate is login before submit
     App.query('/cmp/custInfo', {
-      success: function (result) {
-        console.log(result);
-        if(result =='success')
-        {
-          $("#custname", $(page)).val(result.contact_name);
-          $("#cellphone", $(page)).val(result.cell_phone);
-          islogin =true;
-        }
+        success: function (result) {
+          if (result.msg == 'success') {
+            $("#custname", $(page)).val(result.custInfo.contact_name);
+            $("#cellphone", $(page)).val(result.custInfo.contact_cellphone);
+            islogin = true;
+          }
       }
     });
 
     $(page).find('.message .button').click(function () {
       //TODO submit
-      if(!islogin)
+      var custName = $("#custname", $(page)).val();
+      if (!islogin) {
+        if(window.confirm("您还未登录，立即登录吗？"))
+        {
+          App.load('login_dealers');
+        }
+        return;
+      }
+      if($.trim(custName) == '')
       {
-        App.query('/cmp/custMsg',{
+        alert("留言前需填写您的姓名！");
+        $("#custname", $(page)).focus();
+        return ;
+      }
+        App.query('/cmp/custMsg', {
           data: {
+            'custName':custName,
             'custMsg.fact_id': data.id,
-            'custMsg.content':  $("#levMsg", $(page)).val(),
-            'custMsg.cust_phone':$("#cellphone", $(page)).val()
+            'custMsg.content': $("#levMsg", $(page)).val(),
+            'custMsg.cust_phone': $("#cellphone", $(page)).val()
           },
-          success: function(result){
-            alert(result);
-            if(result == 'success')
-            {
-
+          success: function (result) {
+            if (result.msg == 'success') {
+              alert("留言成功");
+              $("#levMsg", $(page)).val("");
             }
           }
         })
-      }
     });
 
   }
-
   module.exports = BrandMessage;
 
 })
