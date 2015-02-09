@@ -31,18 +31,18 @@
         <div class="merchant-unique-right">
             <div class="merchant-unique-right-inner">
                 <ul class="mer-unique-right-ul">
-                    <li>
+                    <li data-id="{{product_id}}">
                         <div class="mer-unique-img">
-                            <img src="{{CONST 'PIC_URL'}}/{{brand_path}}" alt="" height="300"/>
+                            <img src="{{CONST 'PIC_URL'}}/{{img_path}}" alt="" height="300"/>
                         </div>
                         <div class="mer-unique-title">
                             {{cust_name}}
                         </div>
                         <div class="mer-unique-info">
-                            产品特点：{{brand_name}}
+                            产品特点：{{{content}}}
                         </div>
                         <div class="mer-unique-price">
-                            <span class="text-price">¥1000</span>
+                            <span class="text-price">{{price}}</span>
                             丨 <span class="icon-bg icon-collect"></span>收藏
                         </div>
                     </li>

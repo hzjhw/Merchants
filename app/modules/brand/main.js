@@ -31,8 +31,14 @@ App.addTemplate('template/brand_blank', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_blank.html');
 });
 App.addTemplate('template/include_message', function (require, exports, module) {
-    module.exports = require('modules/brand/views/include_message.html');
+  module.exports = require('modules/brand/views/include_message.html');
 });
 App.addTemplate('template/include_header', function (require, exports, module) {
   module.exports = require('modules/brand/views/include_header.html');
+});
+
+
+App.addModule('BrandUnique', 'modules/brand/controllers/BrandUnique.js');
+App.addTemplate('template/brand_unique', function (require, exports, module) {
+  module.exports = require('modules/brand/views/brand_unique.html');
 });
