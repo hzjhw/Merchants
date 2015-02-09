@@ -30,6 +30,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
               new IncludeMessage(page, '.message', {
                 id: id
               });
+            result.indexInfo.icon=1;
             new IncludeHeader(page,'#include_header',result.indexInfo);
           });
 

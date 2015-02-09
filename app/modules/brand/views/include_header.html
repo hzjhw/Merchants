@@ -21,23 +21,23 @@
 <div class="nav">
     <ul>
         <li data-id="{{id}}" data-target="brand_detail">
-            <i class="icon current"></i>
+            <i class="icon {{#xif 'this.icon===1'}}current{{/xif}}"></i>
 
             <div>首页</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_info"><i class="icon data"></i>
+        <li data-id="{{id}}" data-target="brand_info"><i class="icon data {{#xif 'this.icon===2'}}current{{/xif}}"></i>
 
             <div>厂家信息</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_product"><i class="icon product"></i>
+        <li data-id="{{id}}" data-target="brand_product"><i class="icon product {{#xif 'this.icon===3'}}current{{/xif}}"></i>
 
             <div>产品展示</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_tec"><i class="icon power"></i>
+        <li data-id="{{id}}" data-target="brand_tec"><i class="icon power {{#xif 'this.icon===4'}}current{{/xif}}"></i>
 
             <div>厂家实力</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_blank"><i class="icon area"></i>
+        <li data-id="{{id}}" data-target="brand_blank"><i class="icon area {{#xif 'this.icon===5'}}current{{/xif}}"></i>
 
             <div>空白区域</div>
         </li>
