@@ -1,14 +1,14 @@
 /**
  * Created by Administrator on 2015/2/9.
  */
-define('BrandMessage', ['App', 'template/include_message', 'HandlebarsHelper'], function (require, exports, module) {
-  var BrandMessage, App, template, HandlebarsHelper;
+define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper'], function (require, exports, module) {
+  var IncludeMessage, App, template, HandlebarsHelper;
 
   App = require('App');
   template = require('template/include_message');
   HandlebarsHelper = require('HandlebarsHelper');
 
-  BrandMessage = function (page, render, data) {
+  IncludeMessage = function (page, render, data) {
     var islogin = false;
     var tpl = HandlebarsHelper.compile(template);
 
@@ -58,6 +58,6 @@ define('BrandMessage', ['App', 'template/include_message', 'HandlebarsHelper'], 
     });
 
   }
-  module.exports = BrandMessage;
+  module.exports = IncludeMessage;
 
 })
