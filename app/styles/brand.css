@@ -1,6 +1,6 @@
 #factory {font-family:Microsoft Yahei;}
 #factory .nav {font-size:20px;color:#797979;padding:0 1.5%;height:130px;background: #fff;}
-#factory .x {margin:0 2.8%;padding:0;border:2px solid #b4b4b4;background:#fff;}
+#factory .x {margin:0 2.8%;padding:0;border:1px solid #b4b4b4;background: #fff;}
 #factory .nav li {width:20%;float:left;text-align:center;}
 #factory .nav li i {width:50px;height:50px;background:#959595 url("img/icon_nav.png") no-repeat;display:block;margin:20px auto 12px;-moz-border-radius:15px;-webkit-border-radius:15px;border-radius:15px;}
 #factory .nav li .current {background-color:#e0246b; }
@@ -16,4 +16,27 @@
 #factory .message .form i {float:left;width:20%; font-style: normal;text-align:right;padding-right:2%;}
 #factory .message .form i span {color:#ec7865;padding-right:10%;}
 #factory .message .button {line-height:90px;text-align:center;background:#0090d3;font-size:36px;margin: 3% 4%;height:90px;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;color:#fff;}
-#factory .company {}
+#factory .company {font-size:22px;overflow: auto;margin-top:4.4% }
+#factory .company .data {overflow:auto;margin: 30px 0;}
+#factory .company .data .product {padding-top:6px;width:92%;height:auto;line-height:34px;background-position:0 -184px;}
+#factory .company .data .product p {float:left;}
+#factory .company .data .product .l {width:22%;}
+#factory .company .data .product .r {width:78%;}
+#factory .company .data li {width:42%;padding-left:8%;float:left;height:46px;line-height:46px;background: url("img/icon_company.png") no-repeat;}
+#factory .company .name {color:#e0246b;height:80px;line-height:80px;padding:0 3.3%;}
+#factory .company .certificate {padding:0 3.3%;width:93.4%;height:45px;}
+#factory .company .certificate .zs {float:left;line-height:42px;height:42px;}
+#factory .company .certificate .z {margin-left:7%;}
+#factory .company .prompt {background:#f4f4f4 url("img/icon_company.png") no-repeat;background-position: 0 -233px;padding-left:8%;height:80px;line-height:80px;font-size:24px;color:#828282;border-top:1px dashed #999;}
+#factory .company .data .number {background-position:0 -46px;}
+#factory .company .data .area {background-position:0 -92px;}
+#factory .company .data .production {background-position:0 -138px;}
+#factory .introduce,#factory .policy {margin-top:4.4%;font-size:24px;line-height:42px;color:#707070;}
+#factory .title_general {height:68px;line-height:68px;color:#2a2a2a; border-bottom:1px solid #b4b4b4;padding-left:50px;background:#f4f4f4 url("img/icon_nav.png") no-repeat;background-position: 0 -250px;}
+#factory .title_general p {float:left;}
+#factory .policy .title_general {background-position: 0 -316px;}
+#factory .detailed_general  {padding:25px 10px;}
+#factory .detailed_general .lan {color:#2099c1;}
+#factory .title_general .open {width:110px;float:right;color:#e0246b;background:#f4f4f4 url("img/icon_nav.png") no-repeat;background-position: 40px -384px;}
+#factory .title_general .shut {width:110px;float:right;color:#e77800;background:#f4f4f4 url("img/icon_nav.png") no-repeat;background-position: 40px -452px;}
+
