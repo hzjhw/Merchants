@@ -496,7 +496,7 @@ seajs.use(['App'], function (App) {
 
     /*产品详细*/
     App.controller('product_detail', function (page) {
-        App.addHash('#/brand_detail');
+        App.addHash('#/product_detail');
         var ctx = this;
         seajs.use(['ProductDetail'], function (ProductDetail) {
             new ProductDetail(page, ctx);
@@ -589,8 +589,8 @@ seajs.use(['App'], function (App) {
 
     })(window);*/
     window.onhashchange = function () {
-        alert(App.getCurrentHash());
-        if (App.getCurrentHash() === location.hash) return;
+        //alert(App.getCurrentHash());
+        //if (App.getCurrentHash() === location.hash) return;
         //App.load(location.hash.substring(2, location.hash.length));
     }
     App.enableDragTransition();
