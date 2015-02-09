@@ -442,6 +442,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_detail');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
+        localStorage['brand_detail_args_id'] = ctx.args.id;
         seajs.use(['BrandDetail'], function (BrandDetail) {
             new BrandDetail(page, ctx.args.id, ctx);
         })
@@ -450,6 +452,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_info');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
+        localStorage['brand_info_args_id'] = ctx.args.id;
         seajs.use(['BrandInfo'], function (BrandInfo) {
             new BrandInfo(page, ctx.args.id, ctx);
         });
@@ -458,6 +462,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_product');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
+        localStorage['brand_product_args_id'] = ctx.args.id;
         seajs.use(['BrandProduct'], function (BrandProduct) {
             new BrandProduct(page, ctx.args.id, ctx);
         });
@@ -466,6 +472,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_tec');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
+        localStorage['brand_tec_args_id'] = ctx.args.id;
         seajs.use(['BrandTec'], function (BrandTec) {
             new BrandTec(page, ctx.args.id, ctx);
         });
@@ -474,6 +482,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_blank');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
+        localStorage['brand_blank_args_id'] = ctx.args.id;
         seajs.use(['BrandBlank'], function (BrandBlank) {
             new BrandBlank(page, ctx.args.id, ctx);
         });
@@ -488,9 +498,12 @@ seajs.use(['App'], function (App) {
     /*产品列表*/
     App.controller('product_list', function (page) {
         App.addHash('#/product_list');
+        this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
+        localStorage['product_list_args_id'] = ctx.args.id;
         seajs.use(['ProductList'], function (ProductList) {
-            new ProductList(page, ctx);
+            new ProductList(page, ctx.args.id, ctx);
         });
     });
 
@@ -498,8 +511,12 @@ seajs.use(['App'], function (App) {
     App.controller('product_detail', function (page) {
         App.addHash('#/product_detail');
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
+        if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
+        localStorage['product_detail_args_id'] = ctx.args.id;
+        localStorage['product_detail_args_proid'] = ctx.args.proid;
         seajs.use(['ProductDetail'], function (ProductDetail) {
-            new ProductDetail(page, ctx);
+            new ProductDetail(page, ctx.args.id,ctx.args.proid, ctx);
         });
     });
     App.controller('product_search', function (page) {
@@ -559,41 +576,11 @@ seajs.use(['App'], function (App) {
         });
     });
 
-    /*(function(window) {
-
-        // 如果浏览器原生支持该事件,则退出
-        if ( "onhashchange" in window.document.body ) { return; }
-
-        var location = window.location,
-                oldURL = location.href,
-                oldHash = location.hash;
-
-        // 每隔100ms检测一下location.hash是否发生变化
-        setInterval(function() {
-            var newURL = location.href,
-                    newHash = location.hash;
-
-            // 如果hash发生了变化,且绑定了处理函数...
-            if ( newHash != oldHash && typeof window.onhashchange === "function" ) {
-                // execute the handler
-                window.onhashchange({
-                    type: "hashchange",
-                    oldURL: oldURL,
-                    newURL: newURL
-                });
-
-                oldURL = newURL;
-                oldHash = newHash;
-            }
-        }, 100);
-
-    })(window);*/
     window.onhashchange = function () {
-        console.log(App.getCurrentHash());
         if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
-        //alert('aa' + location.hash);
-        if (location.hash.length > 0){
-            App.load(location.hash.substring(2, location.hash.length));
+        if (location.hash.length > 0) {
+            var _page = location.hash.substring(2, location.hash.length);
+            App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
         }
     }
     App.enableDragTransition();

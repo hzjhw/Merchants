@@ -6,122 +6,45 @@
         <div class="fr hall">展馆</div>
         <div class="clear"></div>
     </div>
-    <div class="prolist">
-        <a class="hong a001" href="javascript:void(0)">品牌展示馆</a><a class="a002" href="javascript:void(0)">防盗门馆</a><a
-            class="a003" href="javascript:void(0)">铜门/不锈钢门馆</a>
-        <a class="hong a001" href="javascript:void(0)">特色门馆</a><a class="a002" href="javascript:void(0)">非标门馆</a><a
-            class="a004" href="javascript:void(0)">木门馆</a><a class="a004" href="javascript:void(0)">钢木门馆</a>
-        <a class="hong a001" href="javascript:void(0)">铝合金门馆</a><a class="a002" href="javascript:void(0)">防火门馆</a><a
-            class="hong a003" href="javascript:void(0)">生态木门/强化门馆</a>
-
-        <div class="clear"></div>
-    </div>
-    <div class="factory_logo"><img src="images/factory_logo.jpg" alt="330门业招商节"></div>
-    <div class="factory_banner"><img src="images/factory_banner.jpg" alt="330门业招商节"></div>
-    <div class="nav x">
-        <ul>
-            <li>
-                <i class="icon current"></i>
-
-                <div>首页</div>
-            </li>
-            <li><i class="icon data"></i>
-
-                <div>厂家信息</div>
-            </li>
-            <li><i class="icon product"></i>
-
-                <div>产品展示</div>
-            </li>
-            <li><i class="icon power"></i>
-
-                <div>厂家实力</div>
-            </li>
-            <li><i class="icon area"></i>
-
-                <div>空白区域</div>
-            </li>
-        </ul>
-    </div>
+    <div id="include_header" ></div>
     <div class="search-list x">
         <div class="search-list-title"><span class="titlename">筛选</span><span class="name">全部</span><div class="fr icons icons-list"></div>
         </div>
         <div class="xiala" style="display:none;">
-            <div class="ygtvtable-div1"><div class="fenlei01">钢木门</div><ul><li>装甲钢木门</li><li>木质钢木门</li><li>pvc钢木门</li><li>装甲钢木门</li><li>钢质门</li><li>pvc钢木门</li><div class="clear"></div></ul></div>
-            <div class="ygtvtable-div1"><div class="fenlei01">防盗门</div></div>
-            <div class="ygtvtable-div1"><div class="fenlei01">木门</div></div>
+            <div class="ygtvtable-div1"><div class="fenlei01" data-id="all">全部</div></div>
+            {{#each firstCats}}
+            <div class="ygtvtable-div1"><div class="fenlei01" data-id="{{cat_id}}">{{cat_name}}</div>
+                <ul>
+                    <li>装甲钢木门</li><li>木质钢木门</li>
+                    <li>pvc钢木门</li><li>装甲钢木门</li>
+                    <li>钢质门</li><li>pvc钢木门</li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+            {{/each}}
         </div>
         <div class="search-list-cont list-view">
-            <div class="glitzItem">
-                <a class="glitzPic" href="javascript:void(0)"><img src="images/product001_5.jpg"></a>
+            {{#each list}}
+            <div class="glitzItem" data-id="{{product_id}}">
+                <a class="glitzPic" href="javascript:void(0)"><img src="{{CONST 'PIC_URL'}}{{img_path}}"></a>
 
                 <div class="txt">
-                    <p class="title">王力门 室内门 复合实木门 白色免漆门</p>
+                    <p class="title">{{title}}</p>
 
-                    <p class="feature">产品特点：【价格】包含门扇和门套，不含锁具和运费安装等服务。</p>
+                    <p class="feature">产品特点：{{recom_desc}}</p>
 
-                    <p class="price"><span class="fl">￥0-300</span><a class="fl collect"
+                    <p class="price"><span class="fl">{{price}}</span><a class="fl collect"
                                                                       href="javascript:void(0)">收藏</a></p>
 
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="glitzItem">
-                <a class="glitzPic" href="javascript:void(0)"><img src="images/product001_5.jpg"></a>
-
-                <div class="txt">
-                    <p class="title">王力门 室内门 复合实木门 白色免漆门</p>
-
-                    <p class="feature">产品特点：【价格】包含门扇和门套，不含锁具和运费安装等服务。</p>
-
-                    <p class="price"><span class="fl">￥0-300</span><a class="fl collect"
-                                                                      href="javascript:void(0)">收藏</a></p>
-
-                    <div class="clear"></div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="glitzItem">
-                <a class="glitzPic" href="javascript:void(0)"><img src="images/product001_5.jpg"></a>
-
-                <div class="txt">
-                    <p class="title">王力门 室内门 复合实木门 白色免漆门</p>
-
-                    <p class="feature">产品特点：【价格】包含门扇和门套，不含锁具和运费安装等服务。</p>
-
-                    <p class="price"><span class="fl">￥0-300</span><a class="fl collect"
-                                                                      href="javascript:void(0)">收藏</a></p>
-
-                    <div class="clear"></div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="glitzItem">
-                <a class="glitzPic" href="javascript:void(0)"><img src="images/product001_5.jpg"></a>
-
-                <div class="txt">
-                    <p class="title">王力门 室内门 复合实木门 白色免漆门</p>
-
-                    <p class="feature">产品特点：【价格】包含门扇和门套，不含锁具和运费安装等服务。</p>
-
-                    <p class="price"><span class="fl">￥0-300</span><a class="fl collect"
-                                                                      href="javascript:void(0)">收藏</a></p>
-
-                    <div class="clear"></div>
-                </div>
-                <div class="clear"></div>
-            </div>
+            {{/each}}
             <div class="clear"></div>
         </div>
     </div>
     <div class="message">
-        <div class="prompt h">我的此品牌感兴趣，我想加盟和了解更多</div>
-        <div class="prompt">企业温馨提示：您的留言我们会第一时间反馈！</div>
-        <div class="form"><i><span>*</span>姓名：</i><input type="text" name="" placeholder="如 王先生"></div>
-        <div class="form"><i><span>*</span>手机：</i><input type="text" name="" placeholder="如 13575695737"></div>
-        <div class="form"><i>留言：</i><input type="text" name="" placeholder="我对此项目很感兴趣，请联系我们。"></div>
-        <div class="button">提交留言</div>
     </div>
 
 

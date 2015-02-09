@@ -18,6 +18,11 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
       App.load($(this).attr('data-target'), {
         id: $(this).attr('data-id')
       });
+      return false;
+    });
+    $(page).find("#factory .header .hall").on('click', function () {
+      $(this).toggleClass("minus");
+      $("#factory .prolist").toggleClass("show");
     });
   }
   module.exports = IncludeHeader;

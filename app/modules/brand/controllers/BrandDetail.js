@@ -37,10 +37,6 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
         $(page).find('.go-back').click(function () {
           App.back();
         });
-        $("#factory .header .hall").click(function () {
-          $(this).toggleClass("minus");
-          $("#factory .prolist").toggleClass("show");
-        });
         $(page).find('.prolist a').click(function () {
           App.load('brand_list', {
             id: $(this).attr('data-id'),

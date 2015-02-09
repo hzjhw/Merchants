@@ -1,47 +1,12 @@
 <div id="factory" class="app-content">
     <div class="header">
-        <a class="fl btn-back" href="javascript:void(0)">返回</a>
+        <a class="fl go-back" href="javascript:void(0)">返回</a>
         <img class="fl logo" src="images/logo.jpg" alt="330门业招商节">
 
         <div class="fr hall">展馆</div>
         <div class="clear"></div>
     </div>
-    <div class="prolist">
-        <a class="hong a001" href="javascript:void(0)">品牌展示馆</a><a class="a002" href="javascript:void(0)">防盗门馆</a><a
-            class="a003" href="javascript:void(0)">铜门/不锈钢门馆</a>
-        <a class="hong a001" href="javascript:void(0)">特色门馆</a><a class="a002" href="javascript:void(0)">非标门馆</a><a
-            class="a004" href="javascript:void(0)">木门馆</a><a class="a004" href="javascript:void(0)">钢木门馆</a>
-        <a class="hong a001" href="javascript:void(0)">铝合金门馆</a><a class="a002" href="javascript:void(0)">防火门馆</a><a
-            class="hong a003" href="javascript:void(0)">生态木门/强化门馆</a>
-        <div class="clear"></div>
-    </div>
-    <div class="factory_logo"><img src="images/factory_logo.jpg" alt="330门业招商节"></div>
-    <div class="factory_banner"><img src="images/factory_banner.jpg" alt="330门业招商节"></div>
-    <div class="nav x">
-        <ul>
-            <li>
-                <i class="icon"></i>
-
-                <div>首页</div>
-            </li>
-            <li><i class="icon data current"></i>
-
-                <div>厂家信息</div>
-            </li>
-            <li><i class="icon product"></i>
-
-                <div>产品展示</div>
-            </li>
-            <li><i class="icon power"></i>
-
-                <div>厂家实力</div>
-            </li>
-            <li><i class="icon area"></i>
-
-                <div>空白区域</div>
-            </li>
-        </ul>
-    </div>
+    <div id="include_header"></div>
     <div class="power x">
         <div class="honor">
             <div class="title_power">
@@ -50,22 +15,12 @@
             </div>
             <div class="detailed">
                 <ul>
+                    {{#each honors}}
                     <li class="fl">
-                        <div class="img"><img src="http://demo.ykit.net/pmsj/330.11door_pc/img/product3.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位</div>
+                        <div class="img"><img src="{{CONST 'PIC_URL'}}/{{img_path}}"></div>
+                        <div class="txt">{{title}}</div>
                     </li>
-                    <li class="fr">
-                        <div class="img"><img src="http://www.11door.com/shiyan/111.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位</div>
-                    </li>
-                    <li class="fl">
-                        <div class="img"><img src="http://www.11door.com/shiyan/330pc/img/product4.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位中国木材流通协会常务理事单位</div>
-                    </li>
-                    <li class="fr">
-                        <div class="img"><img src="http://www.11door.com/shiyan/330pc/img/gg_price.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位</div>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -77,22 +32,12 @@
             </div>
             <div class="detailed">
                 <ul>
+                    {{#each areas}}
                     <li class="fl">
-                        <div class="img"><img src="http://demo.ykit.net/pmsj/330.11door_pc/img/product3.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位</div>
+                        <div class="img"><img src="{{CONST 'PIC_URL'}}/{{content}}"></div>
+                        <div class="txt">{{title}}</div>
                     </li>
-                    <li class="fr">
-                        <div class="img"><img src="http://www.11door.com/shiyan/111.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位</div>
-                    </li>
-                    <li class="fl">
-                        <div class="img"><img src="http://www.11door.com/shiyan/330pc/img/product4.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位中国木材流通协会常务理事单位</div>
-                    </li>
-                    <li class="fr">
-                        <div class="img"><img src="http://www.11door.com/shiyan/330pc/img/gg_price.jpg"></div>
-                        <div class="txt">中国木材流通协会常务理事单位</div>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -101,12 +46,6 @@
 
 
     <div class="message">
-        <div class="prompt h">我的此品牌感兴趣，我想加盟和了解更多</div>
-        <div class="prompt">企业温馨提示：您的留言我们会第一时间反馈！</div>
-        <div class="form"><i><span>*</span>姓名：</i><input type="text" name="" placeholder="如 王先生"></div>
-        <div class="form"><i><span>*</span>手机：</i><input type="text" name="" placeholder="如 13575695737"></div>
-        <div class="form"><i>留言：</i><input type="text" name="" placeholder="我对此项目很感兴趣，请联系我们。"></div>
-        <div class="button">提交留言</div>
     </div>
     <!--页脚-->
     <div class="app-section merchant-footer">
