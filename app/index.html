@@ -488,9 +488,10 @@ seajs.use(['App'], function (App) {
     /*产品列表*/
     App.controller('product_list', function (page) {
         App.addHash('#/product_list');
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['ProductList'], function (ProductList) {
-            new ProductList(page, ctx);
+            new ProductList(page, ctx.args.id, ctx);
         });
     });
 

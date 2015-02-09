@@ -19,9 +19,18 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
       success: function (result) {
         $(page).html(tpl(result));
         $(".blank_area", $(page)).hide();
+        seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
+          new IncludeMessage(page, '.message', {
+            id: id
+          });
+          result.header.id = id;
+          result.header.icon = 5;
+          new IncludeHeader(page, '#include_header', result.header);
+        });
 
         var blkContent = $(".blank_area_content", $(page));
         var template = blkContent.html();
+
         $(page).find('.province a').each(function () {
 
           $(this).click(function () {
@@ -70,8 +79,6 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
             })
           })
         });
-
-
       }
 
     });
