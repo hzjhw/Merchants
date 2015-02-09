@@ -51,3 +51,8 @@ a{text-decoration:none;}
 #factory .blank_area_content{padding-top:40px;}
 #factory .blank_area_content p{font-size:12px;color:#4c4948;line-height:48px;}
 #factory .blank_area_content p .b{font-weight:bold;}
+
+.product-search-cont {padding-left:2.8%;}
+.product-type,.product-price{background:#fff;border-radius:10px;margin-bottom:25px;padding:0 3%;}
+.product-search-cont .cate-pro-ul li{width:29%;margin-right:2%;}
+.cate-pro-ul li.current{color:#e0246b;background:#fff;}
