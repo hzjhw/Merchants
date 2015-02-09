@@ -54,13 +54,20 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
     $(page).find('.go-back').click(function () {
       App.back();
     });
-    var tpl = $(page).find('.mer-unique-right-ul').html();
 
-    $(page).find('.mer-unique-ul li').click(function () {
-      $(this).addClass('current').siblings().removeClass('current');
-      loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
+    var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());
+    var tpl = $(page).find('.mer-unique-right-ul').html();
+    App.query('/product/price', {
+      cache: true,
+      success: function(result){
+        $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
+        $(page).find('.mer-unique-ul li').click(function () {
+          $(this).addClass('current').siblings().removeClass('current');
+          loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
+        });
+        loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
+      }
     });
-    loadBrand(page, '.mer-unique-right-ul', '4531876237', tpl);
   }
 
   module.exports = BrandUnique;

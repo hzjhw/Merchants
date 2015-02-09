@@ -277,6 +277,7 @@
 <!--产品-->
 <div class="app-page" data-page="product_list"></div>
 <div class="app-page" data-page="product_detail"></div>
+<div class="app-page" data-page="product_search"></div>
 <!--经销商-->
 <div class="app-page" data-page="dealers"></div>
 
@@ -476,6 +477,12 @@ seajs.use(['App'], function (App) {
         var ctx = this;
         seajs.use(['ProductDetail'], function (ProductDetail) {
             new ProductDetail(page, ctx);
+        });
+    });
+    App.controller('product_search', function (page) {
+        var ctx = this;
+        seajs.use(['ProductSearch'], function (ProductSearch) {
+            new ProductSearch(page, ctx);
         });
     });
     /*登录页面*/
