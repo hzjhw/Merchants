@@ -96,10 +96,10 @@
                         <p>产品展示</p></li>
                     <li data-target="brand_blank">
                         <div class="icon-bg icon-message"></div>
-                        <p>空白区域</p></li>
+                        <p>品牌空白区域</p></li>
                     <li data-target="product_search">
                         <div class="icon-bg icon-message"></div>
-                        <p>空白区域</p></li>
+                        <p>产品空白区域</p></li>
                 </ul>
             </div>
 
@@ -555,7 +555,9 @@ seajs.use(['App'], function (App) {
     }
     App.enableDragTransition();
     try {
-        App.restore();
+        if (location.hash) {
+            App.restore();
+        }
     } catch (err) {
         App.load('home');
     }
