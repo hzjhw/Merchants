@@ -410,30 +410,35 @@ seajs.use(['App'], function (App) {
     });
     /*品牌详细*/
     App.controller('brand_detail', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandDetail'], function (BrandDetail) {
             new BrandDetail(page, ctx.args.id, ctx);
         })
     });
     App.controller('brand_info', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandInfo'], function (BrandInfo) {
             new BrandInfo(page, ctx.args.id, ctx);
         });
     });
     App.controller('brand_product', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandProduct'], function (BrandProduct) {
             new BrandProduct(page, ctx.args.id, ctx);
         });
     });
     App.controller('brand_tec', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandTec'], function (BrandTec) {
             new BrandTec(page, ctx.args.id, ctx);
         });
     });
     App.controller('brand_blank', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandBlank'], function (BrandBlank) {
             new BrandBlank(page, ctx.args.id, ctx);

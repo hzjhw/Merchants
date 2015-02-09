@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2015/2/9.
  */
-define('BrandMessage', ['App', 'template/brand_message', 'HandlebarsHelper'], function (require, exports, module) {
+define('BrandMessage', ['App', 'template/include_message', 'HandlebarsHelper'], function (require, exports, module) {
   var BrandMessage, App, template, HandlebarsHelper;
 
   App = require('App');
-  template = require('template/brand_message');
+  template = require('template/include_message');
   HandlebarsHelper = require('HandlebarsHelper');
 
   BrandMessage = function (page, render, data) {

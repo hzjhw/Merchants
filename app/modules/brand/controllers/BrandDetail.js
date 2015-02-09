@@ -26,10 +26,11 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
         result.indexInfo.id = id;
         $(page).html(tpl(result.indexInfo));
 
-          seajs.use(['BrandMessage'], function(BrandMessage){
+          seajs.use(['BrandMessage', 'IncludeHeader'], function(BrandMessage, IncludeHeader){
               new BrandMessage(page, '.message', {
                 id: id
               });
+            new IncludeHeader(page,'#include_header',result.indexInfo);
           });
 
         $(page).find('.go-back').click(function () {
@@ -46,11 +47,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
             banner: $(this).attr('data-banner')
           });
         });
-        $(page).find('.nav ul li').click(function () {
-          App.load($(this).attr('data-target'), {
-            id: $(this).attr('data-id')
-          });
-        });
+
       }
     });
   }
