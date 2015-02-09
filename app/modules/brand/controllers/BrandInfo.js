@@ -33,12 +33,6 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           App.back();
         });
 
-        $(page).find('.nav ul li').click(function () {
-          App.load($(this).attr('data-target'), {
-            id: $(this).attr('data-id')
-          });
-        });
-
       }
 
     })
