@@ -23,17 +23,17 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
     item = HandlebarsHelper.compile(item);
     App.infiniteScroll($list, { loading: $loading }, function (callback) {
       if (totalPage && (pageNumber > totalPage)) return null;
-      App.query('/brand/' + id, {
+      App.query('/product/feature/' + id, {
         cache: true,
         data: {
           pageSize: 10,
           pageNumber: pageNumber
         },
         success: function (result) {
-          totalPage = result.brandList.totalPage;
+          totalPage = result.productList.totalPage;
           var list = [];
-          for (var j = 0; j < result.brandList.list.length; j++) {
-            var $node = $(item(result.brandList.list[j]));
+          for (var j = 0; j < result.productList.list.length; j++) {
+            var $node = $(item(result.productList.list[j]));
             $node.click(function () {
               App.load('brand_detail', {
                 id: $(this).attr('data-id')
@@ -54,13 +54,20 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
     $(page).find('.go-back').click(function () {
       App.back();
     });
-    var tpl = $(page).find('.mer-unique-ul').html();
 
-    $(page).find('.mer-nuique-ul li').click(function () {
-      $(this).addClass('current').siblings().removeClass('current');
-      loadBrand(page, '.mer-unique-ul', $(this).attr('data-id'), tpl);
+    var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());
+    var tpl = $(page).find('.mer-unique-right-ul').html();
+    App.query('/product/price', {
+      cache: true,
+      success: function(result){
+        $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
+        $(page).find('.mer-unique-ul li').click(function () {
+          $(this).addClass('current').siblings().removeClass('current');
+          loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
+        });
+        loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
+      }
     });
-    loadBrand(page, '.mer-unique-ul', '4531876237', tpl);
   }
 
   module.exports = BrandUnique;

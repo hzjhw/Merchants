@@ -277,6 +277,7 @@
 <!--产品-->
 <div class="app-page" data-page="product_list"></div>
 <div class="app-page" data-page="product_detail"></div>
+<div class="app-page" data-page="product_search"></div>
 <!--经销商-->
 <div class="app-page" data-page="dealers"></div>
 
@@ -423,30 +424,35 @@ seajs.use(['App'], function (App) {
     });
     /*品牌详细*/
     App.controller('brand_detail', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandDetail'], function (BrandDetail) {
             new BrandDetail(page, ctx.args.id, ctx);
         })
     });
     App.controller('brand_info', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandInfo'], function (BrandInfo) {
             new BrandInfo(page, ctx.args.id, ctx);
         });
     });
     App.controller('brand_product', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandProduct'], function (BrandProduct) {
             new BrandProduct(page, ctx.args.id, ctx);
         });
     });
     App.controller('brand_tec', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandTec'], function (BrandTec) {
             new BrandTec(page, ctx.args.id, ctx);
         });
     });
     App.controller('brand_blank', function (page) {
+        this.transition = 'fade';
         var ctx = this;
         seajs.use(['BrandBlank'], function (BrandBlank) {
             new BrandBlank(page, ctx.args.id, ctx);
@@ -471,6 +477,12 @@ seajs.use(['App'], function (App) {
         var ctx = this;
         seajs.use(['ProductDetail'], function (ProductDetail) {
             new ProductDetail(page, ctx);
+        });
+    });
+    App.controller('product_search', function (page) {
+        var ctx = this;
+        seajs.use(['ProductSearch'], function (ProductSearch) {
+            new ProductSearch(page, ctx);
         });
     });
     /*登录页面*/

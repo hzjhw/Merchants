@@ -17,32 +17,26 @@
     <div class="merchant-content">
         <div class="merchant-unique-left">
             <ul class="mer-unique-ul">
-                <li data-id="4531876237 " class="current">实木复合门</li>
-                <li data-id="1417272248">防盗门</li>
-                <li data-id="4531876237">木门</li>
-                <li data-id="3818678422">非标门</li>
-                <li data-id="8636812455">不锈钢门</li>
-                <li data-id="3486245445">铝合金门</li>
-                <li data-id="4432837154">防火门</li>
-                <li data-id="8636812455">仿铜门</li>
-                <li data-id="5276256741">生态木门</li>
+                {{#each list}}
+                <li data-id="{{cat_id}}"  class="{{#compare @index '===' 0}}current{{/compare}}" >{{cat_name}}</li>
+                {{/each}}
             </ul>
         </div>
         <div class="merchant-unique-right">
             <div class="merchant-unique-right-inner">
                 <ul class="mer-unique-right-ul">
-                    <li>
+                    <li data-id="{{product_id}}">
                         <div class="mer-unique-img">
-                            <img src="{{CONST 'PIC_URL'}}/{{brand_path}}" alt="" height="300"/>
+                            <img src="{{CONST 'PIC_URL'}}/{{img_path}}" alt="" height="300"/>
                         </div>
                         <div class="mer-unique-title">
                             {{cust_name}}
                         </div>
                         <div class="mer-unique-info">
-                            产品特点：{{brand_name}}
+                            产品特点：{{{content}}}
                         </div>
                         <div class="mer-unique-price">
-                            <span class="text-price">¥1000</span>
+                            <span class="text-price">{{price}}</span>
                             丨 <span class="icon-bg icon-collect"></span>收藏
                         </div>
                     </li>

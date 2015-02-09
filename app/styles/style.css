@@ -473,7 +473,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .go-back{color: #fff; padding-left: 20px; font-size: 24px; float: left;}
 .btn-category{text-align: right; padding-right: 10px; font-size: 24px; color: #fff;}
 .merchant-unique-left{width: 20%; overflow: hidden; float: left;}
-.merchant-unique-left .current{border-left: 5px solid #DF246B;background: #fff;color: #DF246B;}
+.merchant-unique-left .current{border-left: 5px solid #DF246B;background: #fff;color: #DF246B;padding-left:15px;}
 .mer-unique-ul li { height: 65px; padding-top: 25px; font-size: 20px; padding-left: 20px; border-bottom: 1px solid #d2d2d2; font-weight: bold; background: #efefef;}
 .merchant-unique-right{ float: left; width: 80%;background: #fff;}
 .merchant-unique-right-inner{padding:10px;}
