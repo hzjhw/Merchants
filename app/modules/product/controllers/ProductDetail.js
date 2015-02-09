@@ -3,20 +3,29 @@
  * @class ProductSearch
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('ProductSearch', ['App', 'template/product_search'], function (require, exports, module) {
+define('ProductDetail', ['App', 'template/product_detail'], function (require, exports, module) {
   var ProductSearch, App, template;
 
   App = require('App');
-  template = require('template/product_search');
+  template = require('template/product_detail');
 
-  ProductSearch = function (page, ctx) {
+  ProductDetail = function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back('home', function () {
 
       });
     });
+    var $sub = $(page).find('.cate-item-sub');
+    $(page).find('.cate-item').each(function (index) {
+      $(this).click(function () {
+        $(this).addClass('current').siblings('.cate-item').removeClass('current');
+        $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
+      });
+    });
+
+
   }
 
-  module.exports = ProductSearch;
+  module.exports = ProductDetail;
 });
