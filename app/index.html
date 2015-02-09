@@ -442,6 +442,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_detail');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
+        localStorage['brand_detail_args_id'] = ctx.args.id;
         seajs.use(['BrandDetail'], function (BrandDetail) {
             new BrandDetail(page, ctx.args.id, ctx);
         })
@@ -450,6 +452,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_info');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
+        localStorage['brand_info_args_id'] = ctx.args.id;
         seajs.use(['BrandInfo'], function (BrandInfo) {
             new BrandInfo(page, ctx.args.id, ctx);
         });
@@ -458,6 +462,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_product');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
+        localStorage['brand_product_args_id'] = ctx.args.id;
         seajs.use(['BrandProduct'], function (BrandProduct) {
             new BrandProduct(page, ctx.args.id, ctx);
         });
@@ -466,6 +472,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_tec');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
+        localStorage['brand_tec_args_id'] = ctx.args.id;
         seajs.use(['BrandTec'], function (BrandTec) {
             new BrandTec(page, ctx.args.id, ctx);
         });
@@ -474,6 +482,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/brand_blank');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
+        localStorage['brand_blank_args_id'] = ctx.args.id;
         seajs.use(['BrandBlank'], function (BrandBlank) {
             new BrandBlank(page, ctx.args.id, ctx);
         });
@@ -490,6 +500,8 @@ seajs.use(['App'], function (App) {
         App.addHash('#/product_list');
         this.transition = 'fade';
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
+        localStorage['product_list_args_id'] = ctx.args.id;
         seajs.use(['ProductList'], function (ProductList) {
             new ProductList(page, ctx.args.id, ctx);
         });
@@ -499,8 +511,12 @@ seajs.use(['App'], function (App) {
     App.controller('product_detail', function (page) {
         App.addHash('#/product_detail');
         var ctx = this;
+        if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
+        if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
+        localStorage['product_detail_args_id'] = ctx.args.id;
+        localStorage['product_detail_args_proid'] = ctx.args.proid;
         seajs.use(['ProductDetail'], function (ProductDetail) {
-            new ProductDetail(page, ctx);
+            new ProductDetail(page, ctx.args.id,ctx.args.proid, ctx);
         });
     });
     App.controller('product_search', function (page) {

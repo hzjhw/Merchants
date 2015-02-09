@@ -70,6 +70,14 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
               $(this).toggleClass("icons-larger");
               $("#factory .search-list-cont").toggleClass("larger-view");
             })
+
+            $(page).find('.search-list-cont .glitzItem').click(function(){
+              App.load('product_detail', {
+                id: id,
+                proid:$(this).attr('data-id')
+              });
+            });
+
 // 筛选弹窗
             $(page).find('#factory .search-list-title .titlename').click(function () {
               var $dom = $(this).get(0);

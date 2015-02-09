@@ -3,26 +3,38 @@
  * @class ProductSearch
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('ProductDetail', ['App', 'template/product_detail'], function (require, exports, module) {
-  var ProductSearch, App, template;
+define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], function (require, exports, module) {
+  var ProductSearch, App, template, HandlebarsHelper;
 
   App = require('App');
   template = require('template/product_detail');
+  HandlebarsHelper = require('HandlebarsHelper');
 
-  ProductDetail = function (page, ctx) {
-    $(page).html(template);
-    $(page).find('.btn-back').click(function () {
-      App.back('home', function () {
+  ProductDetail = function (page, id,proid, ctx) {
+    var tpl = HandlebarsHelper.compile(template);
 
-      });
+    App.query('/cmp/proDetail/' + id, {
+      cache: true,
+      data:{proid:proid},
+      success: function(result){
+        $(page).html(tpl(result));
+
+
+        $(page).find('.category-close').click(function () {
+          App.back();
+        });
+        var $sub = $(page).find('.cate-item-sub');
+        $(page).find('.cate-item').each(function (index) {
+          $(this).click(function () {
+            $(this).addClass('current').siblings('.cate-item').removeClass('current');
+            $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
+          });
+        });
+
+
+      }
     });
-    var $sub = $(page).find('.cate-item-sub');
-    $(page).find('.cate-item').each(function (index) {
-      $(this).click(function () {
-        $(this).addClass('current').siblings('.cate-item').removeClass('current');
-        $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
-      });
-    });
+
 
 
   }

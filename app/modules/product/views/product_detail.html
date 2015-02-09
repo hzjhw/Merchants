@@ -17,33 +17,33 @@
     <div class="app-section bs relative">
         <div class="cate-item-sub cate-item-sub-0 cate-cur">
             <div class="img_product">
-                <div class="img"><img src="http://www.11door.com/shiyan/111.jpg"></div>
-<div class="txt">王力门 室内门 复合实木门 白色免漆门</div>
+                <div class="img"><img src="{{CONST 'PIC_URL'}}{{proDetail.img_path}}"></div>
+<div class="txt">{{proDetail.title}}</div>
                 <div class="collection">
-                    <div class="td">产品特点：【价格】包含门扇和门套，不含锁具和运费、安装等服务。【专注】我们只做门，门扇和门套，不含锁具和运费、安装等</div>
+                    <div class="td">产品特点：{{proDetail.recom_desc}}</div>
 <div class="sc"><p>收藏</p></div>
                 </div>
             </div>
             <div class="data_product">
                 <ul>
-                    <li><p>产品型号：0806890</p>
+                    <li><p>产品型号：{{proDetail.model}}</p>
 
-                        <p class="mid">产品规格：2200*900*300</p>
+                        <p class="mid">产品规格：{{proDetail.standard}}</p>
 
-                        <p>价格区间：1000元~2000元</p>
+                        <p>价格区间：{{proDetail.price}}</p>
                     </li>
-                    <li class="r"><p>品牌名称：王力</p>
+                    <li class="r"><p>品牌名称：{{proDetail.brand_name}}</p>
 
-                        <p class="mid">产地：浙江省永康市</p>
+                        <p class="mid">产地：{{proDetail.area_attr}}</p>
 
-                        <p>产品类别：木门</p>
+                        <p>产品类别：{{proDetail.cat_name}}</p>
                     </li>
                 </ul>
                 <div class="cn">服务承诺： 按时发货、T4 售后无忧、T3 极速退款 、七天无理由退换阿斯蒂芬阿斯顿发斯蒂芬阿斯蒂芬阿斯蒂芬阿斯蒂芬发送到发斯蒂芬 </div>
             </div>
         </div>
         <div class="cate-item-sub cate-item-sub-1">
-            商品详情
+            {{{proDetail.content}}}
         </div>
     </div>
 
