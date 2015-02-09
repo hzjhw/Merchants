@@ -21,10 +21,10 @@ define('ProductList', ['App', 'template/product_list'], function (require, expor
           $("#factory .prolist").toggleClass("show");
       })
 
-
-
-
-
+      $("#factory .search-list-title .icons-largest").click(function(){
+          $(this).toggleClass("icons-larger");
+          $("#factory .search-list-cont").toggleClass("larger-view");
+      })
 
   }
 
