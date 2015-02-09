@@ -15,6 +15,52 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
       App.back('home', function () {
       });
     });
+
+    $(page).find('#userLogin').click(function () {
+      var phoneNum = $("#phoneNum", $(page)).val();
+      var passwd = $("#passwd", $(page)).val();
+      var reg = /^(1[3|5|8])[\d]{9}$/;
+      if ($.trim(phoneNum) == '') {
+        alert("手机号码不能为空！");
+        return;
+      }
+      if (!reg.test(phoneNum)) {
+        alert("电话号码格式错误!");
+        $("#phoneNum", $(page)).focus();
+        return;
+      }
+
+      if ($.trim(passwd) == '') {
+        alert("密码不能为空！");
+        return;
+      }
+      App.query('/login', {
+        data: {
+          phoneNum: phoneNum,
+          passwd: passwd
+        },
+        success: function (data) {
+          if (data.result == 'success') {
+            alert("成功登录");
+            App.back();
+          }
+          else
+          {
+             if(data.msg == 'nopasswd')
+             {
+               alert("密码错误！");
+             }
+             else if(data.msg == 'nophone')
+             {
+               if(window.confirm("该手机号还未注册！立即注册吗?"))
+               {
+                 App.load('register_dealers');
+               }
+             }
+          }
+        }
+      })
+    });
   }
 
   module.exports = Login;
