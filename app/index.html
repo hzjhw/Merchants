@@ -99,7 +99,7 @@
                         <p>品牌空白区域</p></li>
                     <li data-target="product_search">
                         <div class="icon-bg icon-message"></div>
-                        <p>产品空白区域</p></li>
+                        <p>产品搜索</p></li>
                 </ul>
             </div>
 
@@ -423,6 +423,11 @@ seajs.use(['App'], function (App) {
     /*品牌列表*/
     App.controller('brand_list', function (page) {
         App.addHash('#/brand_list');
+        localStorage['brand_list_args'] = {
+            id: ctx.args.id,
+            title: ctx.args.title,
+            banner: ctx.args.banner
+        };
         var ctx = this;
         seajs.use(['BrandList'], function (BrandList) {
             new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx);
@@ -478,7 +483,7 @@ seajs.use(['App'], function (App) {
     });
     /*产品列表*/
     App.controller('product_list', function (page) {
-        App.addHash('#/brand_list');
+        App.addHash('#/product_list');
         var ctx = this;
         seajs.use(['ProductList'], function (ProductList) {
             new ProductList(page, ctx);
@@ -555,8 +560,10 @@ seajs.use(['App'], function (App) {
     }
     App.enableDragTransition();
     try {
-        if (location.hash) {
+        if (location.hash.length > 0) {
             App.restore();
+        } else {
+            App.load('home');
         }
     } catch (err) {
         App.load('home');
