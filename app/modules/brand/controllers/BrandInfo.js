@@ -14,21 +14,37 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
     var tpl = HandlebarsHelper.compile(template);
 
     App.query('/cmp/factinfo/' + id, {
-      cache: true,
       success: function (data) {
         if (!data.factInfo) {
           data.factInfo = {}
         }
         data.factInfo.id = id;
         $(page).html(tpl(data.factInfo));
-
-        seajs.use(['BrandMessage', 'IncludeHeader'], function(BrandMessage, IncludeHeader){
-          new BrandMessage(page, '.message', {
+        $(page).find('.icon').removeClass('current');
+        $(page).find('.data').addClass('current');
+        seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
+          new IncludeMessage(page, '.message', {
             id: id
           });
-          new IncludeHeader(page,'#include_header',data.header);
+          data.header.id = id;
+          data.header.icon = 2;
+          new IncludeHeader(page, '#include_header', data.header);
         });
 
+        $(page).find(".title_general").click(function () {
+          var pDiv = $(this).find('p').eq(1);
+          var nextDiv =$(this).next();
+          if ($(this).hasClass('clicked')) {
+            pDiv.text('展开').removeClass('shut').addClass('open');
+            nextDiv.show();
+            $(this).removeClass('clicked');
+          } else {
+            pDiv.text('收起').removeClass('open').addClass('shut');
+            nextDiv.hide();
+            $(this).addClass('clicked');
+          }
+
+        })
         $(page).find('.go-back').click(function () {
           App.back();
         });
