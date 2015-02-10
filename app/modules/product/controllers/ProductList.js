@@ -52,7 +52,6 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
               $(this).toggleClass("icons-larger");
               $("#factory .search-list-cont").toggleClass("larger-view");
             })
-<<<<<<< Updated upstream
 
             $(page).find('.search-list-cont .glitzItem').click(function(){
               App.load('product_detail', {
@@ -61,10 +60,8 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
               });
             });
 
-// 筛选弹窗
-=======
             // 筛选弹窗
->>>>>>> Stashed changes
+
             $(page).find('#factory .search-list-title .titlename').click(function () {
               var $dom = $(this).get(0);
               seajs.use(['dialog'], function (dialog) {
