@@ -14,7 +14,6 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
 
     var tpl = HandlebarsHelper.compile(template);
 
-
     if (typeof id === 'undefined') return;
     App.query('/cmp/' + id, {
       success: function (result) {
@@ -27,22 +26,22 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
         }
         result.indexInfo.id = id;
 
-        App.query('/cmp/product/'+id,{
-          cache:true,
+        App.query('/cmp/product/' + id, {
+          cache: true,
           data: {
             pageSize: 500
           },
-          success:function(data){
+          success: function (data) {
             result.indexInfo.list = data.proList.list;
-            result.indexInfo.firstCats =data.firstCats;
+            result.indexInfo.firstCats = data.firstCats;
             $(page).html(tpl(result.indexInfo));
 
-            seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
+            seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
               new IncludeMessage(page, '.message', {
                 id: id
               });
-              result.indexInfo.icon=3;
-              new IncludeHeader(page,'#include_header',result.indexInfo);
+              result.indexInfo.icon = 3;
+              new IncludeHeader(page, '#include_header', result.indexInfo);
             });
 
             $(page).find('.go-back').click(function () {
@@ -56,29 +55,24 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
               });
             });
 
-            $(page).find('.go-back').click(function () {
-              App.back('home', function () {
-
-              });
-            });
-            $(page).find("#factory .header .hall").click(function(){
+            $(page).find("#factory .header .hall").click(function () {
               $(this).toggleClass("minus");
               $("#factory .prolist").toggleClass("show");
-            })
+            });
 
-            $(page).find("#factory .search-list-title .icons-largest").click(function(){
+            $(page).find("#factory .search-list-title .icons-largest").click(function () {
               $(this).toggleClass("icons-larger");
               $("#factory .search-list-cont").toggleClass("larger-view");
-            })
+            });
 
-            $(page).find('.search-list-cont .glitzItem').click(function(){
+            $(page).find('.search-list-cont .glitzItem').click(function () {
               App.load('product_detail', {
                 id: id,
-                proid:$(this).attr('data-id')
+                proid: $(this).attr('data-id')
               });
             });
 
-// 筛选弹窗
+            // 筛选弹窗
             $(page).find('#factory .search-list-title .titlename').click(function () {
               var $dom = $(this).get(0);
               seajs.use(['dialog'], function (dialog) {
@@ -87,7 +81,7 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
                   skin: 'clickxiala',
                   title: ' ',
                   width: WINDOW_WIDTH - 74,
-                  height:$('.xiala').height(),
+                  height: $('.xiala').height(),
                   content: $('.xiala', $(page)).html(),
                   onshow: function () {
                     var ctx = this;
@@ -95,37 +89,42 @@ define('ProductList', ['App', 'template/product_list', 'HandlebarsHelper'], func
                       ctx.close().remove();
                       App.load($(this).attr('data-target'));
                     });
+                    $('.fenlei01', $(page)).click(function () {
+
+                      ctx.close().remove();
+                    })
                   }
                 }).showModal($dom);
               })
             });
-            var i = 0;
-            var listCont = $(page).find('#factory .search-list-cont');
-            $(page).find('.icons-list').click(function(){
-              if (i === 3){
-                i = 0;
-              }
-              switch(i){
-                case 0:
-                  $(this).removeClass("icons-largest").addClass("icons-larger");
-                  listCont.removeClass("largest-view").addClass('larger-view');break;
-                case 1:
-                  $(this).removeClass("icons-larger").addClass("icons-list");
-                  listCont.removeClass("larger-view").addClass('list-view');break;
-                case 2:
-                  $(this).removeClass("icons-list").addClass("icons-largest");
-                  listCont.removeClass("list-view").addClass('largest-view');break;
-              }
-              i++;
-            });
-
-
-
-          }});
+            }
+          });
+        //样式切换
+        var i = 0;
+        var listCont = $(page).find('#factory .search-list-cont');
+        $(page).find('.icons-list').click(function () {
+          if (i === 3) {
+            i = 0;
+          }
+          switch (i) {
+            case 0:
+              $(this).removeClass("icons-largest").addClass("icons-larger");
+              listCont.removeClass("largest-view").addClass('larger-view');
+              break;
+            case 1:
+              $(this).removeClass("icons-larger").addClass("icons-list");
+              listCont.removeClass("larger-view").addClass('list-view');
+              break;
+            case 2:
+              $(this).removeClass("icons-list").addClass("icons-largest");
+              listCont.removeClass("list-view").addClass('largest-view');
+              break;
+          }
+          i++;
+        });
       }
     });
-
   }
 
   module.exports = ProductList;
-});
+})
