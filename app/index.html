@@ -285,7 +285,7 @@
 <div class="app-page" data-page="dealers"></div>
 
 
-<script src="scripts/base.js"></script>
+<script src="scripts/base.js?v=15210"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
 
@@ -424,6 +424,8 @@ seajs.use(['App'], function (App) {
     App.controller('brand_list', function (page) {
         var ctx = this;
         App.addHash('#/brand_list');
+
+        this.transition = 'slide-left';
 
         if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
         if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];

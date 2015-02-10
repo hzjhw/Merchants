@@ -31,6 +31,15 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
         var blkContent = $(".blank_area_content", $(page));
         var template = blkContent.html();
 
+        $(page).find('.go-back').click(function () {
+          App.back();
+        });
+
+        // 底部导航
+        $(page).find('.buttombar-ul li').click(function () {
+          App.load($(this).attr('data-target'));
+        });
+
         $(page).find('.province a').each(function () {
 
           $(this).click(function () {
@@ -69,28 +78,13 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
                 $(page).find('.blank_area_content').html(tpl2({
                   list: result.blkAreas
                 }));
-               /* App.render({
-                  render: '.blank_area_content', page: page, template: tpl2, data: {
-                    list: result.blkAreas
-                  }
-                });*/
                 $(".blank_area", $(page)).show();
               }
             })
           })
         });
       }
-
     });
-
-    $(page).find('.go-back').click(function () {
-      App.back();
-    });
-
-    $("#factory .header .hall").click(function () {
-      $(this).toggleClass("minus");
-      $("#factory .prolist").toggleClass("show");
-    })
   }
 
   module.exports = BrandBlank;

@@ -24,6 +24,13 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
       $(this).toggleClass("minus");
       $("#factory .prolist").toggleClass("show");
     });
+    $(page).find('.prolist a').click(function () {
+      App.load('brand_list', {
+        id: $(this).attr('data-id'),
+        title: $(this).attr('data-title'),
+        banner: $(this).attr('data-banner')
+      });
+    });
   }
   module.exports = IncludeHeader;
 });
