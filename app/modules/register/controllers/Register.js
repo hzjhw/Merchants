@@ -12,9 +12,7 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
   Register = function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
-      App.back('home', function () {
-
-      })
+      App.back()
     });
 
      $(page).find('#userRegister').click(function(){

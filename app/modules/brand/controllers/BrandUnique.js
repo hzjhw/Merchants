@@ -54,6 +54,10 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
     $(page).find('.go-back').click(function () {
       App.back();
     });
+    // 底部导航
+    $(page).find('.buttombar-ul li').click(function () {
+      App.load($(this).attr('data-target'));
+    });
     var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());
     var tpl = $(page).find('.mer-unique-right-ul').html();
     App.query('/product/price', {

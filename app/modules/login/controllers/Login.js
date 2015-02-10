@@ -12,8 +12,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
   Login = function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
-      App.back('home', function () {
-      });
+      App.back();
     });
 
     $(page).find('#userLogin').click(function () {

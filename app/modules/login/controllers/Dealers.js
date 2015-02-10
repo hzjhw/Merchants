@@ -10,9 +10,7 @@ define('Dealers', ['App', 'template/dealers'], function (require, exports, modul
   Dealers = function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
-      App.back('home', function () {
-
-      });
+      App.back();
     });
   }
 

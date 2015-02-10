@@ -12,12 +12,12 @@
         </div>
         <div class="xiala" style="display:none;">
             <div class="ygtvtable-div1"><div class="fenlei01" data-id="all">全部</div></div>
-            {{#each firstCats}}
+            {{#each allCats}}
             <div class="ygtvtable-div1"><div class="fenlei01" data-id="{{cat_id}}">{{cat_name}}</div>
                 <ul>
-                    <li>装甲钢木门</li><li>木质钢木门</li>
-                    <li>pvc钢木门</li><li>装甲钢木门</li>
-                    <li>钢质门</li><li>pvc钢木门</li>
+                    {{#each children}}
+                    <li data-id="{{cat_id}}">{{cat_name}}</li>
+                    {{/each}}
                     <div class="clear"></div>
                 </ul>
             </div>
