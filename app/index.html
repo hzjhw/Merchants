@@ -54,7 +54,7 @@
 
             <div class="container-my" style="display:none;">
                 <ul class="ul-my">
-                    <li data-target="dealers">
+                    <li data-target="favorite_info">
                         <div class="icon-bg icon-member"></div>
                         <p>我的资料</p>
                     </li>
@@ -64,13 +64,13 @@
                     <li data-target="favorite_brand">
                         <div class="icon-bg icon-diamond"></div>
                         <p>收藏的品牌</p></li>
-                    <li data-target="cooperative">
+                    <li data-target="favorite_cooperate">
                         <div class="icon-bg icon-hand"></div>
                         <p>我的合作意向</p></li>
-                    <li data-target="money">
+                    <li data-target="favorite_money">
                         <div class="icon-bg icon-money"></div>
                         <p>我的代金券</p></li>
-                    <li data-target="message">
+                    <li data-target="favorite_message">
                         <div class="icon-bg icon-message"></div>
                         <p>我的留言</p></li>
                     <li data-target="product_list">
@@ -349,6 +349,7 @@ seajs.use(['App'], function (App) {
                 }).showModal($dom);
             })
         });
+
         /*品牌分类*/
         $(page).find('.cate-ul li').click(function () {
             if ($(this).attr('data-id').length === 0) {
@@ -412,6 +413,7 @@ seajs.use(['App'], function (App) {
             $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
         });
     });
+
     /*分类页面*/
     App.controller('category', function (page) {
         App.addHash('#/category');
@@ -547,14 +549,57 @@ seajs.use(['App'], function (App) {
         });
     });
     /*经销商*/
-    App.controller('dealers', function (page) {
-        App.addHash('#/dealers');
+    App.controller('favorite_info', function (page) {
+        App.addHash('#/favorite_info');
         var ctx = this;
         this.transition = 'slide-left';
-        seajs.use(['Dealers'], function (Dealers) {
-            new Dealers(page, ctx);
+        seajs.use(['FavInfoCtrl'], function (FavInfoCtrl) {
+            new FavInfoCtrl(page, ctx);
         });
     });
+    /*搜藏的产品*/
+    App.controller('favorite_product', function (page) {
+        App.addHash('#/favorite_product');
+        this.transition = 'slide-left';
+        seajs.use(['FavProCtrl'], function (FavProCtrl) {
+            new FavProCtrl(page, this);
+        });
+    });
+    /*搜藏的品牌*/
+    App.controller('favorite_brand', function (page) {
+        App.addHash('#/favorite_brand');
+        this.transition = 'slide-left';
+        seajs.use(['FavBrandCtrl'], function (FavBrandCtrl) {
+            new FavBrandCtrl(page, this);
+        });
+    });
+    /*我的抵金券*/
+    App.controller('favorite_money', function (page) {
+        App.addHash('#/favorite_money');
+        this.transition = 'slide-left';
+        seajs.use(['FavMoneyCtrl'], function (FavMoneyCtrl) {
+            new FavMoneyCtrl(page, this);
+        });
+    });
+    /*我的意向合作*/
+    App.controller('favorite_cooprate', function (page) {
+        App.addHash('#/favorite_cooprate');
+        var ctx = this;
+        this.transition = 'slide-left';
+        seajs.use(['FavCooprateCtrl'], function (FavCooprateCtrl) {
+            new FavCooprateCtrl(page, ctx);
+        });
+    });
+    /*我的留言*/
+    App.controller('favorite_message', function (page) {
+        App.addHash('#/favorite_message');
+        this.transition = 'slide-left';
+        seajs.use(['FavMessageCtrl'], function (FavMessageCtrl) {
+            new FavMessageCtrl(page, this);
+        });
+    });
+
+
     /*搜索页面*/
     App.controller('search', function (page) {
         App.addHash('#/search');
