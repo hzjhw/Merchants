@@ -553,32 +553,32 @@ seajs.use(['App'], function (App) {
         App.addHash('#/favorite_info');
         var ctx = this;
         this.transition = 'slide-left';
-        seajs.use(['FavInfoCtrl'], function (FavInfoCtrl) {
-            new FavInfoCtrl(page, ctx);
+        seajs.use(['FavInfo'], function (FavInfo) {
+            new FavInfo(page, ctx);
         });
     });
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {
         App.addHash('#/favorite_product');
         this.transition = 'slide-left';
-        seajs.use(['FavProCtrl'], function (FavProCtrl) {
-            new FavProCtrl(page, this);
+        seajs.use(['FavPro'], function (FavPro) {
+            new FavPro(page, this);
         });
     });
     /*搜藏的品牌*/
     App.controller('favorite_brand', function (page) {
         App.addHash('#/favorite_brand');
         this.transition = 'slide-left';
-        seajs.use(['FavBrandCtrl'], function (FavBrandCtrl) {
-            new FavBrandCtrl(page, this);
+        seajs.use(['FavBrand'], function (FavBran) {
+            new FavBrand(page, this);
         });
     });
     /*我的抵金券*/
     App.controller('favorite_money', function (page) {
         App.addHash('#/favorite_money');
         this.transition = 'slide-left';
-        seajs.use(['FavMoneyCtrl'], function (FavMoneyCtrl) {
-            new FavMoneyCtrl(page, this);
+        seajs.use(['FavMoney'], function (FavMoney) {
+            new FavMoney(page, this);
         });
     });
     /*我的意向合作*/
@@ -586,16 +586,16 @@ seajs.use(['App'], function (App) {
         App.addHash('#/favorite_cooprate');
         var ctx = this;
         this.transition = 'slide-left';
-        seajs.use(['FavCooprateCtrl'], function (FavCooprateCtrl) {
-            new FavCooprateCtrl(page, ctx);
+        seajs.use(['FavCooprate'], function (FavCooprate) {
+            new FavCooprate(page, ctx);
         });
     });
     /*我的留言*/
     App.controller('favorite_message', function (page) {
         App.addHash('#/favorite_message');
         this.transition = 'slide-left';
-        seajs.use(['FavMessageCtrl'], function (FavMessageCtrl) {
-            new FavMessageCtrl(page, this);
+        seajs.use(['FavMessage'], function (FavMessage) {
+            new FavMessage(page, this);
         });
     });
 
