@@ -1,0 +1,456 @@
+Index: app/styles/brand.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/styles/brand.css	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/styles/brand.css	(revision )
+@@ -73,7 +73,16 @@
+ #factory .product_other .show_pro span {display:block;height:20px;line-height:20px; font-size:12px;text-align:center;}
+ #factory .product_other .show_pro a:link,.show_pro a:visited{color:#666;text-decoration:none;}
+ #factory .product_other .show_pro a:hover,.show_pro a:active{color:#ff0000;}
+-
+-
+-
++#my .messages ul {width:93%;margin:auto;padding-bottom:15%;}
++#my .messages ul li {overflow:auto;background:#fff;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;margin-bottom:20px;padding:0 5% 8% 3.3%;}
++#my .messages .name {height:50px;line-height:50px;color:#e0246b;font-size:24px;margin:18px 0;}
++#my .messages .name span {height:50px;width:50px;background:#e0246b;float:left;font-size:34px;color:#fff;text-align:center;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;margin-right:10px;}
++#my .messages .detailed {color:#4e4e4e;font-size:24px;line-height:46px;margin-bottom:10px;}
++#my .messages .time {color:#929292;font-size:18px;}
++#my .footer_mes {background:#c11153;font-size:22px;line-height:60px;overflow:auto;color:#fff;padding:4% 6.8% 6%;}
++#my .footer_mes li {float:left;}
++#my .footer_mes .a {width:22.4%;}
++#my .footer_mes .b {width:45%;text-align:center;}
++#my .footer_mes .c {width:32%;}
++#my .footer_mes .d {font-size:22px;text-align:center;color:#e7a3bc;width:100%;margin-top:5%;}
+ 
+Index: app/modules/favorite/views/favorite_message.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/modules/favorite/views/favorite_message.html	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/views/favorite_message.html	(revision )
+@@ -1,22 +1,36 @@
+-<div class="app-content login_dealers">
++<div id="my" class="app-content login_dealers">
+     <div class="top app-section">
+         <div class="wrap">
+             <div class="btn-back app-button">返回</div>
+-            <div class="title" data-back>经销商资料修改</div>
++            <div class="title" data-back>我的留言</div>
+         </div>
+     </div>
+-    <div class="wrap registered">
+-        <input type="text" name="" class="name" placeholder="真实姓名">
+-        <input type="text" name="" class="address" placeholder="经销地址">
+-        <input type="text" name="" class="size x" placeholder="店面大小">
+-        <span class="dw">平米</span>
+-        <input type="text" name="" class="time x" placeholder="从业年数">
+-        <span class="dw">年</span>
+-        <button type="submit">修　改</button>
++    <div class="messages">
++        <ul>
++            <li>
++                <div class="name"><span>1</span>对应品牌：开开木门</div>
++                <div class="detailed">我的留言：我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我</div>
++                <div class="time">留言时间：2015-3-28 13:11:11</div>
++            </li>
++            <li>
++                <div class="name"><span>2</span>对应品牌：金凯德集团</div>
++                <div class="detailed">我的留言：我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我
+-    </div>
++                </div>
+-    <div class="wrap note">
+-        <p><a href="#">我的收藏夹</a><a href="#">修改密码</a></p>
+-
+-        <p>3·30门业招商节运营中心—上门网</p>
++                <div class="time">留言时间：2015-3-28 13:11:11</div>
++            </li>
++            <li>
++                <div class="name"><span>3</span>对应品牌：海心门业</div>
++                <div class="detailed">我的留言：我对贵公司品牌感兴趣。</div>
++                <div class="time">留言时间：2015-3-28 13:11:11</div>
++            </li>
++        </ul>
++    </div>
++    <div class="footer_mes">
++        <ul>
++            <li class="a"><p>我的资料</p><p>我的留言</p></li>
++            <li class="b"><p>我的产品搜藏</p><p>我搜藏的品牌</p></li>
++            <li class="c"><p>我的意向合作</p><p>我的代金券</p></li>
++            <li class="d">3·30门业招商节运营中心—上门网</li>
++        </ul>
+     </div>
+ </div>
+\ No newline at end of file
+Index: app/modules/favorite/controllers/FavCooprateCtrl.js
+===================================================================
+--- app/modules/favorite/controllers/FavCooprateCtrl.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/controllers/FavCooprate.js	(revision )
+@@ -3,17 +3,17 @@
+  * @class FavoriteCtrl
+  * @author yongjin<zjut_wyj@163.com> 2015/2/8
+  */
+-define('FavCooprateCtrl', ['App'], function (require, exports, module) {
+-  var FavCooprateCtrl, App, template;
++define('FavCooprate', ['App','template/favCooprate'], function (require, exports, module) {
++  var FavCooprate, App, template;
+ 
+   App = require('App');
+   template = require('template/favCooprate');
+ 
+-  FavCooprateCtrl = function (page, ctx) {
++  FavCooprate= function (page, ctx) {
+     $(page).html(template);
+     $(page).find('.btn-back').click(function () {
+       App.back();
+     });
+   }
+-  module.exports = FavCooprateCtrl;
++  module.exports = FavCooprate;
+ });
+\ No newline at end of file
+Index: app/modules/favorite/controllers/FavProCtrl.js
+===================================================================
+--- app/modules/favorite/controllers/FavProCtrl.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/controllers/FavPro.js	(revision )
+@@ -3,18 +3,18 @@
+  * @class FavoriteCtrl
+  * @author yongjin<zjut_wyj@163.com> 2015/2/8
+  */
+-define('FavProCtrl', [], function (require, exports, module) {
+-  var FavProCtrl, App, template;
++define('FavPro', ['App','template/favPro'], function (require, exports, module) {
++  var FavPro, App, template;
+ 
+   App = require('App');
+   template = require('template/favPro');
+ 
+-  FavProCtrl = function (page, ctx) {
++  FavPro = function (page, ctx) {
+     $(page).html(template);
+     $(page).find('.btn-back').click(function () {
+       App.back();
+     });
+   }
+ 
+-  module.exports = FavProCtrl;
++  module.exports = FavPro;
+ });
+\ No newline at end of file
+Index: app/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/index.html	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/index.html	(revision )
+@@ -54,24 +54,24 @@
+ 
+             <div class="container-my" style="display:none;">
+                 <ul class="ul-my">
+-                    <li data-target="favorite_info">
++                    <li data-target="favorite_info" >
+-                        <div class="icon-bg icon-member"></div>
++                        <div class="icon-bg icon-member app-button"></div>
+                         <p>我的资料</p>
+                     </li>
+                     <li data-target="favorite_product">
+-                        <div class="icon-bg icon-door"></div>
++                        <div class="icon-bg icon-door app-button"></div>
+                         <p>收藏的产品</p></li>
+                     <li data-target="favorite_brand">
+-                        <div class="icon-bg icon-diamond"></div>
++                        <div class="icon-bg icon-diamond app-button"></div>
+                         <p>收藏的品牌</p></li>
+-                    <li data-target="favorite_cooperate">
+-                        <div class="icon-bg icon-hand"></div>
++                    <li data-target="favorite_cooprate">
++                        <div class="icon-bg icon-hand app-button"></div>
+                         <p>我的合作意向</p></li>
+                     <li data-target="favorite_money">
+-                        <div class="icon-bg icon-money"></div>
++                        <div class="icon-bg icon-money app-button"></div>
+                         <p>我的代金券</p></li>
+                     <li data-target="favorite_message">
+-                        <div class="icon-bg icon-message"></div>
++                        <div class="icon-bg icon-message app-button"></div>
+                         <p>我的留言</p></li>
+                     <li data-target="product_list">
+                         <div class="icon-bg icon-message"></div>
+@@ -282,7 +282,12 @@
+ <div class="app-page" data-page="product_detail"></div>
+ <div class="app-page" data-page="product_search"></div>
+ <!--经销商-->
+-<div class="app-page" data-page="dealers"></div>
++<div class="app-page" data-page="favorite_info"></div>
++<div class="app-page" data-page="favorite_product"></div>
++<div class="app-page" data-page="favorite_brand"></div>
++<div class="app-page" data-page="favorite_cooprate"></div>
++<div class="app-page" data-page="favorite_message"></div>
++<div class="app-page" data-page="favorite_money"></div>
+ 
+ 
+ <script src="scripts/base.js?v=15210"></script>
+@@ -560,25 +565,28 @@
+     /*搜藏的产品*/
+     App.controller('favorite_product', function (page) {
+         App.addHash('#/favorite_product');
++        var ctx = this;
+         this.transition = 'slide-left';
+         seajs.use(['FavPro'], function (FavPro) {
+-            new FavPro(page, this);
++            new FavPro(page, ctx);
+         });
+     });
+     /*搜藏的品牌*/
+     App.controller('favorite_brand', function (page) {
+         App.addHash('#/favorite_brand');
++        var ctx = this;
+         this.transition = 'slide-left';
+-        seajs.use(['FavBrand'], function (FavBran) {
+-            new FavBrand(page, this);
++        seajs.use(['FavBrand'], function (FavBrand) {
++            new FavBrand(page, ctx);
+         });
+     });
+     /*我的抵金券*/
+     App.controller('favorite_money', function (page) {
+         App.addHash('#/favorite_money');
++        var ctx = this;
+         this.transition = 'slide-left';
+         seajs.use(['FavMoney'], function (FavMoney) {
+-            new FavMoney(page, this);
++            new FavMoney(page, ctx);
+         });
+     });
+     /*我的意向合作*/
+@@ -593,9 +601,10 @@
+     /*我的留言*/
+     App.controller('favorite_message', function (page) {
+         App.addHash('#/favorite_message');
++        var ctx = this;
+         this.transition = 'slide-left';
+         seajs.use(['FavMessage'], function (FavMessage) {
+-            new FavMessage(page, this);
++            new FavMessage(page, ctx);
+         });
+     });
+ 
+\ No newline at end of file
+Index: app/modules/favorite/main.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/modules/favorite/main.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/main.js	(revision )
+@@ -22,9 +22,9 @@
+ App.addTemplate('template/favMessage', function (require, exports, module) {
+   module.exports = require('modules/favorite/views/favorite_message.html')
+ });
+-App.addModule('FavBrand', 'modules/favorite/controllers/FavBrandCtrl.js');
+-App.addModule('FavPro', 'modules/favorite/controllers/FavProCtrl.js');
+-App.addModule('FavInfo', 'modules/favorite/controllers/FavInfoCtrl.js');
+-App.addModule('FavMessage', 'modules/favorite/controllers/FavMessageCtrl.js');
+-App.addModule('FavMoney', 'modules/favorite/controllers/FavMoneyCtrl.js');
+-App.addModule('FavCooprate', 'modules/favorite/controllers/FavCooprateCtrl.js');
+\ No newline at end of file
++App.addModule('FavBrand', 'modules/favorite/controllers/FavBrand.js');
++App.addModule('FavPro', 'modules/favorite/controllers/FavPro.js');
++App.addModule('FavInfo', 'modules/favorite/controllers/FavInfo.js');
++App.addModule('FavMessage', 'modules/favorite/controllers/FavMessage.js');
++App.addModule('FavMoney', 'modules/favorite/controllers/FavMoney.js');
++App.addModule('FavCooprate', 'modules/favorite/controllers/FavCooprate.js');
+\ No newline at end of file
+Index: app/modules/favorite/views/favorite_cooprate.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/modules/favorite/views/favorite_cooprate.html	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/views/favorite_cooprate.html	(revision )
+@@ -1,22 +1,36 @@
+-<div class="app-content login_dealers">
++<div id="my" class="app-content login_dealers">
+     <div class="top app-section">
+         <div class="wrap">
+             <div class="btn-back app-button">返回</div>
+-            <div class="title" data-back>经销商资料修改</div>
++            <div class="title" data-back>我的留言</div>
+         </div>
+     </div>
+-    <div class="wrap registered">
+-        <input type="text" name="" class="name" placeholder="真实姓名">
+-        <input type="text" name="" class="address" placeholder="经销地址">
+-        <input type="text" name="" class="size x" placeholder="店面大小">
+-        <span class="dw">平米</span>
+-        <input type="text" name="" class="time x" placeholder="从业年数">
+-        <span class="dw">年</span>
+-        <button type="submit">修　改</button>
++    <div class="messages">
++        <ul>
++            <li>
++                <div class="name"><span>1</span>对应品牌：开开木门</div>
++                <div class="detailed">我的留言：我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我</div>
++                <div class="time">留言时间：2015-3-28 13:11:11</div>
++            </li>
++            <li>
++                <div class="name"><span>2</span>对应品牌：金凯德集团</div>
++                <div class="detailed">我的留言：我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我我对贵公司品牌感兴趣，想和你们洽谈合作，请联系我
+-    </div>
++                </div>
+-    <div class="wrap note">
+-        <p><a href="#">我的收藏夹</a><a href="#">修改密码</a></p>
+-
+-        <p>3·30门业招商节运营中心—上门网</p>
++                <div class="time">留言时间：2015-3-28 13:11:11</div>
++            </li>
++            <li>
++                <div class="name"><span>3</span>对应品牌：海心门业</div>
++                <div class="detailed">我的留言：我对贵公司品牌感兴趣。</div>
++                <div class="time">留言时间：2015-3-28 13:11:11</div>
++            </li>
++        </ul>
++    </div>
++    <div class="footer_mes">
++        <ul>
++            <li class="a"><p>我的资料</p><p>我的留言</p></li>
++            <li class="b"><p>我的产品搜藏</p><p>我搜藏的品牌</p></li>
++            <li class="c"><p>我的意向合作</p><p>我的代金券</p></li>
++            <li class="d">3·30门业招商节运营中心—上门网</li>
++        </ul>
+     </div>
+ </div>
+\ No newline at end of file
+Index: app/modules/favorite/controllers/FavMoneyCtrl.js
+===================================================================
+--- app/modules/favorite/controllers/FavMoneyCtrl.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/controllers/FavMoney.js	(revision )
+@@ -3,18 +3,18 @@
+  * @class FavoriteCtrl
+  * @author yongjin<zjut_wyj@163.com> 2015/2/8
+  */
+-define('FavMoneyCtrl', ['App'], function (require, exports, module) {
+-  var FavMoneyCtrl, App, template;
++define('FavMoney', ['App','template/favMoney'], function (require, exports, module) {
++  var FavMoney, App, template;
+ 
+   App = require('App');
+   template = require('template/favMoney');
+ 
+-  FavMoneyCtrl = function (page, ctx) {
++  FavMoney = function (page, ctx) {
+     $(page).html(template);
+     $(page).find('.btn-back').click(function () {
+       App.back();
+     });
+   }
+ 
+-  module.exports = FavMoneyCtrl;
++  module.exports = FavMoney;
+ });
+\ No newline at end of file
+Index: app/modules/favorite/controllers/FavMessageCtrl.js
+===================================================================
+--- app/modules/favorite/controllers/FavMessageCtrl.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/controllers/FavMessage.js	(revision )
+@@ -3,17 +3,17 @@
+  * @class FavoriteCtrl
+  * @author yongjin<zjut_wyj@163.com> 2015/2/8
+  */
+-define('FavMessageCtrl', ['App'], function (require, exports, module) {
+-  var FavMessageCtrl, App, template;
++define('FavMessage', ['App','template/favMessage'], function (require, exports, module) {
++  var FavMessage, App, template;
+ 
+   App = require('App');
+-  template = require('template/favBrand');
++  template = require('template/favMessage');
+ 
+-  FavMessageCtrl = function (page, ctx) {
++  FavMessage = function (page, ctx) {
+     $(page).html(template);
+     $(page).find('.btn-back').click(function () {
+       App.back();
+     });
+   }
+-  module.exports = FavMessageCtrl;
++  module.exports = FavMessage;
+ });
+\ No newline at end of file
+Index: app/const.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/const.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/const.js	(revision )
+@@ -7,9 +7,9 @@
+  * 全局常量
+  * */
+ var CONST = {
+-  HOST: 'http://m.11door.com/',
+-  API: 'http://m.11door.com',
+-  DOMAIN: 'http://m.11door.com',
++  HOST: 'http://11door.com/merchants',
++  API: 'http://11door.com/330jfinal',
++  DOMAIN: 'http://11door.com',
+   PIC_URL: 'http://331.11door.com',
+   SEP: '/',
+   PIC_NONE: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg',
+Index: app/modules/favorite/controllers/FavInfoCtrl.js
+===================================================================
+--- app/modules/favorite/controllers/FavInfoCtrl.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/controllers/FavInfo.js	(revision )
+@@ -3,17 +3,17 @@
+  * @class FavoriteCtrl
+  * @author yongjin<zjut_wyj@163.com> 2015/2/8
+  */
+-define('FavDealersCtrl', ['App'], function (require, exports, module) {
+-  var FavDealersCtrl, App, template;
++define('FavInfo', ['App','template/favInfo'], function (require, exports, module) {
++  var FavDealers, App, template;
+ 
+   App = require('App');
+   template = require('template/favInfo');
+ 
+-  FavDealersCtrl = function (page, ctx) {
++  FavDealers = function (page, ctx) {
+     $(page).html(template);
+     $(page).find('.btn-back').click(function () {
+       App.back();
+     });
+   }
+-  module.exports = FavDealersCtrl;
++  module.exports = FavDealers;
+ });
+\ No newline at end of file
+Index: app/modules/favorite/controllers/FavBrandCtrl.js
+===================================================================
+--- app/modules/favorite/controllers/FavBrandCtrl.js	(revision f7bd201751c0c271198f0e768e0017aa636eb9bc)
++++ app/modules/favorite/controllers/FavBrand.js	(revision )
+@@ -3,17 +3,17 @@
+  * @class FavoriteCtrl
+  * @author yongjin<zjut_wyj@163.com> 2015/2/8
+  */
+-define('FavBrandCtrl', ['App'], function (require, exports, module) {
++define('FavBrand', ['App','template/favBrand'], function (require, exports, module) {
+   var FavBrandCtrl, App, template;
+ 
+   App = require('App');
+   template = require('template/favBrand');
+ 
+-  FavBrandCtrl = function (page, ctx) {
++  FavBrand = function (page, ctx) {
+     $(page).html(template);
+     $(page).find('.btn-back').click(function () {
+       App.back();
+     });
+   }
+-  module.exports = FavBrandCtrl;
++  module.exports = FavBrand;
+ });
+\ No newline at end of file
