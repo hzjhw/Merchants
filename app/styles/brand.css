@@ -73,7 +73,16 @@
 #factory .product_other .show_pro span {display:block;height:20px;line-height:20px; font-size:12px;text-align:center;}
 #factory .product_other .show_pro a:link,.show_pro a:visited{color:#666;text-decoration:none;}
 #factory .product_other .show_pro a:hover,.show_pro a:active{color:#ff0000;}
-
-
-
+#my .messages ul {width:93%;margin:auto;padding-bottom:15%;}
+#my .messages ul li {overflow:auto;background:#fff;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;margin-bottom:20px;padding:0 5% 8% 3.3%;}
+#my .messages .name {height:50px;line-height:50px;color:#e0246b;font-size:24px;margin:18px 0;}
+#my .messages .name span {height:50px;width:50px;background:#e0246b;float:left;font-size:34px;color:#fff;text-align:center;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;margin-right:10px;}
+#my .messages .detailed {color:#4e4e4e;font-size:24px;line-height:46px;margin-bottom:10px;}
+#my .messages .time {color:#929292;font-size:18px;}
+#my .footer_mes {background:#c11153;font-size:22px;line-height:60px;overflow:auto;color:#fff;padding:4% 6.8% 6%;}
+#my .footer_mes li {float:left;}
+#my .footer_mes .a {width:22.4%;}
+#my .footer_mes .b {width:45%;text-align:center;}
+#my .footer_mes .c {width:32%;}
+#my .footer_mes .d {font-size:22px;text-align:center;color:#e7a3bc;width:100%;margin-top:5%;}
 

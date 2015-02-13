@@ -3,17 +3,17 @@
  * @class FavoriteCtrl
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('FavMessageCtrl', ['App'], function (require, exports, module) {
-  var FavMessageCtrl, App, template;
+define('FavBrand', ['App','template/favBrand'], function (require, exports, module) {
+  var FavBrandCtrl, App, template;
 
   App = require('App');
   template = require('template/favBrand');
 
-  FavMessageCtrl = function (page, ctx) {
+  FavBrand = function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back();
     });
   }
-  module.exports = FavMessageCtrl;
+  module.exports = FavBrand;
 });

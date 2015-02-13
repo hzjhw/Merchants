@@ -3,18 +3,18 @@
  * @class FavoriteCtrl
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('FavMoneyCtrl', ['App'], function (require, exports, module) {
-  var FavMoneyCtrl, App, template;
+define('FavPro', ['App','template/favPro'], function (require, exports, module) {
+  var FavPro, App, template;
 
   App = require('App');
-  template = require('template/favMoney');
+  template = require('template/favPro');
 
-  FavMoneyCtrl = function (page, ctx) {
+  FavPro = function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back();
     });
   }
 
-  module.exports = FavMoneyCtrl;
+  module.exports = FavPro;
 });

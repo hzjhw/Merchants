@@ -3,18 +3,17 @@
  * @class FavoriteCtrl
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('FavProCtrl', [], function (require, exports, module) {
-  var FavProCtrl, App, template;
+define('FavCooprate', ['App','template/favCooprate'], function (require, exports, module) {
+  var FavCooprate, App, template;
 
   App = require('App');
-  template = require('template/favPro');
+  template = require('template/favCooprate');
 
-  FavProCtrl = function (page, ctx) {
+  FavCooprate= function (page, ctx) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back();
     });
   }
-
-  module.exports = FavProCtrl;
+  module.exports = FavCooprate;
 });

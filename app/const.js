@@ -7,9 +7,9 @@
  * 全局常量
  * */
 var CONST = {
-  HOST: 'http://m.11door.com/',
-  API: 'http://m.11door.com',
-  DOMAIN: 'http://m.11door.com',
+  HOST: 'http://11door.com/merchants',
+  API: 'http://11door.com/330jfinal',
+  DOMAIN: 'http://11door.com',
   PIC_URL: 'http://331.11door.com',
   SEP: '/',
   PIC_NONE: 'upload/u/u4/user02/picture/2014/12/20/11efc2a1-27b1-4ba3-be8e-8f91dc1f256c.jpg',

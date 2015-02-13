@@ -54,24 +54,24 @@
 
             <div class="container-my" style="display:none;">
                 <ul class="ul-my">
-                    <li data-target="favorite_info">
-                        <div class="icon-bg icon-member"></div>
+                    <li data-target="favorite_info" >
+                        <div class="icon-bg icon-member app-button"></div>
                         <p>我的资料</p>
                     </li>
                     <li data-target="favorite_product">
-                        <div class="icon-bg icon-door"></div>
+                        <div class="icon-bg icon-door app-button"></div>
                         <p>收藏的产品</p></li>
                     <li data-target="favorite_brand">
-                        <div class="icon-bg icon-diamond"></div>
+                        <div class="icon-bg icon-diamond app-button"></div>
                         <p>收藏的品牌</p></li>
-                    <li data-target="favorite_cooperate">
-                        <div class="icon-bg icon-hand"></div>
+                    <li data-target="favorite_cooprate">
+                        <div class="icon-bg icon-hand app-button"></div>
                         <p>我的合作意向</p></li>
                     <li data-target="favorite_money">
-                        <div class="icon-bg icon-money"></div>
+                        <div class="icon-bg icon-money app-button"></div>
                         <p>我的代金券</p></li>
                     <li data-target="favorite_message">
-                        <div class="icon-bg icon-message"></div>
+                        <div class="icon-bg icon-message app-button"></div>
                         <p>我的留言</p></li>
                     <li data-target="product_list">
                         <div class="icon-bg icon-message"></div>
@@ -282,7 +282,12 @@
 <div class="app-page" data-page="product_detail"></div>
 <div class="app-page" data-page="product_search"></div>
 <!--经销商-->
-<div class="app-page" data-page="dealers"></div>
+<div class="app-page" data-page="favorite_info"></div>
+<div class="app-page" data-page="favorite_product"></div>
+<div class="app-page" data-page="favorite_brand"></div>
+<div class="app-page" data-page="favorite_cooprate"></div>
+<div class="app-page" data-page="favorite_message"></div>
+<div class="app-page" data-page="favorite_money"></div>
 
 
 <script src="scripts/base.js?v=15210"></script>
@@ -560,25 +565,28 @@ seajs.use(['App'], function (App) {
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {
         App.addHash('#/favorite_product');
+        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavPro'], function (FavPro) {
-            new FavPro(page, this);
+            new FavPro(page, ctx);
         });
     });
     /*搜藏的品牌*/
     App.controller('favorite_brand', function (page) {
         App.addHash('#/favorite_brand');
+        var ctx = this;
         this.transition = 'slide-left';
-        seajs.use(['FavBrand'], function (FavBran) {
-            new FavBrand(page, this);
+        seajs.use(['FavBrand'], function (FavBrand) {
+            new FavBrand(page, ctx);
         });
     });
     /*我的抵金券*/
     App.controller('favorite_money', function (page) {
         App.addHash('#/favorite_money');
+        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavMoney'], function (FavMoney) {
-            new FavMoney(page, this);
+            new FavMoney(page, ctx);
         });
     });
     /*我的意向合作*/
@@ -593,9 +601,10 @@ seajs.use(['App'], function (App) {
     /*我的留言*/
     App.controller('favorite_message', function (page) {
         App.addHash('#/favorite_message');
+        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavMessage'], function (FavMessage) {
-            new FavMessage(page, this);
+            new FavMessage(page, ctx);
         });
     });
 

@@ -22,9 +22,9 @@ App.addTemplate('template/favMoney', function (require, exports, module) {
 App.addTemplate('template/favMessage', function (require, exports, module) {
   module.exports = require('modules/favorite/views/favorite_message.html')
 });
-App.addModule('FavBrand', 'modules/favorite/controllers/FavBrandCtrl.js');
-App.addModule('FavPro', 'modules/favorite/controllers/FavProCtrl.js');
-App.addModule('FavInfo', 'modules/favorite/controllers/FavInfoCtrl.js');
-App.addModule('FavMessage', 'modules/favorite/controllers/FavMessageCtrl.js');
-App.addModule('FavMoney', 'modules/favorite/controllers/FavMoneyCtrl.js');
-App.addModule('FavCooprate', 'modules/favorite/controllers/FavCooprateCtrl.js');
+App.addModule('FavBrand', 'modules/favorite/controllers/FavBrand.js');
+App.addModule('FavPro', 'modules/favorite/controllers/FavPro.js');
+App.addModule('FavInfo', 'modules/favorite/controllers/FavInfo.js');
+App.addModule('FavMessage', 'modules/favorite/controllers/FavMessage.js');
+App.addModule('FavMoney', 'modules/favorite/controllers/FavMoney.js');
+App.addModule('FavCooprate', 'modules/favorite/controllers/FavCooprate.js');
