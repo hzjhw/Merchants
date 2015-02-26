@@ -39,6 +39,15 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           App.load($(this).attr('data-target'));
         });
 
+        $(page).find('.go-back').click(function () {
+          App.back();
+        });
+
+        // 底部导航
+        $(page).find('.buttombar-ul li').click(function () {
+          App.load($(this).attr('data-target'));
+        });
+
         $(page).find('.province a').each(function () {
 
           $(this).click(function () {

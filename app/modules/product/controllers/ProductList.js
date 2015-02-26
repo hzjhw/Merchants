@@ -18,11 +18,12 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
     var proHtml = HandlebarsHelper.compile(partTemplate);
     if (typeof id === 'undefined') return;
 
-        App.query('/cmp/product/'+id,{
-          cache:true,
+        App.query('/cmp/product/' + id, {
+          cache: true,
           data: {
             pageSize: 500
           },
+<<<<<<< Updated upstream
           success:function(data){
             data.list = data.proList.list;
 
@@ -35,19 +36,31 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
             });
 
             $(page).html(tpl(data));
+=======
+          success: function (data) {
+            result.indexInfo.list = data.proList.list;
+            result.indexInfo.firstCats = data.firstCats;
+            $(page).html(tpl(result.indexInfo));
+>>>>>>> Stashed changes
 
-            seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
+            seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
               new IncludeMessage(page, '.message', {
                 id: id
               });
+<<<<<<< Updated upstream
               data.header.id = id;
               data.header.icon=3;
               new IncludeHeader(page,'#include_header',data.header);
+=======
+              result.indexInfo.icon = 3;
+              new IncludeHeader(page, '#include_header', result.indexInfo);
+>>>>>>> Stashed changes
             });
 
             $(page).find('.go-back').click(function () {
               App.back();
             });
+<<<<<<< Updated upstream
 
            /* $(page).find('.prolist a').click(function () {
               App.load('brand_list', {
@@ -69,6 +82,12 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
               });
             });
 
+=======
+            $(page).find("#factory .search-list-title .icons-largest").click(function () {
+              $(this).toggleClass("icons-larger");
+              $("#factory .search-list-cont").toggleClass("larger-view");
+            })
+>>>>>>> Stashed changes
             // 筛选弹窗
             $(page).find('#factory .search-list-title .titlename').click(function () {
               var $dom = $(this).get(0);
@@ -78,7 +97,7 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
                   skin: 'clickxiala',
                   title: ' ',
                   width: WINDOW_WIDTH - 74,
-                  height:$('.xiala').height(),
+                  height: $('.xiala').height(),
                   content: $('.xiala', $(page)).html(),
                   onshow: function () {
                     var ctx = this;
@@ -106,25 +125,32 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
             //样式切换
             var i = 0;
             var listCont = $(page).find('#factory .search-list-cont');
-            $(page).find('.icons-list').click(function(){
-              if (i === 3){
+            $(page).find('.icons-list').click(function () {
+              if (i === 3) {
                 i = 0;
               }
-              switch(i){
+              switch (i) {
                 case 0:
                   $(this).removeClass("icons-largest").addClass("icons-larger");
-                  listCont.removeClass("largest-view").addClass('larger-view');break;
+                  listCont.removeClass("largest-view").addClass('larger-view');
+                  break;
                 case 1:
                   $(this).removeClass("icons-larger").addClass("icons-list");
-                  listCont.removeClass("larger-view").addClass('list-view');break;
+                  listCont.removeClass("larger-view").addClass('list-view');
+                  break;
                 case 2:
                   $(this).removeClass("icons-list").addClass("icons-largest");
-                  listCont.removeClass("list-view").addClass('largest-view');break;
+                  listCont.removeClass("list-view").addClass('largest-view');
+                  break;
               }
               i++;
             });
 
 
+<<<<<<< Updated upstream
+=======
+          }});
+>>>>>>> Stashed changes
       }
     });
 
