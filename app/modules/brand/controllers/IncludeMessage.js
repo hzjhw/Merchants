@@ -24,7 +24,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           }
       }
     });
-    $(page).find('#cellphone').onfocus(func)
+   // $(page).find('#cellphone').onfocus(func)
     $(page).find('.message .button').click(function () {
       //TODO submit
       var custName = $("#custname", $(page)).val();
