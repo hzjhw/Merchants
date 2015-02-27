@@ -64,9 +64,24 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
       cache: true,
       success: function (result) {
         $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
-        new App._IScroll($(page).find('#merchant-unique-left').get(0), {
+        var $left = $(page).find('#merchant-unique-left');
+        var $right = $(page).find('#merchant-unique-right-inner');
+        $left.css({
+          height: $(window).height() - 452,
+          position: 'relative'
+        });
+        $right.css({
+          height: $(window).height() - 472,
+          position: 'relative'
+        });
+        new App._IScroll($left.get(0), {
           mouseWheel: true,
-          scrollbars: true
+          vScrollbar: false,
+          fadeScrollbars: true
+        });
+        new App._IScroll($right.get(0), {
+          mouseWheel: true,
+          scrollbars: false
         });
         //Scrollable($(page).find('.mer-unique-ul'), false);
         $(page).find('.mer-unique-ul li').click(function () {

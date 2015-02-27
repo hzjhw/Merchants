@@ -365,7 +365,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .grid-9{width: 90%;float:left;}
 .grid-95{width: 95%;float:left;}
 .app-search{position: relative;}
-.app-page .app-topbar .btn-my{ background-position:center -175px; line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: static; height: 32px; padding-left: 0; padding-right: 0; }
+.app-page .app-topbar .btn-my{ background-position:center -175px; z-index: 9001;line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: relative; height: 32px; padding-left: 0; padding-right: 0; }
 .input-search{ border: none; background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
 .btn-search-submit{ position:absolute; right: 0px; width: 100px; top: 0; height: 50px; text-indent: -999999px; }
 .app-topbar{color:#DDD;font-weight:700;height: 65px; background: #e0246b;}
@@ -472,6 +472,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-page .btn-pink{}
 .go-back{color: #fff; padding-left: 20px; font-size: 24px; float: left;}
 .btn-category{text-align: right; padding-right: 10px; font-size: 24px; color: #fff;}
+/*特色馆*/
 .merchant-unique-left{width: 20%; overflow: hidden; float: left;}
 .merchant-unique-left .current{border-left: 5px solid #DF246B;background: #fff;color: #DF246B;padding-left:15px;}
 .mer-unique-ul li { height: 65px; padding-top: 25px; font-size: 20px; padding-left: 20px; border-bottom: 1px solid #d2d2d2; font-weight: bold; background: #efefef;}
@@ -483,3 +484,5 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .mer-unique-info { padding-bottom: 5px; color: #939292; }
 span.text-price { color: #e0246b; }
 .icon-collect { background-position: -217px -687px; width: 32px; height: 32px; display: inline-block; vertical-align: bottom; }
+#mer-unique-ul{width: 100%;}
+#merchant-unique-right-inner{margin-left:10px;}
