@@ -630,10 +630,9 @@ seajs.use(['App'], function (App) {
     /*搜藏的品牌*/
     App.controller('favorite_brand', function (page) {
         App.addHash('#/favorite_brand');
-        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavBrand'], function (FavBrand) {
-            new FavBrand(page, ctx);
+            new FavBrand(page);
         });
     });
     /*我的抵金券*/
