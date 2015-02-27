@@ -44,6 +44,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
           i += 10;
           pageNumber += 1;
           callback(list);
+          page.scroll.refresh();
         }
       })
     });
@@ -52,9 +53,11 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   BrandUnique = function (page, context) {
     $(page).html(template);
     $(page).find('.go-back').click(function () {
-      App.back();
+      App.back('home');
     });
-    // 底部导航
+    $(page).find('.btn-category').click(function () {
+      App.load('category');
+    });
     $(page).find('.buttombar-ul li').click(function () {
       App.load($(this).attr('data-target'));
     });
@@ -67,11 +70,11 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
         var $left = $(page).find('#merchant-unique-left');
         var $right = $(page).find('#merchant-unique-right-inner');
         $left.css({
-          height: $(window).height() - 452,
+          height: $(window).height() - 140,
           position: 'relative'
         });
         $right.css({
-          height: $(window).height() - 472,
+          height: $(window).height() - 160,
           position: 'relative'
         });
         new App._IScroll($left.get(0), {
@@ -79,7 +82,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
           vScrollbar: false,
           fadeScrollbars: true
         });
-        new App._IScroll($right.get(0), {
+        page.scroll = new App._IScroll($right.get(0), {
           mouseWheel: true,
           scrollbars: false
         });

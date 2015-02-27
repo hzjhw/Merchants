@@ -17,7 +17,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
     $(page).find('.app-banner img').attr('src', 'images/' + banner + '.jpg');
     // 返回
     $(page).find('.go-back').click(function () {
-      App.back();
+      App.back('home');
     });
     // 分类
     $(page).find('.btn-category').click(function () {
