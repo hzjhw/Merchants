@@ -589,9 +589,6 @@ seajs.use(['App'], function (App) {
     });
     /*经销商*/
     App.controller('favorite_info', function (page) {
-        App.addHash('#/favorite_info');
-        var ctx = this;
-        this.transition = 'slide-left';
         App.query('/userinfo',{
             success:function(data){
                 if(data.msg == 'nologin')
@@ -603,13 +600,14 @@ seajs.use(['App'], function (App) {
                 }
                 else
                 {
+                    App.addHash('#/favorite_info');
+                    this.transition = 'slide-left';
                     seajs.use(['FavInfo'], function (FavInfo) {
                         new FavInfo(page, data.info);
                     });
                 }
             }
         });
-
     });
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {
