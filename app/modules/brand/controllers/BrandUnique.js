@@ -64,6 +64,11 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
       cache: true,
       success: function (result) {
         $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
+        new App._IScroll($(page).find('#mer-unique-ul').get(0), {
+          mouseWheel: true,
+          scrollbars: true
+        });
+        //Scrollable($(page).find('.mer-unique-ul'), false);
         $(page).find('.mer-unique-ul li').click(function () {
           $(this).addClass('current').siblings().removeClass('current');
           loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
@@ -71,6 +76,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
         loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
       }
     });
+
   }
 
   module.exports = BrandUnique;

@@ -345,7 +345,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-logo-container{background-color: #df246b; height: 70px;line-height: 70px;overflow: hidden;position:relative;}
 .app-logo{height: 100%; background-position: 14px 18px; background-size: 80% 1200%;}
 .btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 85%; vertical-align: middle; font-size: 160%; padding-top: 15%; float: right;}
-.app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 20px; padding-left: 0; padding-right: 0; }
+.app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 32px; padding-left: 0; padding-right: 0; }
 .grid-1{width: 10%;float:left;}
 .grid-15{width: 15%;float:left;}
 .grid-2{width: 20%;float:left;}
@@ -364,8 +364,8 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .grid-85{width: 85%;float:left;}
 .grid-9{width: 90%;float:left;}
 .grid-95{width: 95%;float:left;}
-.app-search{position: relative; }
-.app-page .app-topbar .btn-my{ background-position:center -175px; line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: static; height: 20px; padding-left: 0; padding-right: 0; }
+.app-search{position: relative;}
+.app-page .app-topbar .btn-my{ background-position:center -175px; line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: static; height: 32px; padding-left: 0; padding-right: 0; }
 .input-search{ border: none; background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
 .btn-search-submit{ position:absolute; right: 0px; width: 100px; top: 0; height: 50px; text-indent: -999999px; }
 .app-topbar{color:#DDD;font-weight:700;height: 65px; background: #e0246b;}
@@ -424,7 +424,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .cate-pro-ul li{ float: left; width: 175px; height: 50px; line-height: 50px; background: #dbdbdb; margin-right: 15px; font-size: 25px; border-radius: 5px; text-align: center; border: 1px solid #d3d3d3; margin-bottom: 25px; }
 .red{ color: #e0246b; }
 .search-tip{ font-size: 30px; }
-.search-placeholder{ position: absolute; left: 0; top: 0; font-size: 23px; height: 50px; line-height: 50px; width: 290px; font-weight: normal; color: #BFBFBF; }
+.search-placeholder{ border-radius: 50px;position: absolute; left: 0; top: 0; font-size: 23px; height: 50px; line-height: 50px; width: 333px; font-weight: normal; color: #BFBFBF; }
 /*
 我的330*/
 .icon-member{ background-position: 15px -493px; width: 100px; margin-left: 10px; height: 100px; }

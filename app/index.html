@@ -54,7 +54,7 @@
 
             <div class="container-my" style="display:none;">
                 <ul class="ul-my">
-                    <li data-target="favorite_info" >
+                    <li data-target="favorite_info">
                         <div class="icon-bg icon-member app-button"></div>
                         <p>我的资料</p>
                     </li>
@@ -197,8 +197,8 @@
                 <div class="merchant-content">
                     <ul id="brandList" class="merchant-content-ul">
                         {{#each list}}
-                        <li data-id="{{cust_id}}">
-                            <div class="merchant-cont-img">
+                        <li data-id="{{cust_id}}" class="app-button">
+                            <div class="merchant-cont-img ">
                                 <img src="{{CONST 'PIC_URL'}}{{brand_path}}" alt="" width="284" height="347"/>
                             </div>
                             <div class="merchant-cont-title">
@@ -310,6 +310,25 @@ var WINDOW_WIDTH = null;
 var colourPages = [],
         colour = localStorage[COLOUR_KEY] || 'teal';
 
+function scroll(scrollTo, time) {
+    var scrollFrom = parseInt(document.body.scrollTop),
+            i = 0,
+            runEvery = 5; // run every 5ms
+
+    scrollTo = parseInt(scrollTo);
+    time /= runEvery;
+
+    var interval = setInterval(function () {
+        i++;
+
+        document.body.scrollTop = (scrollTo - scrollFrom) / time * i + scrollFrom;
+
+        if (i >= time) {
+            clearInterval(interval);
+        }
+    }, runEvery);
+}
+
 function stopLoading() {
     $("#Loading").fadeOut();
 }
@@ -417,6 +436,21 @@ seajs.use(['App'], function (App) {
         $(window).resize(function () {
             $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
         });
+        setTimeout(function () {
+            var $appContent = $('.app-content');
+            var $appLogo = $('.app-logo-container');
+            var beginH = $appLogo.height();
+            $(window).on('touchmove', function (e) {
+                var scrollTop = $appContent.scrollTop();
+                if (scrollTop < 150) {
+                    $('.app-search').animate({marginTop: 0}, '100');
+                    $appLogo.animate({ height: beginH }, '200');
+                } else {
+                    $('.app-search').animate({marginTop: 7}, '100');
+                    $appLogo.animate({ height: 0 }, '200');
+                }
+            });
+        }, 500);
     });
 
     /*分类页面*/
@@ -512,7 +546,7 @@ seajs.use(['App'], function (App) {
         if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
         localStorage['product_list_args_id'] = ctx.args.id;
         seajs.use(['ProductList'], function (ProductList) {
-            new ProductList(page, ctx.args.id,ctx);
+            new ProductList(page, ctx.args.id, ctx);
         });
     });
 
@@ -525,7 +559,7 @@ seajs.use(['App'], function (App) {
         localStorage['product_detail_args_id'] = ctx.args.id;
         localStorage['product_detail_args_proid'] = ctx.args.proid;
         seajs.use(['ProductDetail'], function (ProductDetail) {
-            new ProductDetail(page, ctx.args.id,ctx.args.proid, ctx);
+            new ProductDetail(page, ctx.args.id, ctx.args.proid, ctx);
         });
     });
     App.controller('product_search', function (page) {
