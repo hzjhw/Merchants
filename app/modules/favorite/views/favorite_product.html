@@ -7,75 +7,25 @@
     </div>
     <div class="product">
         <ul>
+            {{#each colProList}}
             <li>
                 <div class="imgs">
                     <div class="ver_pic">
-                        <img src="http://331.11door.com/uploads/images/20150120/143358286.jpg">
+                        <a href="{{link_url}}"> <img src="{{CONST 'PIC_URL'}}{{img_url}}"></a>
                     </div>
                 </div>
                 <div class="detailed">
-                    <p>名称：挪威森林S-10</p>
+                    <p>名称：{{title}}</p>
 
-                    <p class="h">品牌：鑫尔木门</p>
+                    <p class="h">品牌：{{brand_name}}</p>
 
-                    <p class="ts">特色：性价比高、主推城乡地区，可包邮，买一送一地区，可包邮，买一送一地区，可包邮，买一送一地区，可包邮，买一送一...</p>
+                    <p class="ts">特色：{{remark}}</p>
                 </div>
             </li>
-            <li>
-                <div class="imgs">
-                    <div class="ver_pic"><img src="http://331.11door.com/uploads/images/20150120/143244269.jpg">
-                    </div>
-                </div>
-                <div class="detailed">
-                    <p>名称：YZ-1006</p>
-
-                    <p class="h">品牌：亿智木门</p>
-
-                    <p class="ts">特色：性价比高、主推城乡地区，可包邮，买一送一...</p>
-                </div>
-            </li>
-            <li>
-                <div class="imgs">
-                    <div class="ver_pic">
-                        <img src="http://331.11door.com/uploads/images/20150129/150032411.jpg">
-                    </div>
-                </div>
-                <div class="detailed">
-                    <p>名称：挪威森林S-10</p>
-
-                    <p class="h">品牌：鑫尔木门</p>
-
-                    <p class="ts">特色：性价比高、主推城乡地区，可包邮，买一送一地区，可包邮，买一送一地区，可包邮，买一送一地区，可包邮，买一送一...</p>
-                </div>
-            </li>
-            <li>
-                <div class="imgs">
-                    <div class="ver_pic"><img src="http://331.11door.com/uploads/images/20150120/143323277.jpg">
-                    </div>
-                </div>
-                <div class="detailed">
-                    <p>名称：YZ-1006</p>
-
-                    <p class="h">品牌：亿智木门</p>
-
-                    <p class="ts">特色：性价比高、主推城乡地区，可包邮，买一送一...</p>
-                </div>
-            </li>
+            {{/each}}
         </ul>
     </div>
     <div class="clear"></div>
     <div class="footer_mes">
-        <ul>
-            <li class="a"><p>我的资料</p>
-
-                <p>我的留言</p></li>
-            <li class="b"><p>我的产品搜藏</p>
-
-                <p>我搜藏的品牌</p></li>
-            <li class="c"><p>我的意向合作</p>
-
-                <p>我的代金券</p></li>
-            <li class="d">3·30门业招商节运营中心—上门网</li>
-        </ul>
     </div>
 </div>

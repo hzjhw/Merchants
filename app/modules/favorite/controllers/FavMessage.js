@@ -3,17 +3,25 @@
  * @class FavoriteCtrl
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('FavMessage', ['App','template/favMessage'], function (require, exports, module) {
-  var FavMessage, App, template;
+define('FavMessage', ['App','template/favMessage','HandlebarsHelper'], function (require, exports, module) {
+  var FavMessage, App, template,HandlebarsHelper;
 
   App = require('App');
+  HandlebarsHelper = require('HandlebarsHelper');
   template = require('template/favMessage');
 
   FavMessage = function (page, ctx) {
-    $(page).html(template);
-    $(page).find('.btn-back').click(function () {
-      App.back();
-    });
+    var tpl = HandlebarsHelper.compile(template);
+    App.query('/userinfo', {
+      success: function (result) {
+        $(page).html(tpl(result.info));
+
+        $(page).find('.btn-back').click(function () {
+          App.back();
+        });
+
+      }
+    })
   }
   module.exports = FavMessage;
 });

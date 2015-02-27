@@ -3,7 +3,9 @@
  * @class main
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-
+App.addTemplate('template/includeBtm', function (require, exports, module) {
+  module.exports = require('modules/favorite/views/include_bottom.html')
+});
 App.addTemplate('template/favBrand', function (require, exports, module) {
   module.exports = require('modules/favorite/views/favorite_brand.html');
 });
@@ -22,6 +24,10 @@ App.addTemplate('template/favMoney', function (require, exports, module) {
 App.addTemplate('template/favMessage', function (require, exports, module) {
   module.exports = require('modules/favorite/views/favorite_message.html')
 });
+App.addTemplate('template/incl', function (require, exports, module) {
+  module.exports = require('modules/favorite/views/favorite_message.html')
+});
+App.addModule('IncludeBtm', 'modules/favorite/controllers/IncludeBtm.js');
 App.addModule('FavBrand', 'modules/favorite/controllers/FavBrand.js');
 App.addModule('FavPro', 'modules/favorite/controllers/FavPro.js');
 App.addModule('FavInfo', 'modules/favorite/controllers/FavInfo.js');
