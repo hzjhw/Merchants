@@ -64,7 +64,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
       cache: true,
       success: function (result) {
         $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
-        new App._IScroll($(page).find('#mer-unique-ul').get(0), {
+        new App._IScroll($(page).find('#merchant-unique-left').get(0), {
           mouseWheel: true,
           scrollbars: true
         });
