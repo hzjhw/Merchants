@@ -558,9 +558,24 @@ seajs.use(['App'], function (App) {
         App.addHash('#/favorite_info');
         var ctx = this;
         this.transition = 'slide-left';
-        seajs.use(['FavInfo'], function (FavInfo) {
-            new FavInfo(page, ctx);
+        App.query('/userinfo',{
+            success:function(data){
+                if(data.msg == 'nologin')
+                {
+                    if(window.confirm('对不起,您还未登录!现在就登录吗?'))
+                    {
+                        App.load('login_dealers');
+                    }
+                }
+                else
+                {
+                    seajs.use(['FavInfo'], function (FavInfo) {
+                        new FavInfo(page, data.info);
+                    });
+                }
+            }
         });
+
     });
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {

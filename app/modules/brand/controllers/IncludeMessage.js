@@ -24,7 +24,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           }
       }
     });
-
+    $(page).find('#cellphone').onfocus(func)
     $(page).find('.message .button').click(function () {
       //TODO submit
       var custName = $("#custname", $(page)).val();
@@ -44,9 +44,9 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         App.query('/cmp/custMsg', {
           data: {
             'custName':custName,
-            'custMsg.fact_id': data.id,
-            'custMsg.content': $("#levMsg", $(page)).val(),
-            'custMsg.cust_phone': $("#cellphone", $(page)).val()
+            'custmsg.fact_id': data.id,
+            'custmsg.content': $("#levMsg", $(page)).val(),
+            'custmsg.cust_phone': $("#cellphone", $(page)).val()
           },
           success: function (result) {
             if (result.msg == 'success') {

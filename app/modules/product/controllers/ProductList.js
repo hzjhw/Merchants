@@ -23,7 +23,7 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
           data: {
             pageSize: 500
           },
-<<<<<<< Updated upstream
+
           success:function(data){
             data.list = data.proList.list;
 
@@ -36,31 +36,21 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
             });
 
             $(page).html(tpl(data));
-=======
-          success: function (data) {
-            result.indexInfo.list = data.proList.list;
-            result.indexInfo.firstCats = data.firstCats;
-            $(page).html(tpl(result.indexInfo));
->>>>>>> Stashed changes
 
             seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
               new IncludeMessage(page, '.message', {
                 id: id
               });
-<<<<<<< Updated upstream
+
               data.header.id = id;
               data.header.icon=3;
               new IncludeHeader(page,'#include_header',data.header);
-=======
-              result.indexInfo.icon = 3;
-              new IncludeHeader(page, '#include_header', result.indexInfo);
->>>>>>> Stashed changes
             });
 
             $(page).find('.go-back').click(function () {
               App.back();
             });
-<<<<<<< Updated upstream
+
 
            /* $(page).find('.prolist a').click(function () {
               App.load('brand_list', {
@@ -82,12 +72,6 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
               });
             });
 
-=======
-            $(page).find("#factory .search-list-title .icons-largest").click(function () {
-              $(this).toggleClass("icons-larger");
-              $("#factory .search-list-cont").toggleClass("larger-view");
-            })
->>>>>>> Stashed changes
             // 筛选弹窗
             $(page).find('#factory .search-list-title .titlename').click(function () {
               var $dom = $(this).get(0);
@@ -145,12 +129,6 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
               }
               i++;
             });
-
-
-<<<<<<< Updated upstream
-=======
-          }});
->>>>>>> Stashed changes
       }
     });
 
