@@ -615,7 +615,7 @@ seajs.use(['App'], function (App) {
         App.addHash('#/favorite_info');
         this.transition = 'slide-left';
         seajs.use(['FavInfo'], function (FavInfo) {
-            new FavInfo(page, data.info);
+            new FavInfo(page);
         });
     });
     /*搜藏的产品*/
