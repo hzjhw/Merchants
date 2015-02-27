@@ -48,7 +48,7 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
             });
 
             $(page).find('.go-back').click(function () {
-              App.back();
+              App.back(window.backPage);
             });
 
 

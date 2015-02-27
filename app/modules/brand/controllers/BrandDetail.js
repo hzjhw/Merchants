@@ -11,34 +11,36 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
   HandlebarsHelper = require('HandlebarsHelper');
 
   BrandDetail = function (page, id, context) {
-    var tpl = HandlebarsHelper.compile(template);
+    setTimeout(function(){
+      var tpl = HandlebarsHelper.compile(template);
 
-    App.query('/cmp/' + id, {
-      cache: true,
-      success: function (result) {
-        if (!result.indexInfo) {
-          result.indexInfo = {
-            back_img: 'images/no-pic.jpg',
-            header_img: 'images/no-pic.jpg',
-            logo_img: 'images/no-pic.jpg'
+      App.query('/cmp/' + id, {
+        cache: true,
+        success: function (result) {
+          if (!result.indexInfo) {
+            result.indexInfo = {
+              back_img: 'images/no-pic.jpg',
+              header_img: 'images/no-pic.jpg',
+              logo_img: 'images/no-pic.jpg'
+            }
           }
-        }
-        result.indexInfo.id = id;
-        $(page).html(tpl(result.indexInfo));
+          result.indexInfo.id = id;
+          $(page).html(tpl(result.indexInfo));
 
           seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
-              new IncludeMessage(page, '.message', {
-                id: id
-              });
+            new IncludeMessage(page, '.message', {
+              id: id
+            });
             result.indexInfo.icon=1;
             new IncludeHeader(page,'#include_header',result.indexInfo);
           });
 
-        $(page).find('.go-back').click(function () {
-          App.back();
-        });
-      }
-    });
+          $(page).find('.go-back').click(function () {
+            App.back(window.backPage);
+          });
+        }
+      });
+    }, 0);
   }
 
   module.exports = BrandDetail;

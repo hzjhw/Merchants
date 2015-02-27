@@ -35,14 +35,13 @@
 </div>
 <!--首页-->
 <div class="app-page" data-page="home">
-    <div class="app-logo-container">
+    <div id="app-index-logo" class="app-logo-container">
         <div class="app-logo icon-bg grid-6">
         </div>
-        <div class="grid-4" style="text-align: right; height: 100%;">
+        <div class="grid-4 app-top-login">
             <div class="app-button btn-register" data-target="register_dealers">注册</div>
             <div class="app-button btn-login" data-target="login_dealers">登录</div>
         </div>
-
     </div>
     <div class="app-topbar">
         <div class="app-button btn-menu icon-bg grid-2" data-target="category">分&nbsp;类</div>
@@ -335,61 +334,74 @@ function stopLoading() {
 
 function bindBrandDetail(dom) {
     $('.merchant-content-ul li', dom).click(function () {
+        window.backPage = 'home';
         App.load('brand_detail', {
             id: $(this).attr('data-id')
         });
+    });
+}
+function show330(page, callback) {
+    seajs.use(['dialog'], function (dialog) {
+        window.dialog && window.dialog.close().remove();
+        window.dialog = dialog({
+            id: '330dialog',
+            title: '我的330',
+            align: 'bottom right',
+            width: WINDOW_WIDTH - 280,
+            content: $('.container-my', $(page)).html(),
+            onshow: function () {
+                var ctx = this;
+                setTimeout(function () {
+                    $('.ul-my li').click(function (e) {
+                        e.preventDefault();
+                        ctx.close();
+                        App.load($(this).attr('data-target'));
+                        return false;
+                    });
+                }, 100);
+            }
+        });
+        callback && callback.call(this, window.dialog);
     });
 }
 
 seajs.use(['App'], function (App) {
     /*首页*/
     App.controller('home', function (page) {
+        $('#Loading').remove();
         App.addHash('#/home');
-        $(page).find('[data-target="inputs"]')
-                .attr('data-target', null)
-                .stickyClick(function (unlock) {
-                    App.pick('inputs', function (params) {
-                        console.log(JSON.stringify(params));
-                        unlock();
+        try {
+            $(page).find('[data-target="inputs"]')
+                    .attr('data-target', null)
+                    .stickyClick(function (unlock) {
+                        App.pick('inputs', function (params) {
+                            console.log(JSON.stringify(params));
+                            unlock();
+                        });
                     });
-                });
+        } catch (e) {
+
+        }
         // 我的330
+        setTimeout(function () {
+            show330(page);
+        }, 0);
+
         $(page).find('.btn-my').click(function (e) {
             e.preventDefault();
             e.stopPropagation();
             var $dom = $(this).find('.span-my').get(0);
-            App.query('/userinfo',{
-                success:function(data){
-                    if(data.msg == 'nologin')
-                    {
-                        if(window.confirm('对不起,您还未登录!现在就登录吗?'))
-                        {
+            App.query('/userinfo', {
+                success: function (data) {
+                    if (data.msg == 'nologin') {
+                        if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
                             App.load('login_dealers');
                         }
                     }
-                    else
-                    {
-                        seajs.use(['dialog'], function (dialog) {
-                            window.dialog = dialog({
-                                id: '330dialog',
-                                title: '我的330',
-                                align: 'bottom right',
-                                width: WINDOW_WIDTH - 280,
-                                content: $('.container-my', $(page)).html(),
-                                onshow: function () {
-                                    var ctx = this;
-                                    setTimeout(function () {
-                                        $('.ul-my li').click(function (e) {
-                                            e.preventDefault();
-                                            ctx.close().remove();
-                                            App.load($(this).attr('data-target'));
-                                            return false;
-                                        });
-                                    }, 100);
-                                }
-                            }).showModal($dom);
+                    else {
+                        show330(page, function (dialog) {
+                            dialog.showModal($dom)
                         });
-
                     }
                 }
             });
@@ -410,70 +422,95 @@ seajs.use(['App'], function (App) {
             });
         });
         // 门馆展示
-        App.query('/index', {
-            success: function (result) {
-                var $container = $('#merchants-show', $(page));
-                var template = $container.html();
-                $container.empty();
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '品牌展示馆',
-                    list: result.brandList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '铝合金门馆',
-                    list: result.lvhejinList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '生态木门/强化门馆',
-                    list: result.shengtaiList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '防火门馆',
-                    list: result.fanghuoList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '非标门馆',
-                    list: result.feibiaoList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '防盗门馆',
-                    list: result.fangdaoList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '不锈钢门馆',
-                    list: result.buxiugangList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '钢木门馆',
-                    list: result.gangmuList.list
-                }, callback: bindBrandDetail});
-                App.render({ render: '#merchants-show', page: page, template: template, data: {
-                    title: '木门馆',
-                    list: result.mumenList.list
-                }, callback: bindBrandDetail});
-            }
-        });
+        setTimeout(function () {
+            App.query('/index', {
+                success: function (result) {
+                    var $container = $('#merchants-show', $(page));
+                    var template = $container.html();
+                    $container.empty();
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '品牌展示馆',
+                        list: result.brandList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '铝合金门馆',
+                        list: result.lvhejinList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '生态木门/强化门馆',
+                        list: result.shengtaiList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '防火门馆',
+                        list: result.fanghuoList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '非标门馆',
+                        list: result.feibiaoList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '防盗门馆',
+                        list: result.fangdaoList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '不锈钢门馆',
+                        list: result.buxiugangList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '钢木门馆',
+                        list: result.gangmuList.list
+                    }, callback: bindBrandDetail});
+                    App.render({ render: '#merchants-show', page: page, template: template, data: {
+                        title: '木门馆',
+                        list: result.mumenList.list
+                    }, callback: bindBrandDetail});
+                }
+            });
+            setTimeout(function () {
+                var $appContent = $('.app-content');
+                var $appLogo = $('#app-index-logo');
+                var $search = $('.app-search');
+                var beginH = $appLogo.height();
+                var isHide = false;
+
+                $('.app-content').get(0).addEventListener("scroll", function (event) {
+                    var scrollTop = $appContent.scrollTop();
+                    //alert('small:' + scrollTop);
+                    if (scrollTop === 0) {
+                        isHide = false;
+                        console.log('small:' + scrollTop);
+                        $search.css({marginTop: 0});
+                        $appLogo.css({ height: beginH });
+                    }
+                    if (scrollTop > 100 && !isHide) {
+                        isHide = true;
+                        console.log('large:' + scrollTop);
+                        $search.animate({marginTop: 7}, '100');
+                        $appLogo.animate({ height: 0 }, '100');
+                    }
+                });
+
+
+                /*$(window).on('touchmove', function (e) {
+                 var scrollTop = $appContent.scrollTop();
+                 if (scrollTop === 0 || scrollTop < 100) {
+                 $('.app-search').animate({marginTop: 0}, '100');
+                 $appLogo.animate({ height: beginH }, '200');
+                 }
+                 if (scrollTop > 100){
+                 $('.app-search').animate({marginTop: 7}, '100');
+                 $appLogo.animate({ height: 0 }, '200');
+                 }
+                 });*/
+            }, 500);
+        }, 0);
         // 布局相关
         WINDOW_WIDTH = $(window).width();
         $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
         $(window).resize(function () {
             $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
         });
-        setTimeout(function () {
-            var $appContent = $('.app-content');
-            var $appLogo = $('.app-logo-container');
-            var beginH = $appLogo.height();
-            $(window).on('touchmove', function (e) {
-                var scrollTop = $appContent.scrollTop();
-                if (scrollTop < 150) {
-                    $('.app-search').animate({marginTop: 0}, '100');
-                    $appLogo.animate({ height: beginH }, '200');
-                } else {
-                    $('.app-search').animate({marginTop: 7}, '100');
-                    $appLogo.animate({ height: 0 }, '200');
-                }
-            });
-        }, 500);
+
     });
 
     /*分类页面*/

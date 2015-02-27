@@ -423,6 +423,8 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 		setTimeout(fixContentHeight,   0);
 		setTimeout(fixContentHeight,  10);
 		setTimeout(fixContentHeight, 100);
+		setTimeout(fixContentHeight, 200);
+		setTimeout(fixContentHeight, 300);
 	}
 
 	function fixContentHeight (page) {

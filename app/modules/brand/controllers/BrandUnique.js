@@ -35,6 +35,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
           for (var j = 0; j < result.productList.list.length; j++) {
             var $node = $(item(result.productList.list[j]));
             $node.click(function () {
+              window.backPage = 'brand_unique';
               App.load('brand_detail', {
                 id: $(this).attr('data-id')
               });
@@ -51,50 +52,51 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   }
 
   BrandUnique = function (page, context) {
-    $(page).html(template);
-    $(page).find('.go-back').click(function () {
-      App.back('home');
-    });
-    $(page).find('.btn-category').click(function () {
-      App.load('category');
-    });
-    $(page).find('.buttombar-ul li').click(function () {
-      App.load($(this).attr('data-target'));
-    });
-    var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());
-    var tpl = $(page).find('.mer-unique-right-ul').html();
-    App.query('/product/price', {
-      cache: true,
-      success: function (result) {
-        $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
-        var $left = $(page).find('#merchant-unique-left');
-        var $right = $(page).find('#merchant-unique-right-inner');
-        $left.css({
-          height: $(window).height() - 140,
-          position: 'relative'
-        });
-        $right.css({
-          height: $(window).height() - 160,
-          position: 'relative'
-        });
-        new App._IScroll($left.get(0), {
-          mouseWheel: true,
-          vScrollbar: false,
-          fadeScrollbars: true
-        });
-        page.scroll = new App._IScroll($right.get(0), {
-          mouseWheel: true,
-          scrollbars: false
-        });
-        //Scrollable($(page).find('.mer-unique-ul'), false);
-        $(page).find('.mer-unique-ul li').click(function () {
-          $(this).addClass('current').siblings().removeClass('current');
-          loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
-        });
-        loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
-      }
-    });
-
+    setTimeout(function(){
+      $(page).html(template);
+      $(page).find('.go-back').click(function () {
+        App.back('home');
+      });
+      $(page).find('.btn-category').click(function () {
+        App.load('category');
+      });
+      $(page).find('.buttombar-ul li').click(function () {
+        App.load($(this).attr('data-target'));
+      });
+      var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());
+      var tpl = $(page).find('.mer-unique-right-ul').html();
+      App.query('/product/price', {
+        cache: true,
+        success: function (result) {
+          $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
+          var $left = $(page).find('#merchant-unique-left');
+          var $right = $(page).find('#merchant-unique-right-inner');
+          $left.css({
+            height: $(window).height() - 140,
+            position: 'relative'
+          });
+          $right.css({
+            height: $(window).height() - 160,
+            position: 'relative'
+          });
+          new App._IScroll($left.get(0), {
+            mouseWheel: true,
+            vScrollbar: false,
+            fadeScrollbars: true
+          });
+          page.scroll = new App._IScroll($right.get(0), {
+            mouseWheel: true,
+            scrollbars: false
+          });
+          //Scrollable($(page).find('.mer-unique-ul'), false);
+          $(page).find('.mer-unique-ul li').click(function () {
+            $(this).addClass('current').siblings().removeClass('current');
+            loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
+          });
+          loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
+        }
+      });
+    }, 0);
   }
 
   module.exports = BrandUnique;
