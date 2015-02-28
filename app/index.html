@@ -312,7 +312,10 @@ seajs.use(['App'], function (App) {
         $(page).find('.btn-my').click(function (e) {
             e.preventDefault();
             setTimeout(function () {
-                show330(page);
+                if (!window.myDialog) {
+                    show330(page);
+                    window.myDialog = true;
+                }
             }, 0);
             var $dom = $(this).find('.span-my').get(0);
             App.query('/userinfo', {
