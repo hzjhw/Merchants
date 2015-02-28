@@ -28,11 +28,11 @@ if (typeof App === 'undefined') {
   App = new Application(CONST);
   window.App = App;
 }
-app.addStatus('useStatus', [
+App.addStatus('useStatus', [
   {text: '已使用', value: '', html: '<span class="l">已使用</span>'},
   {text: '未使用', value: '', html: '<span >未使用</span>'}
 ]);
-app.addStatus('useStatus', [
+App.addStatus('useStatus', [
   {text: '已使用', value: '', html: '<span class="l">已使用</span>'},
   {text: '未使用', value: '', html: '<span >未使用</span>'}
 ]);
