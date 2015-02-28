@@ -257,5 +257,14 @@ define('HandlebarsHelper', ['handlebars'], function (require, exports, module) {
     return new Date().getTime();
   });
 
+  /**
+   * 默认值
+   * @method [字符] - $
+   */
+  Handlebars.registerHelper('$', function (value, safeValue) {
+    var out = value || safeValue;
+    return new Handlebars.SafeString(out);
+  });
+
   module.exports = Handlebars;
 });

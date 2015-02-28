@@ -15,31 +15,33 @@
 
     <div class="clear"></div>
 </div>
-<div class="factory_logo"><img src="{{CONST 'PIC_URL'}}/{{logo_img}}" alt="330门业招商节"></div>
-<div class="factory_banner"><img src="{{CONST 'PIC_URL'}}/{{header_img}}" alt="330门业招商节"></div>
+{{#if logo_img}}
+<div class="factory_logo"><img src="{{CONST 'PIC_URL'}}/{{$ logo_img ''}}" alt="330门业招商节"></div>
+<div class="factory_banner"><img src="{{CONST 'PIC_URL'}}/{{$ header_img ''}}" alt="330门业招商节"></div>
 <div></div>
 <div class="nav">
     <ul>
-        <li data-id="{{id}}" data-target="brand_detail">
+        <li data-id="{{$ id ''}}" data-target="brand_detail">
             <i class="icon {{#xif 'this.icon===1'}}current{{/xif}}"></i>
 
             <div>首页</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_info"><i class="icon data {{#xif 'this.icon===2'}}current{{/xif}}"></i>
+        <li data-id="{{$ id ''}}" data-target="brand_info"><i class="icon data {{#xif 'this.icon===2'}}current{{/xif}}"></i>
 
             <div>厂家信息</div>
         </li>
-        <li data-id="{{id}}" data-target="product_list"><i class="icon product {{#xif 'this.icon===3'}}current{{/xif}}"></i>
+        <li data-id="{{$ id ''}}" data-target="product_list"><i class="icon product {{#xif 'this.icon===3'}}current{{/xif}}"></i>
 
             <div>产品展示</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_tec"><i class="icon power {{#xif 'this.icon===4'}}current{{/xif}}"></i>
+        <li data-id="{{$ id ''}}" data-target="brand_tec"><i class="icon power {{#xif 'this.icon===4'}}current{{/xif}}"></i>
 
             <div>厂家实力</div>
         </li>
-        <li data-id="{{id}}" data-target="brand_blank"><i class="icon area {{#xif 'this.icon===5'}}current{{/xif}}"></i>
+        <li data-id="{{$ id ''}}" data-target="brand_blank"><i class="icon area {{#xif 'this.icon===5'}}current{{/xif}}"></i>
 
             <div>空白区域</div>
         </li>
     </ul>
 </div>
+{{/if}}

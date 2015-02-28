@@ -13,7 +13,9 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
 
   IncludeHeader = function (page, render, data) {
     var tpl = HandlebarsHelper.compile(template);
-    $(page).find(render).html(tpl(data));
+    $(page).find(render).html(tpl(data || {
+      logo_img: null
+    }));
     $(page).find('.nav ul li').click(function () {
       App.load($(this).attr('data-target'), {
         id: $(this).attr('data-id')

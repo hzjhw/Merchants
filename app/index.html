@@ -358,7 +358,7 @@ seajs.use(['App'], function (App) {
                 var $appLogo = $('#app-index-logo');
                 var $search = $('.app-search');
                 var isHide = false;
-                $('.app-content').get(0).addEventListener &&
+                $('.app-content').get(0)&&
                 $('.app-content').get(0).addEventListener("scroll", function (event) {
                     var scrollTop = $appContent.scrollTop();
                     if (scrollTop === 0) {
@@ -407,7 +407,7 @@ seajs.use(['App'], function (App) {
         localStorage['brand_list_args_banner'] = ctx.args.banner;
 
         seajs.use(['BrandList'], function (BrandList) {
-            new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx);
+            new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx.args.area);
         });
     });
     /*品牌详细*/
@@ -476,7 +476,7 @@ seajs.use(['App'], function (App) {
         if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
         localStorage['product_list_args_id'] = ctx.args.id;
         seajs.use(['ProductList'], function (ProductList) {
-            new ProductList(page, ctx.args.id, ctx);
+            new ProductList(page, ctx.args.id, ctx.args.price, ctx);
         });
     });
 

@@ -9,8 +9,8 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
 
-  BrandList = function (page, id, title, banner) {
-    setTimeout(function(){
+  BrandList = function (page, id, title, banner, area) {
+    setTimeout(function () {
       template = require('template/brand_list');
       $(page).html(template);
       // 初始化标题与banner
@@ -40,17 +40,18 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
       item = HandlebarsHelper.compile(item);
       App.infiniteScroll($list, { loading: $loading }, function (callback) {
         if (totalPage && (pageNumber > totalPage)) return null;
-        App.query('/brand/' + id, {
+        App.query(area ? '/brand/schArea/' + encodeURIComponent(area) : '/brand/' + id, {
           cache: true,
           data: {
             pageSize: 10,
             pageNumber: pageNumber
           },
           success: function (result) {
-            totalPage = result.brandList.totalPage;
+            var colum = area ? 'areaList':'brandList';
+            totalPage = result[colum].totalPage;
             var list = [];
-            for (var j = 0; j < result.brandList.list.length; j++) {
-              var $node = $(item(result.brandList.list[j]));
+            for (var j = 0; j < result[colum].list.length; j++) {
+              var $node = $(item(result[colum].list[j]));
               $node.click(function () {
                 window.backPage = 'brand_list';
                 App.load('brand_detail', {

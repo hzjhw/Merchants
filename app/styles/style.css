@@ -365,6 +365,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .grid-85{width: 85%;float:left;}
 .grid-9{width: 90%;float:left;}
 .grid-95{width: 95%;float:left;}
+/*搜索*/
 .app-search{position: relative;margin-top: 2px;}
 .app-page .app-topbar .btn-my{ background-position:center -175px; z-index: 9001;line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: relative; height: 26px; margin-top: 4px;padding-left: 0; padding-right: 0; }
 .input-search{ border: none; background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
@@ -372,6 +373,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-topbar{color:#DDD;font-weight:700;height: 65px; background: #e0246b;}
 .app-topbar{border:none;overflow:hidden;}
 .app-title{font-size:20px}
+.btn-search{position: absolute; right: 25px; top: 20px; width: 50px; z-index: 9999999999999999999; height: 50px; background: url(img/search.jpg) no-repeat scroll center center transparent;}
 /*分类*/
 .cate-ul{ overflow:hidden; }
 .cate-ul li{ float: left; width: 49%; background-color: #fff; height: 112px; margin-bottom: 10px;}
@@ -420,7 +422,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .cate-item-sub{ display:none; overflow: hidden; padding: 0 20px 100px 20px; }
 .cate-cur{ display:block; }
 .icon-down{ background-position: -114px -387px; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; }
-.cate-item-sub-title { padding: 20px; }
+.cate-item-sub-title { padding: 20px;position: relative; }
 .cate-pro-ul{ overflow:hidden; }
 .cate-pro-ul li{ float: left; width: 175px; height: 50px; line-height: 50px; background: #dbdbdb; margin-right: 15px; font-size: 25px; border-radius: 5px; text-align: center; border: 1px solid #d3d3d3; margin-bottom: 25px; }
 .red{ color: #e0246b; }

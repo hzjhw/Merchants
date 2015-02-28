@@ -9,7 +9,7 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
   App = require('App');
   template = require('template/search_index');
 
-  SearchIndex = function(page, context,  data){
+  SearchIndex = function (page, context, data) {
     setTimeout(function () {
       $(page).html(template);
 
@@ -20,6 +20,7 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
           $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
         });
       });
+      $(page).find('.input-search');
       App.query('/product/price', {
         cache: true,
         success: function (result) {
@@ -28,15 +29,36 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
           App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
             list: result.priceList
           }});
+
+          $(page).find('.search-price-ul li').click(function(){
+            App.load('product_list', {
+              id: null,
+              title: '产品搜索结果',
+              price: $(this).attr('id')
+            });
+          });
+
         }
       });
 
 
       $(page).find('.go-back').click(function () {
+        $(this).addClass('active');
         App.back();
       });
 
-
+      $(page).find('.btn-search').click(function () {
+        window.backPage = 'search';
+        var area = $.trim($(page).find('.input-search').val());
+        if (area.length > 0) {
+          App.load('brand_list', {
+            id: null,
+            title: '区域搜索结果',
+            banner: 'banner',
+            area: area
+          });
+        }
+      });
     }, 0)
   }
 

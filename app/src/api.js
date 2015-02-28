@@ -3,9 +3,27 @@
  * @class api
  * @author yongjin<zjut_wyj@163.com> 2015/2/3
  */
+function hash(str) {
+  var hash = 5381,
+    i = str.length
+
+  while (i)
+    hash = (hash * 33) ^ str.charCodeAt(--i)
+
+  /* JavaScript does bitwise operations (like XOR, above) on 32-bit signed
+   * integers. Since we want the results to be always positive, convert the
+   * signed int to an unsigned by doing an unsigned bitshift. */
+  return hash >>> 0;
+}
 App.query = function (query, options) {
   try {
-    var cacheId = options.data ? (query + options.data.pageSize + options.data.pageNumber) : query;
+    var params = '';
+    if (options.data) {
+      for (var key in options.data) {
+        params += options.data[key];
+      }
+    }
+    var cacheId = options.data ? ('_hash' + hash(query) + params) : '_hash' + hash(query);
     if (options.cache && App.getCache(cacheId)) {
       options.success && options.success.call(this, App.getCache(cacheId));
     } else {
