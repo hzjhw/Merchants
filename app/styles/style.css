@@ -346,7 +346,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-top-login{height: 128px;text-align: right;}
 .app-logo{height: 128px; background-position: 14px 18px; background-size: 80% 1200%;}
 .btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 50%; vertical-align: middle; font-size: 160%; padding-top: 15%; float: right;}
-.app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 32px; padding-left: 0; padding-right: 0; }
+.app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 28px;margin-top: 2px; padding-left: 0; padding-right: 0; }
 .grid-1{width: 10%;float:left;}
 .grid-15{width: 15%;float:left;}
 .grid-2{width: 20%;float:left;}
@@ -365,8 +365,8 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .grid-85{width: 85%;float:left;}
 .grid-9{width: 90%;float:left;}
 .grid-95{width: 95%;float:left;}
-.app-search{position: relative;}
-.app-page .app-topbar .btn-my{ background-position:center -175px; z-index: 9001;line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: relative; height: 32px; padding-left: 0; padding-right: 0; }
+.app-search{position: relative;margin-top: 2px;}
+.app-page .app-topbar .btn-my{ background-position:center -175px; z-index: 9001;line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: relative; height: 26px; margin-top: 4px;padding-left: 0; padding-right: 0; }
 .input-search{ border: none; background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
 .btn-search-submit{ position:absolute; right: 0px; width: 100px; top: 0; height: 50px; text-indent: -999999px; }
 .app-topbar{color:#DDD;font-weight:700;height: 65px; background: #e0246b;}

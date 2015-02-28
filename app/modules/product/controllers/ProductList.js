@@ -76,11 +76,12 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
             $(page).find('#factory .search-list-title .titlename').click(function () {
               var $dom = $(this).get(0);
               seajs.use(['dialog'], function (dialog) {
-                window.dialog = dialog({
-                  id: '330dialog',
+                window.search_dialog = dialog({
+                  id: 'search_dialog',
                   skin: 'clickxiala',
                   title: ' ',
                   width: WINDOW_WIDTH - 74,
+                  fixed: false,
                   height: $('.xiala').height(),
                   content: $('.xiala', $(page)).html(),
                   onshow: function () {
@@ -115,16 +116,16 @@ define('ProductList', ['App', 'template/product_list','template/pro_partlist','E
               }
               switch (i) {
                 case 0:
-                  $(this).removeClass("icons-largest").addClass("icons-larger");
-                  listCont.removeClass("largest-view").addClass('larger-view');
+                  $(this).removeClass("icons-list").addClass("icons-larger");
+                  listCont.removeClass("list-view").addClass('larger-view');
                   break;
                 case 1:
-                  $(this).removeClass("icons-larger").addClass("icons-list");
-                  listCont.removeClass("larger-view").addClass('list-view');
+                  $(this).removeClass("icons-larger").addClass("icons-largest");
+                  listCont.removeClass("larger-view").addClass('largest-view');
                   break;
                 case 2:
-                  $(this).removeClass("icons-list").addClass("icons-largest");
-                  listCont.removeClass("list-view").addClass('largest-view');
+                  $(this).removeClass("icons-largest").addClass("icons-list");
+                  listCont.removeClass("largest-view").addClass('list-view');
                   break;
               }
               i++;

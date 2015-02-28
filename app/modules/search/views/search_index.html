@@ -1,0 +1,38 @@
+<div class="app-section">
+    <div class="category-title">
+        <div class="cate-item category-zg current">
+            空白区域搜索
+        </div>
+        <div class="cate-item category-pro">
+            搜索产品
+        </div>
+        <div class="app-button go-back category-close icon-bg" data-back></div>
+    </div>
+</div>
+<div class="app-content">
+    <div class="app-section relative">
+        <div class="cate-item-sub cate-item-sub-0 cate-cur">
+            <div class="cate-item-sub-title">
+                <input class="input-search" type="text" placeholder="请输入要搜索的空白区域地址"/>
+            </div>
+            <div class="search-tip">
+                <p><span class="red">提示：</span>在下面输入框中先输入您要搜索的空 白区域地址，如：输入<span class="red">永康</span>
+                    ，那么就会列出永康为空白区域的品牌，输入时， 不要输入省、市、县、区等字， 如：<span class="red">
+                            不要输入永康市
+                    </span>
+
+                </p>
+            </div>
+        </div>
+        <div class="cate-item-sub cate-item-sub-1">
+            <div class="cate-item-sub-title">
+                请选择以下产品价格分类进入查看产品 <span class="icon-bg icon-down"></span>
+            </div>
+            <ul class="cate-pro-ul search-price-ul">
+                {{#each list}}
+                <li id="{{para_key}}">{{para_value}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

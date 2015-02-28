@@ -180,37 +180,7 @@
         </div>
         <!--品牌展示-->
         <div id="merchants-show">
-            <div class="app-section">
-                <div class="merchant-title-bg"></div>
-                <div class="merchant-title">
-                    <div class="grid-3 ">
-                        <div class="merchant-t-tl">品牌护航</div>
-                    </div>
-                    <div class="grid-4 relative merchant-t-m">
-                        {{title}}
-                    </div>
-                    <div class="grid-3 ">
-                        <div class="merchant-t-tr">代理无忧</div>
-                    </div>
-                </div>
-                <div class="merchant-content">
-                    <ul id="brandList" class="merchant-content-ul">
-                        {{#each list}}
-                        <li data-id="{{cust_id}}" class="app-button">
-                            <div class="merchant-cont-img ">
-                                <img src="{{CONST 'PIC_URL'}}{{brand_path}}" alt="" width="284" height="347"/>
-                            </div>
-                            <div class="merchant-cont-title">
-                                {{cust_name}}
-                            </div>
-                            <div class="merchant-cont-brand">
-                                所属品牌：{{brand_name}}
-                            </div>
-                        </li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
+
         </div>
         <!--页脚-->
         <div class="app-section merchant-footer">
@@ -228,46 +198,7 @@
 <!--注册-->
 <div class="app-page login_dealers" data-page="register_dealers"></div>
 <!--搜索-->
-<div class="app-page" data-page="search">
-    <div class="app-section">
-        <div class="category-title">
-            <div class="cate-item category-zg current">
-                空白区域搜索
-            </div>
-            <div class="cate-item category-pro">
-                搜索产品
-            </div>
-            <div class="app-button category-close icon-bg" data-back></div>
-        </div>
-    </div>
-    <div class="app-content">
-        <div class="app-section relative">
-            <div class="cate-item-sub cate-item-sub-0 cate-cur">
-                <div class="cate-item-sub-title">
-                    <input class="input-search" type="text" placeholder="请输入要搜索的空白区域地址"/>
-                </div>
-                <div class="search-tip">
-                    <p><span class="red">提示：</span>在下面输入框中先输入您要搜索的空 白区域地址，如：输入<span class="red">永康</span>
-                        ，那么就会列出永康为空白区域的品牌，输入时， 不要输入省、市、县、区等字， 如：<span class="red">
-                            不要输入永康市
-                    </span>
-
-                    </p>
-                </div>
-            </div>
-            <div class="cate-item-sub cate-item-sub-1">
-                <div class="cate-item-sub-title">
-                    请选择以下产品价格分类进入查看产品 <span class="icon-bg icon-down"></span>
-                </div>
-                <ul class="cate-pro-ul search-price-ul">
-                    {{#each list}}
-                    <li id="{{para_key}}">{{para_value}}</li>
-                    {{/each}}
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="app-page" data-page="search"></div>
 <!--品牌-->
 <div class="app-page" data-page="brand_list"></div>
 <div class="app-page" data-page="brand_detail"></div>
@@ -300,6 +231,8 @@
 <script src="modules/product/main.js"></script>
 <script src="modules/register/main.js"></script>
 <script src="modules/category/main.js"></script>
+<script src="modules/search/main.js"></script>
+<script src="modules/home/main.js"></script>
 
 <script src="config.js"></script>
 <script>
@@ -332,14 +265,6 @@ function stopLoading() {
     $("#Loading").fadeOut();
 }
 
-function bindBrandDetail(dom) {
-    $('.merchant-content-ul li', dom).click(function () {
-        window.backPage = 'home';
-        App.load('brand_detail', {
-            id: $(this).attr('data-id')
-        });
-    });
-}
 function show330(page, callback) {
     seajs.use(['dialog'], function (dialog) {
         window.dialog && window.dialog.close().remove();
@@ -348,6 +273,7 @@ function show330(page, callback) {
             title: '我的330',
             align: 'bottom right',
             width: WINDOW_WIDTH - 280,
+            fixed: false,
             content: $('.container-my', $(page)).html(),
             onshow: function () {
                 var ctx = this;
@@ -383,13 +309,11 @@ seajs.use(['App'], function (App) {
 
         }
         // 我的330
-        setTimeout(function () {
-            show330(page);
-        }, 0);
-
         $(page).find('.btn-my').click(function (e) {
             e.preventDefault();
-            e.stopPropagation();
+            setTimeout(function () {
+                show330(page);
+            }, 0);
             var $dom = $(this).find('.span-my').get(0);
             App.query('/userinfo', {
                 success: function (data) {
@@ -423,85 +347,28 @@ seajs.use(['App'], function (App) {
         });
         // 门馆展示
         setTimeout(function () {
-            App.query('/index', {
-                success: function (result) {
-                    var $container = $('#merchants-show', $(page));
-                    var template = $container.html();
-                    $container.empty();
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '品牌展示馆',
-                        list: result.brandList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '铝合金门馆',
-                        list: result.lvhejinList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '生态木门/强化门馆',
-                        list: result.shengtaiList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '防火门馆',
-                        list: result.fanghuoList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '非标门馆',
-                        list: result.feibiaoList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '防盗门馆',
-                        list: result.fangdaoList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '不锈钢门馆',
-                        list: result.buxiugangList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '钢木门馆',
-                        list: result.gangmuList.list
-                    }, callback: bindBrandDetail});
-                    App.render({ render: '#merchants-show', page: page, template: template, data: {
-                        title: '木门馆',
-                        list: result.mumenList.list
-                    }, callback: bindBrandDetail});
-                }
+            seajs.use(['HomeBrand'], function (HomeBrand) {
+                new HomeBrand(page);
             });
             setTimeout(function () {
                 var $appContent = $('.app-content');
                 var $appLogo = $('#app-index-logo');
                 var $search = $('.app-search');
-                var beginH = $appLogo.height();
                 var isHide = false;
-
+                $('.app-content').get(0).addEventListener &&
                 $('.app-content').get(0).addEventListener("scroll", function (event) {
                     var scrollTop = $appContent.scrollTop();
-                    //alert('small:' + scrollTop);
                     if (scrollTop === 0) {
                         isHide = false;
-                        console.log('small:' + scrollTop);
                         $search.css({marginTop: 0});
-                        $appLogo.css({ height: beginH });
+                        $appLogo.show();
                     }
                     if (scrollTop > 100 && !isHide) {
                         isHide = true;
-                        console.log('large:' + scrollTop);
-                        $search.animate({marginTop: 7}, '100');
-                        $appLogo.animate({ height: 0 }, '100');
+                        $search.css({marginTop: 7}, '100');
+                        $appLogo.hide();
                     }
                 });
-
-
-                /*$(window).on('touchmove', function (e) {
-                 var scrollTop = $appContent.scrollTop();
-                 if (scrollTop === 0 || scrollTop < 100) {
-                 $('.app-search').animate({marginTop: 0}, '100');
-                 $appLogo.animate({ height: beginH }, '200');
-                 }
-                 if (scrollTop > 100){
-                 $('.app-search').animate({marginTop: 7}, '100');
-                 $appLogo.animate({ height: 0 }, '200');
-                 }
-                 });*/
             }, 500);
         }, 0);
         // 布局相关
@@ -705,22 +572,9 @@ seajs.use(['App'], function (App) {
     App.controller('search', function (page) {
         App.addHash('#/search');
         this.transition = 'fade';
-        var $sub = $(page).find('.cate-item-sub');
-        $(page).find('.cate-item').each(function (index) {
-            $(this).click(function () {
-                $(this).addClass('current').siblings('.cate-item').removeClass('current');
-                $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
-            });
-        });
-        App.query('/product/price', {
-            cache: true,
-            success: function (result) {
-                var $container = $('.search-price-ul', $(page));
-                var template = $container.html();
-                App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
-                    list: result.priceList
-                }});
-            }
+        var ctx = this;
+        seajs.use(['SearchIndex'], function (SearchIndex) {
+            new SearchIndex(page, ctx);
         });
     });
 
