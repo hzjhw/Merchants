@@ -10,11 +10,14 @@ define('FavMoney', ['App','template/favMoney','HandlebarsHelper'], function (req
   HandlebarsHelper = require('HandlebarsHelper');
   template = require('template/favMoney');
 
-  FavMoney = function (page, ctx) {
+  FavMoney = function (page) {
     var tpl = HandlebarsHelper.compile(template);
-    App.query('/userinfo', {
+    App.query('/userinfo/vchMg', {
       success: function (result) {
         $(page).html(tpl(result.info));
+        seajs.use(['IncludeBtm'], function (IncludeBtm) {
+          new IncludeBtm(page, '.footer_mes');
+        });
 
         $(page).find('.btn-back').click(function () {
           App.back();

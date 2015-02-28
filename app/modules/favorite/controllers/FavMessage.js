@@ -12,9 +12,12 @@ define('FavMessage', ['App','template/favMessage','HandlebarsHelper'], function 
 
   FavMessage = function (page, ctx) {
     var tpl = HandlebarsHelper.compile(template);
-    App.query('/userinfo', {
+    App.query('/userinfo/leaveMsg', {
       success: function (result) {
-        $(page).html(tpl(result.info));
+        $(page).html(tpl(result));
+        seajs.use(['IncludeBtm'], function (IncludeBtm) {
+          new IncludeBtm(page, '.footer_mes');
+        });
 
         $(page).find('.btn-back').click(function () {
           App.back();

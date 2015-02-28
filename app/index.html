@@ -525,10 +525,9 @@ seajs.use(['App'], function (App) {
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {
         App.addHash('#/favorite_product');
-        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavPro'], function (FavPro) {
-            new FavPro(page, ctx);
+            new FavPro(page);
         });
     });
     /*搜藏的品牌*/
@@ -542,28 +541,25 @@ seajs.use(['App'], function (App) {
     /*我的抵金券*/
     App.controller('favorite_money', function (page) {
         App.addHash('#/favorite_money');
-        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavMoney'], function (FavMoney) {
-            new FavMoney(page, ctx);
+            new FavMoney(page);
         });
     });
     /*我的意向合作*/
     App.controller('favorite_cooprate', function (page) {
         App.addHash('#/favorite_cooprate');
-        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavCooprate'], function (FavCooprate) {
-            new FavCooprate(page, ctx);
+            new FavCooprate(page);
         });
     });
     /*我的留言*/
     App.controller('favorite_message', function (page) {
         App.addHash('#/favorite_message');
-        var ctx = this;
         this.transition = 'slide-left';
         seajs.use(['FavMessage'], function (FavMessage) {
-            new FavMessage(page, ctx);
+            new FavMessage(page);
         });
     });
 

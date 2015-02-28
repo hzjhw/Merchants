@@ -7,14 +7,24 @@
     </div>
     <div class="messages">
         <ul class="money">
+            {{#each vchList}}
             <li>
-                <div class="name"><span>1</span>代金券编号：DF98khf2L98</div>
-                <div class="state"><div class="zt">使用状态：<span class="l">已使用</span></div><div class="ck">查看详情</div></div>
-                <div> 使用对象：浙江亿智工贸有限公司</div>
-                <div>使用日期：2015-3-30 12:11:34</div>
+                <div class="name"><span>{{plus @index 1}}</span>代金券编号：{{voucher_id}}</div>
+                <div class="state">
+                    <div class="zt">使用状态：
+                        {{{useStatus useStatus}}}
+                    <span class="l">已使用</span>
+                    </div>
+                    {{#xif use_status '' }}
+                    <div class="ck">查看详情</div>
+                    {{/xif}}
+                </div>
+                <div> 使用对象：{{cust_name}}</div>
+                <div>使用日期：{{check_time}}</div>
                 <div>是否生效：<span class="h">未审核通过</span></div>
-                <div>购买日期：2015-3-1 11:11:23</div>
+                <div>购买日期：{{check_time}}</div>
             </li>
+            {{/each}}
             <li>
                 <div class="name"><span>2</span>代金券编号：DF98khf2L98</div>
                 <div class="state"><div class="zt">使用状态：<span>未使用</span></div></div>
@@ -31,17 +41,5 @@
         </ul>
     </div>
     <div class="footer_mes">
-        <ul>
-            <li class="a"><p>我的资料</p>
-
-                <p>我的留言</p></li>
-            <li class="b"><p>我的产品搜藏</p>
-
-                <p>我搜藏的品牌</p></li>
-            <li class="c"><p>我的意向合作</p>
-
-                <p>我的代金券</p></li>
-            <li class="d">3·30门业招商节运营中心—上门网</li>
-        </ul>
     </div>
 </div>
