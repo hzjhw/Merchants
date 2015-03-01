@@ -4,7 +4,7 @@
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
 define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], function (require, exports, module) {
-  var ProductSearch, App, template, HandlebarsHelper;
+  var ProductDetail, App, template, HandlebarsHelper;
 
   App = require('App');
   template = require('template/product_detail');
