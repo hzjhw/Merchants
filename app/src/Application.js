@@ -139,35 +139,30 @@ Application.prototype = {
   },
   initLoad: function (page, options, context) {
     if (page) {
-      $('body').append('<div class="loading"></div>');
+      if (options.page){
+          App.addHash('#/' + options.page);
+      }
       $(page).on('appShow', function () {
-        console.log('appShow');
+        window.$loading && window.$loading.remove();
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appLayout', function () {
-        $('.loading').remove();
-        console.log('appLayout');
         options.appLayout && options.appLayout.call(context, page);
       });
       $(page).on('appHide', function () {
-        console.log('appHide');
+        window.$loading && window.$loading.remove();
         options.appHide && options.appHide.call(context, page);
       });
       $(page).on('appBack', function () {
-        console.log('appBack');
         options.appBack && options.appBack.call(context, page);
       });
       $(page).on('appForward', function () {
-        $('.loading').remove();
-        console.log('appForward');
         options.appForward && options.appForward.call(context, page);
       });
       $(page).on('appBeforeBack', function () {
-        console.log('appBeforeBack');
         options.appBeforeBack && options.appBeforeBack.call(context, page);
       });
       $(page).on('appReady', function () {
-        console.log('appReady');
         options.appReady && options.appReady.call(context, page);
       });
       $(page).on('appDestroy', function () {
@@ -253,7 +248,9 @@ Application.fromCharCode = function (code) {
   } catch (e) {
   }
 }
-
+window.addEventListener( "load", function() {
+  FastClick.attach( document.body );
+}, false );
 ;
 (function () {
   /**

@@ -177,8 +177,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   }
 
   function loadPage(pageName, args, options, callback, setupPickerMode) {
-    //alert(pageName);
-    App.addHash('#/' + pageName);
+    //App.addHash('#/' + pageName);
     navigate(function (unlock) {
       var oldNode = currentNode,
         pageManager = Pages.createManager(false);
@@ -253,7 +252,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   }
 
   function navigateBack(backPageName, callback) {
-    App.addHash('#/' + backPageName);
+    //App.addHash('#/' + backPageName);
+    window.$loading = $('<div class="loading"></div>');
+    $('body').append(window.$loading);
     if (Dialog.status() && Dialog.close() && !backPageName) {
       callback();
       return;
@@ -308,7 +309,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
         page = data[3],
         oldOptions = oldPage[4];
 
-      App.addHash('#/' + pageName);
+      //App.addHash('#/' + pageName);
 
       Pages.fire(oldPage[2], oldPage[3], Pages.EVENTS.BACK);
 

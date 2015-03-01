@@ -127,6 +127,7 @@ paths['base'] = {
     source: [
       './app/vendor/seajs/sea.js',
       './app/vendor/seajs/seajs-text-debug.js',
+      './app/vendor/fastclick/fastclick.js',
       './app/src/Application.js'
     ],
     name: 'base.js',
