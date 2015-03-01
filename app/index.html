@@ -19,13 +19,11 @@
     <link rel="stylesheet" href="styles/message.css"/>
     <link rel="stylesheet" href="styles/product.css"/>
     <link rel="stylesheet" href="styles/register.css"/>
-
 </head>
 <body>
-<!--加载动画-->
 <div id="Loading" style="display: block;">
     <div id="heart">
-        <a href="#" onclick="stopLoading();"><img
+        <a href="#"><img
                 src="images/loading.gif" width="200%"></a>
     </div>
     <div id="Waiting">
@@ -33,8 +31,8 @@
         </span>
     </div>
 </div>
-<!--首页-->
 <div class="app-page" data-page="home">
+    <div class="loading" style="display:none;"></div>
     <div id="app-index-logo" class="app-logo-container">
         <div class="app-logo icon-bg grid-6">
         </div>
@@ -72,33 +70,6 @@
                     <li data-target="favorite_message">
                         <div class="icon-bg icon-message app-button"></div>
                         <p>我的留言</p></li>
-                   <!-- <li data-target="product_list">
-                        <div class="icon-bg icon-message"></div>
-                        <p>产品列表</p></li>
-                    <li data-target="product_detail">
-                        <div class="icon-bg icon-message"></div>
-                        <p>产品详细</p></li>
-                    <li data-target="dealers">
-                        <div class="icon-bg icon-message"></div>
-                        <p>经销商</p></li>
-                    <li data-target="brand_detail">
-                        <div class="icon-bg icon-message"></div>
-                        <p>品牌详细</p></li>
-                    <li data-target="brand_info">
-                        <div class="icon-bg icon-message"></div>
-                        <p>厂家信息</p></li>
-                    <li data-target="brand_tec">
-                        <div class="icon-bg icon-message"></div>
-                        <p>厂家实力</p></li>
-                    <li data-target="brand_product">
-                        <div class="icon-bg icon-message"></div>
-                        <p>产品展示</p></li>
-                    <li data-target="brand_blank">
-                        <div class="icon-bg icon-message"></div>
-                        <p>品牌空白区域</p></li>
-                    <li data-target="product_search">
-                        <div class="icon-bg icon-message"></div>
-                        <p>产品搜索</p></li>-->
                 </ul>
             </div>
 
@@ -180,7 +151,6 @@
         </div>
         <!--品牌展示-->
         <div id="merchants-show">
-
         </div>
         <!--页脚-->
         <div class="app-section merchant-footer">
@@ -191,34 +161,66 @@
         </div>
     </div>
 </div>
-<!--分类-->
-<div class="app-page" data-page="category"></div>
-<!--登录-->
-<div class="app-page login_dealers" data-page="login_dealers"></div>
-<!--注册-->
-<div class="app-page login_dealers" data-page="register_dealers"></div>
-<!--搜索-->
-<div class="app-page" data-page="search"></div>
-<!--品牌-->
-<div class="app-page" data-page="brand_list"></div>
-<div class="app-page" data-page="brand_detail"></div>
-<div class="app-page" data-page="brand_info"></div>
-<div class="app-page" data-page="brand_product"></div>
-<div class="app-page" data-page="brand_tec"></div>
-<div class="app-page" data-page="brand_blank"></div>
-<div class="app-page" data-page="brand_unique"></div>
-<!--产品-->
-<div class="app-page" data-page="product_list"></div>
-<div class="app-page" data-page="product_detail"></div>
-<div class="app-page" data-page="product_search"></div>
-<!--经销商-->
-<div class="app-page" data-page="favorite_info"></div>
-<div class="app-page" data-page="favorite_product"></div>
-<div class="app-page" data-page="favorite_brand"></div>
-<div class="app-page" data-page="favorite_cooprate"></div>
-<div class="app-page" data-page="favorite_message"></div>
-<div class="app-page" data-page="favorite_money"></div>
-
+<div class="app-page" data-page="category">
+    <div class="loading"></div>
+</div>
+<div class="app-page login_dealers" data-page="login_dealers">
+    <div class="loading"></div>
+</div>
+<div class="app-page login_dealers" data-page="register_dealers">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="search">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_list">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_detail">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_info">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_product">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_tec">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_blank">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="brand_unique">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="product_list">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="product_detail">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="product_search">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="favorite_info">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="favorite_product">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="favorite_brand">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="favorite_cooprate">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="favorite_message">
+    <div class="loading"></div>
+</div>
+<div class="app-page" data-page="favorite_money">
+    <div class="loading"></div>
+</div>
 
 <script src="scripts/base.js?v=15210"></script>
 <script src="const.js"></script>
@@ -242,59 +244,56 @@ var WINDOW_WIDTH = null;
 var colourPages = [],
         colour = localStorage[COLOUR_KEY] || 'teal';
 
-function scroll(scrollTo, time) {
-    var scrollFrom = parseInt(document.body.scrollTop),
-            i = 0,
-            runEvery = 5; // run every 5ms
-
-    scrollTo = parseInt(scrollTo);
-    time /= runEvery;
-
-    var interval = setInterval(function () {
-        i++;
-
-        document.body.scrollTop = (scrollTo - scrollFrom) / time * i + scrollFrom;
-
-        if (i >= time) {
-            clearInterval(interval);
-        }
-    }, runEvery);
-}
-
-function stopLoading() {
-    $("#Loading").fadeOut();
-}
-
-function show330(page, callback) {
-    seajs.use(['dialog'], function (dialog) {
-        window.dialog && window.dialog.close().remove();
-        window.dialog = dialog({
-            id: '330dialog',
-            title: '我的330',
-            align: 'bottom right',
-            width: WINDOW_WIDTH - 280,
-            fixed: false,
-            content: $('.container-my', $(page)).html(),
-            onshow: function () {
-                var ctx = this;
-                setTimeout(function () {
-                    $('.ul-my li').click(function (e) {
-                        e.preventDefault();
-                        ctx.close();
-                        App.load($(this).attr('data-target'));
-                        return false;
-                    });
-                }, 100);
-            }
-        });
-        callback && callback.call(this, window.dialog);
-    });
-}
-
 seajs.use(['App'], function (App) {
+    function scroll(scrollTo, time) {
+        var scrollFrom = parseInt(document.body.scrollTop),
+                i = 0,
+                runEvery = 5; // run every 5ms
+
+        scrollTo = parseInt(scrollTo);
+        time /= runEvery;
+
+        var interval = setInterval(function () {
+            i++;
+
+            document.body.scrollTop = (scrollTo - scrollFrom) / time * i + scrollFrom;
+
+            if (i >= time) {
+                clearInterval(interval);
+            }
+        }, runEvery);
+    }
+
+    function show330(page, callback) {
+        seajs.use(['dialog'], function (dialog) {
+            window.dialog && window.dialog.close().remove();
+            window.dialog = dialog({
+                id: '330dialog',
+                title: '我的330',
+                align: 'bottom right',
+                width: WINDOW_WIDTH - 280,
+                fixed: false,
+                content: $('.container-my', $(page)).html(),
+                onshow: function () {
+                    var ctx = this;
+                    setTimeout(function () {
+                        $('.ul-my li').click(function (e) {
+                            e.preventDefault();
+                            ctx.close();
+                            App.load($(this).attr('data-target'));
+                            return false;
+                        });
+                    }, 100);
+                }
+            });
+            callback && callback.call(this, window.dialog);
+        });
+    }
+
     /*首页*/
     App.controller('home', function (page) {
         $('#Loading').remove();
+        $('.loading', $(page)).hide();
         App.addHash('#/home');
         try {
             $(page).find('[data-target="inputs"]')
@@ -335,7 +334,6 @@ seajs.use(['App'], function (App) {
             return false;
         });
 
-
         /*品牌分类*/
         $(page).find('.cate-ul li').click(function () {
             if ($(this).attr('data-id').length === 0) {
@@ -358,7 +356,7 @@ seajs.use(['App'], function (App) {
                 var $appLogo = $('#app-index-logo');
                 var $search = $('.app-search');
                 var isHide = false;
-                $('.app-content').get(0)&&
+                $('.app-content').get(0) &&
                 $('.app-content').get(0).addEventListener("scroll", function (event) {
                     var scrollTop = $appContent.scrollTop();
                     if (scrollTop === 0) {
@@ -380,13 +378,10 @@ seajs.use(['App'], function (App) {
         $(window).resize(function () {
             $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
         });
-
     });
-
     /*分类页面*/
     App.controller('category', function (page) {
-        App.addHash('#/category');
-        this.transition = 'slideon-down';
+        App.initLoad(page, { transition: 'slideon-down' }, this);
         seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
             new CategoryCtrl(page, this);
         });
@@ -394,9 +389,7 @@ seajs.use(['App'], function (App) {
     /*品牌列表*/
     App.controller('brand_list', function (page) {
         var ctx = this;
-        App.addHash('#/brand_list');
-
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
 
         if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
         if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
@@ -412,67 +405,66 @@ seajs.use(['App'], function (App) {
     });
     /*品牌详细*/
     App.controller('brand_detail', function (page) {
-        App.addHash('#/brand_detail');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
         localStorage['brand_detail_args_id'] = ctx.args.id;
         seajs.use(['BrandDetail'], function (BrandDetail) {
             new BrandDetail(page, ctx.args.id, ctx);
         })
     });
+    /*厂家信息*/
     App.controller('brand_info', function (page) {
-        App.addHash('#/brand_info');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
         localStorage['brand_info_args_id'] = ctx.args.id;
         seajs.use(['BrandInfo'], function (BrandInfo) {
             new BrandInfo(page, ctx.args.id, ctx);
         });
     });
+    /*厂家产品*/
     App.controller('brand_product', function (page) {
-        App.addHash('#/brand_product');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
         localStorage['brand_product_args_id'] = ctx.args.id;
         seajs.use(['BrandProduct'], function (BrandProduct) {
             new BrandProduct(page, ctx.args.id, ctx);
         });
     });
+    /*厂家实力*/
     App.controller('brand_tec', function (page) {
-        App.addHash('#/brand_tec');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
         localStorage['brand_tec_args_id'] = ctx.args.id;
         seajs.use(['BrandTec'], function (BrandTec) {
             new BrandTec(page, ctx.args.id, ctx);
         });
     });
+    /*空白区域*/
     App.controller('brand_blank', function (page) {
-        App.addHash('#/brand_blank');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
         localStorage['brand_blank_args_id'] = ctx.args.id;
         seajs.use(['BrandBlank'], function (BrandBlank) {
             new BrandBlank(page, ctx.args.id, ctx);
         });
     });
+    /*特色门馆*/
     App.controller('brand_unique', function (page) {
-        App.addHash('#/brand_unique');
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         seajs.use(['BrandUnique'], function (BrandUnique) {
             new BrandUnique(page, ctx);
         });
     });
     /*产品列表*/
     App.controller('product_list', function (page) {
-        App.addHash('#/product_list');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
         localStorage['product_list_args_id'] = ctx.args.id;
         seajs.use(['ProductList'], function (ProductList) {
@@ -482,8 +474,8 @@ seajs.use(['App'], function (App) {
 
     /*产品详细*/
     App.controller('product_detail', function (page) {
-        App.addHash('#/product_detail');
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
         if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
         localStorage['product_detail_args_id'] = ctx.args.id;
@@ -493,85 +485,74 @@ seajs.use(['App'], function (App) {
         });
     });
     App.controller('product_search', function (page) {
-        App.addHash('#/product_search');
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         seajs.use(['ProductSearch'], function (ProductSearch) {
             new ProductSearch(page, ctx);
         });
     });
     /*登录页面*/
     App.controller('login_dealers', function (page) {
-        App.addHash('#/login_dealers');
         var ctx = this;
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, ctx);
         seajs.use(['Login'], function (Login) {
             new Login(page, ctx);
         });
     });
     /*注册页面*/
     App.controller('register_dealers', function (page) {
-        App.addHash('#/register_dealers');
         var ctx = this;
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, ctx);
         seajs.use(['Register'], function (Register) {
             new Register(page, ctx);
         });
     });
     /*经销商*/
     App.controller('favorite_info', function (page) {
-        App.addHash('#/favorite_info');
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
         seajs.use(['FavInfo'], function (FavInfo) {
             new FavInfo(page);
         });
     });
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {
-        App.addHash('#/favorite_product');
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
         seajs.use(['FavPro'], function (FavPro) {
             new FavPro(page);
         });
     });
     /*搜藏的品牌*/
     App.controller('favorite_brand', function (page) {
-        App.addHash('#/favorite_brand');
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
         seajs.use(['FavBrand'], function (FavBrand) {
             new FavBrand(page);
         });
     });
     /*我的抵金券*/
     App.controller('favorite_money', function (page) {
-        App.addHash('#/favorite_money');
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
         seajs.use(['FavMoney'], function (FavMoney) {
             new FavMoney(page);
         });
     });
     /*我的意向合作*/
     App.controller('favorite_cooprate', function (page) {
-        App.addHash('#/favorite_cooprate');
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
         seajs.use(['FavCooprate'], function (FavCooprate) {
             new FavCooprate(page);
         });
     });
     /*我的留言*/
     App.controller('favorite_message', function (page) {
-        App.addHash('#/favorite_message');
-        this.transition = 'slide-left';
+        App.initLoad(page, { transition: 'slide-left' }, this);
         seajs.use(['FavMessage'], function (FavMessage) {
             new FavMessage(page);
         });
     });
-
-
     /*搜索页面*/
     App.controller('search', function (page) {
-        App.addHash('#/search');
-        this.transition = 'fade';
         var ctx = this;
+        App.initLoad(page, { transition: 'fade' }, ctx);
         seajs.use(['SearchIndex'], function (SearchIndex) {
             new SearchIndex(page, ctx);
         });
@@ -597,6 +578,5 @@ seajs.use(['App'], function (App) {
 });
 
 </script>
-
 </body>
 </html>

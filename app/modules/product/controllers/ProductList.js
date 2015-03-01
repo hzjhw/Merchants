@@ -74,10 +74,10 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           $("#factory .search-list-cont").toggleClass("larger-view");
         })
 
-        $(page).find('.search-list-cont .glitzItem').click(function () {
+        $(page).find('.search-list-cont .glitzItem .btn-pro-detail').click(function () {
           App.load('product_detail', {
             id: id,
-            proid: $(this).attr('data-id')
+            proid: $(this).parents('.glitzItem:first').attr('data-id')
           });
         });
 

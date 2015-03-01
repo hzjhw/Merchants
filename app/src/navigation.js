@@ -8,6 +8,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   };
 
   App.load = function (pageName, args, options, callback) {
+    $('.loading').show();
     if (typeof pageName !== 'string') {
       throw TypeError('page name must be a string, got ' + pageName);
     }

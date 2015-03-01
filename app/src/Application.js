@@ -133,9 +133,17 @@ Application.prototype = {
       $container.append($node);
     });
   },
-  addHash: function (name) {
+  addHash: function (name, page) {
     this.currentHash = name;
     window.location.hash = name;
+  },
+  initLoad: function (page, options, context) {
+    if (page) {
+      $('.loading', $(page)).hide();
+      if (options && options.transparent) {
+        context && (context.transparent = options.transparent);
+      }
+    }
   },
   getCurrentHash: function () {
     return this.currentHash;
