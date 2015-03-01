@@ -10,11 +10,14 @@ define('FavCooprate', ['App','template/favCooprate','HandlebarsHelper'], functio
   HandlebarsHelper = require('HandlebarsHelper');
   template = require('template/favCooprate');
 
-  FavCooprate = function (page, ctx) {
+  FavCooprate = function (page) {
     var tpl = HandlebarsHelper.compile(template);
-    App.query('/userinfo', {
+    App.query('/userinfo/corperation', {
       success: function (result) {
-        $(page).html(tpl(result.info));
+        $(page).html(tpl(result));
+        seajs.use(['IncludeBtm'], function (IncludeBtm) {
+          new IncludeBtm(page, '.footer_mes');
+        });
 
         $(page).find('.btn-back').click(function () {
           App.back();

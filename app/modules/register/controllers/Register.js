@@ -14,7 +14,9 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
     $(page).find('.btn-back').click(function () {
       App.back()
     });
-
+    $(page).find('#login').click(function () {
+      App.load('login_dealers');
+    });
      $(page).find('#userRegister').click(function(){
         var $phoneNum = $("#phoneNum",$(page));
         var $passwd =  $("#passwd",$(page));

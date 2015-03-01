@@ -10,6 +10,24 @@ define('IncludeBtm', ['template/includeBtm'], function (require, exports, module
 
   IncludeBtm = function (page, render) {
     $(page).find(render).html(template);
+    $(page).find('#info').click(function(){
+      App.load('favorite_info');
+    });
+    $(page).find('#message').click(function(){
+      App.load('favorite_message');
+    });
+    $(page).find('#procollect').click(function(){
+      App.load('favorite_product');
+    });
+    $(page).find('#brandcollect').click(function(){
+      App.load('favorite_brand');
+    });
+    $(page).find('#coperation').click(function(){
+      App.load('favorite_cooprate');
+    });
+    $(page).find('#money').click(function(){
+      App.load('favorite_money');
+    });
   }
   module.exports = IncludeBtm;
 });

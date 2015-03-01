@@ -29,10 +29,12 @@ if (typeof App === 'undefined') {
   window.App = App;
 }
 App.addStatus('useStatus', [
-  {text: '已使用', value: '', html: '<span class="l">已使用</span>'},
-  {text: '未使用', value: '', html: '<span >未使用</span>'}
+  {text: '待审核', value: '03', html: '<span class="h">等待厂家审核</span>'},
+  {text: '未通过', value: '02', html: '<span class="h">审核未通过</span>'},
+  {text: '已通过', value: '01', html: '<span class="l">已审核通过</span>'}
 ]);
-App.addStatus('useStatus', [
-  {text: '已使用', value: '', html: '<span class="l">已使用</span>'},
-  {text: '未使用', value: '', html: '<span >未使用</span>'}
+App.addStatus('resultStatus', [
+  {text: '待审核', value: '03', html: '<span>厂家未审核</span>'},
+  {text: '未通过', value: '02', html: '<span>审核未通过</span>'},
+  {text: '已通过', value: '01', html: '<span class="yes">厂家审核通过</span>'}
 ]);

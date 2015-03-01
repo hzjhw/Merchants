@@ -12,20 +12,26 @@
                 <div class="name"><span>{{plus @index 1}}</span>代金券编号：{{voucher_id}}</div>
                 <div class="state">
                     <div class="zt">使用状态：
-                        {{{useStatus useStatus}}}
-                    <span class="l">已使用</span>
+                        {{#xif "this.use_state == '00'"}}
+                         <span>未使用</span>
+                        {{else}}
+                         <span class="l">已使用</span>
+                        {{/xif}}
                     </div>
-                    {{#xif use_status '' }}
-                    <div class="ck">查看详情</div>
-                    {{/xif}}
+                   <!-- {{#xif "this.use_state != '00'"}}
+                        <div class="ck">查看详情</div>
+                    {{/xif}}-->
                 </div>
-                <div> 使用对象：{{cust_name}}</div>
+                {{#xif "this.use_state != '00'"}}
+                <div>使用对象：{{cust_name}}</div>
                 <div>使用日期：{{check_time}}</div>
-                <div>是否生效：<span class="h">未审核通过</span></div>
-                <div>购买日期：{{check_time}}</div>
+                <div>是否生效：{{useStatus useStatus}} </div>
+                {{/xif}}
             </li>
+            {{else}}
+                暂无代金券
             {{/each}}
-            <li>
+           <!-- <li>
                 <div class="name"><span>2</span>代金券编号：DF98khf2L98</div>
                 <div class="state"><div class="zt">使用状态：<span>未使用</span></div></div>
                 <div>购买日期：2015-3-1 11:11:23</div>
@@ -37,7 +43,7 @@
                 <div>使用日期：2015-3-30 12:11:34</div>
                 <div>是否生效：<span class="l">已审核通过</span></div>
                 <div>购买日期：2015-3-1 11:11:23</div>
-            </li>
+            </li>-->
         </ul>
     </div>
     <div class="footer_mes">

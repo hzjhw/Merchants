@@ -14,7 +14,7 @@ define('FavMoney', ['App','template/favMoney','HandlebarsHelper'], function (req
     var tpl = HandlebarsHelper.compile(template);
     App.query('/userinfo/vchMg', {
       success: function (result) {
-        $(page).html(tpl(result.info));
+        $(page).html(tpl(result));
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
           new IncludeBtm(page, '.footer_mes');
         });
