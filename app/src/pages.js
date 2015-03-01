@@ -101,9 +101,63 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 
 		return destroyPage(page);
 	};
+  App.initClick = function (page){
+    Utils.forEach(
+      page.querySelectorAll('.app-button'),
+      function (button) {
+        if (button.getAttribute('data-no-click') !== null) {
+          return;
+        }
+        Clickable(button);
+        button.addEventListener('click', function () {
+          var target     = button.getAttribute('data-target'),
+            targetArgs = button.getAttribute('data-target-args'),
+            back       = (button.getAttribute('data-back') !== null),
+            manualBack = (button.getAttribute('data-manual-back') !== null),
+            args;
+
+          try {
+            args = JSON.parse(targetArgs);
+          } catch (err) {}
+          if ((typeof args !== 'object') || (args === null)) {
+            args = {};
+          }
+
+          if (!back && !target) {
+            return;
+          }
+          if (back && manualBack) {
+            return;
+          }
+
+          var clickableClass = button.getAttribute('data-clickable-class');
+          if (clickableClass) {
+            button.disabled = true;
+            button.classList.add(clickableClass);
+          }
+
+          if (back) {
+            App.back(finish);
+          }
+          else if (target) {
+            App.load(target, args, {}, finish);
+          }
+
+          function finish () {
+            if (clickableClass) {
+              button.disabled = false;
+              button.classList.remove(clickableClass);
+            }
+          }
+        }, false);
+      }
+    );
+  };
 
 	App._layout             = triggerPageSizeFix;
 	App._enableIOSStatusBar = enableIOSStatusBar;
+
+
 
 
 	return {
@@ -118,7 +172,6 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 		fixContent            : fixContentHeight       ,
 		populateBackButton    : populatePageBackButton
 	};
-
 
 
 	/* Page elements */

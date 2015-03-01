@@ -37,16 +37,13 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
               price: $(this).attr('id')
             });
           });
-
         }
       });
-
-
       $(page).find('.go-back').click(function () {
         $(this).addClass('active');
         App.back();
       });
-
+      App.initClick(page);
       $(page).find('.btn-search').click(function () {
         window.backPage = 'search';
         var area = $.trim($(page).find('.input-search').val());
