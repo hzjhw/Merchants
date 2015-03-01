@@ -24,10 +24,17 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           }
       }
     });
-   // $(page).find('#cellphone').onfocus(func)
+    $(page).find('#cellphone').click(function(){
+      if($(this).val() == '')
+      {
+        if(window.confirm('需要登录账号,才能留言.现在登录吗？'))
+        App.load("login_dealers");
+      }
+    });
     $(page).find('.message .button').click(function () {
       //TODO submit
       var custName = $("#custname", $(page)).val();
+      var levMsg = $("#levMsg", $(page)).val();
       if (!islogin) {
         if(window.confirm("您还未登录，立即登录吗？"))
         {
@@ -39,6 +46,12 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       {
         alert("留言前需填写您的姓名！");
         $("#custname", $(page)).focus();
+        return ;
+      }
+      if($.trim(levMsg) === '')
+      {
+        alert('留言信息不能为空!');
+        $("#levMsg", $(page)).focus();
         return ;
       }
         App.query('/cmp/custMsg', {
