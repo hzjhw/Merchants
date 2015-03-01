@@ -139,9 +139,51 @@ Application.prototype = {
   },
   initLoad: function (page, options, context) {
     if (page) {
-      $('.loading', $(page)).hide();
-      if (options && options.transparent) {
-        context && (context.transparent = options.transparent);
+      $('body').append('<div class="loading"></div>');
+      $(page).on('appShow', function () {
+        debugger
+        console.log('appShow');
+        options.appShow && options.appShow.call(context, page);
+      });
+      $(page).on('appLayout', function () {
+        debugger
+        $('.loading').remove();
+        console.log('appLayout');
+        options.appLayout && options.appLayout.call(context, page);
+      });
+      $(page).on('appHide', function () {
+        debugger
+        console.log('appHide');
+        options.appHide && options.appHide.call(context, page);
+      });
+      $(page).on('appBack', function () {
+        debugger
+        console.log('appBack');
+        options.appBack && options.appBack.call(context, page);
+      });
+      $(page).on('appForward', function () {
+        debugger
+        $('.loading').remove();
+        console.log('appForward');
+        options.appForward && options.appForward.call(context, page);
+      });
+      $(page).on('appBeforeBack', function () {
+        debugger
+        console.log('appBeforeBack');
+        options.appBeforeBack && options.appBeforeBack.call(context, page);
+      });
+      $(page).on('appReady', function () {
+        debugger
+        console.log('appReady');
+        options.appReady && options.appReady.call(context, page);
+      });
+      $(page).on('appDestroy', function () {
+        debugger
+        console.log('appDestroy');
+        options.appDestroy && options.appDestroy.call(context, page);
+      });
+      if (options && options.transition) {
+        context && (context.transition = options.transition);
       }
     }
   },

@@ -54,6 +54,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
               var $node = $(item(result[colum].list[j]));
               $node.click(function () {
                 window.backPage = 'brand_list';
+                $('body').append('<div class="loading"></div>');
                 App.load('brand_detail', {
                   id: $(this).attr('data-id')
                 });

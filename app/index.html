@@ -32,7 +32,6 @@
     </div>
 </div>
 <div class="app-page" data-page="home">
-    <div class="loading" style="display:none;"></div>
     <div id="app-index-logo" class="app-logo-container">
         <div class="app-logo icon-bg grid-6">
         </div>
@@ -162,64 +161,44 @@
     </div>
 </div>
 <div class="app-page" data-page="category">
-    <div class="loading"></div>
 </div>
 <div class="app-page login_dealers" data-page="login_dealers">
-    <div class="loading"></div>
 </div>
 <div class="app-page login_dealers" data-page="register_dealers">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="search">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_list">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_detail">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_info">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_product">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_tec">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_blank">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="brand_unique">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="product_list">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="product_detail">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="product_search">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="favorite_info">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="favorite_product">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="favorite_brand">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="favorite_cooprate">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="favorite_message">
-    <div class="loading"></div>
 </div>
 <div class="app-page" data-page="favorite_money">
-    <div class="loading"></div>
 </div>
 
 <script src="scripts/base.js?v=15210"></script>
@@ -293,7 +272,7 @@ seajs.use(['App'], function (App) {
     /*首页*/
     App.controller('home', function (page) {
         $('#Loading').remove();
-        $('.loading', $(page)).hide();
+        //App.initLoad(page, { transition: 'fade' }, this);
         App.addHash('#/home');
         try {
             $(page).find('[data-target="inputs"]')
@@ -381,7 +360,7 @@ seajs.use(['App'], function (App) {
     });
     /*分类页面*/
     App.controller('category', function (page) {
-        App.initLoad(page, { transition: 'slideon-down' }, this);
+        //App.initLoad(page, { transition: 'slideon-down' }, this);
         seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
             new CategoryCtrl(page, this);
         });
@@ -389,7 +368,7 @@ seajs.use(['App'], function (App) {
     /*品牌列表*/
     App.controller('brand_list', function (page) {
         var ctx = this;
-        App.initLoad(page, { transition: 'slide-left' }, this);
+        //App.initLoad(page, { transition: 'slide-left' }, this);
 
         if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
         if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
