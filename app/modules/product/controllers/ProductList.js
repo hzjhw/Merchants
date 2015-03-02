@@ -40,7 +40,9 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
         });
 
         $(page).html(tpl(data));
-
+        setTimeout(function(){
+          $(page).find('.app-content').height($(window).height() - 70);
+        }, 1000);
 
         seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
           if(data.header){
@@ -77,7 +79,7 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
         $(page).find('.search-list-cont .glitzItem .btn-pro-detail').click(function () {
           App.load('product_detail', {
             id: id,
-            proid: $(this).parents('.glitzItem:first').attr('data-id')
+            proid: $(this).parents('.glitzItem').attr('data-id')
           });
         });
 

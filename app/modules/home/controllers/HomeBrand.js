@@ -11,6 +11,7 @@ define('HomeBrand', ['App', 'template/home_brand'], function (require, exports, 
   function bindBrandDetail(dom) {
     $('.merchant-content-ul li', dom).click(function () {
       window.backPage = 'home';
+      App.addLoading();
       App.load('brand_detail', {
         id: $(this).attr('data-id')
       });

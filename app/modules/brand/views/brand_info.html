@@ -1,57 +1,65 @@
-<div id="factory" class="app-content">
-    <div class="header">
-        <a class="fl go-back" href="javascript:void(0)">返回</a>
-        <img class="fl logo" src="images/logo.jpg" alt="330门业招商节">
+<div id="factory">
+    <div class="app-logo-container">
+        <div class="header">
+            <a class="fl go-back" href="javascript:void(0)">返回</a>
+            <img class="fl logo" src="images/logo.jpg" alt="330门业招商节">
 
-        <div class="fr hall">展馆</div>
-        <div class="clear"></div>
-    </div>
-    <div id="include_header" ></div>
-    <div class="company x">
-        <div class="name">企业名称：{{cust_name}}</div>
-        <div class="certificate">
-            <div class="zs">工商认证：</div>
-            <div class="zs"><img src="{{CONST 'PIC_URL'}}/{{reg_no_path}}"></div>
-            <div class="zs z"><img src="{{CONST 'PIC_URL'}}/{{reg_no}}"></div>
-        </div>
-        <div class="data">
-            <ul>
-                <li>注册资金：{{reg_money}}</li>
-                <li class="number">员工人数：{{staff_num}}人</li>
-                <li class="area">厂房面积：{{isoem}}</li>
-                <li class="production">年产量：{{year_sum}}</li>
-                <li class="product"><p class="l">主营产品：</p>
-
-                    <P class="r">{{temp_code}}</P></li>
-            </ul>
-        </div>
-        <div class="prompt">此品牌已加入3·30经销商合作保障计划</div>
-    </div>
-
-    <div class="introduce x">
-        <div class="title_general"><p>公司简介</p><p class="open">展开</p></div>
-        <div class="detailed_general">
-           {{{cust_desc}}}<span class="lan">[查看更多请点展开]</span>
-        </div>
-
-    </div>
-
-    <div class="policy x">
-        <div class="title_general"><p>招商政策</p><p class="open">展开</p></div>
-        <div class="detailed_general">
-            {{{site_notice}}}<span class="lan">[查看更多请点展开]</span>
+            <div class="fr hall">展馆</div>
+            <div class="clear"></div>
         </div>
     </div>
+    <div class="app-content">
+
+        <div id="include_header" ></div>
+        <div class="company x">
+            <div class="name">企业名称：{{cust_name}}</div>
+            <div class="certificate">
+                <div class="zs">工商认证：</div>
+                <div class="zs"><img src="{{CONST 'PIC_URL'}}/{{reg_no_path}}"></div>
+                <div class="zs z"><img src="{{CONST 'PIC_URL'}}/{{reg_no}}"></div>
+            </div>
+            <div class="data">
+                <ul>
+                    <li>注册资金：{{reg_money}}</li>
+                    <li class="number">员工人数：{{staff_num}}人</li>
+                    <li class="area">厂房面积：{{isoem}}</li>
+                    <li class="production">年产量：{{year_sum}}</li>
+                    <li class="product"><p class="l">主营产品：</p>
+
+                        <P class="r">{{temp_code}}</P></li>
+                </ul>
+            </div>
+            <div class="prompt">此品牌已加入3·30经销商合作保障计划</div>
+        </div>
+
+        <div class="introduce x">
+            <div class="title_general"><p>公司简介</p><p class="open">展开</p></div>
+            <div class="detailed_general">
+                {{{cust_desc}}}<span class="lan">[查看更多请点展开]</span>
+            </div>
+
+        </div>
+
+        <div class="policy x">
+            <div class="title_general"><p>招商政策</p><p class="open">展开</p></div>
+            <div class="detailed_general">
+                {{{site_notice}}}<span class="lan">[查看更多请点展开]</span>
+            </div>
+        </div>
 
 
-    <div class="message">
+        <div class="message">
+        </div>
+        <!--页脚-->
+        <div class="app-section merchant-footer">
+            <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+            <img src="images/bottom-logo.png" alt="手机 3月30日">
+
+            <div><strong>足不出户逛展会</strong></div>
+        </div>
+
     </div>
-    <!--页脚-->
-    <div class="app-section merchant-footer">
-        <p>①2015 浙B2-20050229-3 用户反馈中心</p>
-        <img src="images/bottom-logo.png" alt="手机 3月30日">
-
-        <div><strong>足不出户逛展会</strong></div>
-    </div>
-
 </div>
+
+
+

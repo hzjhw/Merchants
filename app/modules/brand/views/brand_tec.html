@@ -1,58 +1,64 @@
-<div id="factory" class="app-content">
-    <div class="header">
-        <a class="fl go-back" href="javascript:void(0)">返回</a>
-        <img class="fl logo" src="images/logo.jpg" alt="330门业招商节">
+<div id="factory">
+    <div class="app-logo-container">
+        <div class="header">
+            <a class="fl go-back" href="javascript:void(0)">返回</a>
+            <img class="fl logo" src="images/logo.jpg" alt="330门业招商节">
 
-        <div class="fr hall">展馆</div>
-        <div class="clear"></div>
-    </div>
-    <div id="include_header"></div>
-    <div class="power x">
-        <div class="honor">
-            <div class="title_power">
-                <div class="bt">公司荣誉</div>
-                <i></i>
-            </div>
-            <div class="detailed">
-                <ul>
-                    {{#each honors}}
-                    <li class="fl">
-                        <div class="img"><img src="{{CONST 'PIC_URL'}}/{{img_path}}"></div>
-                        <div class="txt">{{title}}</div>
-                    </li>
-                    {{/each}}
-                </ul>
-            </div>
+            <div class="fr hall">展馆</div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-        <div class="honor">
-            <div class="title_power">
-                <div class="bt">厂区展示</div>
-                <i></i>
+    </div>
+    <div  class="app-content">
+
+        <div id="include_header"></div>
+        <div class="power x">
+            <div class="honor">
+                <div class="title_power">
+                    <div class="bt">公司荣誉</div>
+                    <i></i>
+                </div>
+                <div class="detailed">
+                    <ul>
+                        {{#each honors}}
+                        <li class="fl">
+                            <div class="img"><img src="{{CONST 'PIC_URL'}}/{{img_path}}"></div>
+                            <div class="txt">{{title}}</div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
             </div>
-            <div class="detailed">
-                <ul>
-                    {{#each areas}}
-                    <li class="fl">
-                        <div class="img"><img src="{{CONST 'PIC_URL'}}/{{content}}"></div>
-                        <div class="txt">{{title}}</div>
-                    </li>
-                    {{/each}}
-                </ul>
+            <div class="clear"></div>
+            <div class="honor">
+                <div class="title_power">
+                    <div class="bt">厂区展示</div>
+                    <i></i>
+                </div>
+                <div class="detailed">
+                    <ul>
+                        {{#each areas}}
+                        <li class="fl">
+                            <div class="img"><img src="{{CONST 'PIC_URL'}}/{{content}}"></div>
+                            <div class="txt">{{title}}</div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
             </div>
+            <div class="clear"></div>
         </div>
-        <div class="clear"></div>
-    </div>
 
 
-    <div class="message">
-    </div>
-    <!--页脚-->
-    <div class="app-section merchant-footer">
-        <p>①2015 浙B2-20050229-3 用户反馈中心</p>
-        <img src="images/bottom-logo.png" alt="手机 3月30日">
+        <div class="message">
+        </div>
+        <!--页脚-->
+        <div class="app-section merchant-footer">
+            <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+            <img src="images/bottom-logo.png" alt="手机 3月30日">
 
-        <div><strong>足不出户逛展会</strong></div>
+            <div><strong>足不出户逛展会</strong></div>
+        </div>
+
     </div>
 
 </div>

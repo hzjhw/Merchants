@@ -240,3 +240,4 @@ App._Scroll = function (Scrollable, App, Utils) {
 	}
 }(Scrollable, App, App._Utils);
 App._IScroll = iScroll;
+App.Scrollable = Scrollable;

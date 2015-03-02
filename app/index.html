@@ -160,46 +160,26 @@
         </div>
     </div>
 </div>
-<div class="app-page" data-page="category"><div class="loading"></div>
-</div>
-<div class="app-page login_dealers" data-page="login_dealers"><div class="loading"></div>
-</div>
-<div class="app-page login_dealers" data-page="register_dealers"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="search"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_list"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_detail"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_info"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_product"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_tec"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_blank"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="brand_unique"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="product_list"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="product_detail"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="product_search"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="favorite_info"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="favorite_product"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="favorite_brand"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="favorite_cooprate"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="favorite_message"><div class="loading"></div>
-</div>
-<div class="app-page" data-page="favorite_money"><div class="loading"></div>
-</div>
+<div class="app-page" data-page="category"> </div>
+<div class="app-page login_dealers" data-page="login_dealers"> </div>
+<div class="app-page login_dealers" data-page="register_dealers"> </div>
+<div class="app-page" data-page="search"> </div>
+<div class="app-page" data-page="brand_list"> </div>
+<div class="app-page" data-page="brand_detail"> </div>
+<div class="app-page" data-page="brand_info"> </div>
+<div class="app-page" data-page="brand_product"> </div>
+<div class="app-page" data-page="brand_tec"> </div>
+<div class="app-page" data-page="brand_blank"> </div>
+<div class="app-page" data-page="brand_unique"> </div>
+<div class="app-page" data-page="product_list"> </div>
+<div class="app-page" data-page="product_detail"> </div>
+<div class="app-page" data-page="product_search"> </div>
+<div class="app-page" data-page="favorite_info"> </div>
+<div class="app-page" data-page="favorite_product"> </div>
+<div class="app-page" data-page="favorite_brand"> </div>
+<div class="app-page" data-page="favorite_cooprate"> </div>
+<div class="app-page" data-page="favorite_message"> </div>
+<div class="app-page" data-page="favorite_money"> </div>
 
 <script src="scripts/base.js?v=15210"></script>
 <script src="const.js"></script>
@@ -272,6 +252,7 @@ seajs.use(['App'], function (App) {
     /*首页*/
     App.controller('home', function (page) {
         $('#Loading').remove();
+        App.removeLoading();
         App.initLoad(page, { transition: 'fade', page: 'home'}, this);
         try {
             $(page).find('[data-target="inputs"]')
@@ -283,7 +264,6 @@ seajs.use(['App'], function (App) {
                         });
                     });
         } catch (e) {
-
         }
         // 我的330
         $(page).find('.btn-my').click(function (e) {
@@ -314,8 +294,7 @@ seajs.use(['App'], function (App) {
 
         /*品牌分类*/
         $(page).find('.cate-ul li').click(function () {
-            window.$loading = $('<div class="loading"></div>');
-            $('body').append(window.$loading);
+            App.addLoading();
             if ($(this).attr('data-id').length === 0) {
                 App.load('brand_unique');
                 return;
@@ -369,7 +348,7 @@ seajs.use(['App'], function (App) {
     /*品牌列表*/
     App.controller('brand_list', function (page) {
         var ctx = this;
-        App.initLoad(page, { transition: 'slide-left',page: 'brand_list'}, this);
+        App.initLoad(page, { transition: 'slide-left', page: 'brand_list'}, this);
 
         if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
         if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
@@ -396,7 +375,7 @@ seajs.use(['App'], function (App) {
     /*厂家信息*/
     App.controller('brand_info', function (page) {
         var ctx = this;
-        App.initLoad(page, { transition: 'fade',page: 'brand_info'}, ctx);
+        App.initLoad(page, { transition: 'fade', page: 'brand_info'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
         localStorage['brand_info_args_id'] = ctx.args.id;
         seajs.use(['BrandInfo'], function (BrandInfo) {
@@ -426,7 +405,7 @@ seajs.use(['App'], function (App) {
     /*空白区域*/
     App.controller('brand_blank', function (page) {
         var ctx = this;
-        App.initLoad(page, { transition: 'fade',page: 'brand_blank'}, ctx);
+        App.initLoad(page, { transition: 'fade', page: 'brand_blank'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
         localStorage['brand_blank_args_id'] = ctx.args.id;
         seajs.use(['BrandBlank'], function (BrandBlank) {
@@ -436,7 +415,7 @@ seajs.use(['App'], function (App) {
     /*特色门馆*/
     App.controller('brand_unique', function (page) {
         var ctx = this;
-        App.initLoad(page, { transition: 'fade',page: 'brand_unique'}, ctx);
+        App.initLoad(page, { transition: 'fade', page: 'brand_unique'}, ctx);
         seajs.use(['BrandUnique'], function (BrandUnique) {
             new BrandUnique(page, ctx);
         });
@@ -489,14 +468,14 @@ seajs.use(['App'], function (App) {
     });
     /*经销商*/
     App.controller('favorite_info', function (page) {
-        App.initLoad(page, { transition: 'slide-left',  page: 'favorite_info'}, this);
+        App.initLoad(page, { transition: 'slide-left', page: 'favorite_info'}, this);
         seajs.use(['FavInfo'], function (FavInfo) {
             new FavInfo(page);
         });
     });
     /*搜藏的产品*/
     App.controller('favorite_product', function (page) {
-        App.initLoad(page, { transition: 'slide-left',page: 'favorite_product'}, this);
+        App.initLoad(page, { transition: 'slide-left', page: 'favorite_product'}, this);
         seajs.use(['FavPro'], function (FavPro) {
             new FavPro(page);
         });

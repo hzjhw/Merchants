@@ -13,7 +13,6 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
   BrandDetail = function (page, id, context) {
     setTimeout(function(){
       var tpl = HandlebarsHelper.compile(template);
-
       App.query('/cmp/' + id, {
         cache: true,
         success: function (result) {
@@ -26,7 +25,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           }
           result.indexInfo.id = id;
           $(page).html(tpl(result.indexInfo));
-
+          App.initContent(page, 70);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
             new IncludeMessage(page, '.message', {
               id: id

@@ -12,6 +12,7 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
   BrandProduct = function(page, id, context){
     setTimeout(function(){
       $(page).html(template);
+      App.initContent(page, 70);
       $(page).find('.btn-back').click(function(){
         App.back(window.backPage);
       });

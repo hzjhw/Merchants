@@ -70,3 +70,20 @@ var $sub = $(page).find('.cate-item-sub');
                     $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
                 });
             });
+            
+4) 添加加载动画
+$(page).find('.cate-ul li').click(function () {
+    App.addLoading(); // 移除为App.removeLoading();
+});
+
+5) 初始化页面载入
+App.controller('brand_detail', function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
+    .....
+});
+
+6) 初始化content
+App.initContent(page, 70);
+
+7) 初始化click
+App.initClick(page);

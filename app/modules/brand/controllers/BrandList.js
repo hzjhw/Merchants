@@ -13,6 +13,8 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
     setTimeout(function () {
       template = require('template/brand_list');
       $(page).html(template);
+      App.initContent(page, 70);
+
       // 初始化标题与banner
       $(page).find('.topbar-title').html('3.30' + title);
       $(page).find('.app-banner img').attr('src', 'images/' + banner + '.jpg');
@@ -28,6 +30,9 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
       $(page).find('.buttombar-ul li').click(function () {
         App.load($(this).attr('data-target'));
       });
+      /*App._Utils.forEach(page.querySelectorAll('.app-content'), function (content) {
+        App.Scrollable(content, false);
+      });*/
       // 列表
       var $loading = $(page).find('.loading'),
         $list = $(page).find('.merchant-content-ul'),
@@ -47,7 +52,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
             pageNumber: pageNumber
           },
           success: function (result) {
-            var colum = area ? 'areaList':'brandList';
+            var colum = area ? 'areaList' : 'brandList';
             totalPage = result[colum].totalPage;
             var list = [];
             for (var j = 0; j < result[colum].list.length; j++) {

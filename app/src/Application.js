@@ -137,26 +137,39 @@ Application.prototype = {
     this.currentHash = name;
     window.location.hash = name;
   },
+  addLoading: function () {
+    if (window.$loading) window.$loading.remove();
+    window.$loading = $('<div class="loading"></div>');
+    $('body').append(window.$loading);
+  },
+  removeLoading: function () {
+    if (window.$loading) window.$loading.remove();
+    else $('.loading').remove();
+  },
   initLoad: function (page, options, context) {
     if (page) {
-      if (options.page){
-          App.addHash('#/' + options.page);
+      App.addLoading();
+      if (options.page) {
+        App.addHash('#/' + options.page);
       }
       $(page).on('appShow', function () {
-        window.$loading && window.$loading.remove();
+        App.removeLoading();
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appLayout', function () {
         options.appLayout && options.appLayout.call(context, page);
       });
       $(page).on('appHide', function () {
-        window.$loading && window.$loading.remove();
+        App.removeLoading();
         options.appHide && options.appHide.call(context, page);
       });
       $(page).on('appBack', function () {
         options.appBack && options.appBack.call(context, page);
       });
       $(page).on('appForward', function () {
+        setTimeout(function () {
+          App.removeLoading();
+        }, 500);
         options.appForward && options.appForward.call(context, page);
       });
       $(page).on('appBeforeBack', function () {
@@ -166,13 +179,18 @@ Application.prototype = {
         options.appReady && options.appReady.call(context, page);
       });
       $(page).on('appDestroy', function () {
-        console.log('appDestroy');
+        App.removeLoading();
         options.appDestroy && options.appDestroy.call(context, page);
       });
       if (options && options.transition) {
         context && (context.transition = options.transition);
       }
     }
+  },
+  initContent: function(page, height){
+    setTimeout(function(){
+      $(page).find('.app-content').height($(window).height() - height);
+    }, 1000);
   },
   getCurrentHash: function () {
     return this.currentHash;
@@ -248,9 +266,9 @@ Application.fromCharCode = function (code) {
   } catch (e) {
   }
 }
-window.addEventListener( "load", function() {
-  FastClick.attach( document.body );
-}, false );
+  /*window.addEventListener( "load", function() {
+   FastClick.attach( document.body );
+   }, false );*/
 ;
 (function () {
   /**

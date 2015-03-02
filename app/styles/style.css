@@ -486,7 +486,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .buttombar-ul li{float: left;width: 25%;}
 .buttombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size: 20px;display: inline-block; vertical-align: middle; padding-right: 15px;}
 .app-page .btn-pink{}
-.go-back{color: #fff; padding-left: 20px; font-size: 24px; float: left;}
+.go-back{color: #fff; padding-left: 20px; font-size: 24px; float: left;width: 100px;}
 .btn-category{text-align: right; padding-right: 10px; font-size: 24px; color: #fff;}
 /*特色馆*/
 .merchant-unique-left{width: 20%; overflow: hidden; float: left;}

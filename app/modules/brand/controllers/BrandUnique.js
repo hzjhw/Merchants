@@ -54,6 +54,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   BrandUnique = function (page, context) {
     setTimeout(function(){
       $(page).html(template);
+      App.initContent(page, 70);
       $(page).find('.go-back').click(function () {
         App.back('home');
       });

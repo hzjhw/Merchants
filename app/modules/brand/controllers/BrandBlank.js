@@ -19,6 +19,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
         cache: true,
         success: function (result) {
           $(page).html(tpl(result));
+          App.initContent(page, 70);
           $(".blank_area", $(page)).hide();
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {

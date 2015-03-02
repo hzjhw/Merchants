@@ -252,9 +252,8 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   }
 
   function navigateBack(backPageName, callback) {
-    //App.addHash('#/' + backPageName);
-    window.$loading = $('<div class="loading"></div>');
-    $('body').append(window.$loading);
+    App.addHash('#/' + backPageName); // 返回时此行不能删除
+    App.addLoading();
     if (Dialog.status() && Dialog.close() && !backPageName) {
       callback();
       return;
