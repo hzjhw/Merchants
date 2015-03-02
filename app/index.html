@@ -280,7 +280,7 @@ seajs.use(['App'], function (App) {
         var phoneNum = localStorage[CELL_PHONE];
         LOGIN_TYPE = 'home';
         if (phoneNum !== '') {
-            $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button btn-out'>退出</div> ")
+            $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button app-btn btn-out'>退出</div> ")
         }
         else {
             $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +

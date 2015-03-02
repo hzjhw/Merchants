@@ -30,7 +30,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         window.showConfirm('未登录',cntVal,null,'login_dealers');
       }
     });
-    $(page).find('.message .button').click(function () {
+    $(page).find('#msgSub').click(function () {
       if(!islogin)
       {
         var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
@@ -43,13 +43,11 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       if($.trim(custName) == '')
       {
         alert("留言前需填写您的姓名！");
-        $("#custname", $(page)).focus();
         return ;
       }
       if($.trim(levMsg) === '')
       {
         alert('留言信息不能为空!');
-        $("#levMsg", $(page)).focus();
         return ;
       }
         App.query('/cmp/custMsg', {
