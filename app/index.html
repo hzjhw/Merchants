@@ -278,6 +278,7 @@ seajs.use(['App'], function (App) {
         App.removeLoading();
         App.initLoad(page, { transition: 'fade', page: 'home'}, this);
         var phoneNum = localStorage[CELL_PHONE];
+        LOGIN_TYPE = 'home';
         if (phoneNum !== '') {
             $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button btn-out'>退出</div> ")
         }
@@ -290,7 +291,6 @@ seajs.use(['App'], function (App) {
                 App.load('register_dealers');
             });
             $(page).find('.btn-login').on('click', function () {
-                LOGIN_TYPE = 'home';
                 App.load('login_dealers');
             });
             $(page).find('.btn-out').on('click', function () {
@@ -329,7 +329,6 @@ seajs.use(['App'], function (App) {
             App.query('/userinfo', {
                 success: function (data) {
                     if (data.msg == 'nologin') {
-                        LOGIN_TYPE = 'home';
                         var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
                         showConfirm('未登录', cntVal, $dom, 'login_dealers');
                         /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
@@ -423,6 +422,7 @@ seajs.use(['App'], function (App) {
     /*品牌详细*/
     App.controller('brand_detail', function (page) {
         var ctx = this;
+        LOGIN_TYPE = 'brand_detail';
         App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
         localStorage['brand_detail_args_id'] = ctx.args.id;
@@ -433,6 +433,7 @@ seajs.use(['App'], function (App) {
     /*厂家信息*/
     App.controller('brand_info', function (page) {
         var ctx = this;
+        LOGIN_TYPE = 'brand_info';
         App.initLoad(page, { transition: 'fade', page: 'brand_info'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
         localStorage['brand_info_args_id'] = ctx.args.id;
@@ -443,6 +444,7 @@ seajs.use(['App'], function (App) {
     /*厂家产品*/
     App.controller('brand_product', function (page) {
         var ctx = this;
+        LOGIN_TYPE = 'brand_product';
         App.initLoad(page, { transition: 'fade', page: 'brand_product'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
         localStorage['brand_product_args_id'] = ctx.args.id;
@@ -453,6 +455,7 @@ seajs.use(['App'], function (App) {
     /*厂家实力*/
     App.controller('brand_tec', function (page) {
         var ctx = this;
+        LOGIN_TYPE = 'brand_tec';
         App.initLoad(page, { transition: 'fade', page: 'brand_tec'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
         localStorage['brand_tec_args_id'] = ctx.args.id;
@@ -463,6 +466,7 @@ seajs.use(['App'], function (App) {
     /*空白区域*/
     App.controller('brand_blank', function (page) {
         var ctx = this;
+        LOGIN_TYPE = 'brand_blank';
         App.initLoad(page, { transition: 'fade', page: 'brand_blank'}, ctx);
         if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
         localStorage['brand_blank_args_id'] = ctx.args.id;

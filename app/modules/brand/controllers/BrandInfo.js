@@ -26,8 +26,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           $(page).find('.data').addClass('current');
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
-              id: id,
-              loginType:'brand_info'
+              id: id
             });
             data.header.id = id;
             data.header.icon = 2;

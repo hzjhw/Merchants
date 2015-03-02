@@ -22,8 +22,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           $(".blank_area", $(page)).hide();
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
-              id: id,
-              loginType:'brand_blank'
+              id: id
             });
             result.header.id = id;
             result.header.icon = 5;

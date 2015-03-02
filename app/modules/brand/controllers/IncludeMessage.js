@@ -13,7 +13,6 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
     var tpl = HandlebarsHelper.compile(template);
 
     $(page).find(render).html(tpl(data));
-    LOGIN_TYPE = data.loginType;
     //TODO validate is login before submit
     App.query('/cmp/custInfo', {
         success: function (result) {
