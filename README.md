@@ -81,9 +81,3 @@ App.controller('brand_detail', function (page) {
     App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
     .....
 });
-
-6) 初始化content
-App.initContent(page, 70);
-
-7) 初始化click
-App.initClick(page);

@@ -162,10 +162,10 @@ Application.prototype = {
       });
       $(page).on('appShow', function () {
         App.removeLoading();
-        App.initPage(page);
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {
+        App.initPage(page);
         options.appReady && options.appReady.call(context, page);
       });
       // back
@@ -188,30 +188,27 @@ Application.prototype = {
       }
     }
   },
-  initContent: function(page, height){
-    setTimeout(function(){
-      $(page).find('.app-content').height($(window).height() - height);
-      //alert($(window).height() - height);
-      $(page).on('appShow', function(){
-        $(page).find('.app-content').height($(window).height() - height);
-      });
-      //alert($(page).find('.app-content').height());
-    }, 1000);
+  initContent: function (page, height) {
+    $(page).find('.app-content').height($(window).height() - (height || 0));
+    //alert($(window).height() - height);
+    $(page).on('appShow', function () {
+      $(page).find('.app-content').height($(window).height() - (height || 0));
+    });
+    //alert($(page).find('.app-content').height());
   },
-  initPage: function(page, height){
+  initPage: function (page, height) {
     //App.initContent(page);
     setTimeout(App._Pages.fixContent(page), 0);
     setTimeout(App._Pages.fixContent(page), 50);
     setTimeout(App._Pages.fixContent(page), 100);
-    setTimeout(App._Pages.fixContent(page), 300);
-    setTimeout(App._Pages.fixContent(page), 500);
-    setTimeout(function(){
+    setTimeout(function () {
       App.initClick(page);
       var $content = $(page).find('.app-content');
-      if ($content.height() > $(window).height()){
-        App.initContent(page, $(page).find('.app-topbar').height());
+      if ($content.height() > $(window).height()) {
+        var $topbar = $(page).find('.app-topbar');
+        App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
       }
-    }, 1000);
+    }, 100);
   },
   getCurrentHash: function () {
     return this.currentHash;
