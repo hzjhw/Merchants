@@ -16,12 +16,12 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
     $(page).find(render).html(tpl(data || {
       logo_img: null
     }));
-    /*$(page).find('.nav ul li').click(function () {
-      App.load($(this).attr('data-target'), {
+    $(page).find('.nav ul li').click(function () {
+      App.load($(this).attr('data-url'), {
         id: $(this).attr('data-id')
       });
       return false;
-    });*/
+    });
     $(page).find('.logo').click(function(){
       App.load('home');
     })
