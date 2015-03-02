@@ -11,7 +11,6 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
   template = require('template/brand_tec');
 
   BrandTec = function (page, id, context) {
-
     setTimeout(function(){
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/factgood/' + id, {
@@ -20,8 +19,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
           App.initContent(page, 70);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
-              id: id,
-              loginType:'brand_tec'
+              id: id
             });
             result.header.id = id;
             result.header.icon = 4;
@@ -38,7 +36,6 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
         }
       });
     }, 0);
-
   }
 
 

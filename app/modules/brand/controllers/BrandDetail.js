@@ -28,8 +28,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           App.initContent(page, 70);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
             new IncludeMessage(page, '.message', {
-              id: id,
-              loginType:'brand_detail'
+              id: id
             });
             result.indexInfo.icon=1;
             new IncludeHeader(page,'#include_header',result.indexInfo);
@@ -41,7 +40,6 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
         }
       });
     }, 0);
-
   }
 
   module.exports = BrandDetail;

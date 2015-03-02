@@ -10,7 +10,6 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
   template = require('template/brand_product');
 
   BrandProduct = function(page, id, context){
-
     setTimeout(function(){
       $(page).html(template);
       App.initContent(page, 70);
@@ -19,8 +18,7 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
       });
       seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
         new IncludeMessage(page, '.message', {
-          id: id,
-          loginType:'brand_product'
+          id: id
         });
         data.header.id = id;
         data.header.icon = 3;
@@ -31,7 +29,6 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
         App.load($(this).attr('data-target'));
       });
     }, 0);
-
   }
 
   module.exports = BrandProduct;

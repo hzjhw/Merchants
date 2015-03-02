@@ -37,7 +37,6 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           childTag: 'children', // 子分类集的字段名称
           callback: function (item) {
           }
-
         });
 
         $(page).html(tpl(data));
@@ -84,32 +83,6 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           });
         });
 
-        //收藏产品按钮
-        $(page).find('.price .collect').click(function(){
-          var proid = $(this).attr('proid');
-          App.query('/userinfo/savePro/'+proid,{
-            success:function(result){
-              if(result.msg == 'success')
-              {
-                alert('成功收藏该产品');
-              }
-              else if(result.msg == 'error')
-              {
-                alert('由于网络等因素,收藏失败,请刷新后,重新收藏!')
-              }
-              else if( result.msg == 'noproid')
-              {
-                alert('收藏出错!')
-              }
-              else if( result.msg == 'nologin')
-              {
-                var cntVal = '<span style="font-size: 20px"> 收藏前需登录账号.现在登录吗？</span>';
-                window.showConfirm('未登录',cntVal,null,'login_dealers');
-              }
-            }
-          })
-        })
-
         // 筛选弹窗
         $(page).find('#factory .search-list-title .titlename').click(function () {
           var $dom = $(this).get(0);
@@ -137,12 +110,6 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
                     success: function (result) {
                       $(page).find('.search-list-cont').empty();
                       $(page).find('.search-list-cont').html(proHtml(result.proList));
-                      $(page).find('.search-list-cont .glitzItem .btn-pro-detail').click(function () {
-                        App.load('product_detail', {
-                          id: id,
-                          proid: $(this).parents('.glitzItem:first').attr('data-id')
-                        });
-                      });
                     }
                   })
                 });
@@ -174,7 +141,6 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           }
           i++;
         });
-
       }
     });
 

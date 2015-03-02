@@ -23,8 +23,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           $(".blank_area", $(page)).hide();
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
-              id: id,
-              loginType:'brand_blank'
+              id: id
             });
             result.header.id = id;
             result.header.icon = 5;
@@ -36,7 +35,6 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           $(page).find('.go-back').click(function () {
             App.back();
           });
-
 
           // 底部导航
           $(page).find('.buttombar-ul li').click(function () {
@@ -98,7 +96,6 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
         }
       });
     }, 0);
-
   }
 
   module.exports = BrandBlank;

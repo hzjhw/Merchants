@@ -18,11 +18,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
       App.query('/cmp/factinfo/' + id, {
         success: function (data) {
           if (!data.factInfo) {
-            data.factInfo = {};
-          }
-
-          if(!data.header){
-            data.header = {};
+            data.factInfo = {}
           }
           data.factInfo.id = id;
           $(page).html(tpl(data.factInfo));
@@ -63,7 +59,6 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
         App.back();
       });
     }, 0);
-
   }
 
   module.exports = BrandInfo;

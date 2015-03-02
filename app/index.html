@@ -160,27 +160,26 @@
         </div>
     </div>
 </div>
-<div class="app-page" data-page="category"> </div>
-<div class="app-page login_dealers" data-page="login_dealers"> </div>
-<div class="app-page login_dealers" data-page="register_dealers"> </div>
-<div class="app-page" data-page="search"> </div>
-<div class="app-page" data-page="brand_list"> </div>
-<div class="app-page" data-page="brand_detail"> </div>
-<div class="app-page" data-page="brand_info"> </div>
-<div class="app-page" data-page="brand_product"> </div>
-<div class="app-page" data-page="brand_tec"> </div>
-<div class="app-page" data-page="brand_blank"> </div>
-<div class="app-page" data-page="brand_unique"> </div>
-<div class="app-page" data-page="product_list"> </div>
-<div class="app-page" data-page="product_detail"> </div>
-<div class="app-page" data-page="product_search"> </div>
-<div class="app-page" data-page="favorite_info"> </div>
-<div class="app-page" data-page="favorite_product"> </div>
-<div class="app-page" data-page="favorite_brand"> </div>
-<div class="app-page" data-page="favorite_cooprate"> </div>
-<div class="app-page" data-page="favorite_message"> </div>
-<div class="app-page" data-page="favorite_money"> </div>
-
+<div class="app-page" data-page="category"></div>
+<div class="app-page login_dealers" data-page="login_dealers"></div>
+<div class="app-page login_dealers" data-page="register_dealers"></div>
+<div class="app-page" data-page="search"></div>
+<div class="app-page" data-page="brand_list"></div>
+<div class="app-page" data-page="brand_detail"></div>
+<div class="app-page" data-page="brand_info"></div>
+<div class="app-page" data-page="brand_product"></div>
+<div class="app-page" data-page="brand_tec"></div>
+<div class="app-page" data-page="brand_blank"></div>
+<div class="app-page" data-page="brand_unique"></div>
+<div class="app-page" data-page="product_list"></div>
+<div class="app-page" data-page="product_detail"></div>
+<div class="app-page" data-page="product_search"></div>
+<div class="app-page" data-page="favorite_info"></div>
+<div class="app-page" data-page="favorite_product"></div>
+<div class="app-page" data-page="favorite_brand"></div>
+<div class="app-page" data-page="favorite_cooprate"></div>
+<div class="app-page" data-page="favorite_message"></div>
+<div class="app-page" data-page="favorite_money"></div>
 
 <script src="scripts/base.js?v=15210"></script>
 <script src="const.js"></script>
@@ -200,9 +199,9 @@
 <script>
 var COLOUR_KEY = '__BASIC_APP_COLOUR___';
 var WINDOW_WIDTH = null;
-var LOGIN_TYPE='home';
-var REGISTER_TYPE='index';
-var CELL_PHONE ="cell_phone";
+var LOGIN_TYPE = 'home';
+var REGISTER_TYPE = 'index';
+var CELL_PHONE = "cell_phone";
 var colourPages = [],
         colour = localStorage[COLOUR_KEY] || 'teal';
 
@@ -225,8 +224,8 @@ seajs.use(['App'], function (App) {
             }
         }, runEvery);
     }
-    window.showConfirm=function(titleVal,cntVal,curEle,modelVal)
-    {
+
+    window.showConfirm = function (titleVal, cntVal, curEle, modelVal) {
         seajs.use(['dialog'], function (dialog) {
             window.dialog = dialog({
                 title: titleVal,
@@ -279,34 +278,31 @@ seajs.use(['App'], function (App) {
         App.removeLoading();
         App.initLoad(page, { transition: 'fade', page: 'home'}, this);
         var phoneNum = localStorage[CELL_PHONE];
-        if(phoneNum !== '')
-        {
-            $(page).find(".app-top-login").html("<div class='btn-login'>手机号:"+phoneNum+"</div><div class='app-button btn-out'>退出</div> ")
+        if (phoneNum !== '') {
+            $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button btn-out'>退出</div> ")
         }
-        else
-        {
-            $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>'+
-            '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
+        else {
+            $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
+                    '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
         }
         $(page).on('appReady', function () {
-            $(page).find('.btn-register').on('click',function(){
-                REGISTER_TYPE='home';
+            $(page).find('.btn-register').on('click', function () {
+                REGISTER_TYPE = 'home';
                 App.load('register_dealers');
             });
-            $(page).find('.btn-login').on('click',function(){
-                LOGIN_TYPE ='home';
+            $(page).find('.btn-login').on('click', function () {
+                LOGIN_TYPE = 'home';
                 App.load('login_dealers');
             });
-            $(page).find('.btn-out').on('click',function(){
-               App.query("/loginout",{
-                   success:function(result){
-                       if(result.msg == 'success')
-                       {
-                           localStorage[CELL_PHONE]='';
-                           App.load(LOGIN_TYPE);
-                       }
-                   }
-               })
+            $(page).find('.btn-out').on('click', function () {
+                App.query("/loginout", {
+                    success: function (result) {
+                        if (result.msg == 'success') {
+                            localStorage[CELL_PHONE] = '';
+                            App.load(LOGIN_TYPE);
+                        }
+                    }
+                })
             });
         });
         try {
@@ -333,12 +329,12 @@ seajs.use(['App'], function (App) {
             App.query('/userinfo', {
                 success: function (data) {
                     if (data.msg == 'nologin') {
-                        LOGIN_TYPE ='home';
+                        LOGIN_TYPE = 'home';
                         var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-                        showConfirm('未登录',cntVal,$dom,'login_dealers');
+                        showConfirm('未登录', cntVal, $dom, 'login_dealers');
                         /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
-                            App.load('login_dealers');
-                        }*/
+                         App.load('login_dealers');
+                         }*/
                     }
                     else {
                         show330(page, function (dialog) {
@@ -407,6 +403,8 @@ seajs.use(['App'], function (App) {
     App.controller('brand_list', function (page) {
         var ctx = this;
         App.initLoad(page, { transition: 'slide-left', page: 'brand_list'}, this);
+
+        this.transition = 'slide-left';
 
         this.transition = 'slide-left';
 

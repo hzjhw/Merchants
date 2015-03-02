@@ -52,7 +52,6 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   }
 
   BrandUnique = function (page, context) {
-
     setTimeout(function(){
       $(page).html(template);
       App.initContent(page, 70);
@@ -99,7 +98,6 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
         }
       });
     }, 0);
-
   }
 
   module.exports = BrandUnique;
