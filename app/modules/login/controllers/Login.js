@@ -46,7 +46,6 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
         },
         success: function (data) {
           if (data.result == 'success') {
-            alert("成功登录");
             localStorage[CELL_PHONE]=data.phoneNum;
             LOGIN_CHANGE=true;
             App.load(LOGIN_TYPE);
