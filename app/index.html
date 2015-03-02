@@ -181,10 +181,7 @@
 <div class="app-page" data-page="favorite_message"> </div>
 <div class="app-page" data-page="favorite_money"> </div>
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 <script src="scripts/base.js?v=15210"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
@@ -284,7 +281,7 @@ seajs.use(['App'], function (App) {
         var phoneNum = localStorage[CELL_PHONE];
         if(phoneNum !== '')
         {
-            $(page).find(".app-top-login").html("<div class='btn-login'>手机号:"+phoneNum+"</div><div class='app-button'>退出</div> ")
+            $(page).find(".app-top-login").html("<div class='btn-login'>手机号:"+phoneNum+"</div><div class='app-button btn-out'>退出</div> ")
         }
         else
         {
@@ -299,6 +296,17 @@ seajs.use(['App'], function (App) {
             $(page).find('.btn-login').on('click',function(){
                 LOGIN_TYPE ='home';
                 App.load('login_dealers');
+            });
+            $(page).find('.btn-out').on('click',function(){
+               App.query("/loginout",{
+                   success:function(result){
+                       if(result.msg == 'success')
+                       {
+                           localStorage[CELL_PHONE]='';
+                           App.load(LOGIN_TYPE);
+                       }
+                   }
+               })
             });
         });
         try {

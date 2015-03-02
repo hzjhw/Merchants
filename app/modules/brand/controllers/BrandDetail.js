@@ -35,20 +35,13 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
             new IncludeHeader(page,'#include_header',result.indexInfo);
           });
 
-<<<<<<< Updated upstream
           $(page).find('.go-back').click(function () {
             App.back(window.backPage);
           });
         }
       });
     }, 0);
-=======
-        $(page).find('.go-back').click(function () {
-          App.back();
-        });
-      }
-    });
->>>>>>> Stashed changes
+
   }
 
   module.exports = BrandDetail;

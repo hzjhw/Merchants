@@ -52,7 +52,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   }
 
   BrandUnique = function (page, context) {
-<<<<<<< Updated upstream
+
     setTimeout(function(){
       $(page).html(template);
       App.initContent(page, 70);
@@ -99,29 +99,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
         }
       });
     }, 0);
-=======
-    $(page).html(template);
-    $(page).find('.go-back').click(function () {
-      App.back();
-    });
-    // 底部导航
-    $(page).find('.buttombar-ul li').click(function () {
-      App.load($(this).attr('data-target'));
-    });
-    var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());
-    var tpl = $(page).find('.mer-unique-right-ul').html();
-    App.query('/product/price', {
-      cache: true,
-      success: function (result) {
-        $(page).find('.mer-unique-ul').html(cate_temp({list: result.catList}));
-        $(page).find('.mer-unique-ul li').click(function () {
-          $(this).addClass('current').siblings().removeClass('current');
-          loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
-        });
-        loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
-      }
-    });
->>>>>>> Stashed changes
+
   }
 
   module.exports = BrandUnique;

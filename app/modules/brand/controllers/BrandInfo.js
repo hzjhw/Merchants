@@ -20,7 +20,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           if (!data.factInfo) {
             data.factInfo = {};
           }
-<<<<<<< Updated upstream
+
           if(!data.header){
             data.header = {};
           }
@@ -63,27 +63,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
         App.back();
       });
     }, 0);
-=======
 
-        })
-        $(page).find('.go-back').click(function () {
-          App.back();
-        });
-// 底部导航
-        $(page).find('.buttombar-ul li').click(function () {
-          App.load($(this).attr('data-target'));
-        });
-      }
-
-    })
-
-
-    $(page).find('.go-back').click(function () {
-      App.back();
-    });
-
-
->>>>>>> Stashed changes
   }
 
   module.exports = BrandInfo;

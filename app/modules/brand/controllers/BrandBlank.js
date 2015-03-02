@@ -33,22 +33,10 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
 
           var blkContent = $(".blank_area_content", $(page));
 
-<<<<<<< Updated upstream
           $(page).find('.go-back').click(function () {
             App.back();
           });
-=======
-        $(page).find('.go-back').click(function () {
-          App.back();
-        });
 
-        // 底部导航
-        $(page).find('.buttombar-ul li').click(function () {
-          App.load($(this).attr('data-target'));
-        });
-
-        $(page).find('.province a').each(function () {
->>>>>>> Stashed changes
 
           // 底部导航
           $(page).find('.buttombar-ul li').click(function () {
@@ -66,7 +54,6 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
 
           $(page).find('.province a').each(function () {
 
-<<<<<<< Updated upstream
             $(this).click(function () {
               $("#curProv", $(page)).text($(this).text());
               $(this).addClass('current').siblings('a').removeClass('current');
@@ -111,18 +98,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
         }
       });
     }, 0);
-=======
-                $(page).find('.blank_area_content').html(tpl2({
-                  list: result.blkAreas
-                }));
-                $(".blank_area", $(page)).show();
-              }
-            })
-          })
-        });
-      }
-    });
->>>>>>> Stashed changes
+
   }
 
   module.exports = BrandBlank;

@@ -13,12 +13,9 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back()
-<<<<<<< Updated upstream
     });
     $(page).find('#login').click(function () {
       App.load('login_dealers');
-=======
->>>>>>> Stashed changes
     });
      $(page).find('#userRegister').click(function(){
         var $phoneNum = $("#phoneNum",$(page));
@@ -65,10 +62,8 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
             {
               if(data.msg == 'exists')
               {
-                 if(window.confirm("该手机号已被注册,需要登录吗?"))
-                 {
-                   App.load("login_dealers");
-                 }
+                var cntVal = '<span style="font-size: 20px"> 该手机号已注册.现在登录吗？</span>';
+                window.showConfirm('去登录',cntVal,null,'login_dealers');
               }
               else
                alert("由于网络等因素，注册失败！请重新注册。");
