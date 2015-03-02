@@ -8,56 +8,57 @@
             <div class="clear"></div>
         </div>
     </div>
-</div>
-
-<div class="app-content">
-    <div id="include_header" ></div>
-    <div class="search-list x">
-        <div class="search-list-title"><span class="titlename">筛选</span><span class="name">全部</span><div class="fr icons icons-list"></div>
-        </div>
-        <div class="xiala" style="display:none;">
-            <div class="ygtvtable-div1"><div class="fenlei01" data-id="all">全部</div></div>
-            {{#each allCats}}
-            <div class="ygtvtable-div1"><div class="fenlei01" data-id="{{cat_id}}">{{cat_name}}</div>
-                <ul>
-                    {{#each children}}
-                    <li data-id="{{cat_id}}">{{cat_name}}</li>
-                    {{/each}}
-                    <div class="clear"></div>
-                </ul>
+    <div class="app-content">
+        <div id="include_header" ></div>
+        <div class="search-list x">
+            <div class="search-list-title"><span class="titlename">筛选</span><span class="name">全部</span><div class="fr icons icons-list"></div>
             </div>
-            {{/each}}
-        </div>
-        <div class="search-list-cont list-view">
-            {{#each list}}
-            <div class="glitzItem" data-id="{{product_id}}">
-                <a class="glitzPic btn-pro-detail" href="javascript:void(0)"><img src="{{CONST 'PIC_URL'}}{{img_path}}"></a>
+            <div class="xiala" style="display:none;">
+                <div class="ygtvtable-div1"><div class="fenlei01" data-id="all">全部</div></div>
+                {{#each allCats}}
+                <div class="ygtvtable-div1"><div class="fenlei01" data-id="{{cat_id}}">{{cat_name}}</div>
+                    <ul>
+                        {{#each children}}
+                        <li data-id="{{cat_id}}">{{cat_name}}</li>
+                        {{/each}}
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+                {{/each}}
+            </div>
+            <div class="search-list-cont list-view">
+                {{#each list}}
+                <div class="glitzItem" data-id="{{product_id}}">
+                    <a class="glitzPic btn-pro-detail" href="javascript:void(0)"><img src="{{CONST 'PIC_URL'}}{{img_path}}"></a>
 
-                <div class="txt">
-                    <p class="title btn-pro-detail">{{title}}</p>
+                    <div class="txt">
+                        <p class="title btn-pro-detail">{{title}}</p>
 
-                    <p class="feature">产品特点：{{recom_desc}}</p>
+                        <p class="feature">产品特点：{{recom_desc}}</p>
 
-                    <p class="price"><span class="fl">{{price}}</span><a class="fl collect"
-                                                                      href="javascript:void(0)" proid="{{product_id}}">收藏</a></p>
+                        <p class="price"><span class="fl">{{price}}</span><a class="fl collect"
+                                                                             href="javascript:void(0)" proid="{{product_id}}">收藏</a></p>
 
+                        <div class="clear"></div>
+                    </div>
                     <div class="clear"></div>
                 </div>
+                {{/each}}
                 <div class="clear"></div>
             </div>
-            {{/each}}
-            <div class="clear"></div>
+        </div>
+        <div class="message">
+        </div>
+
+
+        <!--页脚-->
+        <div class="app-section merchant-footer">
+            <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+            <img src="images/bottom-logo.png" alt="手机 3月30日"/>
+
+            <div><strong>足不出户逛展会</strong></div>
         </div>
     </div>
-    <div class="message">
-    </div>
 
-
-    <!--页脚-->
-    <div class="app-section merchant-footer">
-        <p>①2015 浙B2-20050229-3 用户反馈中心</p>
-        <img src="images/bottom-logo.png" alt="手机 3月30日"/>
-
-        <div><strong>足不出户逛展会</strong></div>
-    </div>
 </div>
+
