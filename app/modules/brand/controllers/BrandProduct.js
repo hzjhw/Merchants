@@ -13,7 +13,14 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
     setTimeout(function(){
       $(page).html(template);
       $(page).find('.btn-back').click(function(){
-        App.back(window.backPage);
+        if(LOGIN_CHANGE)
+        {
+          App.load(window.backPage);
+        }
+        else
+        {
+          App.back(window.backPage);
+        }
       });
       seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
         new IncludeMessage(page, '.message', {

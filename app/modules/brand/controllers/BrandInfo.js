@@ -47,7 +47,14 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             }
           })
           $(page).find('.go-back').click(function () {
-            App.back(window.backPage);
+            if(LOGIN_CHANGE)
+            {
+              App.load(window.backPage);
+            }
+            else
+            {
+              App.back(window.backPage);
+            }
           });
 // 底部导航
           $(page).find('.buttombar-ul li').click(function () {

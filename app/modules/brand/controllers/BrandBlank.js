@@ -32,17 +32,20 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
 
           var blkContent = $(".blank_area_content", $(page));
 
-          $(page).find('.go-back').click(function () {
-            App.back();
-          });
-
           // 底部导航
           $(page).find('.buttombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
           });
 
           $(page).find('.go-back').click(function () {
-            App.back(window.backPage);
+            if(LOGIN_CHANGE)
+            {
+              App.load(window.backPage);
+            }
+            else
+            {
+              App.back(window.backPage);
+            }
           });
 
           // 底部导航

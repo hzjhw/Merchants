@@ -31,7 +31,14 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
             App.load($(this).attr('data-target'));
           });
           $(page).find('.go-back').click(function () {
-            App.back(window.backPage);
+            if(LOGIN_CHANGE)
+            {
+              App.load(window.backPage);
+            }
+            else
+            {
+              App.back(window.backPage);
+            }
           });
         }
       });

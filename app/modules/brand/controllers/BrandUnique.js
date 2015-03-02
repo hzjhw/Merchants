@@ -55,7 +55,14 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
     setTimeout(function(){
       $(page).html(template);
       $(page).find('.go-back').click(function () {
-        App.back('home');
+        if(LOGIN_CHANGE)
+        {
+          App.load(window.backPage);
+        }
+        else
+        {
+          App.back(window.backPage);
+        }
       });
       $(page).find('.btn-category').click(function () {
         App.load('category');

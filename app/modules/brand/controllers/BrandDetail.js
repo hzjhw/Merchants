@@ -35,7 +35,14 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           });
 
           $(page).find('.go-back').click(function () {
-            App.back(window.backPage);
+            if(LOGIN_CHANGE)
+            {
+              App.load(window.backPage);
+            }
+            else
+            {
+              App.back(window.backPage);
+            }
           });
         }
       });
