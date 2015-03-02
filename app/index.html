@@ -181,6 +181,10 @@
 <div class="app-page" data-page="favorite_message"> </div>
 <div class="app-page" data-page="favorite_money"> </div>
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 <script src="scripts/base.js?v=15210"></script>
 <script src="const.js"></script>
 <script src="config.local.js"></script>
@@ -395,6 +399,8 @@ seajs.use(['App'], function (App) {
     App.controller('brand_list', function (page) {
         var ctx = this;
         App.initLoad(page, { transition: 'slide-left', page: 'brand_list'}, this);
+
+        this.transition = 'slide-left';
 
         if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
         if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];

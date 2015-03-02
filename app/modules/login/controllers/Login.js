@@ -13,12 +13,15 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back();
+<<<<<<< Updated upstream
     });
     $(page).find('#register').click(function(){
       App.load('register_dealers');
     });
     $(page).find('#chgpwd').click(function(){
       App.load('register_dealers');
+=======
+>>>>>>> Stashed changes
     });
     $(page).find('#userLogin').click(function () {
       var phoneNum = $("#phoneNum", $(page)).val();

@@ -37,6 +37,7 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           childTag: 'children', // 子分类集的字段名称
           callback: function (item) {
           }
+<<<<<<< Updated upstream
         });
 
         $(page).html(tpl(data));
@@ -141,6 +142,82 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           }
           i++;
         });
+=======
+        }
+        result.indexInfo.id = id;
+
+        App.query('/cmp/product/' + id, {
+          cache: true,
+          data: {
+            pageSize: 500
+          },
+          success: function (data) {
+            result.indexInfo.list = data.proList.list;
+            result.indexInfo.firstCats = data.firstCats;
+            $(page).html(tpl(result.indexInfo));
+
+            seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
+              new IncludeMessage(page, '.message', {
+                id: id
+              });
+              result.indexInfo.icon = 3;
+              new IncludeHeader(page, '#include_header', result.indexInfo);
+            });
+
+            $(page).find('.go-back').click(function () {
+              App.back();
+            });
+            $(page).find("#factory .search-list-title .icons-largest").click(function () {
+              $(this).toggleClass("icons-larger");
+              $("#factory .search-list-cont").toggleClass("larger-view");
+            })
+            // 筛选弹窗
+            $(page).find('#factory .search-list-title .titlename').click(function () {
+              var $dom = $(this).get(0);
+              seajs.use(['dialog'], function (dialog) {
+                window.dialog = dialog({
+                  id: '330dialog',
+                  skin: 'clickxiala',
+                  title: ' ',
+                  width: WINDOW_WIDTH - 74,
+                  height: $('.xiala').height(),
+                  content: $('.xiala', $(page)).html(),
+                  onshow: function () {
+                    var ctx = this;
+                    $('.ul-my li').click(function () {
+                      ctx.close().remove();
+                      App.load($(this).attr('data-target'));
+                    });
+                  }
+                }).showModal($dom);
+              })
+            });
+            var i = 0;
+            var listCont = $(page).find('#factory .search-list-cont');
+            $(page).find('.icons-list').click(function () {
+              if (i === 3) {
+                i = 0;
+              }
+              switch (i) {
+                case 0:
+                  $(this).removeClass("icons-largest").addClass("icons-larger");
+                  listCont.removeClass("largest-view").addClass('larger-view');
+                  break;
+                case 1:
+                  $(this).removeClass("icons-larger").addClass("icons-list");
+                  listCont.removeClass("larger-view").addClass('list-view');
+                  break;
+                case 2:
+                  $(this).removeClass("icons-list").addClass("icons-largest");
+                  listCont.removeClass("list-view").addClass('largest-view');
+                  break;
+              }
+              i++;
+            });
+
+
+          }});
+>>>>>>> Stashed changes
       }
     });
 

@@ -13,9 +13,12 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back()
+<<<<<<< Updated upstream
     });
     $(page).find('#login').click(function () {
       App.load('login_dealers');
+=======
+>>>>>>> Stashed changes
     });
      $(page).find('#userRegister').click(function(){
         var $phoneNum = $("#phoneNum",$(page));

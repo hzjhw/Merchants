@@ -11,6 +11,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
   template = require('template/brand_tec');
 
   BrandTec = function (page, id, context) {
+<<<<<<< Updated upstream
     setTimeout(function(){
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/factgood/' + id, {
@@ -37,6 +38,30 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
         }
       });
     }, 0);
+=======
+    var tpl = HandlebarsHelper.compile(template);
+    App.query('/cmp/factgood/' + id, {
+      success: function (result) {
+        $(page).html(tpl(result));
+        seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
+          new IncludeMessage(page, '.message', {
+            id: id
+          });
+          result.header.id = id;
+          result.header.icon = 4;
+          new IncludeHeader(page, '#include_header', result.header);
+        });
+
+        // 底部导航
+        $(page).find('.buttombar-ul li').click(function () {
+          App.load($(this).attr('data-target'));
+        });
+        $(page).find('.go-back').click(function () {
+          App.back();
+        });
+      }
+    });
+>>>>>>> Stashed changes
   }
 
 
