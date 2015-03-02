@@ -191,11 +191,11 @@ Application.prototype = {
   initContent: function(page, height){
     setTimeout(function(){
       $(page).find('.app-content').height($(window).height() - height);
-      alert($(window).height() - height);
+      //alert($(window).height() - height);
       $(page).on('appShow', function(){
         $(page).find('.app-content').height($(window).height() - height);
       });
-      alert($(page).find('.app-content').height());
+      //alert($(page).find('.app-content').height());
     }, 1000);
   },
   initPage: function(page, height){
