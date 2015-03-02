@@ -22,6 +22,9 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
       });
       return false;
     });
+    $(page).find('.logo').click(function(){
+      App.load('home');
+    })
     $(page).find("#factory .header .hall").on('click', function () {
       $(this).toggleClass("minus");
       $("#factory .prolist").toggleClass("show");
