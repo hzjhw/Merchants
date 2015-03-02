@@ -200,6 +200,7 @@
 var COLOUR_KEY = '__BASIC_APP_COLOUR___';
 var WINDOW_WIDTH = null;
 var LOGIN_TYPE = 'home';
+var LOGIN_CHANGE =false;
 var CELL_PHONE = "cell_phone";
 var colourPages = [],
         colour = localStorage[COLOUR_KEY] || 'teal';
@@ -297,6 +298,7 @@ seajs.use(['App'], function (App) {
                     success: function (result) {
                         if (result.msg == 'success') {
                             localStorage[CELL_PHONE] = '';
+                            LOGIN_CHANGE=true;
                             App.load(LOGIN_TYPE);
                         }
                     }
