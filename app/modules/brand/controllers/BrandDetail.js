@@ -25,7 +25,6 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           }
           result.indexInfo.id = id;
           $(page).html(tpl(result.indexInfo));
-          App.initContent(page, 70);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
             new IncludeMessage(page, '.message', {
               id: id

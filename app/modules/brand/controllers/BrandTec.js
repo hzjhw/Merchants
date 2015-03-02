@@ -16,7 +16,6 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
       App.query('/cmp/factgood/' + id, {
         success: function (result) {
           $(page).html(tpl(result));
-          App.initContent(page, 70);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
               id: id

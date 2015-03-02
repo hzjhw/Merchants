@@ -18,11 +18,6 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
       data:{proid:proid},
       success: function(result){
         $(page).html(tpl(result));
-        setTimeout(function(){
-          $(page).find('.app-content').height($(window).height() - 70);
-        }, 1000);
-
-
         $(page).find('.category-close').click(function () {
           App.back();
         });

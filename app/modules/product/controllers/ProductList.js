@@ -26,11 +26,9 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
       data: {
         pageSize: 500
       },
-
       success: function (data) {
         var colum = price ? 'productList' : 'proList';
         data.list = data[colum].list;
-
         data.allCats = Est.bulidTreeNode(data.allCats, 'up_cat_id', 'root', {
           categoryId: 'cat_id',// 分类ＩＤ
           belongId: 'up_cat_id',// 父类ＩＤ
@@ -38,12 +36,7 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           callback: function (item) {
           }
         });
-
         $(page).html(tpl(data));
-        setTimeout(function(){
-          $(page).find('.app-content').height($(window).height() - 70);
-        }, 1000);
-
         seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
           if(data.header){
             data.header.id = id;
