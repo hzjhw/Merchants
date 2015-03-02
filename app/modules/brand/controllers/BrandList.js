@@ -13,7 +13,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
     setTimeout(function () {
       template = require('template/brand_list');
       $(page).html(template);
-      App.initContent(page, 70);
+      //App.initPage(page);
 
       // 初始化标题与banner
       $(page).find('.topbar-title').html('3.30' + title);

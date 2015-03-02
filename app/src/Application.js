@@ -149,34 +149,35 @@ Application.prototype = {
   initLoad: function (page, options, context) {
     if (page) {
       App.addLoading();
-      if (options.page) {
-        App.addHash('#/' + options.page);
-      }
-      $(page).on('appShow', function () {
-        App.removeLoading();
-        options.appShow && options.appShow.call(context, page);
-      });
-      $(page).on('appLayout', function () {
-        options.appLayout && options.appLayout.call(context, page);
-      });
-      $(page).on('appHide', function () {
-        App.removeLoading();
-        options.appHide && options.appHide.call(context, page);
-      });
-      $(page).on('appBack', function () {
-        options.appBack && options.appBack.call(context, page);
-      });
+      if (options.page) App.addHash('#/' + options.page);
+      // show
       $(page).on('appForward', function () {
         setTimeout(function () {
           App.removeLoading();
         }, 500);
         options.appForward && options.appForward.call(context, page);
       });
-      $(page).on('appBeforeBack', function () {
-        options.appBeforeBack && options.appBeforeBack.call(context, page);
+      $(page).on('appLayout', function () {
+        options.appLayout && options.appLayout.call(context, page);
+      });
+      $(page).on('appShow', function () {
+        App.removeLoading();
+        App.initPage(page);
+        options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {
         options.appReady && options.appReady.call(context, page);
+      });
+      // back
+      $(page).on('appBeforeBack', function () {
+        options.appBeforeBack && options.appBeforeBack.call(context, page);
+      });
+      $(page).on('appBack', function () {
+        options.appBack && options.appBack.call(context, page);
+      });
+      $(page).on('appHide', function () {
+        App.removeLoading();
+        options.appHide && options.appHide.call(context, page);
       });
       $(page).on('appDestroy', function () {
         App.removeLoading();
@@ -190,6 +191,26 @@ Application.prototype = {
   initContent: function(page, height){
     setTimeout(function(){
       $(page).find('.app-content').height($(window).height() - height);
+      alert($(window).height() - height);
+      $(page).on('appShow', function(){
+        $(page).find('.app-content').height($(window).height() - height);
+      });
+      alert($(page).find('.app-content').height());
+    }, 1000);
+  },
+  initPage: function(page, height){
+    //App.initContent(page);
+    setTimeout(App._Pages.fixContent(page), 0);
+    setTimeout(App._Pages.fixContent(page), 50);
+    setTimeout(App._Pages.fixContent(page), 100);
+    setTimeout(App._Pages.fixContent(page), 300);
+    setTimeout(App._Pages.fixContent(page), 500);
+    setTimeout(function(){
+      App.initClick(page);
+      var $content = $(page).find('.app-content');
+      if ($content.height() > $(window).height()){
+        App.initContent(page, $(page).find('.app-topbar').height());
+      }
     }, 1000);
   },
   getCurrentHash: function () {

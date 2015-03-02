@@ -103,7 +103,7 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 	};
   App.initClick = function (page){
     Utils.forEach(
-      page.querySelectorAll('.app-button'),
+      page.querySelectorAll('.app-btn'),
       function (button) {
         if (button.getAttribute('data-no-click') !== null) {
           return;
