@@ -19,7 +19,8 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
           App.initContent(page, 70);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
-              id: id
+              id: id,
+              loginType:'brand_tec'
             });
             result.header.id = id;
             result.header.icon = 4;

@@ -18,7 +18,10 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
       App.query('/cmp/factinfo/' + id, {
         success: function (data) {
           if (!data.factInfo) {
-            data.factInfo = {}
+            data.factInfo = {};
+          }
+          if(!data.header){
+            data.header = {};
           }
           data.factInfo.id = id;
           $(page).html(tpl(data.factInfo));

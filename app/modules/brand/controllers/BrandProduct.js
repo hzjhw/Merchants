@@ -18,7 +18,8 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
       });
       seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
         new IncludeMessage(page, '.message', {
-          id: id
+          id: id,
+          loginType:'brand_product'
         });
         data.header.id = id;
         data.header.icon = 3;

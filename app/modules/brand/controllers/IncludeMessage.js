@@ -13,7 +13,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
     var tpl = HandlebarsHelper.compile(template);
 
     $(page).find(render).html(tpl(data));
-
+    LOGIN_TYPE = data.loginType;
     //TODO validate is login before submit
     App.query('/cmp/custInfo', {
         success: function (result) {
@@ -24,24 +24,23 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           }
       }
     });
-    $(page).find('#cellphone').click(function(){
-      if($(this).val() == '')
+    $(page).find('#custname,#cellphone,#levMsg').click(function(){
+      if(!islogin)
       {
-        if(window.confirm('需要登录账号,才能留言.现在登录吗？'))
-        App.load("login_dealers");
+        var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
+        window.showConfirm('未登录',cntVal,null,'login_dealers');
       }
     });
     $(page).find('.message .button').click(function () {
+      if(!islogin)
+      {
+        var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
+        window.showConfirm('未登录',cntVal,null,'login_dealers');
+        return;
+      }
       //TODO submit
       var custName = $("#custname", $(page)).val();
       var levMsg = $("#levMsg", $(page)).val();
-      if (!islogin) {
-        if(window.confirm("您还未登录，立即登录吗？"))
-        {
-          App.load('login_dealers');
-        }
-        return;
-      }
       if($.trim(custName) == '')
       {
         alert("留言前需填写您的姓名！");
@@ -66,6 +65,16 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
               alert("留言成功");
               $("#levMsg", $(page)).val("");
             }
+            else if (result.msg == 'same')
+            {
+              alert("您已有过类似留言了!");
+              $("#levMsg", $(page)).val("");
+            }
+            else if (result.msg == 'error')
+            {
+              alert("由于网络等因素,留言失败。请重新留言!");
+            }
+
           }
         })
     });
