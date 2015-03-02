@@ -50,6 +50,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             if(LOGIN_CHANGE)
             {
               App.load(window.backPage);
+              LOGIN_CHANGE=false;
             }
             else
             {

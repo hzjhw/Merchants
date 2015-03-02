@@ -16,6 +16,7 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
         if(LOGIN_CHANGE)
         {
           App.load(window.backPage);
+          LOGIN_CHANGE=false;
         }
         else
         {

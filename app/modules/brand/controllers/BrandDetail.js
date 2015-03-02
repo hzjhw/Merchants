@@ -38,6 +38,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
             if(LOGIN_CHANGE)
             {
               App.load(window.backPage);
+              LOGIN_CHANGE=false;
             }
             else
             {

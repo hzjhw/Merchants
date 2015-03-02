@@ -41,6 +41,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
             if(LOGIN_CHANGE)
             {
               App.load(window.backPage);
+              LOGIN_CHANGE=false;
             }
             else
             {

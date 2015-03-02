@@ -34,6 +34,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
             if(LOGIN_CHANGE)
             {
               App.load(window.backPage);
+              LOGIN_CHANGE=false;
             }
             else
             {

@@ -58,6 +58,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
         if(LOGIN_CHANGE)
         {
           App.load(window.backPage);
+          LOGIN_CHANGE=false;
         }
         else
         {
