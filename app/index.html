@@ -200,7 +200,6 @@
 var COLOUR_KEY = '__BASIC_APP_COLOUR___';
 var WINDOW_WIDTH = null;
 var LOGIN_TYPE = 'home';
-var REGISTER_TYPE = 'index';
 var CELL_PHONE = "cell_phone";
 var colourPages = [],
         colour = localStorage[COLOUR_KEY] || 'teal';
@@ -287,7 +286,6 @@ seajs.use(['App'], function (App) {
         }
         $(page).on('appReady', function () {
             $(page).find('.btn-register').on('click', function () {
-                REGISTER_TYPE = 'home';
                 App.load('register_dealers');
             });
             $(page).find('.btn-login').on('click', function () {
