@@ -93,3 +93,6 @@ App.controller('brand_detail', function (page) {
             ....
         }, 0);
     });
+    
+### 样式方面
+1) 所有的文件统一最小24px

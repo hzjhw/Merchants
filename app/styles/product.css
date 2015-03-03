@@ -51,7 +51,7 @@ a{text-decoration:none;}
 #factory .blank_area_title{color:#3d3d3d;font-size:24px;height:40px;line-height:40px;font-family:Microsoft Yahei;font-weight:bold;padding-left:30px;background:url(img/shubiao.jpg) no-repeat 2px center;}
 #factory .blank_area_title .red{color:#c90000;}
 #factory .blank_area_content{padding-top:40px;}
-#factory .blank_area_content p{font-size:12px;color:#4c4948;line-height:48px;}
+#factory .blank_area_content p{font-size:24px;color:#4c4948;line-height:48px;}
 #factory .blank_area_content p .b{font-weight:bold;}
 
 .product-search-title{font-size:24px;font-family:Microsoft Yahei;line-height:105px;}
