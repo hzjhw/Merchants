@@ -44,6 +44,11 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
             var cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
             showMsg('收藏错误', cntVal);
           }
+          else if(result.msg =='hasCollect')
+          {
+            var cntVal = '<span style="font-size: 20px"> 不能重复收藏该产品!</span>';
+            showMsg('重复收藏', cntVal);
+          }
         }
       })
     });
