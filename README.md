@@ -81,3 +81,15 @@ App.controller('brand_detail', function (page) {
     App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
     .....
 });
+
+### 响应速度方面
+1) 按钮点击响应速度
+    在需要点击的按钮上添加app-btn选择符  如：<input type="button" class="app-btn" value="确定"/>
+    
+2) 页面切换速度
+    在模块文件中添加setTimeout(function(){}, 0);
+    BrandList = function (page, id, title, banner, area) {
+        setTimeout(function () {
+            ....
+        }, 0);
+    });

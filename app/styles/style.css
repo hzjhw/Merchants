@@ -427,7 +427,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 /*
 分类*/
 .category-title{ position: relative; height: 90px; border-bottom: 1px solid #cccccc; background: -webkit-linear-gradient(#e6e6e6, #dfdfdf);  background: -o-linear-gradient(#e6e6e6, #dfdfdf);  background: -moz-linear-gradient(#e6e6e6, #dfdfdf);background: linear-gradient(#e6e6e6, #dfdfdf); }
-.category-zg, .category-pro{ margin-top: 25px; line-height: 65px; height: 64px; padding-left: 30px; float: left; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-left: 20px; border: 1px solid #d8d8d8; padding-right: 30px; font-size: 25px; background: #eaeaea; }
+.category-zg, .category-pro{ color: #999;margin-top: 25px; line-height: 65px; height: 64px; padding-left: 30px; float: left; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-left: 20px; border: 1px solid #d8d8d8; padding-right: 30px; font-size: 25px; background: #eaeaea; }
 .category-pro{ }
 .category-close{ position: absolute; right: 0; top: 0; width: 102px; z-index: 9000; background-position: -11px -407px; height: 90px; }
 .category-title .current{ color: #e0246b; height: 66px; border-bottom: none; background: #eee; }

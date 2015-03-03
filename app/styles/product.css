@@ -7,7 +7,7 @@ a{text-decoration:none;}
 #factory .header .hall{padding-left:11%;width:12.6%;background:url(img/plus.jpg) no-repeat scroll left center;}
 #factory .header .minus{background:url(img/minus.jpg) no-repeat scroll left center;}
 #factory .prolist{padding:0 2%;display:none;}
-#factory .prolist.show{display:block;}
+#factory .prolist.show{position: fixed; display: block; background: #dfdfdf; z-index: 999999999999;}
 #factory .prolist a{color:#2d2d2d;float:left;font-size:24px;line-height:60px;font-family:Microsoft Yahei;}
 #factory .prolist a.hong{color:#bf2423;}
 #factory .prolist a.a001{width:28%;}
@@ -28,7 +28,7 @@ a{text-decoration:none;}
 #factory .search-list-title .icons-list{background-position:-100px center;}
 #factory .search-list-cont{padding:0 2.5%;padding-top:32px;}
 #factory .search-list-cont .glitzItem{margin-bottom:42px;}
-#factory .search-list-cont .glitzItem a.glitzPic{border:1px solid #9a9a9a;}
+#factory .search-list-cont .glitzItem a.glitzPic{border:1px solid #D5D5D5;}
 #factory .search-list-cont .glitzItem a.glitzPic img{max-width:100%;}
 #factory .search-list-cont .txt{font-family:Microsoft Yahei;}
 #factory .search-list-cont .txt p.title{color:#3b3a3a;font-size:24px;line-height:48px;border-bottom:1px solid #bbbaba;margin-bottom:8px;white-space: nowrap;overflow:hidden;}
