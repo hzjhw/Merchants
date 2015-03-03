@@ -7,10 +7,10 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
   var BrandProduct, App, template;
 
   App = require('App');
-  template = require('template/brand_product');
 
   BrandProduct = function(page, id, context){
     setTimeout(function(){
+      template = require('template/brand_product');
       $(page).html(template);
       $(page).find('.btn-back').click(function(){
         if(LOGIN_CHANGE)

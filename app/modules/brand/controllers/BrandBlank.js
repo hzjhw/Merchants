@@ -7,12 +7,11 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
   var BrandBlank, App, template, HandlebarsHelper, Est;
 
   App = require('App');
-  template = require('template/brand_blank');
   HandlebarsHelper = require('HandlebarsHelper');
-  Est = require('Est');
 
   BrandBlank = function (page, id, context) {
     setTimeout(function(){
+      template = require('template/brand_blank');
       var tpl = HandlebarsHelper.compile(template);
 
       App.query('/cmp/blankarea/' + id, {
@@ -63,7 +62,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
                 data: {upid: curId, factid: id},
                 success: function (result) {
                   blkContent.empty();
-
+                  Est = require('Est');
                   var filter = Est.filter(result.blkAreas, function(item){
                     return item.up_area_id === '111111'
                   });

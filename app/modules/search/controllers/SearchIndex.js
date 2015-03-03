@@ -7,12 +7,10 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
   var SearchIndex, App, template;
 
   App = require('App');
-  template = require('template/search_index');
-
   SearchIndex = function (page, context, data) {
     setTimeout(function () {
+      template = require('template/search_index');
       $(page).html(template);
-
       var $sub = $(page).find('.cate-item-sub');
       $(page).find('.cate-item').each(function (index) {
         $(this).click(function () {

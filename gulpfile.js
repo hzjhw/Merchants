@@ -4,15 +4,15 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
-var imagemin = require('gulp-imagemin');
-
-
-var coffee = require('gulp-coffee');
+var htmlmin = require('gulp-minify-html');
+var usemin = require('gulp-usemin');
+var rev = require('gulp-rev');
+var del = require('del');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var yuidoc = require("gulp-yuidoc");
+var gutil = require('gulp-util');
 
-/** ==================================================== 项目发布 ====================================================*/
 
 var SRCDIR = './app',
   TMPDIR = './.tmp',
@@ -20,14 +20,13 @@ var SRCDIR = './app',
   src = {
     all: [SRCDIR + '/**', TMPDIR + '/**'],
     base: [SRCDIR + '/base/**.js', TMPDIR + '/base/**'],
-    demo: [SRCDIR + '/common/**', TMPDIR + '/demo/**'],
-    html: [SRCDIR + '/**/*.html'],
+    html: [SRCDIR + '/index.html', TMPDIR + '/index.html'],
     scripts: [SRCDIR + '/**/*.js', TMPDIR + '/**/*.js'],
     styles: [SRCDIR + '/**/*.css', TMPDIR + '/**/*.css']
   },
   dist = {
     all: DISTDIR + '/**',
-    html: DISTDIR + '/**/*.html',
+    html: DISTDIR + '/index.html',
     scripts: DISTDIR + '/**',
     styles: DISTDIR + '/**',
     images: DISTDIR + '/images',
@@ -81,19 +80,6 @@ function doTask(item, debug) {
             return gulp.src(paths[item].doc.source)
               .pipe(yuidoc())
               .pipe(gulp.dest(paths[item].doc.dist))
-          });
-          gulp.start(item + key);
-        } catch (e) {
-          console.error(item + key + e);
-        }
-        break;
-
-      case 'images':
-        try {
-          gulp.task(item + key, function () {
-            return gulp.src(paths[item].images.source)
-              .pipe(imagemin({optimizationLevel: 5}))
-              .pipe(gulp.dest(paths[item].images.dist));
           });
           gulp.start(item + key);
         } catch (e) {
@@ -189,12 +175,43 @@ gulp.task('app.min', function () {
   doTask('app', false);
 });
 
-gulp.task('local', function(){
+/** ==================================================== 本地调试 ====================================================*/
+
+// 合并JS但不压缩
+gulp.task('local', function () {
   return [gulp.start('base'), gulp.start('HandlebarsHelper'), gulp.start('merge'), gulp.start('app')];
 });
 
-// publish
+// 合并JS并压缩
 gulp.task('publish', function () {
   return [gulp.start('base.min'), gulp.start('HandlebarsHelper.min'), gulp.start('merge.min'), gulp.start('app.min')];
 });
 
+
+/** ==================================================== 项目发布 ====================================================*/
+
+// 清除dist目录
+gulp.task('dist-clean', function (callback) {
+  return del(dist.all, callback);
+});
+
+// 移动文件
+gulp.task('files-move', function () {
+  return gulp.src(src.all).pipe(gulp.dest(DISTDIR));
+});
+
+// JS压缩
+gulp.task('js-min', function () {
+  return [gulp.src(DISTDIR + '/lib/*.js').pipe(uglify()).pipe(gulp.dest(DISTDIR + '/lib')),
+    gulp.src(DISTDIR + '/modules/*/controllers/*.js').pipe(jshint()).pipe(jshint.reporter(stylish)).pipe(uglify()).pipe(gulp.dest(DISTDIR + '/modules')),
+    gulp.src(DISTDIR + '/vendor/**/*.js').pipe(uglify()).pipe(gulp.dest(DISTDIR + '/vendor'))];
+});
+
+// html css\js合并
+gulp.task('html-min', function () {
+  return gulp.src(dist.html).pipe(usemin({
+    js: [rev()], // 去掉uglify({mangle: true}).on('error', gutil.log),则不压缩JS
+    css: [minifyCSS(), 'concat', rev()],
+    html: [htmlmin({empty: false})]
+  })).pipe(gulp.dest(DISTDIR));
+});

@@ -28,15 +28,15 @@
             </div>
             <div class="search-list-cont list-view">
                 {{#each list}}
-                <div class="glitzItem" data-id="{{product_id}}">
-                    <a class="glitzPic btn-pro-detail" href="javascript:void(0)"><img src="{{CONST 'PIC_URL'}}{{img_path}}"></a>
+                <div class="glitzItem app-btn" data-id="{{product_id}}">
+                    <a class="glitzPic btn-pro-detail app-btn" href="javascript:void(0)"><img class="" src="{{CONST 'PIC_URL'}}{{img_path}}"></a>
 
                     <div class="txt">
-                        <p class="title btn-pro-detail">{{title}}</p>
+                        <p class="title btn-pro-detail app-btn">{{title}}</p>
 
                         <p class="feature">产品特点：{{recom_desc}}</p>
 
-                        <p class="price"><span class="fl">{{price}}</span><a class="fl collect"
+                        <p class="price"><span class="fl">{{price}}</span><a class="fl collect app-btn"
                                                                              href="javascript:void(0)" proid="{{product_id}}">收藏</a></p>
 
                         <div class="clear"></div>

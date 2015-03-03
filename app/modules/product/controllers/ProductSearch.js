@@ -7,15 +7,15 @@ define('ProductSearch', ['App', 'template/product_search'], function (require, e
   var ProductSearch, App, template;
 
   App = require('App');
-  template = require('template/product_search');
-
   ProductSearch = function (page, ctx) {
-    $(page).html(template);
-    $(page).find('.go-back').click(function () {
-      App.back('home', function () {
-
+    setTimeout(function(){
+      template = require('template/product_search');
+      $(page).html(template);
+      $(page).find('.go-back').click(function () {
+        App.back('home', function () {
+        });
       });
-    });
+    }, 0);
   }
 
   module.exports = ProductSearch;

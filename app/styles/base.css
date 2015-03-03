@@ -1,30 +1,31 @@
+.app-page,body{overflow:hidden}
 body,div,form,html,img,label,li,p,span,ul{margin:0;padding:0;outline:0}
 body,html{height:100%;width:100%}
-body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;overflow:hidden}
+body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}
 .app-android{font-family:Roboto,sans-serif}
 .app-no-scrollbar ::-webkit-scrollbar{height:0!important;width:0!important}
 *{-webkit-tap-highlight-color:transparent!important;tap-highlight-color:transparent!important}
 .clear{clear:both}
 .app-clickblocker{z-index:9000;position:fixed;top:0;left:0;height:100%;width:100%;background-color:#FFF;opacity:0}
-.app-page{display:none;position:relative;height:100%;width:100%;overflow:hidden}
-.app-loaded .app-page{display:block}
+.app-content,.app-input,.app-page,.app-section,.app-topbar{position:relative}
+.app-page{display:none;height:100%;width:100%}
+.app-input,.app-loaded .app-page{display:block}
 .app-ios-7 .app-page,.app-ios-8 .app-page{box-shadow:0 0 12px rgba(0,0,0,.2)}
-.app-topbar{z-index:3000;position:relative;width:100%;background-color:#000;color:#FFF}
+.app-topbar{z-index:3000;width:100%;background-color:#000;color:#FFF}
 .app-topbar .app-title{margin:0 auto;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.app-content{z-index:2000;position:relative;background-color:#FFF;overflow:auto}
+.app-content{z-index:2000;background-color:#FFF;overflow:auto}
 .app-scrollhack>*{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
-.app-section{position:relative;margin:8px;border:none}
+.app-section{margin:8px;border:none}
 .app-list{list-style:none}
 .app-list>li,.app-list>li.app-btn,.app-list>li.app-button{padding-left:20px;padding-right:8px;height:43px;border-bottom:1px solid #AAA;line-height:43px;overflow:hidden;text-align:left;text-overflow:ellipsis;white-space:nowrap}
+.app-btn:last-child,.app-button:last-child,.app-section .app-list>li.app-btn:last-child,.app-section .app-list>li.app-button:last-child,.app-section .app-list>li:last-child{border-bottom:none}
 .app-android .app-list>li,.app-android .app-list>li.app-btn,.app-android .app-list>li.app-button{padding-top:2px;padding-bottom:2px}
-.app-section .app-list>li.app-btn:last-child,.app-section .app-list>li.app-button:last-child,.app-section .app-list>li:last-child{border-bottom:none}
 .app-list>label{display:block;padding-left:12px;height:24px;background-color:#000;color:#FFF;line-height:24px}
 .app-list>li+label{margin-top:-1px}
-.app-btn:last-child,.app-button:last-child{border-bottom:none}
 .app-content .app-btn.green,.app-content .app-button.green{background-color:#7F7}
 .app-content .app-btn.red,.app-content .app-button.red{background-color:#F77}
 .app-content .app-btn.blue,.app-content .app-button.blue{background-color:#77F}
-.app-input{position:relative;display:block;padding:10px 12px;width:100%;background-color:transparent;border:none;border-bottom:1px solid #AAA;outline:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;line-height:20px;-webkit-appearance:none}
+.app-input{padding:10px 12px;width:100%;background-color:transparent;border:none;border-bottom:1px solid #AAA;outline:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;line-height:20px;-webkit-appearance:none}
 .app-section .app-input:last-child{border-bottom:none}
 .app-input,.app-input *{color:inherit;font-family:inherit;font-size:inherit}
 input.app-input{height:40px}
@@ -33,13 +34,12 @@ textarea.app-input{height:80px;resize:none}
 .app-input input{height:20px}
 .app-input textarea{height:60px}
 .app-dialog-container{position:fixed;z-index:5000;top:0;left:0;margin:0;padding:0;height:100%;width:100%;background-color:rgba(0,0,0,.8);opacity:0;overflow:hidden;-webkit-transition:opacity .282s ease-in-out;transition:opacity .282s ease-in-out}
+.app-dialog,.app-dialog-container.ios5{position:absolute}
 .app-android-4 .app-dialog-container{opacity:.01}
-.app-dialog-container.ios5{position:absolute}
-.app-android-4 .app-dialog-container.enabled,.app-dialog-container.enabled{opacity:1}
+.app-android-4 .app-dialog-container.enabled,.app-android-4 .app-dialog-container.fancy,.app-dialog-container.enabled{opacity:1}
 .app-dialog-container.fancy{background-color:transparent;opacity:1;-webkit-transition:background .425s cubic-bezier(.4,.6,.05,1);transition:background .425s cubic-bezier(.4,.6,.05,1)}
-.app-android-4 .app-dialog-container.fancy{opacity:1}
 .app-dialog-container.fancy.enabled{background-color:rgba(0,0,0,.8)}
-.app-dialog{position:absolute;bottom:0;left:0;margin:0;padding:0;width:100%;background-color:#F5F6F7;border-top:1px solid #FFF;-webkit-box-shadow:0 0 8px rgba(0,0,0,.85);box-shadow:0 0 8px rgba(0,0,0,.85);color:#777}
+.app-dialog{bottom:0;left:0;margin:0;padding:0;width:100%;background-color:#F5F6F7;border-top:1px solid #FFF;-webkit-box-shadow:0 0 8px rgba(0,0,0,.85);box-shadow:0 0 8px rgba(0,0,0,.85);color:#777}
 .app-android .app-dialog{bottom:50%;margin:0 10%;padding-bottom:8px;width:80%;background-color:#EEEEEA;-webkit-transform:translate3d(0,50%,0);transform:translate3d(0,50%,0)}
 .app-dialog.dark{background-color:#333332;border-top-color:#444;color:#999}
 .app-dialog-container.fancy .app-dialog{background-color:rgba(255,255,255,.85);-webkit-transform:translate3d(0,110%,0);transform:translate3d(0,110%,0);-webkit-transition:-webkit-transform .425s cubic-bezier(.4,.6,.05,1);transition:transform .425s cubic-bezier(.4,.6,.05,1)}

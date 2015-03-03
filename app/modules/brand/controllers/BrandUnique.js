@@ -7,7 +7,6 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   var BrandUnique, App, template, HandlebarsHelper;
 
   App = require('App');
-  template = require('template/brand_unique');
   HandlebarsHelper = require('HandlebarsHelper');
 
   function loadBrand(page, render, id, template) {
@@ -53,6 +52,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
 
   BrandUnique = function (page, context) {
     setTimeout(function(){
+      template = require('template/brand_unique');
       $(page).html(template);
       $(page).find('.go-back').click(function () {
         if(LOGIN_CHANGE)

@@ -201,6 +201,7 @@ Application.prototype = {
     setTimeout(App._Pages.fixContent(page), 0);
     setTimeout(App._Pages.fixContent(page), 50);
     setTimeout(App._Pages.fixContent(page), 100);
+    setTimeout(App._Pages.fixContent(page), 300);
     setTimeout(function () {
       App.initClick(page);
       var $content = $(page).find('.app-content');
@@ -208,7 +209,7 @@ Application.prototype = {
         var $topbar = $(page).find('.app-topbar');
         App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
       }
-    }, 100);
+    }, 300);
   },
   getCurrentHash: function () {
     return this.currentHash;

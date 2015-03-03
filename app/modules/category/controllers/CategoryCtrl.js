@@ -7,44 +7,46 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
   var CategoryCtrl, App, template;
 
   App = require('App');
-  template = require('template/category');
 
   CategoryCtrl = function (page, context) {
-    $(page).html(template);
-    $(page).find('.category-close').click(function () {
-      App.back();
-    });
-    $(page).find('.cate-item').each(function () {
-      $(this).click(function () {
-        $(this).addClass('current').siblings('.cate-item').removeClass('current');
-        $(page).find('.cate-item-sub-' + $(this).index()).addClass('cate-cur').siblings().removeClass('cate-cur');
+    setTimeout(function(){
+      template = require('template/category');
+      $(page).html(template);
+      $(page).find('.category-close').click(function () {
+        App.back();
       });
-    });
-    $(page).find('.cate-ul li').each(function () {
-      $(this).click(function () {
-        var id = $(this).attr('data-id');
-        if (id.length === 0) {
-          App.load('brand_unique');
-          return;
-        }
-        App.load('brand_list', {
-          id: id,
-          title: $(this).attr('data-title'),
-          banner: $(this).attr('data-banner')
+      $(page).find('.cate-item').each(function () {
+        $(this).click(function () {
+          $(this).addClass('current').siblings('.cate-item').removeClass('current');
+          $(page).find('.cate-item-sub-' + $(this).index()).addClass('cate-cur').siblings().removeClass('cate-cur');
         });
-        return false;
       });
-    });
-    App.query('/product/price', {
-      cache: true,
-      success: function (result) {
-        var $container = $('.cate-pro-ul', $(page));
-        var template = $container.html();
-        App.render({ render: '.cate-pro-ul', page: page, template: template, empty: true, data: {
-          list: result.catList
-        }});
-      }
-    });
+      $(page).find('.cate-ul li').each(function () {
+        $(this).click(function () {
+          var id = $(this).attr('data-id');
+          if (id.length === 0) {
+            App.load('brand_unique');
+            return;
+          }
+          App.load('brand_list', {
+            id: id,
+            title: $(this).attr('data-title'),
+            banner: $(this).attr('data-banner')
+          });
+          return false;
+        });
+      });
+      App.query('/product/price', {
+        cache: true,
+        success: function (result) {
+          var $container = $('.cate-pro-ul', $(page));
+          var template = $container.html();
+          App.render({ render: '.cate-pro-ul', page: page, template: template, empty: true, data: {
+            list: result.catList
+          }});
+        }
+      });
+    }, 0);
   }
 
   module.exports = CategoryCtrl;

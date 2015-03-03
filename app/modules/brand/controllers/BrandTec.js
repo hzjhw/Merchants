@@ -8,10 +8,9 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
 
-  template = require('template/brand_tec');
-
   BrandTec = function (page, id, context) {
     setTimeout(function(){
+      template = require('template/brand_tec');
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/factgood/' + id, {
         success: function (result) {

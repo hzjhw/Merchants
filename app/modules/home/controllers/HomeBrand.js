@@ -7,7 +7,7 @@ define('HomeBrand', ['App', 'template/home_brand'], function (require, exports, 
   var HomeBrand, App, template;
 
   App = require('App');
-  template = require('template/home_brand');
+
   function bindBrandDetail(dom) {
     $('.merchant-content-ul li', dom).click(function () {
       window.backPage = 'home';
@@ -20,6 +20,7 @@ define('HomeBrand', ['App', 'template/home_brand'], function (require, exports, 
 
   HomeBrand = function (page, context) {
     setTimeout(function () {
+      template = require('template/home_brand');
       App.query('/index', {
         success: function (result) {
           App.render({ render: '#merchants-show', page: page, template: template, data: {
