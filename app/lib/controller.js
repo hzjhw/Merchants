@@ -221,7 +221,7 @@ seajs.use(['App'], function (App) {
   App.controller('brand_detail', function (page) {
     var ctx = this;
     LOGIN_TYPE = 'brand_detail';
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_detail'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
     localStorage['brand_detail_args_id'] = ctx.args.id;
     seajs.use(['BrandDetail'], function (BrandDetail) {
@@ -232,7 +232,7 @@ seajs.use(['App'], function (App) {
   App.controller('brand_info', function (page) {
     var ctx = this;
     LOGIN_TYPE = 'brand_info';
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_info'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_info'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
     seajs.use(['BrandInfo'], function (BrandInfo) {
@@ -243,7 +243,7 @@ seajs.use(['App'], function (App) {
   App.controller('brand_product', function (page) {
     var ctx = this;
     LOGIN_TYPE = 'brand_product';
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_product'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_product'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
     seajs.use(['BrandProduct'], function (BrandProduct) {
@@ -254,7 +254,7 @@ seajs.use(['App'], function (App) {
   App.controller('brand_tec', function (page) {
     var ctx = this;
     LOGIN_TYPE = 'brand_tec';
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_tec'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
     seajs.use(['BrandTec'], function (BrandTec) {
@@ -265,7 +265,7 @@ seajs.use(['App'], function (App) {
   App.controller('brand_blank', function (page) {
     var ctx = this;
     LOGIN_TYPE = 'brand_blank';
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_blank'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
     seajs.use(['BrandBlank'], function (BrandBlank) {

@@ -161,10 +161,10 @@ Application.prototype = {
         options.appLayout && options.appLayout.call(context, page);
       });
       $(page).on('appShow', function () {
-        App.removeLoading();
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {
+        App.removeLoading();
         App.initPage(page);
         options.appReady && options.appReady.call(context, page);
       });
