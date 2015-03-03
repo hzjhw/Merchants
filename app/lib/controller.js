@@ -28,7 +28,16 @@ seajs.use(['App'], function (App) {
       }
     }, runEvery);
   }
-
+  window.showMsg = function (titleVal, cntVal) {
+    seajs.use(['dialog'], function (dialog) {
+      window.dialog = dialog({
+        title: titleVal,
+        content: cntVal,
+        width: WINDOW_WIDTH - 280,
+        button: [{value: '确定'}]
+      }).showModal();
+    })
+  }
   window.showConfirm = function (titleVal, cntVal, curEle, modelVal) {
     seajs.use(['dialog'], function (dialog) {
       window.dialog = dialog({

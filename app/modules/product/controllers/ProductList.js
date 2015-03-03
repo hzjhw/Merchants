@@ -8,8 +8,49 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
+  function bindDetail(page,id)
+  {
+    $(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click',function () {
+      App.load('product_detail', {
+        id: id,
+        proid: $(this).parents('.glitzItem').attr('data-id')
+      });
+    });
+  }
+
+  function bindCollect(page)
+  {
+    $(page).find('.search-list-cont .price .collect').click(function () {
+      var proid = $(this).parents('.glitzItem').attr('data-id');
+      App.query("/userinfo/savePro/"+proid,{
+        success:function(result){
+          if(result.msg == 'nologin')
+          {
+            var cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
+            showConfirm('未登录', cntVal, null, 'login_dealers');
+          }
+          else if(result.msg == 'error')
+          {
+            var cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
+            showMsg('收藏失败', cntVal);
+          }
+          else if(result.msg == 'success')
+          {
+            var cntVal = '<span style="font-size: 20px"> 您成功收藏该产品</span>';
+            showMsg('收藏成功', cntVal);
+          }
+          else if(result.msg =='noproid')
+          {
+            var cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
+            showMsg('收藏错误', cntVal);
+          }
+        }
+      })
+    });
+  }
 
   ProductList = function (page, id, price, ctx) {
+
     setTimeout(function(){
       template = require('template/product_list');
       var tpl = HandlebarsHelper.compile(template);
@@ -69,13 +110,14 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
             $("#factory .search-list-cont").toggleClass("larger-view");
           })
 
-          $(page).find('.search-list-cont .glitzItem .btn-pro-detail').click(function () {
+          /*$(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click',function () {
             App.load('product_detail', {
               id: id,
               proid: $(this).parents('.glitzItem').attr('data-id')
             });
-          });
-
+          });*/
+          bindDetail(page,id);
+          bindCollect(page);
           // 筛选弹窗
           $(page).find('#factory .search-list-title .titlename').click(function () {
             var $dom = $(this).get(0);
@@ -103,6 +145,8 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
                       success: function (result) {
                         $(page).find('.search-list-cont').empty();
                         $(page).find('.search-list-cont').html(proHtml(result.proList));
+                        bindDetail(page,id);
+                        bindCollect(page);
                       }
                     })
                   });
