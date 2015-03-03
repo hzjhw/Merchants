@@ -8,10 +8,10 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
+  template = require('template/brand_detail');
 
   BrandDetail = function (page, id, context) {
     setTimeout(function(){
-      template = require('template/brand_detail');
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/' + id, {
         cache: true,

@@ -8,10 +8,11 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
+  template = require('template/brand_blank');
 
   BrandBlank = function (page, id, context) {
     setTimeout(function(){
-      template = require('template/brand_blank');
+
       var tpl = HandlebarsHelper.compile(template);
 
       App.query('/cmp/blankarea/' + id, {

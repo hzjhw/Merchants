@@ -9,10 +9,10 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
+  template = require('template/include_header');
 
   IncludeHeader = function (page, render, data) {
     setTimeout(function(){
-      template = require('template/include_header');
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data || {
         logo_img: null

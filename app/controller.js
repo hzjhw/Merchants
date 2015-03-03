@@ -8,8 +8,6 @@ var WINDOW_WIDTH = null;
 var LOGIN_TYPE = 'home';
 var LOGIN_CHANGE =false;
 var CELL_PHONE = "cell_phone";
-var colourPages = [],
-  colour = localStorage[COLOUR_KEY] || 'teal';
 
 seajs.use(['App'], function (App) {
   function scroll(scrollTo, time) {
@@ -197,6 +195,197 @@ seajs.use(['App'], function (App) {
       $(page).find('.app-logo-container').height(WINDOW_WIDTH * 0.2);
     });
   });
+
+  /*品牌列表*/
+  App.controller('brand_list', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_list'}, this);
+
+    this.transition = 'slide-left';
+
+    this.transition = 'slide-left';
+
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
+    if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
+    if (!ctx.args.banner) ctx.args.banner = localStorage['brand_list_args_banner'];
+
+    localStorage['brand_list_args_id'] = ctx.args.id;
+    localStorage['brand_list_args_title'] = ctx.args.title;
+    localStorage['brand_list_args_banner'] = ctx.args.banner;
+
+    seajs.use(['BrandList'], function (BrandList) {
+      new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx.args.area);
+    });
+  });
+  /*品牌详细*/
+  App.controller('brand_detail', function (page) {
+    var ctx = this;
+    LOGIN_TYPE = 'brand_detail';
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_detail'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
+    localStorage['brand_detail_args_id'] = ctx.args.id;
+    seajs.use(['BrandDetail'], function (BrandDetail) {
+      new BrandDetail(page, ctx.args.id, ctx);
+    })
+  });
+  /*厂家信息*/
+  App.controller('brand_info', function (page) {
+    var ctx = this;
+    LOGIN_TYPE = 'brand_info';
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_info'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
+    localStorage['brand_info_args_id'] = ctx.args.id;
+    seajs.use(['BrandInfo'], function (BrandInfo) {
+      new BrandInfo(page, ctx.args.id, ctx);
+    });
+  });
+  /*厂家产品*/
+  App.controller('brand_product', function (page) {
+    var ctx = this;
+    LOGIN_TYPE = 'brand_product';
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_product'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
+    localStorage['brand_product_args_id'] = ctx.args.id;
+    seajs.use(['BrandProduct'], function (BrandProduct) {
+      new BrandProduct(page, ctx.args.id, ctx);
+    });
+  });
+  /*厂家实力*/
+  App.controller('brand_tec', function (page) {
+    var ctx = this;
+    LOGIN_TYPE = 'brand_tec';
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_tec'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
+    localStorage['brand_tec_args_id'] = ctx.args.id;
+    seajs.use(['BrandTec'], function (BrandTec) {
+      new BrandTec(page, ctx.args.id, ctx);
+    });
+  });
+  /*空白区域*/
+  App.controller('brand_blank', function (page) {
+    var ctx = this;
+    LOGIN_TYPE = 'brand_blank';
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_blank'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
+    localStorage['brand_blank_args_id'] = ctx.args.id;
+    seajs.use(['BrandBlank'], function (BrandBlank) {
+      new BrandBlank(page, ctx.args.id, ctx);
+    });
+  });
+  /*特色门馆*/
+  App.controller('brand_unique', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'fade', page: 'brand_unique'}, ctx);
+    seajs.use(['BrandUnique'], function (BrandUnique) {
+      new BrandUnique(page, ctx);
+    });
+  });
+  App.controller('category', function (page) {
+    App.initLoad(page, { transition: 'slideon-down', page: 'category'}, this);
+    seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
+      new CategoryCtrl(page, this);
+    });
+  });
+
+  /*搜藏的产品*/
+  App.controller('favorite_product', function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_product'}, this);
+    seajs.use(['FavPro'], function (FavPro) {
+      new FavPro(page);
+    });
+  });
+  /*搜藏的品牌*/
+  App.controller('favorite_brand', function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_brand'}, this);
+    seajs.use(['FavBrand'], function (FavBrand) {
+      new FavBrand(page);
+    });
+  });
+  /*我的抵金券*/
+  App.controller('favorite_money', function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_money'}, this);
+    seajs.use(['FavMoney'], function (FavMoney) {
+      new FavMoney(page);
+    });
+  });
+  /*我的意向合作*/
+  App.controller('favorite_cooprate', function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_cooprate'}, this);
+    seajs.use(['FavCooprate'], function (FavCooprate) {
+      new FavCooprate(page);
+    });
+  });
+  /*我的留言*/
+  App.controller('favorite_message', function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_message'}, this);
+    seajs.use(['FavMessage'], function (FavMessage) {
+      new FavMessage(page);
+    });
+  });
+
+  /*登录页面*/
+  App.controller('login_dealers', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'slide-left', page: 'login_dealers'}, ctx);
+    seajs.use(['Login'], function (Login) {
+      new Login(page, ctx);
+    });
+  });
+  /*经销商*/
+  App.controller('favorite_info', function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_info'}, this);
+    seajs.use(['FavInfo'], function (FavInfo) {
+      new FavInfo(page);
+    });
+  });
+  /*产品列表*/
+  App.controller('product_list', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'fade', page: 'product_list'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
+    localStorage['product_list_args_id'] = ctx.args.id;
+    seajs.use(['ProductList'], function (ProductList) {
+      new ProductList(page, ctx.args.id, ctx.args.price, ctx);
+    });
+  });
+
+  /*产品详细*/
+  App.controller('product_detail', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'fade', page: 'product_detail'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
+    if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
+    localStorage['product_detail_args_id'] = ctx.args.id;
+    localStorage['product_detail_args_proid'] = ctx.args.proid;
+    seajs.use(['ProductDetail'], function (ProductDetail) {
+      new ProductDetail(page, ctx.args.id, ctx.args.proid, ctx);
+    });
+  });
+  App.controller('product_search', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'fade', page: 'product_search'}, ctx);
+    seajs.use(['ProductSearch'], function (ProductSearch) {
+      new ProductSearch(page, ctx);
+    });
+  });
+  /*注册页面*/
+  App.controller('register_dealers', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'slide-left', page: 'register_dealers'}, ctx);
+    seajs.use(['Register'], function (Register) {
+      new Register(page, ctx);
+    });
+  });
+  /*搜索页面*/
+  App.controller('search', function (page) {
+    var ctx = this;
+    App.initLoad(page, { transition: 'fade', page: 'search'}, ctx);
+    seajs.use(['SearchIndex'], function (SearchIndex) {
+      new SearchIndex(page, ctx);
+    });
+  });
+
+
   window.onhashchange = function () {
     if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
     if (location.hash.length > 0) {
@@ -207,7 +396,7 @@ seajs.use(['App'], function (App) {
   App.enableDragTransition();
   try {
     if (location.hash.length > 0) {
-      App.restore();
+      App.restore()
     } else {
       App.load('home');
     }
