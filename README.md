@@ -111,3 +111,5 @@ App.setBackPage('brand_list'); // 获取 App.getBackPage()
 2) 多添加debug语句， 容易及早发现问题
 3) 请求数据最好加上cache: true缓存
 4) 所有返回按钮需加app-back 选择符
+5) appReady、appShow里注册事件必需先注销事件   
+[appShow在App.back中有效， appReady无效， appReady在App.load中有效]

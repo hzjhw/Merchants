@@ -113,13 +113,20 @@ seajs.use(['App'], function (App) {
       App.removeLoading();
       App.initTopScroll(page);
       App._Stack.destroy();
-      $(page).find('.btn-register').on('click', function () {
+      if (phoneNum !== '')
+        $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button app-btn btn-out'>退出</div> ");
+      else {
+        $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
+          '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
+      }
+      // appReady里注册事件必需先注销事件
+      $(page).find('.btn-register').off().on('click', function () {
         App.load('register_dealers');
       });
-      $(page).find('.btn-login').on('click', function () {
+      $(page).find('.btn-login').off().on('click', function () {
         App.load('login_dealers');
       });
-      $(page).find('.btn-out').on('click', function () {
+      $(page).find('.btn-out').off().on('click', function () {
         App.query("/loginout", {
           success: function (result) {
             if (result.msg == 'success') {
@@ -131,15 +138,6 @@ seajs.use(['App'], function (App) {
         })
       });
     }}, this);
-
-
-    if (phoneNum !== '') {
-      $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button app-btn btn-out'>退出</div> ")
-    }
-    else {
-      $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
-        '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
-    }
     try {
       $(page).find('[data-target="inputs"]')
         .attr('data-target', null)
@@ -199,7 +197,7 @@ seajs.use(['App'], function (App) {
     // 门馆展示
     seajs.use(['HomeBrand'], function (HomeBrand) {
       console.log('HomeBrand');
-      new HomeBrand(page);
+      App.HomeBrand = new HomeBrand(page);
     });
   });
 
@@ -222,7 +220,7 @@ seajs.use(['App'], function (App) {
     localStorage['brand_list_args_banner'] = ctx.args.banner;
 
     seajs.use(['BrandList'], function (BrandList) {
-      new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx.args.area);
+      App.BrandList = new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx.args.area);
     });
   });
   /*品牌详细*/
@@ -233,7 +231,7 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
     localStorage['brand_detail_args_id'] = ctx.args.id;
     seajs.use(['BrandDetail'], function (BrandDetail) {
-      new BrandDetail(page, ctx.args.id, ctx);
+      App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
     })
   });
   /*厂家信息*/
@@ -245,7 +243,7 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
     seajs.use(['BrandInfo'], function (BrandInfo) {
-      new BrandInfo(page, ctx.args.id, ctx);
+      App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
     });
   });
   /*厂家产品*/
@@ -257,7 +255,7 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
     seajs.use(['BrandProduct'], function (BrandProduct) {
-      new BrandProduct(page, ctx.args.id, ctx);
+      App.BrandProduct = new BrandProduct(page, ctx.args.id, ctx);
     });
   });
   /*厂家实力*/
@@ -269,7 +267,7 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
     seajs.use(['BrandTec'], function (BrandTec) {
-      new BrandTec(page, ctx.args.id, ctx);
+      App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
     });
   });
   /*空白区域*/
@@ -281,7 +279,7 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
     seajs.use(['BrandBlank'], function (BrandBlank) {
-      new BrandBlank(page, ctx.args.id, ctx);
+      App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);
     });
   });
   /*特色门馆*/
@@ -290,14 +288,14 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App.initLoad(page, { transition: 'fade', page: 'brand_unique'}, ctx);
     seajs.use(['BrandUnique'], function (BrandUnique) {
-      new BrandUnique(page, ctx);
+      App.BrandUnique = new BrandUnique(page, ctx);
     });
   });
   App.controller('category', function (page) {
     debug('【Controller】pageLoad: category');
     App.initLoad(page, { transition: 'slideon-down', page: 'category'}, this);
     seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
-      new CategoryCtrl(page, this);
+      App.CategoryCtrl = new CategoryCtrl(page, this);
     });
   });
 
@@ -306,7 +304,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: favorite_product');
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_product'}, this);
     seajs.use(['FavPro'], function (FavPro) {
-      new FavPro(page);
+      App.FavPro = new FavPro(page);
     });
   });
   /*搜藏的品牌*/
@@ -314,7 +312,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: favorite_brand');
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_brand'}, this);
     seajs.use(['FavBrand'], function (FavBrand) {
-      new FavBrand(page);
+      App.FavBrand = new FavBrand(page);
     });
   });
   /*我的抵金券*/
@@ -322,7 +320,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: favorite_money');
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_money'}, this);
     seajs.use(['FavMoney'], function (FavMoney) {
-      new FavMoney(page);
+      App.FavMoney = new FavMoney(page);
     });
   });
   /*我的意向合作*/
@@ -330,7 +328,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: favorite_cooprate');
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_cooprate'}, this);
     seajs.use(['FavCooprate'], function (FavCooprate) {
-      new FavCooprate(page);
+      App.FavCooprate = new FavCooprate(page);
     });
   });
   /*我的留言*/
@@ -338,7 +336,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: favorite_message');
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_message'}, this);
     seajs.use(['FavMessage'], function (FavMessage) {
-      new FavMessage(page);
+      App.FavMessage = new FavMessage(page);
     });
   });
 
@@ -348,7 +346,7 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App.initLoad(page, { transition: 'slide-left', page: 'login_dealers'}, ctx);
     seajs.use(['Login'], function (Login) {
-      new Login(page, ctx);
+      App.Login = new Login(page, ctx);
     });
   });
   /*经销商*/
@@ -356,7 +354,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: favorite_info');
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_info'}, this);
     seajs.use(['FavInfo'], function (FavInfo) {
-      new FavInfo(page);
+      App.FavInfo = new FavInfo(page);
     });
   });
   /*产品列表*/
@@ -370,7 +368,7 @@ seajs.use(['App'], function (App) {
       localStorage['product_list_args_id'] = null;
     }
     seajs.use(['ProductList'], function (ProductList) {
-      new ProductList(page, ctx.args.id, ctx.args.price, ctx.args.cat, ctx.args.keywords, ctx);
+      App.ProductList = new ProductList(page, ctx.args.id, ctx.args.price, ctx.args.cat, ctx.args.keywords, ctx);
     });
   });
 
@@ -384,7 +382,7 @@ seajs.use(['App'], function (App) {
     localStorage['product_detail_args_id'] = ctx.args.id;
     localStorage['product_detail_args_proid'] = ctx.args.proid;
     seajs.use(['ProductDetail'], function (ProductDetail) {
-      new ProductDetail(page, ctx.args.id, ctx.args.proid, ctx);
+      App.ProductDetail = new ProductDetail(page, ctx.args.id, ctx.args.proid, ctx);
     });
   });
   App.controller('product_search', function (page) {
@@ -392,7 +390,7 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App.initLoad(page, { transition: 'fade', page: 'product_search'}, ctx);
     seajs.use(['ProductSearch'], function (ProductSearch) {
-      new ProductSearch(page, ctx);
+      App.ProductSearch = new ProductSearch(page, ctx);
     });
   });
   /*注册页面*/
@@ -401,7 +399,7 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App.initLoad(page, { transition: 'slide-left', page: 'register_dealers'}, ctx);
     seajs.use(['Register'], function (Register) {
-      new Register(page, ctx);
+      App.Register = new Register(page, ctx);
     });
   });
   /*搜索页面*/
@@ -410,44 +408,44 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App.initLoad(page, { transition: 'fade', page: 'search'}, ctx);
     seajs.use(['SearchIndex'], function (SearchIndex) {
-      new SearchIndex(page, ctx);
+      App.SearchIndex = new SearchIndex(page, ctx);
     });
   });
 
 
   window.onhashchange = function () {
-    try{
+    try {
       debug('【Hash】onhashchange: ' + App.getCurrentHash() + ' -> ' + location.hash);
       if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
       if (location.hash.length > 0) {
         var _page = location.hash.substring(2, location.hash.length);
         /*if (App._Stack.size() === 0) {
-          window.location.href = window.location.href;
-          window.BACK_HOME++;
-          if (window.BACK_HOME === 1) {
-            App.showConfirm('退出提示：', '是否退出？', null, function () {
-              window.history.back();
-            });
-          }
-          return;
-        }*/
-       /* if (App.hasBackPage() && App.hasBackPage() !== 'false'){
-          App.back(App.getBackPage());
-        } else{
-          App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
-        }*/
+         window.location.href = window.location.href;
+         window.BACK_HOME++;
+         if (window.BACK_HOME === 1) {
+         App.showConfirm('退出提示：', '是否退出？', null, function () {
+         window.history.back();
+         });
+         }
+         return;
+         }*/
+        /* if (App.hasBackPage() && App.hasBackPage() !== 'false'){
+         App.back(App.getBackPage());
+         } else{
+         App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
+         }*/
         var $back = $('.app-back');
-        if ($back.size() > 0){
+        if ($back.size() > 0) {
           $back.click();
-        } else{
-          if (App._Stack.size() === 0){
+        } else {
+          if (App._Stack.size() === 0) {
             _page = 'home';
             App._Stack.destroy();
           }
           App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
         }
       }
-    }catch(e){
+    } catch (e) {
       App._Stack.destroy();
       App.load('home');
     }
