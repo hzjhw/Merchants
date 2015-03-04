@@ -10,7 +10,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
   template = require('template/brand_tec');
 
   BrandTec = function (page, id, context) {
-    setTimeout(function(){
+    setTimeout(function () {
       debug('【Module】: Call BrandTec');
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/factgood/' + id, {
@@ -31,15 +31,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
             App.load($(this).attr('data-target'));
           });
           $(page).find('.go-back').click(function () {
-            if(LOGIN_CHANGE)
-            {
-              App.load(App.getBackPage());
-              LOGIN_CHANGE=false;
-            }
-            else
-            {
-              App.back(App.getBackPage());
-            }
+            App.back(App.getBackPage());
           });
         }
       });

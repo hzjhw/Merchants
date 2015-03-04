@@ -47,10 +47,9 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
         },
         success: function (data) {
           if (data.result == 'success') {
-            localStorage[CELL_PHONE]=data.phoneNum;
-            LOGIN_CHANGE=true;
-            App.load(LOGIN_TYPE);
-            //App.back();
+            localStorage[App.CELL_PHONE]=data.phoneNum;
+            App.LOGIN_CHANGE=true;
+            App.back();
           }
           else
           {
@@ -61,7 +60,10 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
              else if(data.msg == 'nophone')
              {
                var cntVal = '<span style="font-size: 20px"> 该手机号还未注册！立即注册吗?</span>';
-               window.showConfirm('未注册',cntVal,null,'register_dealers');
+               App.showConfirm('未注册',cntVal,null,function(){
+                 App.load('register_dealers');
+               });
+
                /*if(window.confirm("该手机号还未注册！立即注册吗?"))
                {
                  App.load('register_dealers');

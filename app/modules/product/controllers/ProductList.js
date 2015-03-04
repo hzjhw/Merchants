@@ -27,27 +27,29 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           if(result.msg == 'nologin')
           {
             cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
-            showConfirm('未登录', cntVal, null, 'login_dealers');
+            App.showConfirm('未登录', cntVal, null, function(){
+              App.load('login_dealers');
+            });
           }
           else if(result.msg == 'error')
           {
             cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
-            showMsg('收藏失败', cntVal);
+            App.showMsg('收藏失败', cntVal);
           }
           else if(result.msg == 'success')
           {
             cntVal = '<span style="font-size: 20px"> 您成功收藏该产品</span>';
-            showMsg('收藏成功', cntVal);
+            App.showMsg('收藏成功', cntVal);
           }
           else if(result.msg =='noproid')
           {
             cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
-            showMsg('收藏错误', cntVal);
+            App.showMsg('收藏错误', cntVal);
           }
           else if(result.msg =='hasCollect')
           {
             cntVal = '<span style="font-size: 20px"> 不能重复收藏该产品!</span>';
-            showMsg('重复收藏', cntVal);
+            App.showMsg('重复收藏', cntVal);
           }
         }
       });
@@ -146,7 +148,7 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
                 id: 'search_dialog',
                 skin: 'clickxiala',
                 title: ' ',
-                width: WINDOW_WIDTH - 74,
+                width: $(window).width() - 74,
                 fixed: false,
                 height: $xiala.height(),
                 content: $xiala.html(),

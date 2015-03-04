@@ -11,7 +11,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
   template = require('template/brand_detail');
 
   BrandDetail = function (page, id, context) {
-    setTimeout(function(){
+    setTimeout(function () {
       debug('【Module】: Call BrandDetail');
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/' + id, {
@@ -26,24 +26,16 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           }
           result.indexInfo.id = id;
           $(page).html(tpl(result.indexInfo));
-          seajs.use(['IncludeMessage', 'IncludeHeader'], function(IncludeMessage, IncludeHeader){
+          seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
               id: id
             });
-            result.indexInfo.icon=1;
-            new IncludeHeader(page,'#include_header',result.indexInfo);
+            result.indexInfo.icon = 1;
+            new IncludeHeader(page, '#include_header', result.indexInfo);
           });
 
           $(page).find('.go-back').click(function () {
-            if(LOGIN_CHANGE)
-            {
-              App.load(App.getBackPage());
-              LOGIN_CHANGE=false;
-            }
-            else
-            {
-              App.back(App.getBackPage());
-            }
+            App.back(App.getBackPage());
           });
         }
       });

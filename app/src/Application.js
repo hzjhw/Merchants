@@ -169,7 +169,7 @@ Application.prototype = {
       App.addLoading();
       if (options.page) App.addHash('#/' + options.page);
       //if (App._Stack.size() > 5) App._Stack.shift();
-      console.log('【Stack】Stack size: ' + App._Stack.size());
+      //console.log('【Stack】Stack size: ' + App._Stack.size());
       // show
       $(page).on('appForward', function () {
         setTimeout(function () {
@@ -181,6 +181,10 @@ Application.prototype = {
         options.appLayout && options.appLayout.call(context, page);
       });
       $(page).on('appShow', function () {
+        console.log('【Stack】Stack size: ' + App._Stack.size());
+        if (App.LOGIN_CHANGE){
+
+        }
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {

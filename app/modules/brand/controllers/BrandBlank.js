@@ -11,7 +11,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
   template = require('template/brand_blank');
 
   BrandBlank = function (page, id, context) {
-    setTimeout(function(){
+    setTimeout(function () {
       debug('【Module】: Call BrandBlank');
       var tpl = HandlebarsHelper.compile(template);
 
@@ -37,15 +37,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           });
 
           $(page).find('.go-back').click(function () {
-            if(LOGIN_CHANGE)
-            {
-              App.load(App.getBackPage());
-              LOGIN_CHANGE=false;
-            }
-            else
-            {
-              App.back(App.getBackPage());
-            }
+            App.back(App.getBackPage());
           });
           $(page).find('.province a').each(function () {
 
@@ -58,7 +50,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
                 success: function (result) {
                   blkContent.empty();
                   Est = require('Est');
-                  var filter = Est.filter(result.blkAreas, function(item){
+                  var filter = Est.filter(result.blkAreas, function (item) {
                     return item.up_area_id === '111111';
                   });
 
@@ -71,16 +63,14 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
                   });
 
                   var firstNode = "<p> <span class ='b ";
-                  if(filter[0].is_city === '2')
-                  {
+                  if (filter[0].is_city === '2') {
                     firstNode += "red'> ";
                   }
-                  else
-                  {
+                  else {
                     firstNode += "'>";
                   }
                   //todo
-                  var tpl2 = HandlebarsHelper.compile(firstNode+filter[0].area_name+'</span></p> {{#each list}}<p><span class="b {{#xif "this.is_city ==2"}}red{{/xif}}">{{area_name}}：</span>{{#each children}} <span class="{{#xif "this.is_city ==2"}}red{{/xif}}"> {{area_name}}</span>、{{/each}}</p>{{/each}}');
+                  var tpl2 = HandlebarsHelper.compile(firstNode + filter[0].area_name + '</span></p> {{#each list}}<p><span class="b {{#xif "this.is_city ==2"}}red{{/xif}}">{{area_name}}：</span>{{#each children}} <span class="{{#xif "this.is_city ==2"}}red{{/xif}}"> {{area_name}}</span>、{{/each}}</p>{{/each}}');
 
                   $(page).find('.blank_area_content').html(tpl2({
                     list: result.blkAreas

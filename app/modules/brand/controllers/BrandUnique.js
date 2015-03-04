@@ -52,20 +52,12 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
   }
 
   BrandUnique = function (page, context) {
-    setTimeout(function(){
+    setTimeout(function () {
       debug('【Module】: Call BrandUnique');
       template = require('template/brand_unique');
       $(page).html(template);
       $(page).find('.go-back').click(function () {
-        if(LOGIN_CHANGE)
-        {
-          App.load(App.getBackPage());
-          LOGIN_CHANGE=false;
-        }
-        else
-        {
-          App.back(App.getBackPage());
-        }
+        App.back(App.getBackPage());
       });
       $(page).find('.btn-category').click(function () {
         App.load('category');

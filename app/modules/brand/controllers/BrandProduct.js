@@ -9,20 +9,12 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
   App = require('App');
   template = require('template/brand_product');
 
-  BrandProduct = function(page, id, context){
-    setTimeout(function(){
+  BrandProduct = function (page, id, context) {
+    setTimeout(function () {
       debug('【Module】: Call BrandProduct');
       $(page).html(template);
-      $(page).find('.btn-back').click(function(){
-        if(LOGIN_CHANGE)
-        {
-          App.load(App.getBackPage());
-          LOGIN_CHANGE=false;
-        }
-        else
-        {
-          App.back(App.getBackPage());
-        }
+      $(page).find('.btn-back').click(function () {
+        App.back(App.getBackPage());
       });
       seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
         new IncludeMessage(page, '.message', {

@@ -3,11 +3,8 @@
  * @class main
  * @author yongjin<zjut_wyj@163.com> 2015/3/2
  */
-var WINDOW_WIDTH = null;
-var LOGIN_CHANGE = false;
-var LOGIN_TYPE = 'home';
-var CELL_PHONE = "cell_phone";
-var BACK_HOME = 0;
+App.LOGIN_CHANGE = false;
+App.CELL_PHONE = "cell_phone";
 
 App.scroll = function (scrollTo, time) {
   debug('【Util】App.scroll:' + scrollTo);
@@ -29,7 +26,7 @@ App.showMsg = function (titleVal, cntVal) {
     window.dialog = dialog({
       title: titleVal,
       content: cntVal,
-      width: WINDOW_WIDTH - 280,
+      width: $(window).width() - 280,
       button: [
         {value: '确定'}
       ]
@@ -41,7 +38,7 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
     window.dialog = dialog({
       title: titleVal,
       content: cntVal,
-      width: WINDOW_WIDTH - 280,
+      width: $(window).width() - 280,
       button: [
         {
           value: '确定',
@@ -62,7 +59,7 @@ App.show330 = function (page, callback) {
       id: '330dialog',
       title: '我的330',
       align: 'bottom right',
-      width: WINDOW_WIDTH - 280,
+      width: $(window).width() - 280,
       fixed: false,
       content: $('.container-my', $(page)).html(),
       onshow: function () {
@@ -86,7 +83,6 @@ App.initTopScroll = function (page) {
   var $appLogo = $('#app-index-logo', $(page));
   var $search = $('.app-search', $(page));
   var isHide = false;
-  WINDOW_WIDTH = $(window).width();
   $('.app-content', $(page)).get(0) &&
   $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
     var scrollTop = $appContent.scrollTop();
@@ -107,14 +103,16 @@ seajs.use(['App'], function (App) {
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
-    var phoneNum = localStorage[CELL_PHONE];
-    LOGIN_TYPE = 'home';
+    var phoneNum = localStorage[App.CELL_PHONE];
 
     $('#Loading').remove();
     App._Stack.destroy();
 
     App.initLoad(page, { transition: 'fade', page: 'home', appReady: function (page) {
+    }, appShow: function (page) {
+      App.removeLoading();
       App.initTopScroll(page);
+      App._Stack.destroy();
       $(page).find('.btn-register').on('click', function () {
         App.load('register_dealers');
       });
@@ -125,15 +123,13 @@ seajs.use(['App'], function (App) {
         App.query("/loginout", {
           success: function (result) {
             if (result.msg == 'success') {
-              localStorage[CELL_PHONE] = '';
-              LOGIN_CHANGE = true;
-              App.load(LOGIN_TYPE);
+              localStorage[App.CELL_PHONE] = '';
+              App.LOGIN_CHANGE = true;
+              App.back();
             }
           }
         })
       });
-    }, appShow: function (page) {
-      App.removeLoading();
     }}, this);
 
 
@@ -233,7 +229,6 @@ seajs.use(['App'], function (App) {
   App.controller('brand_detail', function (page) {
     debug('【Controller】pageLoad: brand_detail');
     var ctx = this;
-    LOGIN_TYPE = 'brand_detail';
     App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
     localStorage['brand_detail_args_id'] = ctx.args.id;
@@ -245,7 +240,6 @@ seajs.use(['App'], function (App) {
   App.controller('brand_info', function (page) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
-    LOGIN_TYPE = 'brand_info';
     App._Stack.pop();
     App.initLoad(page, { transition: 'fade', page: 'brand_info'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
@@ -259,7 +253,6 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
     App._Stack.pop();
-    LOGIN_TYPE = 'brand_product';
     App.initLoad(page, { transition: 'fade', page: 'brand_product'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
@@ -272,7 +265,6 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_tec');
     var ctx = this;
     App._Stack.pop();
-    LOGIN_TYPE = 'brand_tec';
     App.initLoad(page, { transition: 'fade', page: 'brand_tec'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
@@ -285,7 +277,6 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_blank');
     var ctx = this;
     App._Stack.pop();
-    LOGIN_TYPE = 'brand_blank';
     App.initLoad(page, { transition: 'fade', page: 'brand_blank'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
@@ -449,6 +440,10 @@ seajs.use(['App'], function (App) {
         if ($back.size() > 0){
           $back.click();
         } else{
+          if (App._Stack.size() === 0){
+            _page = 'home';
+            App._Stack.destroy();
+          }
           App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
         }
       }
