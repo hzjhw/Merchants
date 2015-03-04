@@ -385,12 +385,20 @@ seajs.use(['App'], function (App) {
   App.controller('product_list', function (page) {
     debug('【Controller】pageLoad: product_list');
     var ctx = this;
-    App.initLoad(page, { transition: 'fade', page: 'product_list'}, ctx);
+
     if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
     localStorage['product_list_args_id'] = ctx.args.id;
     if (ctx.args.price || ctx.args.cat) {
       localStorage['product_list_args_id'] = null;
     }
+    App.initLoad(page, { transition: 'fade', page: 'product_list',appShow:function(page){
+      if(typeof ctx.args.price === 'undefined') {
+      new IncludeMessage(page, '.message', {
+        id: ctx.args.id
+      });
+    }
+    }}, ctx);
+
     seajs.use(['ProductList'], function (ProductList) {
       App.ProductList = new ProductList(page, ctx.args.id, ctx.args.price, ctx.args.cat, ctx.args.keywords, ctx);
     });

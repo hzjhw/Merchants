@@ -92,17 +92,12 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           $(page).html(tpl(data));
 
           if (!price && !cat && !keywords) {
-            seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
+            seajs.use(['IncludeHeader'], function (IncludeHeader) {
               if(data.header){
                 data.header.id = id;
                 data.header.icon = 3;
               }
               new IncludeHeader(page, '#include_header', data.header);
-              if (typeof price === 'undefined') {
-                new IncludeMessage(page, '.message', {
-                  id: id
-                });
-              }
             });
           }
 
