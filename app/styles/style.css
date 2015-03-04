@@ -387,6 +387,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-topbar{border:none;overflow:hidden;}
 .app-title{font-size:20px}
 .btn-search{position: absolute; right: 25px; top: 20px; width: 50px; z-index: 9999999999999999999; height: 50px; background: url(img/search.jpg) no-repeat scroll center center transparent;}
+.app-top-login .sj {color:#fff;font-size:18px;text-align:left;height:90px;float:left;}
 /*分类*/
 .cate-ul{ overflow:hidden; }
 .cate-ul li{ float: left; width: 49%; background-color: #fff; height: 112px; margin-bottom: 10px;}

@@ -114,7 +114,7 @@ seajs.use(['App'], function (App) {
       App._Stack.destroy();
       var phoneNum = localStorage[App.CELL_PHONE];
       if (phoneNum !== '')
-        $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button app-btn btn-out'>退出</div> ");
+        $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
       else {
         $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
           '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
@@ -132,7 +132,7 @@ seajs.use(['App'], function (App) {
             if (result.msg == 'success') {
               localStorage[App.CELL_PHONE] = '';
               App.LOGIN_CHANGE = true;
-              App.back();
+              App.back('home');
             }
           }
         })

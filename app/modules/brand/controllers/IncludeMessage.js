@@ -13,11 +13,10 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       var islogin = false;
       template = require('template/include_message');
       var tpl = HandlebarsHelper.compile(template);
-
+      console.log("islogining:"+App.LOGIN_CHANGE);
       $(page).find(render).html(tpl(data));
       //TODO validate is login before submit
       App.query('/cmp/custInfo', {
-        cache:true,
         success: function (result) {
           if (result.msg == 'success') {
             $("#custname", $(page)).val(result.custInfo.contact_name);
