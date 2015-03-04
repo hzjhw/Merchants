@@ -103,7 +103,6 @@ seajs.use(['App'], function (App) {
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
-    var phoneNum = localStorage[App.CELL_PHONE];
 
     $('#Loading').remove();
     App._Stack.destroy();
@@ -113,6 +112,7 @@ seajs.use(['App'], function (App) {
       App.removeLoading();
       App.initTopScroll(page);
       App._Stack.destroy();
+      var phoneNum = localStorage[App.CELL_PHONE];
       if (phoneNum !== '')
         $(page).find(".app-top-login").html("<div class='btn-login'>手机号:" + phoneNum + "</div><div class='app-button app-btn btn-out'>退出</div> ");
       else {
@@ -227,9 +227,15 @@ seajs.use(['App'], function (App) {
   App.controller('brand_detail', function (page) {
     debug('【Controller】pageLoad: brand_detail');
     var ctx = this;
-    App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
     localStorage['brand_detail_args_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow:function(page){
+      seajs.use('IncludeMessage',function(IncludeMessage){
+        new IncludeMessage(page, '.message', {
+          id: ctx.args.id
+        });
+      })
+    }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
       App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
     })
@@ -239,9 +245,15 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
     App._Stack.pop();
-    App.initLoad(page, { transition: 'fade', page: 'brand_info'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_info', appShow:function(page){
+      seajs.use('IncludeMessage',function(IncludeMessage){
+        new IncludeMessage(page, '.message', {
+          id: ctx.args.id
+        });
+      })
+    }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
     });
@@ -263,9 +275,15 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_tec');
     var ctx = this;
     App._Stack.pop();
-    App.initLoad(page, { transition: 'fade', page: 'brand_tec'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appShow:function(page){
+      seajs.use('IncludeMessage',function(IncludeMessage){
+        new IncludeMessage(page, '.message', {
+          id: ctx.args.id
+        });
+      })
+    }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
       App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
     });
@@ -275,9 +293,15 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_blank');
     var ctx = this;
     App._Stack.pop();
-    App.initLoad(page, { transition: 'fade', page: 'brand_blank'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appShow:function(page){
+      seajs.use('IncludeMessage',function(IncludeMessage){
+        new IncludeMessage(page, '.message', {
+          id: ctx.args.id
+        });
+      })
+    }}, ctx);
     seajs.use(['BrandBlank'], function (BrandBlank) {
       App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);
     });

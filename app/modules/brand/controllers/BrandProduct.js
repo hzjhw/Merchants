@@ -16,10 +16,7 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
       $(page).find('.btn-back').click(function () {
         App.back(App.getBackPage());
       });
-      seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
-        new IncludeMessage(page, '.message', {
-          id: id
-        });
+      seajs.use(['IncludeHeader'], function (IncludeHeader) {
         data.header.id = id;
         data.header.icon = 3;
         new IncludeHeader(page, '#include_header', data.header);

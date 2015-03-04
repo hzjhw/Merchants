@@ -19,11 +19,9 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
         cache: true,
         success: function (result) {
           $(page).html(tpl(result));
+          if(!result.header) result.header ={};
           $(".blank_area", $(page)).hide();
-          seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
-            new IncludeMessage(page, '.message', {
-              id: id
-            });
+          seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.header.id = id;
             result.header.icon = 5;
             new IncludeHeader(page, '#include_header', result.header);

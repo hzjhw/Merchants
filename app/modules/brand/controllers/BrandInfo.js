@@ -28,10 +28,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           $(page).html(tpl(data.factInfo));
           $(page).find('.icon').removeClass('current');
           $(page).find('.data').addClass('current');
-          seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
-            new IncludeMessage(page, '.message', {
-              id: id
-            });
+          seajs.use(['IncludeHeader'], function (IncludeHeader) {
             data.header.id = id;
             data.header.icon = 2;
             new IncludeHeader(page, '#include_header', data.header);

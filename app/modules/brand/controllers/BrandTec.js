@@ -17,10 +17,8 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
         cache: true,
         success: function (result) {
           $(page).html(tpl(result));
-          seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
-            new IncludeMessage(page, '.message', {
-              id: id
-            });
+          if(!result.header) result.header={};
+          seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.header.id = id;
             result.header.icon = 4;
             new IncludeHeader(page, '#include_header', result.header);
