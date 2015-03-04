@@ -112,6 +112,7 @@ Application.prototype = {
    * @example
    *      App.render({
    *          render: '#brandList', // 容器
+   *          handlebars: HandlebarsHelper, // 必需
    *          page: page, // 作用域
    *          template: $('#brandList').html(),
    *          items: result.brandList.list // 数据列表
@@ -122,16 +123,14 @@ Application.prototype = {
    */
   render: function (options) {
     options = Application.extend({ empty: false }, options);
-    seajs.use(['HandlebarsHelper'], function (HandlebarsHelper) {
-      var $container = $(options.render, $(options.page || 'body')); // 渲染容器
-      var view = HandlebarsHelper.compile(options.template || $container.html()); // 单视图
-      if (options.empty) $container.empty();
-      var $node = $(view(options.data));
-      if (options.callback) {
-        options.callback.call(null, $node);
-      }
-      $container.append($node);
-    });
+    var $container = $(options.render, $(options.page || 'body')); // 渲染容器
+    var view = options.handlebars.compile(options.template || $container.html()); // 单视图
+    if (options.empty) $container.empty();
+    var $node = $(view(options.data));
+    if (options.callback) {
+      options.callback.call(null, $node);
+    }
+    $container.append($node);
   },
   addHash: function (name, page) {
     localStorage['_currentHash'] = name;
@@ -140,19 +139,19 @@ Application.prototype = {
   getCurrentHash: function () {
     return localStorage['_currentHash'];
   },
-  setBackPage: function(name){
+  setBackPage: function (name) {
     localStorage['backPage'] = name;
   },
-  getBackPage: function(){
+  getBackPage: function () {
     var backPage = localStorage['backPage'];
     var _back = backPage;
-    if (backPage === 'false'){
+    if (backPage === 'false') {
       _back = App._Stack.getBefore()[0];
     }
     localStorage['backPage'] = false;
     return _back;
   },
-  hasBackPage: function(){
+  hasBackPage: function () {
     return localStorage['backPage'];
   },
   addLoading: function () {
@@ -182,9 +181,6 @@ Application.prototype = {
       });
       $(page).on('appShow', function () {
         console.log('【Stack】Stack size: ' + App._Stack.size());
-        if (App.LOGIN_CHANGE){
-
-        }
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {
@@ -220,20 +216,60 @@ Application.prototype = {
     });
     //alert($(page).find('.app-content').height());
   },
+  initLazyLoad: function (page) {
+    seajs.use(['LazyLoad'], function () {
+      var appContent = $('.app-content', $(page));
+      $('.lazy', $(appContent)).lazyload({
+        container: appContent,
+        effect: "fadeIn"
+      });
+    });
+  },
   initPage: function (page, height) {
     //App.initContent(page);
     setTimeout(App._Pages.fixContent(page), 0);
     setTimeout(App._Pages.fixContent(page), 50);
     setTimeout(App._Pages.fixContent(page), 100);
     setTimeout(App._Pages.fixContent(page), 300);
+    setTimeout(App._Pages.fixContent(page), 500);
+    setTimeout(App._Pages.fixContent(page), 800);
+    setTimeout(App._Pages.fixContent(page), 1000);
+    setTimeout(App._Pages.fixContent(page), 1200);
+    setTimeout(App._Pages.fixContent(page), 1500);
+    setTimeout(App._Pages.fixContent(page), 2000);
+    setTimeout(App._Pages.fixContent(page), 2500);
+    setTimeout(App._Pages.fixContent(page), 3000);
+    setTimeout(App._Pages.fixContent(page), 3500);
+    setTimeout(App._Pages.fixContent(page), 4000);
+    setTimeout(App._Pages.fixContent(page), 4500);
+    setTimeout(App._Pages.fixContent(page), 5000);
+    setTimeout(App._Pages.fixContent(page), 6000);
+    setTimeout(App._Pages.fixContent(page), 7000);
+    setTimeout(App._Pages.fixContent(page), 8000);
+    setTimeout(App._Pages.fixContent(page), 9000);
+    setTimeout(App._Pages.fixContent(page), 10000);
+
+    setTimeout(App._Scroll.setup(page), 1000);
+    setTimeout(App._Scroll.setup(page), 2000);
+    setTimeout(App._Scroll.setup(page), 3000);
+    setTimeout(App._Scroll.setup(page), 4000);
+    setTimeout(App._Scroll.setup(page), 5000);
+    setTimeout(App._Scroll.setup(page), 6000);
+    setTimeout(App._Scroll.setup(page), 7000);
+    setTimeout(App._Scroll.setup(page), 8000);
+    setTimeout(App._Scroll.setup(page), 9000);
+    setTimeout(App._Scroll.setup(page), 10000);
+
     setTimeout(function () {
       App.initClick(page);
+    }, 300);
+    setTimeout(function(){
       var $content = $(page).find('.app-content');
       if ($content.height() > $(window).height()) {
         var $topbar = $(page).find('.app-topbar');
         App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
       }
-    }, 300);
+    }, 5000);
   },
   addCache: function (name, data) {
     this.cache[name] = data;

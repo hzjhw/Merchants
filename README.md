@@ -88,7 +88,14 @@ App.controller('brand_detail', function (page) {
 6) 设置返回点
 App.setBackPage('brand_list'); // 获取 App.getBackPage()
 
-7) 
+7) 图片延迟加载
+ // html
+ <!--品牌展示-->
+        <div id="merchants-show" class="app-lazyload">  // 这里必需加app-lazyload
+            <img class="lazy" data-original="{{CONST 'PIC_URL'}}{{brand_path}}" src="images/bottom-logo.png" alt="" width="284" height="347"/>
+        </div>
+ // js
+App.initLazyLoad(page);
 
 ### 响应速度方面
 1) 按钮点击响应速度

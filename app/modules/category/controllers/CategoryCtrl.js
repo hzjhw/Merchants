@@ -37,7 +37,7 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
           return false;
         });
       });
-      App.query('/product/price', {
+      /*App.query('/product/price', {
         cache: true,
         success: function (result) {
           var $container = $('.cate-pro-ul', $(page));
@@ -46,7 +46,7 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
             list: result.catList
           }});
         }
-      });
+      });*/
     }, 0);
   };
 

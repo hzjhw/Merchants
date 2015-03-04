@@ -21,7 +21,8 @@ seajs.config({
     'HandlebarsHelper': 'scripts/helper/HandlebarsHelper.js',
     'Est': 'vendor/Est/Est.min.js',
     'dialog': 'vendor/artDialog_v6/dialog.js',
-    'dialog-plus': 'vendor/artDialog_v6/dialog-plus.js'
+    'dialog-plus': 'vendor/artDialog_v6/dialog-plus.js',
+    'LazyLoad': 'vendor/lazyload/lazyload.js'
   }, App.getModules()),
 
   // 路径配置

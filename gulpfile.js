@@ -210,7 +210,7 @@ gulp.task('js-min', function () {
 // html css\js合并
 gulp.task('html-min', function () {
   return gulp.src(dist.html).pipe(usemin({
-    js: [uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } }).on('error', gutil.log),rev()], // 去掉uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } }).on('error', gutil.log),则不压缩JS
+    js: [rev()], // 去掉uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } }).on('error', gutil.log),则不压缩JS
     css: [minifyCSS(), 'concat', rev()],
     html: [htmlmin({empty: false})]
   })).pipe(gulp.dest(DISTDIR));

@@ -16,7 +16,7 @@
             {{#each list}}
             <li data-id="{{cust_id}}" class="app-button app-btn">
                 <div class="merchant-cont-img ">
-                    <img src="{{CONST 'PIC_URL'}}{{brand_path}}" alt="" width="284" height="347"/>
+                    <img class="lazy" data-original="{{CONST 'PIC_URL'}}{{brand_path}}" src="images/bottom-logo.png" alt="" width="284" height="347"/>
                 </div>
                 <div class="merchant-cont-title">
                     {{cust_name}}
