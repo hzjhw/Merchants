@@ -30,6 +30,40 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
               $sub.eq(index).addClass('cate-cur').siblings().removeClass('cate-cur');
             });
           });
+          $(page).find('.sc').click(function(){
+            App.query("/userinfo/savePro/"+proid,{
+              success:function(result){
+                if(result.msg == 'nologin')
+                {
+                  cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
+                  App.showConfirm('未登录', cntVal, null, function(){
+                    App.load('login_dealers');
+                  });
+                }
+                else if(result.msg == 'error')
+                {
+                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
+                  App.showMsg('收藏失败', cntVal);
+                }
+                else if(result.msg == 'success')
+                {
+                  cntVal = '<span style="font-size: 20px"> 您成功收藏该产品</span>';
+                  App.showMsg('收藏成功', cntVal);
+                }
+                else if(result.msg =='noproid')
+                {
+                  cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
+                  App.showMsg('收藏错误', cntVal);
+                }
+                else if(result.msg =='hasCollect')
+                {
+                  cntVal = '<span style="font-size: 20px"> 不能重复收藏该产品!</span>';
+                  App.showMsg('重复收藏', cntVal);
+                }
+              }
+            });
+          })
+
         }
       });
     }, 0);
