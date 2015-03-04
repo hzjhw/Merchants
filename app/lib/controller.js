@@ -393,10 +393,12 @@ seajs.use(['App'], function (App) {
     }
     App.initLoad(page, { transition: 'fade', page: 'product_list',appShow:function(page){
       if(typeof ctx.args.price === 'undefined') {
-      new IncludeMessage(page, '.message', {
-        id: ctx.args.id
-      });
-    }
+        seajs.use('IncludeMessage',function(IncludeMessage){
+          new IncludeMessage(page, '.message', {
+            id: ctx.args.id
+          });
+        })
+      }
     }}, ctx);
 
     seajs.use(['ProductList'], function (ProductList) {
