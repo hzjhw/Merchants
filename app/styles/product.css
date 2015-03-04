@@ -7,7 +7,7 @@ a{text-decoration:none;}
 #factory .header .hall{padding-left:11%;width:12.6%;background:url(img/plus.jpg) no-repeat scroll left center;}
 #factory .header .minus{background:url(img/minus.jpg) no-repeat scroll left center;}
 #factory .prolist{padding:0 2%;display:none;}
-#factory .prolist.show{position: fixed; display: block; background: #dfdfdf; z-index: 999999999999;}
+#factory .prolist.show{position: fixed; display: block; top: 86px;left: 0;background: #dfdfdf; z-index: 999999999999;}
 #factory .prolist a{color:#2d2d2d;float:left;font-size:24px;line-height:60px;font-family:Microsoft Yahei;}
 #factory .prolist a.hong{color:#bf2423;}
 #factory .prolist a.a001{width:28%;}

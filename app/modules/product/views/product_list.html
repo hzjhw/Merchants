@@ -1,7 +1,7 @@
 <div id="factory">
     <div class="app-topbar" style="height: 86px;">
         <div class="header">
-            <a class="fl go-back app-btn" href="javascript:void(0)">返回</a>
+            <a class="fl app-back go-back app-btn" href="javascript:void(0)">返回</a>
             <img class="fl logo" src="images/logo.jpg" alt="330门业招商节">
 
             <div class="fr hall">展馆</div>
@@ -23,6 +23,13 @@
                         {{/each}}
                         <div class="clear"></div>
                     </ul>
+                </div>
+                {{/each}}
+            </div>
+            <div class="xiala-price" style="display:none;">
+                <div class="ygtvtable-div1"><div class="fenlei01" data-id="all">全部</div></div>
+                {{#each priceList}}
+                <div class="ygtvtable-div1"><div class="fenlei01" data-id="{{para_key}}">{{para_value}}</div>
                 </div>
                 {{/each}}
             </div>

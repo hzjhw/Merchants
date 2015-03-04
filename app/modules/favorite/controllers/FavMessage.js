@@ -18,13 +18,11 @@ define('FavMessage', ['App','template/favMessage','HandlebarsHelper'], function 
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
           new IncludeBtm(page, '.footer_mes');
         });
-
         $(page).find('.btn-back').click(function () {
           App.back();
         });
-
       }
-    })
-  }
+    });
+  };
   module.exports = FavMessage;
 });

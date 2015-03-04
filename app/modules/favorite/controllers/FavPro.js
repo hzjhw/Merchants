@@ -22,7 +22,7 @@ define('FavPro', ['App','template/favPro','HandlebarsHelper'], function (require
           App.back();
         });
       }
-    })
-  }
+    });
+  };
   module.exports = FavPro;
 });

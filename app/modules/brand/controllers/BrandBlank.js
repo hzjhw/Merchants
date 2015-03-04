@@ -12,7 +12,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
 
   BrandBlank = function (page, id, context) {
     setTimeout(function(){
-
+      debug('【Module】: Call BrandBlank');
       var tpl = HandlebarsHelper.compile(template);
 
       App.query('/cmp/blankarea/' + id, {
@@ -39,20 +39,14 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           $(page).find('.go-back').click(function () {
             if(LOGIN_CHANGE)
             {
-              App.load(window.backPage);
+              App.load(App.getBackPage());
               LOGIN_CHANGE=false;
             }
             else
             {
-              App.back(window.backPage);
+              App.back(App.getBackPage());
             }
           });
-
-          // 底部导航
-          $(page).find('.buttombar-ul li').click(function () {
-            App.load($(this).attr('data-target'));
-          });
-
           $(page).find('.province a').each(function () {
 
             $(this).click(function () {
@@ -65,7 +59,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
                   blkContent.empty();
                   Est = require('Est');
                   var filter = Est.filter(result.blkAreas, function(item){
-                    return item.up_area_id === '111111'
+                    return item.up_area_id === '111111';
                   });
 
                   result.blkAreas = Est.bulidTreeNode(result.blkAreas, 'up_area_id', curId, {
@@ -93,13 +87,13 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
                   }));
                   $(".blank_area", $(page)).show();
                 }
-              })
-            })
+              });
+            });
           });
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = BrandBlank;
 });

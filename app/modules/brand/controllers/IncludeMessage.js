@@ -9,6 +9,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
 
   IncludeMessage = function (page, render, data) {
     setTimeout(function () {
+      debug('【Module】: Call IncludeMessage');
       var islogin = false;
       template = require('template/include_message');
       var tpl = HandlebarsHelper.compile(template);
@@ -16,6 +17,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       $(page).find(render).html(tpl(data));
       //TODO validate is login before submit
       App.query('/cmp/custInfo', {
+        cache:true,
         success: function (result) {
           if (result.msg == 'success') {
             $("#custname", $(page)).val(result.custInfo.contact_name);
@@ -39,7 +41,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         //TODO submit
         var custName = $("#custname", $(page)).val();
         var levMsg = $("#levMsg", $(page)).val();
-        if ($.trim(custName) == '') {
+        if ($.trim(custName) === '') {
           alert("留言前需填写您的姓名！");
           return;
         }
@@ -68,9 +70,9 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
             }
 
           }
-        })
+        });
       });
     }, 0);
-  }
+  };
   module.exports = IncludeMessage;
-})
+});

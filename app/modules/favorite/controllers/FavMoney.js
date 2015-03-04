@@ -24,7 +24,7 @@ define('FavMoney', ['App','template/favMoney','HandlebarsHelper'], function (req
         });
 
       }
-    })
-  }
+    });
+  };
   module.exports = FavMoney;
 });

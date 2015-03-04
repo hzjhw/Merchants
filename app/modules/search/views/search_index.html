@@ -1,12 +1,15 @@
 <div class="app-section">
     <div class="category-title">
         <div class="cate-item category-zg current">
-            空白区域搜索
+            空白区域
         </div>
         <div class="cate-item category-pro">
-            搜索产品
+            产品价格
         </div>
-        <div class="app-button app-btn category-close icon-bg"></div>
+        <div class="cate-item category-pro">
+            产品分类
+        </div>
+        <div class="app-button app-back app-btn category-close icon-bg"></div>
     </div>
 </div>
 <div class="app-content">
@@ -31,7 +34,17 @@
             </div>
             <ul class="cate-pro-ul search-price-ul">
                 {{#each list}}
-                <li id="{{para_key}}" class="app-btn">{{para_value}}</li>
+                <li data-id="{{para_key}}" class="app-btn">{{para_value}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="cate-item-sub cate-item-sub-2">
+            <div class="cate-item-sub-title">
+                请选择以下产品分类进入查看产品 <span class="icon-bg icon-down"></span>
+            </div>
+            <ul class="cate-pro-ul search-pro-ul">
+                {{#each list}}
+                <li data-id="{{cat_id}}" class="app-btn">{{cat_name}}</li>
                 {{/each}}
             </ul>
         </div>

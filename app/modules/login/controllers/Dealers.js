@@ -8,11 +8,12 @@ define('Dealers', ['App', 'template/dealers'], function (require, exports, modul
   template = require('template/dealers');
 
   Dealers = function (page, ctx) {
+    debug('【Module】: Call Dealers');
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back();
     });
-  }
+  };
 
   module.exports = Dealers;
 });

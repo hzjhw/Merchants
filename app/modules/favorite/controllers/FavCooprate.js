@@ -13,6 +13,7 @@ define('FavCooprate', ['App','template/favCooprate','HandlebarsHelper'], functio
   FavCooprate = function (page) {
     var tpl = HandlebarsHelper.compile(template);
     App.query('/userinfo/corperation', {
+      cache: true,
       success: function (result) {
         $(page).html(tpl(result));
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
@@ -24,7 +25,7 @@ define('FavCooprate', ['App','template/favCooprate','HandlebarsHelper'], functio
         });
 
       }
-    })
-  }
+    });
+  };
   module.exports = FavCooprate;
 });

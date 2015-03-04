@@ -9,6 +9,7 @@ define('ProductSearch', ['App', 'template/product_search'], function (require, e
   App = require('App');
   ProductSearch = function (page, ctx) {
     setTimeout(function(){
+      debug('【Module】: Call ProductSearch');
       template = require('template/product_search');
       $(page).html(template);
       $(page).find('.go-back').click(function () {
@@ -16,7 +17,7 @@ define('ProductSearch', ['App', 'template/product_search'], function (require, e
         });
       });
     }, 0);
-  }
+  };
 
   module.exports = ProductSearch;
 });

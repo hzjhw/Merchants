@@ -26,45 +26,46 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
         success:function(result){
           if(result.msg == 'nologin')
           {
-            var cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
+            cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
             showConfirm('未登录', cntVal, null, 'login_dealers');
           }
           else if(result.msg == 'error')
           {
-            var cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
+            cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
             showMsg('收藏失败', cntVal);
           }
           else if(result.msg == 'success')
           {
-            var cntVal = '<span style="font-size: 20px"> 您成功收藏该产品</span>';
+            cntVal = '<span style="font-size: 20px"> 您成功收藏该产品</span>';
             showMsg('收藏成功', cntVal);
           }
           else if(result.msg =='noproid')
           {
-            var cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
+            cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
             showMsg('收藏错误', cntVal);
           }
           else if(result.msg =='hasCollect')
           {
-            var cntVal = '<span style="font-size: 20px"> 不能重复收藏该产品!</span>';
+            cntVal = '<span style="font-size: 20px"> 不能重复收藏该产品!</span>';
             showMsg('重复收藏', cntVal);
           }
         }
-      })
+      });
     });
   }
 
-  ProductList = function (page, id, price, ctx) {
-
+  ProductList = function (page, id, price, cat, keywords, ctx) {
     setTimeout(function(){
+      debug('【Module】: Call ProductList');
       template = require('template/product_list');
       var tpl = HandlebarsHelper.compile(template);
       partTemplate = require('template/pro_partlist');
       var proHtml = HandlebarsHelper.compile(partTemplate);
       if (typeof id === 'undefined') return;
       var url = '/cmp/product/' + id;
-      if (price) {
-        url = '/product/price/' + price;
+      if (price || cat || keywords) {
+        url = '/product/price/' + price + '-' + cat + (keywords ? ('-' + keywords) : '');
+        $('.factory_logo .factory_banner .nav', $(page)).hide();
       }
       App.query(url, {
         cache: true,
@@ -72,7 +73,11 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           pageSize: 500
         },
         success: function (data) {
-          var colum = price ? 'productList' : 'proList';
+          var colum = 'proList';
+          if (price) colum = 'productList';
+          else if (cat) colum = 'catList';
+          else if (keywords) colum = 'productList';
+          else colum = 'proList';
           data.list = data[colum].list;
           Est = require('Est');
           data.allCats = Est.bulidTreeNode(data.allCats, 'up_cat_id', 'root', {
@@ -83,22 +88,24 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
             }
           });
           $(page).html(tpl(data));
-          seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
-            if(data.header){
-              data.header.id = id;
-              data.header.icon = 3;
-            }
-            new IncludeHeader(page, '#include_header', data.header);
-            if (typeof price === 'undefined') {
-              new IncludeMessage(page, '.message', {
-                id: id
-              });
-            }
-          });
 
+          if (!price && !cat && !keywords) {
+            seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
+              if(data.header){
+                data.header.id = id;
+                data.header.icon = 3;
+              }
+              new IncludeHeader(page, '#include_header', data.header);
+              if (typeof price === 'undefined') {
+                new IncludeMessage(page, '.message', {
+                  id: id
+                });
+              }
+            });
+          }
 
           $(page).find('.go-back').click(function () {
-            App.back(window.backPage);
+            App.back(App.getBackPage());
           });
 
 
@@ -113,7 +120,7 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           $(page).find("#factory .search-list-title .icons-largest").click(function () {
             $(this).toggleClass("icons-larger");
             $("#factory .search-list-cont").toggleClass("larger-view");
-          })
+          });
 
           /*$(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click',function () {
             App.load('product_detail', {
@@ -126,6 +133,14 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           // 筛选弹窗
           $(page).find('#factory .search-list-title .titlename').click(function () {
             var $dom = $(this).get(0);
+            var $xiala = null;
+            if (price && price !== 'all'){
+              $xiala = $('.xiala-price', $(page));
+            } else if(cat && cat !== 'all'){
+              $xiala = $('.xiala', $(page));
+            } else{
+              $xiala = $('.xiala', $(page));
+            }
             seajs.use(['dialog'], function (dialog) {
               window.search_dialog = dialog({
                 id: 'search_dialog',
@@ -133,19 +148,16 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
                 title: ' ',
                 width: WINDOW_WIDTH - 74,
                 fixed: false,
-                height: $('.xiala').height(),
-                content: $('.xiala', $(page)).html(),
+                height: $xiala.height(),
+                content: $xiala.html(),
                 onshow: function () {
                   var ctx = this;
-                  $('.ul-my li').click(function () {
-                    ctx.close().remove();
-                    App.load($(this).attr('data-target'));
-                  });
-
                   $('.fenlei01,.fenlei01 li').click(function () {
                     ctx.close().remove();
                     $(page).find('.search-list-title .name').text($(this).text());
+                    //TODO 搜索
                     App.query('/cmp/catPros', {
+                      cache: true,
                       data: {factid: id, catid: $(this).attr('data-id')},
                       success: function (result) {
                         $(page).find('.search-list-cont').empty();
@@ -153,11 +165,11 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
                         bindDetail(page,id);
                         bindCollect(page);
                       }
-                    })
+                    });
                   });
                 }
               }).showModal($dom);
-            })
+            });
           });
 
           //样式切换
@@ -186,7 +198,7 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = ProductList;
 });

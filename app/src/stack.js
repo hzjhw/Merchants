@@ -137,11 +137,14 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 		get        : fetchStack ,
 		getCurrent : fetchLastStackItem ,
 		getPage    : fetchPage ,
+    getLast    : getLastStackItem,
+    getBefore  : getBeforeStackItem,
 		pop        : popLastStackItem ,
 		push       : pushNewStackItem ,
 		size       : fetchStackSize ,
 		save       : saveStack ,
-		destroy    : destroyStack
+		destroy    : destroyStack,
+    shift      : shiftFirstStackitem
 	};
 
 
@@ -173,6 +176,18 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 	function fetchStackSize () {
 		return stack.length;
 	}
+  function getLastStackItem(){
+    if (stack.length !== 0){
+      return stack[stack.length-1];
+    }
+    return 'undefined';
+  }
+  function getBeforeStackItem(){
+    if (stack.length > 0){
+      return stack[stack.length-2];
+    }
+    return 'undefined';
+  }
 
 	function fetchLastStackItem () {
 		var pageData = stack[stack.length-1];
@@ -187,6 +202,9 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
 			return reorganisePageData(pageData);
 		}
 	}
+  function shiftFirstStackitem(){
+    App.removeFromStack(0, 1);
+  }
 
 	function pushNewStackItem (pageData) {
 		stack.push([pageData[0], pageData[3], pageData[4], pageData[1], pageData[2]]);

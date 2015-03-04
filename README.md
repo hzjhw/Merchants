@@ -78,9 +78,17 @@ $(page).find('.cate-ul li').click(function () {
 
 5) 初始化页面载入
 App.controller('brand_detail', function (page) {
-    App.initLoad(page, { transition: 'fade', page: 'brand_detail'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail', 
+        appReady: function(page){}, // 页面载入完毕事件
+        appShow: function(page){} // 页面显示事件
+    }, ctx);
     .....
 });
+
+6) 设置返回点
+App.setBackPage('brand_list'); // 获取 App.getBackPage()
+
+7) 
 
 ### 响应速度方面
 1) 按钮点击响应速度
@@ -95,4 +103,11 @@ App.controller('brand_detail', function (page) {
     });
     
 ### 样式方面
-1) 所有的文件统一最小24px
+1) 所有的文字统一最小24px
+
+### 注册事项
+1) 控制好App._Stack深度， 返回按钮尽量调用App.back('home'); 
+   标记返回点App.setBackPage('brand_list');尽早缩减Stack长度
+2) 多添加debug语句， 容易及早发现问题
+3) 请求数据最好加上cache: true缓存
+4) 所有返回按钮需加app-back 选择符

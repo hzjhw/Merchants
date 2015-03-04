@@ -10,6 +10,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
   template = require('template/login');
 
   Login = function (page, ctx) {
+    debug('【Module】: Call Login');
     $(page).html(template);
     $(page).find('.btn-back').click(function () {
       App.back();
@@ -25,7 +26,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
       var phoneNum = $("#phoneNum", $(page)).val();
       var passwd = $("#passwd", $(page)).val();
       var reg = /^(1[3|5|8])[\d]{9}$/;
-      if ($.trim(phoneNum) == '') {
+      if ($.trim(phoneNum) === '') {
         alert("手机号码不能为空！");
         return;
       }
@@ -35,7 +36,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
         return;
       }
 
-      if ($.trim(passwd) == '') {
+      if ($.trim(passwd) === '') {
         alert("密码不能为空！");
         return;
       }
@@ -68,9 +69,9 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
              }
           }
         }
-      })
+      });
     });
-  }
+  };
 
   module.exports = Login;
 });

@@ -11,6 +11,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
 
   function loadBrand(page, render, id, template) {
     // 列表
+    debug('loadBrand');
     var $loading = $(page).find('.loading'),
       $list = $(page).find(render),
       item = template,
@@ -34,7 +35,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
           for (var j = 0; j < result.productList.list.length; j++) {
             var $node = $(item(result.productList.list[j]));
             $node.click(function () {
-              window.backPage = 'brand_unique';
+              App.setBackPage('brand_unique');
               App.load('brand_detail', {
                 id: $(this).attr('data-id')
               });
@@ -46,23 +47,24 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
           callback(list);
           page.scroll.refresh();
         }
-      })
+      });
     });
   }
 
   BrandUnique = function (page, context) {
     setTimeout(function(){
+      debug('【Module】: Call BrandUnique');
       template = require('template/brand_unique');
       $(page).html(template);
       $(page).find('.go-back').click(function () {
         if(LOGIN_CHANGE)
         {
-          App.load(window.backPage);
+          App.load(App.getBackPage());
           LOGIN_CHANGE=false;
         }
         else
         {
-          App.back(window.backPage);
+          App.back(App.getBackPage());
         }
       });
       $(page).find('.btn-category').click(function () {
@@ -105,7 +107,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = BrandUnique;
 });

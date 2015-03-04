@@ -11,9 +11,10 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
 
   BrandTec = function (page, id, context) {
     setTimeout(function(){
-
+      debug('【Module】: Call BrandTec');
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/factgood/' + id, {
+        cache: true,
         success: function (result) {
           $(page).html(tpl(result));
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
@@ -32,18 +33,18 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
           $(page).find('.go-back').click(function () {
             if(LOGIN_CHANGE)
             {
-              App.load(window.backPage);
+              App.load(App.getBackPage());
               LOGIN_CHANGE=false;
             }
             else
             {
-              App.back(window.backPage);
+              App.back(App.getBackPage());
             }
           });
         }
       });
     }, 0);
-  }
+  };
 
 
   module.exports = BrandTec;

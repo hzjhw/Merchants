@@ -28,6 +28,6 @@ define('IncludeBtm', ['template/includeBtm'], function (require, exports, module
     $(page).find('#money').click(function(){
       App.load('favorite_money');
     });
-  }
+  };
   module.exports = IncludeBtm;
 });

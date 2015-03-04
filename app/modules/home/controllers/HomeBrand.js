@@ -7,10 +7,11 @@ define('HomeBrand', ['App', 'template/home_brand'], function (require, exports, 
   var HomeBrand, App, template;
 
   App = require('App');
+  template = require('template/home_brand');
 
   function bindBrandDetail(dom) {
     $('.merchant-content-ul li', dom).click(function () {
-      window.backPage = 'home';
+      App.setBackPage('home');
       App.addLoading();
       App.load('brand_detail', {
         id: $(this).attr('data-id')
@@ -19,9 +20,10 @@ define('HomeBrand', ['App', 'template/home_brand'], function (require, exports, 
   }
 
   HomeBrand = function (page, context) {
-    setTimeout(function () {
-      template = require('template/home_brand');
+    setTimeout(function(){
+      debug('【Module】: Call HomeBrand');
       App.query('/index', {
+        cache: true,
         success: function (result) {
           App.render({ render: '#merchants-show', page: page, template: template, data: {
             title: '品牌展示馆',
@@ -62,7 +64,7 @@ define('HomeBrand', ['App', 'template/home_brand'], function (require, exports, 
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = HomeBrand;
 });

@@ -11,17 +11,17 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
 
   BrandProduct = function(page, id, context){
     setTimeout(function(){
-
+      debug('【Module】: Call BrandProduct');
       $(page).html(template);
       $(page).find('.btn-back').click(function(){
         if(LOGIN_CHANGE)
         {
-          App.load(window.backPage);
+          App.load(App.getBackPage());
           LOGIN_CHANGE=false;
         }
         else
         {
-          App.back(window.backPage);
+          App.back(App.getBackPage());
         }
       });
       seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
@@ -37,7 +37,7 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
         App.load($(this).attr('data-target'));
       });
     }, 0);
-  }
+  };
 
   module.exports = BrandProduct;
 });

@@ -13,6 +13,7 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
 
   IncludeHeader = function (page, render, data) {
     setTimeout(function(){
+      debug('【Module】: Call IncludeHeader');
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data || {
         logo_img: null
@@ -24,8 +25,8 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
         return false;
       });
       $(page).find('.logo').click(function(){
-        App.load('home');
-      })
+        App.back('home');
+      });
       $(page).find("#factory .header .hall").on('click', function () {
         $(this).toggleClass("minus");
         $("#factory .prolist").toggleClass("show");
@@ -38,6 +39,6 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
         });
       });
     }, 0);
-  }
+  };
   module.exports = IncludeHeader;
 });

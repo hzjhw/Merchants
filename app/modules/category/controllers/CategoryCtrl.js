@@ -10,6 +10,7 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
 
   CategoryCtrl = function (page, context) {
     setTimeout(function(){
+      debug('【Module】: Call CategoryCtrl');
       template = require('template/category');
       $(page).html(template);
       $(page).find('.category-close').click(function () {
@@ -47,7 +48,7 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = CategoryCtrl;
 });

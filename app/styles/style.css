@@ -355,9 +355,9 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
     top: 50%;}
 /*logo*/
 .icon-bg{background: url(img/icon.png) no-repeat scroll 0 0 transparent;}
-.app-logo-container{background-color: #df246b; height: 70px;line-height: 70px;overflow: hidden;position:relative;}
-.app-top-login{height: 128px;text-align: right;}
-.app-logo{height: 128px; background-position: 14px 18px; background-size: 80% 1200%;}
+.app-logo-container{background-color: #df246b; height: 90px;line-height: 90px;overflow: hidden;position:relative;}
+.app-top-login{height: 90px;text-align: right;}
+.app-logo{height: 90px; background-position: 14px 10px; background-size: 80% 1200%;}
 .btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 50%; vertical-align: middle; font-size: 160%; padding-top: 15%; float: right;}
 .app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 28px;margin-top: 2px; padding-left: 0; padding-right: 0; }
 .grid-1{width: 10%;float:left;}
@@ -381,9 +381,9 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 /*搜索*/
 .app-search{position: relative;margin-top: 2px;}
 .app-page .app-topbar .btn-my{ background-position:center -175px; z-index: 9001;line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: relative; height: 26px; margin-top: 4px;padding-left: 0; padding-right: 0; }
-.input-search{ border: none; background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
+.input-search{ border: none; display:block;background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
 .btn-search-submit{ position:absolute; right: 0px; width: 100px; top: 0; height: 50px; text-indent: -999999px; }
-.app-topbar{color:#DDD;font-weight:700;height: 65px; background: #e0246b;}
+.app-topbar{color:#DDD;font-weight:700;height:90px;line-height: 90px; background: #e0246b;}
 .app-topbar{border:none;overflow:hidden;}
 .app-title{font-size:20px}
 .btn-search{position: absolute; right: 25px; top: 20px; width: 50px; z-index: 9999999999999999999; height: 50px; background: url(img/search.jpg) no-repeat scroll center center transparent;}
@@ -427,7 +427,19 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 /*
 分类*/
 .category-title{ position: relative; height: 90px; border-bottom: 1px solid #cccccc; background: -webkit-linear-gradient(#e6e6e6, #dfdfdf);  background: -o-linear-gradient(#e6e6e6, #dfdfdf);  background: -moz-linear-gradient(#e6e6e6, #dfdfdf);background: linear-gradient(#e6e6e6, #dfdfdf); }
-.category-zg, .category-pro{ color: #999;margin-top: 25px; line-height: 65px; height: 64px; padding-left: 30px; float: left; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-left: 20px; border: 1px solid #d8d8d8; padding-right: 30px; font-size: 25px; background: #eaeaea; }
+.category-zg, .category-pro{ color: #999;
+    margin-top: 25px;
+    line-height: 65px;
+    height: 64px;
+    padding-left: 12px;
+    float: left;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: 8px;
+    border: 1px solid #d8d8d8;
+    padding-right: 12px;
+    font-size: 25px;
+    background: #eaeaea;}
 .category-pro{ }
 .category-close{ position: absolute; right: 0; top: 0; width: 102px; z-index: 9000; background-position: -11px -407px; height: 90px; }
 .category-title .current{ color: #e0246b; height: 66px; border-bottom: none; background: #eee; }

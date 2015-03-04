@@ -12,13 +12,17 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
 
   BrandInfo = function (page, id, context) {
     setTimeout(function () {
-
+      debug('【Module】: Call BrandInfo');
       var tpl = HandlebarsHelper.compile(template);
 
       App.query('/cmp/factinfo/' + id, {
+        cache: true,
         success: function (data) {
           if (!data.factInfo) {
-            data.factInfo = {}
+            data.factInfo = {};
+          }
+          if (!data.header) {
+            data.header = {};
           }
           data.factInfo.id = id;
           $(page).html(tpl(data.factInfo));
@@ -44,16 +48,14 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
               nextDiv.hide();
               $(this).addClass('clicked');
             }
-          })
+          });
           $(page).find('.go-back').click(function () {
-            if(LOGIN_CHANGE)
-            {
-              App.load(window.backPage);
-              LOGIN_CHANGE=false;
+            if (LOGIN_CHANGE) {
+              App.load(App.getBackPage());
+              LOGIN_CHANGE = false;
             }
-            else
-            {
-              App.back(window.backPage);
+            else {
+              App.back(App.getBackPage());
             }
           });
 // 底部导航
@@ -61,12 +63,12 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             App.load($(this).attr('data-target'));
           });
         }
-      })
+      });
       $(page).find('.go-back').click(function () {
         App.back();
       });
     }, 0);
-  }
+  };
 
   module.exports = BrandInfo;
 });

@@ -9,6 +9,7 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
   App = require('App');
   SearchIndex = function (page, context, data) {
     setTimeout(function () {
+      debug('【Module】: Call SearchIndex');
       template = require('template/search_index');
       $(page).html(template);
       var $sub = $(page).find('.cate-item-sub');
@@ -27,22 +28,41 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
           App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
             list: result.priceList
           }});
+          var $container2 = $('.search-pro-ul', $(page));
+          var template2 = $container2.html();
+          App.render({ render: '.search-pro-ul', page: page, template: template2, empty: true, data: {
+            list: result.catList
+          }});
 
           $(page).find('.search-price-ul li').click(function(){
             App.load('product_list', {
               id: null,
               title: '产品搜索结果',
-              price: $(this).attr('id')
+              price: $(this).attr('data-id'),
+              cat: 'all',
+              keywords: null
+            });
+          });
+          $(page).find('.search-pro-ul li').click(function(){
+            App.load('product_list', {
+              id: null,
+              title: '产品搜索结果',
+              cat: $(this).attr('data-id'),
+              price: 'all',
+              keywords: null
             });
           });
         }
       });
+
+
+
       $(page).find('.category-close').click(function () {
         $(this).addClass('active');
-        App.back();
+        App.back('home');
       });
       $(page).find('.btn-search').click(function () {
-        window.backPage = 'search';
+        App.setBackPage('search');
         var area = $.trim($(page).find('.input-search').val());
         if (area.length > 0) {
           App.load('brand_list', {
@@ -53,8 +73,8 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
           });
         }
       });
-    }, 0)
-  }
+    }, 0);
+  };
 
   module.exports = SearchIndex;
 });

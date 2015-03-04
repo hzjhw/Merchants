@@ -134,8 +134,26 @@ Application.prototype = {
     });
   },
   addHash: function (name, page) {
-    this.currentHash = name;
+    localStorage['_currentHash'] = name;
     window.location.hash = name;
+  },
+  getCurrentHash: function () {
+    return localStorage['_currentHash'];
+  },
+  setBackPage: function(name){
+    localStorage['backPage'] = name;
+  },
+  getBackPage: function(){
+    var backPage = localStorage['backPage'];
+    var _back = backPage;
+    if (backPage === 'false'){
+      _back = App._Stack.getBefore()[0];
+    }
+    localStorage['backPage'] = false;
+    return _back;
+  },
+  hasBackPage: function(){
+    return localStorage['backPage'];
   },
   addLoading: function () {
     if (window.$loading) window.$loading.remove();
@@ -150,6 +168,8 @@ Application.prototype = {
     if (page) {
       App.addLoading();
       if (options.page) App.addHash('#/' + options.page);
+      //if (App._Stack.size() > 5) App._Stack.shift();
+      console.log('【Stack】Stack size: ' + App._Stack.size());
       // show
       $(page).on('appForward', function () {
         setTimeout(function () {
@@ -210,9 +230,6 @@ Application.prototype = {
         App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
       }
     }, 300);
-  },
-  getCurrentHash: function () {
-    return this.currentHash;
   },
   addCache: function (name, data) {
     this.cache[name] = data;

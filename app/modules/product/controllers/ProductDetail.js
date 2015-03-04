@@ -11,6 +11,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
 
   ProductDetail = function (page, id,proid, ctx) {
     setTimeout(function(){
+      debug('【Module】: Call ProductDetail');
       template = require('template/product_detail');
       var tpl = HandlebarsHelper.compile(template);
 
@@ -32,7 +33,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = ProductDetail;
 });

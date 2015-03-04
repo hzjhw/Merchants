@@ -13,6 +13,7 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
   FavInfo = function (page) {
     var tpl = HandlebarsHelper.compile(template);
     App.query('/userinfo', {
+      cache: true,
       success: function (result) {
         $(page).html(tpl(result.info));
 
@@ -26,7 +27,7 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
           var isoem = $('#isoem',$(page)).val();
           var year_sum = $('#year_sum',$(page)).val();
           var cust_id = $('#cust_id',$(page)).val();
-          if($.trim(name) == '')
+          if($.trim(name) === '')
           {
             alert('姓名不能为空!');
             return;
@@ -48,10 +49,10 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
                 alert('信息修改成功!');
               }else if (data.msg == 'error')
               {
-                alert('由于网络等因素,信息修改失败!')
+                alert('由于网络等因素,信息修改失败!');
               }
             }
-          })
+          });
         });
       }
     });
@@ -60,6 +61,6 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
 
 
 
-  }
+  };
   module.exports = FavInfo;
 });

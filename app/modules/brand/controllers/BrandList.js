@@ -11,6 +11,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
 
   BrandList = function (page, id, title, banner, area) {
     setTimeout(function () {
+      debug('【Module】: Call BrandList');
       template = require('template/brand_list');
       $(page).html(template);
       // 初始化标题与banner
@@ -18,7 +19,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
       $(page).find('.app-banner img').attr('src', 'images/' + banner + '.jpg');
       // 返回
       $(page).find('.go-back').click(function () {
-        App.load('home');
+        App.back('home');
       });
       // 分类
       $(page).find('.btn-category').click(function () {
@@ -26,7 +27,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
       });
       // 底部导航
       $(page).find('.buttombar-ul li').click(function () {
-        App.load($(this).attr('data-target'));
+        App.load($(this).attr('data-url'));
       });
       /*App._Utils.forEach(page.querySelectorAll('.app-content'), function (content) {
         App.Scrollable(content, false);
@@ -56,7 +57,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
             for (var j = 0; j < result[colum].list.length; j++) {
               var $node = $(item(result[colum].list[j]));
               $node.click(function () {
-                window.backPage = 'brand_list';
+                App.setBackPage('brand_list');
                 window.$loading = $('<div class="loading"></div>');
                 $('body').append(window.$loading);
                 App.load('brand_detail', {
@@ -69,11 +70,11 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
             pageNumber += 1;
             callback(list);
           }
-        })
+        });
       });
     }, 0);
     console.log('over');
-  }
+  };
 
   module.exports = BrandList;
 })

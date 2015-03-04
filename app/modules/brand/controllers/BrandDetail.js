@@ -12,6 +12,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
 
   BrandDetail = function (page, id, context) {
     setTimeout(function(){
+      debug('【Module】: Call BrandDetail');
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/' + id, {
         cache: true,
@@ -21,7 +22,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
               back_img: 'images/no-pic.jpg',
               header_img: 'images/no-pic.jpg',
               logo_img: 'images/no-pic.jpg'
-            }
+            };
           }
           result.indexInfo.id = id;
           $(page).html(tpl(result.indexInfo));
@@ -36,18 +37,18 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           $(page).find('.go-back').click(function () {
             if(LOGIN_CHANGE)
             {
-              App.load(window.backPage);
+              App.load(App.getBackPage());
               LOGIN_CHANGE=false;
             }
             else
             {
-              App.back(window.backPage);
+              App.back(App.getBackPage());
             }
           });
         }
       });
     }, 0);
-  }
+  };
 
   module.exports = BrandDetail;
 });

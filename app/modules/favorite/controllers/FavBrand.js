@@ -13,6 +13,7 @@ define('FavBrand', ['App','template/favBrand','HandlebarsHelper'], function (req
   FavBrand = function (page) {
     var tpl = HandlebarsHelper.compile(template);
     App.query('/userinfo/collectBrand', {
+      cache: true,
       success: function (result) {
         $(page).html(tpl(result));
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
@@ -22,7 +23,7 @@ define('FavBrand', ['App','template/favBrand','HandlebarsHelper'], function (req
           App.back();
         });
       }
-    })
-  }
+    });
+  };
   module.exports = FavBrand;
 });
