@@ -13,20 +13,9 @@ define('IncludeListBottom', ['App', 'template/include_list_bottom', 'HandlebarsH
     renderObj.html(HandlebarsHelper.compile(template));
     if(data.isLogin)
     {
-      renderObj.append('<li id="login-out" class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
+      renderObj.append('<li class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
       '<span class="buttombar-text">退出</span>'+
       '<span class="icon-bg icon-buttombar-sep"></span></li>');
-      $(page).find('#login-out').off().on("click",function(){
-        App.query('/loginout',{
-          success:function(result){
-            if(result.msg == 'success')
-            {
-              App.LOGIN_CHANGE=false;
-              App.back('home');
-            }
-          }
-        })
-      })
     }else
     {
       renderObj.append('<li data-url="login_dealers" class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
@@ -35,8 +24,23 @@ define('IncludeListBottom', ['App', 'template/include_list_bottom', 'HandlebarsH
     }
 
     // 底部导航
-    $(page).find('.buttombar-ul li').click(function () {
-      App.load($(this).attr('data-url'));
+    $(page).find('.buttombar-ul li').off().on('click',function () {
+      var urlVal =$(this).attr('data-url');
+      if(urlVal)
+        App.load(urlVal);
+      else
+      {
+        App.query('/loginout',{
+          success:function(result){
+            if(result.msg == 'success')
+            {
+              App.LOGIN_CHANGE=false;
+              localStorage[App.CELL_PHONE]='';
+              App.back('home');
+            }
+          }
+        })
+      }
     });
   };
   module.exports = IncludeListBottom;
