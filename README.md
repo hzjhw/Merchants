@@ -92,7 +92,7 @@ App.setBackPage('brand_list'); // 获取 App.getBackPage()
 
 ### 响应速度方面
 1) 按钮点击响应速度
-    在需要点击的按钮上添加app-btn选择符  如：<input type="button" class="app-btn" value="确定"/>
+    在需要点击的按钮上添加app-btn选择符  如：<input type="button" class="app-button app-btn" value="确定"/>
     
 2) 页面切换速度
     在模块文件中添加setTimeout(function(){}, 0);
