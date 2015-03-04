@@ -12,8 +12,10 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
   BrandList = function (page, id, title, banner, area) {
     setTimeout(function () {
       debug('【Module】: Call BrandList');
+
       template = require('template/brand_list');
       $(page).html(template);
+
       // 初始化标题与banner
       $(page).find('.topbar-title').html('3.30' + title);
       $(page).find('.app-banner img').attr('src', 'images/' + banner + '.jpg');
@@ -25,10 +27,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
       $(page).find('.btn-category').click(function () {
         App.load('category');
       });
-      // 底部导航
-      $(page).find('.buttombar-ul li').click(function () {
-        App.load($(this).attr('data-url'));
-      });
+
       /*App._Utils.forEach(page.querySelectorAll('.app-content'), function (content) {
         App.Scrollable(content, false);
       });*/

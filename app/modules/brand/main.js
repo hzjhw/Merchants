@@ -12,7 +12,7 @@ App.addModule('BrandBlank', 'modules/brand/controllers/BrandBlank.js');
 
 App.addModule('IncludeMessage', 'modules/brand/controllers/IncludeMessage.js');
 App.addModule('IncludeHeader', 'modules/brand/controllers/IncludeHeader.js');
-
+App.addModule('IncludeListBottom', 'modules/brand/controllers/IncludeListBottom.js');
 App.addModule('BrandUnique', 'modules/brand/controllers/BrandUnique.js');
 
 
@@ -50,4 +50,7 @@ App.addTemplate('template/include_message', function (require, exports, module) 
 });
 App.addTemplate('template/brand_unique', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_unique.html');
+});
+App.addTemplate('template/include_list_bottom', function (require, exports, module) {
+  module.exports = require('modules/brand/views/include_list_bottom.html');
 });

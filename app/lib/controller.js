@@ -205,11 +205,12 @@ seajs.use(['App'], function (App) {
   App.controller('brand_list', function (page) {
     debug('【Controller】pageLoad: brand_list');
     var ctx = this;
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_list'}, this);
-
-    this.transition = 'slide-left';
-
-    this.transition = 'slide-left';
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_list',appShow:function(page){
+       seajs.use(['IncludeListBottom'],function(IncludeListBottom){
+         new IncludeListBottom(page,'.buttombar-ul',{isLogin:App.LOGIN_CHANGE});
+       })
+    }}, this);
+    console.log('brandlist:'+App.LOGIN_CHANGE);
 
     if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
     if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
