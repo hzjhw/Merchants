@@ -13,7 +13,7 @@ body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-
 .app-ios-7 .app-page,.app-ios-8 .app-page{box-shadow:0 0 12px rgba(0,0,0,.2)}
 .app-topbar{z-index:3000;width:100%;background-color:#000;color:#FFF}
 .app-topbar .app-title{margin:0 auto;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.app-content{z-index:2000;background-color:#FFF;overflow:auto}
+.app-content{z-index:2000;background-color:#FFF;overflow:scroll;-webkit-overflow-scrolling:touch}
 .app-scrollhack>*{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 .app-section{margin:8px;border:none}
 .app-list{list-style:none}

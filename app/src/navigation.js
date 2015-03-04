@@ -53,6 +53,18 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   };
 
   App.back = function (pageName, callback) {
+    //debugger
+    //TODO App.back
+    if (App._Stack.size() === 0){
+      App.load('home');
+      return;
+    } else if (App._CustomStack.length > 0){
+      var item = App._CustomStack.pop();
+      App.load(item[0], item[1]);
+      return;
+    }
+    //TODO end
+
     switch (typeof pageName) {
       case 'function':
         callback = pageName;
@@ -276,7 +288,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
         }
       }
       if (index === -1) {
-        throw Error(backPageName + ' is not currently in the stack, cannot go back to it');
+        App._Stack.destroy();
+        App.load('home');
+        console.log('【Error】' + backPageName + ' is not currently in the stack, cannot go back to it');
       }
       if (index !== stack.length - 2) {
         App.removeFromStack(index + 1);

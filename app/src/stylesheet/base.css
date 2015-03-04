@@ -92,7 +92,8 @@ body {
     z-index: 2000;
     position: relative;
     background-color: #FFF;
-    overflow: auto;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .app-ios-7 .app-content,

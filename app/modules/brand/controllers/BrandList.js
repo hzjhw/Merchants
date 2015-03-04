@@ -28,20 +28,20 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
         App.load('category');
       });
 
-      /*App._Utils.forEach(page.querySelectorAll('.app-content'), function (content) {
-        App.Scrollable(content, false);
-      });*/
+      // 底部导航
+      $(page).find('.buttombar-ul li').click(function () {
+        App.load($(this).attr('data-url'));
+      });
+
       // 列表
-      var $loading = $(page).find('.loading'),
-        $list = $(page).find('.merchant-content-ul'),
-        item = $(page).find('.merchant-content-ul').html(),
+      var $list = $(page).find('.merchant-content-ul'),
+        item = HandlebarsHelper.compile($(page).find('.merchant-content-ul').html()),
         totalPage = null,
         pageNumber = 1,
         i = 1;
-      $loading.remove();
+
       $(page).find('.merchant-content-ul').empty();
-      item = HandlebarsHelper.compile(item);
-      App.infiniteScroll($list, { loading: $loading }, function (callback) {
+      App.infiniteScroll($list, { loading: App.getLoading()}, function (callback) {
         if (totalPage && (pageNumber > totalPage)) return null;
         App.query(area ? '/brand/schArea/' + encodeURIComponent(area) : '/brand/' + id, {
           cache: true,
@@ -57,8 +57,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
               var $node = $(item(result[colum].list[j]));
               $node.click(function () {
                 App.setBackPage('brand_list');
-                window.$loading = $('<div class="loading"></div>');
-                $('body').append(window.$loading);
+                App.addLoading();
                 App.load('brand_detail', {
                   id: $(this).attr('data-id')
                 });

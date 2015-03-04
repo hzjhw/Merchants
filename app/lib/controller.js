@@ -86,7 +86,7 @@ App.initTopScroll = function (page) {
   $('.app-content', $(page)).get(0) &&
   $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
     var scrollTop = $appContent.scrollTop();
-    if (scrollTop === 0) {
+    if (scrollTop < 100) {
       isHide = false;
       $search.css({marginTop: 0});
       $appLogo.show();
@@ -100,15 +100,17 @@ App.initTopScroll = function (page) {
 }
 
 seajs.use(['App'], function (App) {
+
+  var $Loading = $('#Loading');
+  App.Loading = $Loading.clone();
+  $Loading.remove();
+
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
-
-    $('#Loading').remove();
     App._Stack.destroy();
 
-    App.initLoad(page, { transition: 'fade', page: 'home', appReady: function (page) {
-    }, appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'home', appShow: function (page) {
       App.removeLoading();
       App.initTopScroll(page);
       App._Stack.destroy();
@@ -230,7 +232,7 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
     localStorage['brand_detail_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow:function(page){
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail', appReady:function(page){
       seajs.use('IncludeMessage',function(IncludeMessage){
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -248,7 +250,7 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_info', appShow:function(page){
+    App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady:function(page){
       seajs.use('IncludeMessage',function(IncludeMessage){
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -278,7 +280,7 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appShow:function(page){
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady:function(page){
       seajs.use('IncludeMessage',function(IncludeMessage){
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -296,7 +298,7 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appShow:function(page){
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady:function(page){
       seajs.use('IncludeMessage',function(IncludeMessage){
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -392,7 +394,7 @@ seajs.use(['App'], function (App) {
     if (ctx.args.price || ctx.args.cat) {
       localStorage['product_list_args_id'] = null;
     }
-    App.initLoad(page, { transition: 'fade', page: 'product_list',appShow:function(page){
+    App.initLoad(page, { transition: 'fade', page: 'product_list',appReady:function(page){
       if(typeof ctx.args.price === 'undefined') {
         seajs.use('IncludeMessage',function(IncludeMessage){
           new IncludeMessage(page, '.message', {
@@ -454,30 +456,21 @@ seajs.use(['App'], function (App) {
       if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
       if (location.hash.length > 0) {
         var _page = location.hash.substring(2, location.hash.length);
-        /*if (App._Stack.size() === 0) {
-         window.location.href = window.location.href;
-         window.BACK_HOME++;
-         if (window.BACK_HOME === 1) {
-         App.showConfirm('退出提示：', '是否退出？', null, function () {
-         window.history.back();
-         });
-         }
-         return;
-         }*/
-        /* if (App.hasBackPage() && App.hasBackPage() !== 'false'){
-         App.back(App.getBackPage());
-         } else{
-         App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
-         }*/
+        if (App._CustomStack.length > 0){
+          var item = App._CustomStack.pop();
+          App.load(item[0], item[1]);
+          return;
+        }
+        /*else if (!App._Stack.getPage(_page)) {
+          App.load('home');
+          return;
+        }*/
         var $back = $('.app-back');
         if ($back.size() > 0) {
           $back.click();
         } else {
-          if (App._Stack.size() === 0) {
-            _page = 'home';
-            App._Stack.destroy();
-          }
-          App.back(_page.indexOf('undefined') > -1 ? 'home' : _page);
+          debug('size stack is 0');
+          App.load('home');
         }
       }
     } catch (e) {
@@ -487,8 +480,16 @@ seajs.use(['App'], function (App) {
   }
   App.enableDragTransition();
   try {
+    //debugger
     if (location.hash.length > 0) {
-      App.restore({ maxAge: 5 * 60 * 1000 });
+      App._CustomStack = App._Stack.getRestoreStacks();
+      if (App._CustomStack.length === 0){
+        App.load('home');
+      } else{
+        var item = App._CustomStack.pop();
+        App.load(item[0], item[1]);
+      }
+      //App.restore({ maxAge: 5 * 60 * 1000 });
     } else {
       App._Stack.destroy();
       App.load('home');

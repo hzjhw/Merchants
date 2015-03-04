@@ -146,7 +146,7 @@ Application.prototype = {
     var backPage = localStorage['backPage'];
     var _back = backPage;
     if (backPage === 'false') {
-      _back = App._Stack.getBefore()[0];
+      _back = App._Stack.getBefore() ? App._Stack.getBefore()[0] : 'home';
     }
     localStorage['backPage'] = false;
     return _back;
@@ -158,6 +158,10 @@ Application.prototype = {
     if (window.$loading) window.$loading.remove();
     window.$loading = $('<div class="loading"></div>');
     $('body').append(window.$loading);
+    return window.$loading;
+  },
+  getLoading: function () {
+    return $('');
   },
   removeLoading: function () {
     if (window.$loading) window.$loading.remove();
@@ -167,8 +171,6 @@ Application.prototype = {
     if (page) {
       App.addLoading();
       if (options.page) App.addHash('#/' + options.page);
-      //if (App._Stack.size() > 5) App._Stack.shift();
-      //console.log('【Stack】Stack size: ' + App._Stack.size());
       // show
       $(page).on('appForward', function () {
         setTimeout(function () {
@@ -210,11 +212,9 @@ Application.prototype = {
   },
   initContent: function (page, height) {
     $(page).find('.app-content').height($(window).height() - (height || 0));
-    //alert($(window).height() - height);
     $(page).on('appShow', function () {
       $(page).find('.app-content').height($(window).height() - (height || 0));
     });
-    //alert($(page).find('.app-content').height());
   },
   initLazyLoad: function (page) {
     seajs.use(['LazyLoad'], function () {
@@ -227,43 +227,24 @@ Application.prototype = {
   },
   initPage: function (page, height) {
     //App.initContent(page);
+    setTimeout(App._Scroll.setup(page), 100);
+    setTimeout(App._Scroll.setup(page), 1000);
     setTimeout(App._Pages.fixContent(page), 0);
     setTimeout(App._Pages.fixContent(page), 50);
     setTimeout(App._Pages.fixContent(page), 100);
     setTimeout(App._Pages.fixContent(page), 300);
-    setTimeout(App._Pages.fixContent(page), 500);
-    setTimeout(App._Pages.fixContent(page), 800);
-    setTimeout(App._Pages.fixContent(page), 1000);
-    setTimeout(App._Pages.fixContent(page), 1200);
-    setTimeout(App._Pages.fixContent(page), 1500);
-    setTimeout(App._Pages.fixContent(page), 2000);
-    setTimeout(App._Pages.fixContent(page), 2500);
-    setTimeout(App._Pages.fixContent(page), 3000);
-    setTimeout(App._Pages.fixContent(page), 3500);
-    setTimeout(App._Pages.fixContent(page), 4000);
-    setTimeout(App._Pages.fixContent(page), 4500);
-    setTimeout(App._Pages.fixContent(page), 5000);
-    setTimeout(App._Pages.fixContent(page), 6000);
-    setTimeout(App._Pages.fixContent(page), 7000);
-    setTimeout(App._Pages.fixContent(page), 8000);
-    setTimeout(App._Pages.fixContent(page), 9000);
-    setTimeout(App._Pages.fixContent(page), 10000);
 
-    setTimeout(App._Scroll.setup(page), 1000);
-    setTimeout(App._Scroll.setup(page), 2000);
-    setTimeout(App._Scroll.setup(page), 3000);
-    setTimeout(App._Scroll.setup(page), 4000);
-    setTimeout(App._Scroll.setup(page), 5000);
-    setTimeout(App._Scroll.setup(page), 6000);
-    setTimeout(App._Scroll.setup(page), 7000);
-    setTimeout(App._Scroll.setup(page), 8000);
-    setTimeout(App._Scroll.setup(page), 9000);
-    setTimeout(App._Scroll.setup(page), 10000);
-
+    /*var flag = false;
+     while (!flag){
+     var $node = $(page).find('.app-content');
+     if ($node.size() > 0){
+     App.Scrollable($node.get(0), true);
+     }
+     }*/
     setTimeout(function () {
       App.initClick(page);
     }, 300);
-    setTimeout(function(){
+    setTimeout(function () {
       var $content = $(page).find('.app-content');
       if ($content.height() > $(window).height()) {
         var $topbar = $(page).find('.app-topbar');
