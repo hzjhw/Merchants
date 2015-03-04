@@ -131,7 +131,7 @@ seajs.use(['App'], function (App) {
           success: function (result) {
             if (result.msg == 'success') {
               localStorage[App.CELL_PHONE] = '';
-              App.LOGIN_CHANGE = true;
+              App.LOGIN_CHANGE = false;
               App.back('home');
             }
           }
@@ -160,7 +160,7 @@ seajs.use(['App'], function (App) {
       }, 0);
       var $dom = $(this).find('.span-my').get(0);
       App.query('/userinfo', {
-        cache: true,
+        //cache: true,
         success: function (data) {
           if (data.msg == 'nologin') {
             var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
