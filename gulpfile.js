@@ -234,7 +234,18 @@ gulp.task('dist-filter', function(){
   del(DISTDIR + '/lib/controller.js');
   del(DISTDIR + '/modules/*/main.js');
   del(DISTDIR + '/scripts/base.js');
+
+  del(DISTDIR + '/styles/base.css');
+  del(DISTDIR + '/styles/brand.css');
+  del(DISTDIR + '/styles/favorite.css');
+  del(DISTDIR + '/styles/login.css');
+  del(DISTDIR + '/styles/message.css');
+  del(DISTDIR + '/styles/product.css');
+  del(DISTDIR + '/styles/register.css');
+  del(DISTDIR + '/styles/style.css');
+
   del(DISTDIR + '/src/**');
+
   del(DISTDIR + '/config.js');
   del(DISTDIR + '/config.local.js');
   del(DISTDIR + '/const.js');
@@ -242,6 +253,9 @@ gulp.task('dist-filter', function(){
 
 // 过滤一些经常不变的内容， 比如图片、第三方插件等等
 gulp.task('dist-min', function(){
+  gulp.start('dist-filter');
   del(DISTDIR + '/images/**');
   del(DISTDIR + '/vendor/**');
+  del(DISTDIR + '/scripts/helper/**');
+  del(DISTDIR + '/styles/img/**');
 });

@@ -97,6 +97,57 @@ App.setBackPage('brand_list'); // 获取 App.getBackPage()
  // js
 App.initLazyLoad(page);
 
+8) 设置DIV可滚动 解决ios scroll不可滚动问题
+App.Scrollable($('.clickxiala .ui-dialog-content').get(0), false); // 注意滚动区域内只能容纳一个元素
+或（有缓冲效果）
+new App._IScroll($left.get(0), {
+            mouseWheel: true,
+            vScrollbar: false, 
+            fadeScrollbars: true
+          });
+参数说明：
+hScroll: true, //是否水平滚动  
+vScroll: true, //是否垂直滚动  
+x: 0, //滚动水平初始位置  
+y: 0, //滚动垂直初始位置  
+bounce: true, //是否超过实际位置反弹  
+bounceLock: false, //当内容少于滚动是否可以反弹，这个实际用处不大  
+momentum: true, //动量效果，拖动惯性  
+lockDirection: true,  
+//当水平滚动和垂直滚动同时生效时，当拖动开始是否锁定另一边的拖动  
+useTransform: true, //是否使用CSS形变  
+useTransition: false, //是否使用CSS变换  
+topOffset: 0, //已经滚动的基准值(一般情况用不到)  
+checkDOMChanges: false, //是否自动检测内容变化  
+// Scrollbar 的相关参数  
+hScrollbar: true, //是否显示水平滚动条  
+vScrollbar: true, //同上垂直滚动条  
+fixedScrollbar: isAndroid, //对andriod的fixed  
+hideScrollbar: isIDevice,  //是否隐藏滚动条  
+fadeScrollbar: isIDevice && has3d, //滚动条是否渐隐渐显  
+scrollbarClass: '', //字定义滚动条的样式名  
+// Zoom 放大相关的参数  
+zoom: false, //默认是否放大  
+zoomMin: 1, //放大的最小倍数  
+zoomMax: 4, //最大倍数  
+doubleTapZoom: 2, //双触放大几倍  
+wheelAction: 'scroll', //鼠标滚动行为（还可以是zoom） 
+
+// 自定义 Events 的相关参数   
+onRefresh: null, //refresh 的回调，关于自身何时调用refresh 后面会继续谈到  
+onBeforeScrollStart: function (e) { e.preventDefault(); },   
+//开始滚动前的时间回调，默认是阻止浏览器默认行为  
+onScrollStart: null, //开始滚动的回调  
+onBeforeScrollMove: null, //在内容移动前的回调  
+onScrollMove: null, //内容移动的回调  
+onBeforeScrollEnd: null, 在滚动结束前的回调  
+onScrollEnd: null, //在滚动完成后的回调  
+onTouchEnd: null, //手离开屏幕后的回调  
+onDestroy: null, //销毁实例的回调  
+onZoomStart: null,  
+onZoom: null,   
+onZoomEnd: null  
+
 ### 响应速度方面
 1) 按钮点击响应速度
     在需要点击的按钮上添加app-btn选择符  如：<input type="button" class="app-button app-btn" value="确定"/>

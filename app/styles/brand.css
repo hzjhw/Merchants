@@ -56,7 +56,7 @@
 #factory .data_product li {float:left;padding-left:5%;width:50%;}
 #factory .data_product li.r {width:38%;border-left:1px solid #ccc;}
 #factory .data_product p.mid {padding:40px 0;}
-#factory .cate-item-sub {padding:0;margin-bottom:20px;}
+#factory .cate-item-sub {padding:0;margin-bottom:20px;margin-top: 20px;}
 #factory .bs {padding:0;}
 #factory .data_product .cn {color:#6c6c6c;font-size:18px;line-height:36px;padding:0 35px 60px;}
 #factory .product_other {background:#fff;margin-top:30px;padding:0 18px;}

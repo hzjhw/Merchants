@@ -58,12 +58,16 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
     if (App._Stack.size() === 0){
       App.load('home');
       return;
-    } else if (App._CustomStack.length > 0){
+    } else if (App._CustomStack && App._CustomStack.length > 0){
       var item = App._CustomStack.pop();
       App.load(item[0], item[1]);
       return;
     }
+    if (pageName === 'home'){
+      App._Stack.destroy();
+    }
     //TODO end
+
 
     switch (typeof pageName) {
       case 'function':

@@ -3,8 +3,8 @@
  * @class ProductList
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 'Est', 'HandlebarsHelper'], function (require, exports, module) {
-  var ProductList, App, Est, template, HandlebarsHelper, partTemplate;
+define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper'], function (require, exports, module) {
+  var ProductList, App, Est, template, HandlebarsHelper;
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
@@ -61,8 +61,6 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
       debug('【Module】: Call ProductList');
       template = require('template/product_list');
       var tpl = HandlebarsHelper.compile(template);
-      partTemplate = require('template/pro_partlist');
-      var proHtml = HandlebarsHelper.compile(partTemplate);
       if (typeof id === 'undefined') return;
       var url = '/cmp/product/' + id;
       if (price || cat || keywords) {
@@ -95,6 +93,11 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           $(page).html(tpl(data));
 
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
+            if(!data.header){
+              data.header = {
+                hide: true
+              }
+            }
             data.header.icon = 3;
             new IncludeHeader(page, '#include_header', data.header);
           });
@@ -127,43 +130,57 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           bindCollect(page);
           // 筛选弹窗
           $(page).find('#factory .search-list-title .titlename').click(function () {
-            var $dom = $(this).get(0);
+            App.addLoading();
             var $xiala = null;
             if (price && price !== 'all'){
-              $xiala = $('.xiala-price', $(page));
+              $xiala = $('.xiala', $(page));
             } else if(cat && cat !== 'all'){
-              $xiala = $('.xiala', $(page));
+              $xiala = $('.xiala-price', $(page));
             } else{
-              $xiala = $('.xiala', $(page));
+              $xiala = $('.xiala-price', $(page));
             }
             seajs.use(['dialog'], function (dialog) {
               window.search_dialog = dialog({
                 id: 'search_dialog',
                 skin: 'clickxiala',
                 title: ' ',
-                width: $(window).width() - 74,
+                width: $(window).width() - 174,
                 fixed: false,
-                height: $xiala.height(),
+                height: 300,
                 content: $xiala.html(),
                 onshow: function () {
                   var ctx = this;
+                  App.removeLoading();
+
                   $('.fenlei01,.fenlei01 li').click(function () {
                     ctx.close().remove();
                     $(page).find('.search-list-title .name').text($(this).text());
+                    var dataId = $(this).attr('data-id');
                     //TODO 搜索
-                    App.query('/cmp/catPros', {
-                      cache: true,
-                      data: {factid: id, catid: $(this).attr('data-id')},
-                      success: function (result) {
+                    App.addLoading();
+                    seajs.use(['Est'], function(Est){
+                      var _tempData = Est.cloneDeep(data);
+                      if (price && price !== 'all'){
+                        // 过滤分类
+                        _tempData.list = Est.filter(_tempData.list, {cat_name: dataId});
+                        if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
-                        $(page).find('.search-list-cont').html(proHtml(result.proList));
-                        bindDetail(page,id);
-                        bindCollect(page);
+                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
+                      } else if(cat && cat !== 'all'){
+                        // 过滤价格
+                        _tempData.list = Est.filter(_tempData.list, {price: dataId});
+                        if (dataId === 'all') _tempData = data;
+                        $(page).find('.search-list-cont').empty();
+                        $(page).find('.search-list-cont').append(tpl($(tpl(_tempData)).find('.search-list-cont')));
                       }
+                      App.removeLoading();
+                      bindDetail(page,id);
+                      bindCollect(page);
                     });
                   });
+                  App.Scrollable($('.clickxiala .ui-dialog-content').get(0), false);
                 }
-              }).showModal($dom);
+              }).showModal();
             });
           });
 

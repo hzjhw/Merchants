@@ -340,19 +340,8 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 #Loading { position: absolute; top: 0; left: 0; width: 100%; height:100%; background: #ffffff; margin: 0px 0 0 0px; z-index: 0 }
 #heart { position: absolute; left: 50%; top: 50%; margin: -100px 0 0 -60px; }
 #Waiting { position: absolute; width: 100px; text-align: center; left: 50%; top: 13%; margin: 10px 0 0 -45px; }
-
-.loading{display: block;
-    width: 100px;
-    position: absolute;
-    background: url(img/loading.gif) no-repeat scroll center center #000;
-    z-index: 999999999;
-    height: 100px;
-    left: 50%;
-    border-radius: 10px;
-    margin-left: -50px;
-    opacity: 0.7;
-    margin-top: -50px;
-    top: 50%;}
+.loading-text{text-align: center;font-size: 30px;padding: 20px;}
+.loading{display: block; width: 100px; position: absolute; background: url(img/loading.gif) no-repeat scroll center center #000; z-index: 999999999; height: 100px; left: 50%; border-radius: 10px; margin-left: -50px; opacity: 0.7; margin-top: -50px; top: 50%;}
 /*logo*/
 .icon-bg{background: url(img/icon.png) no-repeat scroll 0 0 transparent;}
 .app-logo-container{background-color: #df246b; height: 90px;line-height: 90px;overflow: hidden;position:relative;}
@@ -428,19 +417,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 /*
 分类*/
 .category-title{ position: relative; height: 90px; border-bottom: 1px solid #cccccc; background: -webkit-linear-gradient(#e6e6e6, #dfdfdf);  background: -o-linear-gradient(#e6e6e6, #dfdfdf);  background: -moz-linear-gradient(#e6e6e6, #dfdfdf);background: linear-gradient(#e6e6e6, #dfdfdf); }
-.category-zg, .category-pro{ color: #999;
-    margin-top: 25px;
-    line-height: 65px;
-    height: 64px;
-    padding-left: 12px;
-    float: left;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-left: 8px;
-    border: 1px solid #d8d8d8;
-    padding-right: 12px;
-    font-size: 25px;
-    background: #eaeaea;}
+.category-zg, .category-pro{ color: #999; margin-top: 25px; line-height: 65px; height: 64px; padding-left: 12px; float: left; border-top-left-radius: 10px; border-top-right-radius: 10px; margin-left: 8px; border: 1px solid #d8d8d8; padding-right: 12px; font-size: 25px; background: #eaeaea;}
 .category-pro{ }
 .category-close{ position: absolute; right: 0; top: 0; width: 102px; z-index: 9000; background-position: -11px -407px; height: 90px; }
 .category-title .current{ color: #e0246b; height: 66px; border-bottom: none; background: #eee; }
@@ -514,3 +491,5 @@ span.text-price { color: #e0246b; }
 .icon-collect { background-position: -217px -687px; width: 32px; height: 32px; display: inline-block; vertical-align: bottom; }
 #mer-unique-ul{width: 100%;}
 #merchant-unique-right-inner{margin-left:10px;}
+
+.clickxiala .ui-dialog-content{overflow-y: scroll;overflow-x: hidden; -webkit-overflow-scrolling: touch;}
