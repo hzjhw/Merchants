@@ -291,6 +291,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
         App._Stack.destroy();
         App.load('home');
         console.log('【Error】' + backPageName + ' is not currently in the stack, cannot go back to it');
+        return;
       }
       if (index !== stack.length - 2) {
         App.removeFromStack(index + 1);

@@ -1,3 +1,4 @@
+.app-android .app-ios-only,.app-ios .app-android-only,.app-page{display:none}
 .app-page,body{overflow:hidden}
 body,div,form,html,img,label,li,p,span,ul{margin:0;padding:0;outline:0}
 body,html{height:100%;width:100%}
@@ -8,12 +9,13 @@ body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;-
 .clear{clear:both}
 .app-clickblocker{z-index:9000;position:fixed;top:0;left:0;height:100%;width:100%;background-color:#FFF;opacity:0}
 .app-content,.app-input,.app-page,.app-section,.app-topbar{position:relative}
-.app-page{display:none;height:100%;width:100%}
+.app-page{height:100%;width:100%}
 .app-input,.app-loaded .app-page{display:block}
 .app-ios-7 .app-page,.app-ios-8 .app-page{box-shadow:0 0 12px rgba(0,0,0,.2)}
 .app-topbar{z-index:3000;width:100%;background-color:#000;color:#FFF}
 .app-topbar .app-title{margin:0 auto;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.app-content{z-index:2000;background-color:#FFF;overflow:scroll;-webkit-overflow-scrolling:touch}
+.app-content{z-index:2000;background-color:#FFF;overflow:auto}
+.app-android-2 .app-content{-webkit-box-shadow:none;box-shadow:none}
 .app-scrollhack>*{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
 .app-section{margin:8px;border:none}
 .app-list{list-style:none}

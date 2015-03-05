@@ -111,6 +111,12 @@ App.initLazyLoad(page);
     
 ### 样式方面
 1) 所有的文字统一最小24px
+1) app-list : 列表
+    app-btn : 按钮
+    app-back: 返回按钮
+    app-topbar : 顶部
+    app-content: 内容
+    app-input : 输入框
 
 ### 注册事项
 1) 控制好App._Stack深度， 返回按钮尽量调用App.back('home'); 

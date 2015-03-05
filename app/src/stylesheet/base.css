@@ -40,6 +40,11 @@ body {
     clear: both;
 }
 
+.app-android .app-ios-only,
+.app-ios .app-android-only {
+    display: none;
+}
+
 /* Page */
 
 .app-clickblocker {
@@ -92,12 +97,12 @@ body {
     z-index: 2000;
     position: relative;
     background-color: #FFF;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
+    overflow: auto;
 }
 
-.app-ios-7 .app-content,
-.app-ios-8 .app-content {
+.app-android-2 .app-content {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 .app-scrollhack > * {
@@ -144,7 +149,7 @@ body {
 }
 
 .app-section .app-list > li:last-child,
-.app-section .app-list > li.app-button:last-child, .app-section .app-list > li.app-btn:last-child  {
+.app-section .app-list > li.app-button:last-child, .app-section .app-list > li.app-btn:last-child {
     border-bottom: none;
 }
 
@@ -162,7 +167,7 @@ body {
 }
 
 /* Buttons */
-.app-button:last-child , .app-btn:last-child{
+.app-button:last-child, .app-btn:last-child {
     border-bottom: none;
 }
 
@@ -174,7 +179,7 @@ body {
     background-color: #F77;
 }
 
-.app-content .app-button.blue, .app-content .app-btn.blue   {
+.app-content .app-button.blue, .app-content .app-btn.blue {
     background-color: #77F;
 }
 

@@ -129,8 +129,8 @@ gulp.task('base.min', function () {
 /*[1]APP*/
 paths['merge'] = {
   scripts: { source: ['./app/src/zepto.min.js', './app/src/fx.js', './app/src/clickable.js', './app/src/swapper.js', './app/src/scrollable.js',
-    './app/src/utils.js', './app/src/dialog.js', './app/src/events.js', './app/src/form.js', './app/src/metrics.js', './app/src/scroll.js',
-    './app/src/pages.js', './app/src/stack.js', './app/src/transitions.js', './app/src/navigation.js' , './app/src/scroll-fix.js', './app/src/api.js'
+    './app/src/utils.js', './app/src/dialog.js', './app/src/events.js', './app/src/form.js', './app/src/metrics.js', './app/src/scroll.js','./app/src/scroll-fix.js',
+    './app/src/pages.js', './app/src/stack.js', './app/src/transitions.js', './app/src/navigation.js' , './app/src/api.js'
   ], dist: './app/src', name: 'app.js' }
 }
 gulp.task('merge', function () {
@@ -209,6 +209,15 @@ gulp.task('js-min', function () {
 
 // html css\js合并
 gulp.task('html-min', function () {
+  return gulp.src(dist.html).pipe(usemin({
+    js: [uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } }).on('error', gutil.log),rev()], // 去掉uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } }).on('error', gutil.log),则不压缩JS
+    css: [minifyCSS(), 'concat', rev()],
+    html: [htmlmin({empty: false})]
+  })).pipe(gulp.dest(DISTDIR));
+});
+
+// html css\js未压缩版本
+gulp.task('html', function () {
   return gulp.src(dist.html).pipe(usemin({
     js: [rev()], // 去掉uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } }).on('error', gutil.log),则不压缩JS
     css: [minifyCSS(), 'concat', rev()],

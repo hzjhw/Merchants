@@ -14,113 +14,33 @@ Application.prototype = {
     this.templates = {};
     this.cache = {};
   },
-  /**
-   * 添加模板 分拆seajs配置文件，
-   * 实现每个模板都有自己的模块配置文件
-   *
-   * @method [模块] - addModule
-   * @param name
-   * @param val
-   * @author wyj 14.12.28
-   * @example
-   *        app.addModule('ProductList', '/modules/product/controllers/ProductList.js');
-   */
   addModule: function (name, val) {
     if (name in this['modules']) {
       console.log('已存在的模块：' + name);
     }
     this['modules'][name] = val;
   },
-  /**
-   * 获取所有模块
-   *
-   * @method [模块] - getModules
-   * @return {*}
-   * @author wyj 14.12.28
-   * @example
-   *
-   */
   getModules: function () {
     return this['modules'];
   },
-  /**
-   * 添加状态数据
-   *
-   * @method [状态] - addStatus
-   * @param name
-   * @param value
-   * @author wyj 15.1.7
-   */
   addStatus: function (name, value) {
     this['status'][name] = value;
   },
-  /**
-   * 获取状态数据
-   *
-   * @method [状态] - getStatus
-   * @param name
-   * @param value
-   * @author wyj 15.1.7
-   */
   getStatus: function (name) {
     return this['status'][name];
   },
-  /**
-   * 获取所有状态数据
-   * @method [状态] - getAllStatus
-   * @return {{}|*|Application.status}
-   * @author wyj 15.1.9
-   */
   getAllStatus: function () {
     return this.status;
   },
-  /**
-   * 添加模板, 目前无法解决seajs的实时获取问题
-   *
-   * @method [模板] - addTemplate
-   * @param name
-   * @param fn
-   * @author wyj 14.12.28
-   * @example
-   *        app.addTemplate('template/photo_item', function (require, exports, module) {
-              module.exports = require('modules/album/views/photo_item.html');
-            });
-   */
   addTemplate: function (name, fn) {
     if (name in this['templates']) {
       console.log('已存在的模板：' + name);
     }
     this['templates'][name] = fn;
   },
-  /**
-   * 获取所有模板
-   *
-   * @method [模板] - getTemplates
-   * @return {*}
-   * @author wyj 14.12.28
-   * @example
-   *        app.getTemplates();
-   */
   getTemplates: function () {
     return this['templates'];
   },
-  /**
-   * 单视图渲染
-   * @method [模板] - render
-   * @param options
-   * @author wyj 15.2.7
-   * @example
-   *      App.render({
-   *          render: '#brandList', // 容器
-   *          handlebars: HandlebarsHelper, // 必需
-   *          page: page, // 作用域
-   *          template: $('#brandList').html(),
-   *          items: result.brandList.list // 数据列表
-   *          callback: function(dom){
-   *
-   *          }
-   *      });
-   */
   render: function (options) {
     options = Application.extend({ empty: false }, options);
     var $container = $(options.render, $(options.page || 'body')); // 渲染容器
@@ -226,24 +146,18 @@ Application.prototype = {
     });
   },
   initPage: function (page, height) {
-    //App.initContent(page);
-    setTimeout(App._Scroll.setup(page), 100);
-    setTimeout(App._Scroll.setup(page), 1000);
-    setTimeout(App._Pages.fixContent(page), 0);
-    setTimeout(App._Pages.fixContent(page), 50);
-    setTimeout(App._Pages.fixContent(page), 100);
-    setTimeout(App._Pages.fixContent(page), 300);
 
-    /*var flag = false;
-     while (!flag){
-     var $node = $(page).find('.app-content');
-     if ($node.size() > 0){
-     App.Scrollable($node.get(0), true);
-     }
-     }*/
-    setTimeout(function () {
-      App.initClick(page);
-    }, 300);
+    setTimeout(function(){App._Pages.fixContent(page)}, 0);
+    setTimeout(function(){App._Pages.fixContent(page)}, 50);
+    setTimeout(function(){App._Pages.fixContent(page)}, 100);
+    setTimeout(function(){App._Pages.fixContent(page)}, 300);
+
+    setTimeout(function(){App._Scroll.setup(page)}, 0);
+    setTimeout(function(){App._Scroll.setup(page)}, 100);
+    setTimeout(function(){App._Scroll.setup(page)}, 1000);
+    setTimeout(function(){App._Scroll.setup(page)}, 3000);
+
+    setTimeout(function () { App.initClick(page);}, 300);
     setTimeout(function () {
       var $content = $(page).find('.app-content');
       if ($content.height() > $(window).height()) {
