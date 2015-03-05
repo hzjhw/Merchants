@@ -114,6 +114,7 @@ seajs.use(['App'], function (App) {
       App.removeLoading();
       App.initTopScroll(page);
       App._Stack.destroy();
+      App._CustomStack.length = 0;
       var phoneNum = localStorage[App.CELL_PHONE];
       if (phoneNum !== '')
         $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");

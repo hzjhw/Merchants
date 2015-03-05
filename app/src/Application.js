@@ -13,6 +13,8 @@ Application.prototype = {
     this.status = {};
     this.templates = {};
     this.cache = {};
+    this.topics = {};
+    this.subUid = -1;
   },
   addModule: function (name, val) {
     if (name in this['modules']) {
@@ -87,6 +89,40 @@ Application.prototype = {
     if (window.$loading) window.$loading.remove();
     else $('.loading').remove();
   },
+  trigger: function (topic, args) {
+    var ctx = this;
+    if (!this.topics[topic]) return false;
+    setTimeout(function () {
+      var subscribers = ctx.topics[topic],
+        len = subscribers ? subscribers.length : 0;
+      while (len--) {
+        subscribers[len].func(topic, args);
+      }
+    }, 0);
+    return true;
+  },
+  on: function (topic, func) {
+    if (!this.topics[topic]) this.topics[topic] = [];
+    var token = (++this.subUid).toString();
+    this.topics[topic].push({
+      token: token,
+      func: func
+    });
+    return token;
+  },
+  off: function (token) {
+    for (var m in this.topics) {
+      if (this.topics[m]) {
+        for (var i = 0, j = this.topics[m].length; i < j; i++) {
+          if (this.topics[m][i].token === token) {
+            this.topics[m].splice(i, 1);
+            return token;
+          }
+        }
+      }
+    }
+    return false;
+  },
   initLoad: function (page, options, context) {
     if (page) {
       App.addLoading();
@@ -108,6 +144,10 @@ Application.prototype = {
       $(page).on('appReady', function () {
         App.removeLoading();
         App.initPage(page);
+        App.off('queryEvent');
+        App.on('queryEvent', function (data) { // 绑定事件
+          App.initPage(page);
+        })
         options.appReady && options.appReady.call(context, page);
       });
       // back
@@ -147,17 +187,35 @@ Application.prototype = {
   },
   initPage: function (page, height) {
 
-    setTimeout(function(){App._Pages.fixContent(page)}, 0);
-    setTimeout(function(){App._Pages.fixContent(page)}, 50);
-    setTimeout(function(){App._Pages.fixContent(page)}, 100);
-    setTimeout(function(){App._Pages.fixContent(page)}, 300);
+    setTimeout(function () {
+      App._Pages.fixContent(page)
+    }, 0);
+    setTimeout(function () {
+      App._Pages.fixContent(page)
+    }, 50);
+    setTimeout(function () {
+      App._Pages.fixContent(page)
+    }, 100);
+    setTimeout(function () {
+      App._Pages.fixContent(page)
+    }, 300);
 
-    setTimeout(function(){App._Scroll.setup(page)}, 0);
-    setTimeout(function(){App._Scroll.setup(page)}, 100);
-    setTimeout(function(){App._Scroll.setup(page)}, 1000);
-    setTimeout(function(){App._Scroll.setup(page)}, 3000);
+    setTimeout(function () {
+      App._Scroll.setup(page)
+    }, 0);
+    setTimeout(function () {
+      App._Scroll.setup(page)
+    }, 100);
+    setTimeout(function () {
+      App._Scroll.setup(page)
+    }, 1000);
+    setTimeout(function () {
+      App._Scroll.setup(page)
+    }, 3000);
 
-    setTimeout(function () { App.initClick(page);}, 300);
+    setTimeout(function () {
+      App.initClick(page);
+    }, 300);
     setTimeout(function () {
       var $content = $(page).find('.app-content');
       if ($content.height() > $(window).height()) {

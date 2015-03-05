@@ -26,6 +26,7 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
       App.query('/index', {
         cache: true,
         success: function (result) {
+          $(page).find('#merchants-show').empty();
           App.render({ render: '#merchants-show', handlebars: HandlebarsHelper, page: page, template: template, data: {
             title: '品牌展示馆',
             list: result.brandList.list

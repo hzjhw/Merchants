@@ -34,6 +34,7 @@ App.query = function (query, options) {
         data: options.data,
         success: function (result) {
           if (options.cache) App.addCache(cacheId, result);
+          App.trigger('queryEvent', cacheId); // 触发事件
           options.success && options.success.call(this, result);
         }
       });

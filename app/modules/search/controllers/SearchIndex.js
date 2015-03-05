@@ -3,10 +3,11 @@
  * @class SearchIndex
  * @author yongjin<zjut_wyj@163.com> 2015/2/28
  */
-define('SearchIndex', ['App', 'template/search_index'], function (require, exports, module) {
-  var SearchIndex, App, template;
+define('SearchIndex', ['App', 'template/search_index', 'HandlebarsHelper,'], function (require, exports, module) {
+  var SearchIndex, App, template, HandlebarsHelper;
 
   App = require('App');
+  HandlebarsHelper = require('HandlebarsHelper');
   SearchIndex = function (page, context, data) {
     setTimeout(function () {
       debug('【Module】: Call SearchIndex');
@@ -25,12 +26,12 @@ define('SearchIndex', ['App', 'template/search_index'], function (require, expor
         success: function (result) {
           var $container = $('.search-price-ul', $(page));
           var template = $container.html();
-          App.render({ render: '.search-price-ul', page: page, template: template, empty: true, data: {
+          App.render({ render: '.search-price-ul',handlebars: HandlebarsHelper, page: page, template: template, empty: true, data: {
             list: result.priceList
           }});
           var $container2 = $('.search-pro-ul', $(page));
           var template2 = $container2.html();
-          App.render({ render: '.search-pro-ul', page: page, template: template2, empty: true, data: {
+          App.render({ render: '.search-pro-ul', handlebars: HandlebarsHelper,page: page, template: template2, empty: true, data: {
             list: result.catList
           }});
 

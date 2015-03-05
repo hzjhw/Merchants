@@ -187,6 +187,10 @@ gulp.task('publish', function () {
   return [gulp.start('base.min'), gulp.start('HandlebarsHelper.min'), gulp.start('merge.min'), gulp.start('app.min')];
 });
 
+function cleanDist(){
+
+}
+
 
 /** ==================================================== 项目发布 ====================================================*/
 
@@ -204,7 +208,7 @@ gulp.task('files-move', function () {
 gulp.task('js-min', function () {
   return [gulp.src(DISTDIR + '/lib/*.js').pipe(uglify()).pipe(gulp.dest(DISTDIR + '/lib')),
     gulp.src(DISTDIR + '/modules/*/controllers/*.js').pipe(jshint()).pipe(jshint.reporter(stylish)).pipe(uglify()).pipe(gulp.dest(DISTDIR + '/modules')),
-    gulp.src(DISTDIR + '/vendor/**/*.js').pipe(uglify()).pipe(gulp.dest(DISTDIR + '/vendor'))];
+    gulp.src(DISTDIR + '/vendor/**/*.js').pipe(uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } })).pipe(gulp.dest(DISTDIR + '/vendor'))];
 });
 
 // html css\js合并
@@ -223,4 +227,21 @@ gulp.task('html', function () {
     css: [minifyCSS(), 'concat', rev()],
     html: [htmlmin({empty: false})]
   })).pipe(gulp.dest(DISTDIR));
+});
+
+// 过滤无用内容， 减少上传流量
+gulp.task('dist-filter', function(){
+  del(DISTDIR + '/lib/controller.js');
+  del(DISTDIR + '/modules/*/main.js');
+  del(DISTDIR + '/scripts/base.js');
+  del(DISTDIR + '/src/**');
+  del(DISTDIR + '/config.js');
+  del(DISTDIR + '/config.local.js');
+  del(DISTDIR + '/const.js');
+});
+
+// 过滤一些经常不变的内容， 比如图片、第三方插件等等
+gulp.task('dist-min', function(){
+  del(DISTDIR + '/images/**');
+  del(DISTDIR + '/vendor/**');
 });

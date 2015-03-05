@@ -37,16 +37,6 @@ define('CategoryCtrl', ['App', 'template/category'], function (require, exports,
           return false;
         });
       });
-      /*App.query('/product/price', {
-        cache: true,
-        success: function (result) {
-          var $container = $('.cate-pro-ul', $(page));
-          var template = $container.html();
-          App.render({ render: '.cate-pro-ul', page: page, template: template, empty: true, data: {
-            list: result.catList
-          }});
-        }
-      });*/
     }, 0);
   };
 

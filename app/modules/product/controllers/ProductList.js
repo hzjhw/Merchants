@@ -68,7 +68,10 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
       if (price || cat || keywords) {
         url = '/product/price/' + price + '-' + cat + (keywords ? ('-' + keywords) : '');
         $('.factory_logo .factory_banner .nav', $(page)).hide();
+
+        $('#include_header', $(page)).hide();
       }
+
       App.query(url, {
         cache: true,
         data: {
@@ -91,15 +94,10 @@ define('ProductList', ['App', 'template/product_list', 'template/pro_partlist', 
           });
           $(page).html(tpl(data));
 
-          if (!price && !cat && !keywords) {
-            seajs.use(['IncludeHeader'], function (IncludeHeader) {
-              if(data.header){
-                data.header.id = id;
-                data.header.icon = 3;
-              }
-              new IncludeHeader(page, '#include_header', data.header);
-            });
-          }
+          seajs.use(['IncludeHeader'], function (IncludeHeader) {
+            data.header.icon = 3;
+            new IncludeHeader(page, '#include_header', data.header);
+          });
 
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());
