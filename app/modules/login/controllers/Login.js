@@ -40,6 +40,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
         alert("密码不能为空！");
         return;
       }
+      App.addLoading();
       App.query('/login', {
         data: {
           phoneNum: phoneNum,
@@ -49,7 +50,11 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
           if (data.result == 'success') {
             localStorage[App.CELL_PHONE]=data.phoneNum;
             App.LOGIN_CHANGE=true;
-            App.back();
+            if(App._Stack.size() > 0){
+              App.back();
+            } else{
+              App.load('home');
+            }
           }
           else
           {
