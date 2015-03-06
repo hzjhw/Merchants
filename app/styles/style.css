@@ -347,7 +347,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-logo-container{background-color: #df246b; height: 90px;line-height: 90px;overflow: hidden;position:relative;}
 .app-top-login{height: 90px;text-align: right;}
 .app-logo{height: 90px; background-position: 14px 10px; background-size: 80% 1200%;}
-.btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 50%; vertical-align: middle; font-size: 160%; padding-top: 15%; float: right;}
+.btn-login, .btn-register{color: #fff; width: 70px; text-align: left; display: table-cell; height: 30; vertical-align: middle; font-size: 30px; line-height: 30px;padding-top: 15%; float: right;}
 .app-page .btn-menu{ background-position: center -233px; padding-top: 32px;line-height: 30px;font-size: 130%;color: #fff; text-align: center;height: 28px;margin-top: 2px; padding-left: 0; padding-right: 0; }
 .grid-1{width: 10%;float:left;}
 .grid-15{width: 15%;float:left;}
@@ -372,8 +372,6 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .app-page .app-topbar .btn-my{ background-position:center -175px; z-index: 9001;line-height: 30px; color: #fff;font-size: 130%;padding-top: 32px;  text-align: center; position: relative; height: 26px; margin-top: 4px;padding-left: 0; padding-right: 0; }
 .input-search{ border: none; display:block;background-color: #fff;font-size: 130%; border-radius: 25px; width: 95%; padding-left: 5%; margin-top: 0px; height: 50px; background-position: right -110px; }
 .btn-search-submit{ position:absolute; right: 0px; width: 100px; top: 0; height: 50px; text-indent: -999999px; }
-.app-topbar{color:#DDD;font-weight:700;height:90px;line-height: 90px; background: #e0246b;}
-.app-topbar{border:none;overflow:hidden;}
 .app-title{font-size:20px}
 .btn-search{position: absolute; right: 25px; top: 20px; width: 50px; z-index: 9999999999999999999; height: 50px; background: url(img/search.jpg) no-repeat scroll center center transparent;}
 .app-top-login .sj {color:#fff;font-size:18px;text-align:left;height:90px;float:left;}
@@ -462,18 +460,35 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .registered textarea {height:100px;background-image:none;padding:0 15px;width:250px;}
 .registered input.x {width:170px;float:left;margin-left:20px;}
 .registered .dw {width:64px;float:left;height:34px;line-height:34px;margin-top:25px;font-size:32px;color:#6D6C6C;}
+/*顶部导航*/
+.app-topbar{color:#DDD;font-weight:700;height:90px;line-height: 90px; background: #e0246b;}
+.app-topbar{border:none;overflow:hidden;}
 .topbar-title{ text-align: center; color: #fff; font-size: 30px; font-weight: bold; }
 .topbar-right{ position: absolute; right: 5px; top: 5px; }
-.app-buttombar-cover{background: #000;height: 70px;opacity: 0.8; position:fixed;bottom: 0;width: 100%;z-index: 900000000;}
-.app-buttombar{ position: fixed; bottom: 0; height: 70px;  line-height: 70px; left: 0; color: #fff; z-index: 99999999999; width: 100%; }
-.icon-buttombar-home{background-position: 14px -667px; width: 50px; display: inline-block; height: 70px;vertical-align: middle;}
-.icon-buttombar-login{background-position: -35px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
-.icon-buttombar-register{background-position: -77px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
-.icon-buttombar-search{background-position: -122px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
-.icon-buttombar-sep{background-position: -180px -667px; width: 25px; display: inline-block; height: 70px; vertical-align: middle;}
-.buttombar-ul{overflow:hidden;}
-.buttombar-ul li{float: left;width: 25%;}
-.buttombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size: 20px;display: inline-block; vertical-align: middle; padding-right: 15px;}
+#app-index-logo.index-logo-hide{ margin-top: -90px; animation:mymove .5s forwards; -webkit-animation:mymove .5s forwards; }
+@keyframes mymove { from {margin-top:0px;} to {margin-top:-90px;} }
+@-webkit-keyframes mymove { from {margin-top:0px;} to {margin-top:-90px;} }
+.brand-top-auto-hide{ margin-top: -90px; animation:mymove .5s forwards; -webkit-animation:brandtopautohide .5s forwards; }
+@keyframes brandtopautohide { from {margin-top:0px;} to {margin-top:-90px;} }
+@-webkit-keyframes brandtopautohide { from {margin-top:0px;} to {margin-top:-90px;} }
+/*底部导航*/
+.app-bottombar{position:fixed;width: 100%;height: 70px;bottom: 0;left: 0;z-index:9999999;margin-bottom: -90px;}
+.bottombar-cover{background: #000;height: 70px;opacity: 0.8; position:absolute;bottom: 0;width: 100%;z-index: 900000000;}
+.bottombar{ position: absolute; bottom: 0; height: 70px;  line-height: 70px; left: 0; color: #fff; z-index: 99999999999; width: 100%; }
+.icon-bottombar-home{background-position: 0px -667px; width: 38px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-bottombar-login{background-position: -42px -667px; width: 38px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-bottombar-register{background-position: -77px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-bottombar-search{background-position: -122px -667px; width: 50px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-bottombar-collect{background-position: -216px -669px; width: 36px; display: inline-block; height: 70px; vertical-align: middle;}
+.icon-bottombar-sep{background-position: -189px -667px; width: 5px; display: inline-block; height: 70px; vertical-align: middle;}
+.bottombar-ul{overflow:hidden;}
+.bottombar-ul li{float: left;width: 25%;}
+.bottombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size: 20px;display: inline-block; vertical-align: middle; padding-right: 15px;}
+
+.brand-bottom-auto-show{ margin-bottom:0px; animation:brandbottomautohide .5s forwards; -webkit-animation:brandbottomautohide .5s forwards; }
+@keyframes brandbottomautohide { from {margin-bottom:-90px;} to {margin-bottom:0px;} }
+@-webkit-keyframes brandbottomautohide { from {margin-bottom:-90px;} to {margin-bottom:0px;} }
+/*按钮*/
 .app-page .btn-pink{}
 .go-back{color: #fff; padding-left: 20px; font-size: 24px; float: left;width: 100px;}
 .btn-category{text-align: right; padding-right: 10px; font-size: 24px; color: #fff;}
@@ -493,3 +508,6 @@ span.text-price { color: #e0246b; }
 #merchant-unique-right-inner{margin-left:10px;}
 
 .clickxiala .ui-dialog-content{overflow-y: scroll;overflow-x: hidden; -webkit-overflow-scrolling: touch;}
+
+
+

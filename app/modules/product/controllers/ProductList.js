@@ -3,14 +3,13 @@
  * @class ProductList
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
-define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper'], function (require, exports, module) {
+define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'], function (require, exports, module) {
   var ProductList, App, Est, template, HandlebarsHelper;
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
-  function bindDetail(page,id)
-  {
-    $(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click',function () {
+  function bindDetail(page, id) {
+    $(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click', function () {
       App.load('product_detail', {
         id: id,
         proid: $(this).parents('.glitzItem').attr('data-id')
@@ -18,36 +17,30 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
     });
   }
 
-  function bindCollect(page)
-  {
+  function bindCollect(page) {
     $(page).find('.search-list-cont .price .collect').click(function () {
       var proid = $(this).parents('.glitzItem').attr('data-id');
-      App.query("/userinfo/savePro/"+proid,{
-        success:function(result){
-          if(result.msg == 'nologin')
-          {
+      App.query("/userinfo/savePro/" + proid, {
+        success: function (result) {
+          if (result.msg == 'nologin') {
             cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
-            App.showConfirm('未登录', cntVal, null, function(){
+            App.showConfirm('未登录', cntVal, null, function () {
               App.load('login_dealers');
             });
           }
-          else if(result.msg == 'error')
-          {
+          else if (result.msg == 'error') {
             cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
             App.showMsg('收藏失败', cntVal);
           }
-          else if(result.msg == 'success')
-          {
+          else if (result.msg == 'success') {
             cntVal = '<span style="font-size: 20px"> 您成功收藏该产品</span>';
             App.showMsg('收藏成功', cntVal);
           }
-          else if(result.msg =='noproid')
-          {
+          else if (result.msg == 'noproid') {
             cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
             App.showMsg('收藏错误', cntVal);
           }
-          else if(result.msg =='hasCollect')
-          {
+          else if (result.msg == 'hasCollect') {
             cntVal = '<span style="font-size: 20px"> 不能重复收藏该产品!</span>';
             App.showMsg('重复收藏', cntVal);
           }
@@ -57,7 +50,7 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
   }
 
   ProductList = function (page, id, price, cat, keywords, ctx) {
-    setTimeout(function(){
+    setTimeout(function () {
       debug('【Module】: Call ProductList');
       template = require('template/product_list');
       var tpl = HandlebarsHelper.compile(template);
@@ -77,11 +70,13 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
         },
         success: function (data) {
           var colum = 'proList';
+          // 判断选取的列表
           if (price) colum = 'productList';
           else if (cat) colum = 'catList';
           else if (keywords) colum = 'productList';
           else colum = 'proList';
           data.list = data[colum].list;
+          // 构建厂家分类
           Est = require('Est');
           data.allCats = Est.bulidTreeNode(data.allCats, 'up_cat_id', 'root', {
             categoryId: 'cat_id',// 分类ＩＤ
@@ -90,53 +85,43 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
             callback: function (item) {
             }
           });
+          // Dom插入
           $(page).html(tpl(data));
-
-          seajs.use(['IncludeHeader'], function (IncludeHeader) {
-            if(!data.header){
-              data.header = {
-                hide: true
-              }
-            }
-            data.header.icon = 3;
-            new IncludeHeader(page, '#include_header', data.header);
-          });
-
+          // 如果是搜索页面隐藏底部导航
+          if (price || cat || keywords) {
+            $(page).find('.app-bottombar-cover').remove();
+          }
+          // 若不是搜索页面显示页头
+          if (!price && !cat && !keywords) {
+            seajs.use(['IncludeHeader'], function (IncludeHeader) {
+              if (!data.header) data.header = {};
+              data.header.id = id;
+              data.header.icon = 3;
+              data.header.hide = false;
+              new IncludeHeader(page, '#include_header', data.header);
+            });
+          }
+          // 返回按钮
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());
           });
-
-
-          /* $(page).find('.prolist a').click(function () {
-           App.load('brand_list', {
-           id: $(this).attr('data-id'),
-           title: $(this).attr('data-title'),
-           banner: $(this).attr('data-banner')
-           });
-           });*/
-
+          // 列表显示样式选择
           $(page).find("#factory .search-list-title .icons-largest").click(function () {
             $(this).toggleClass("icons-larger");
             $("#factory .search-list-cont").toggleClass("larger-view");
           });
-
-          /*$(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click',function () {
-            App.load('product_detail', {
-              id: id,
-              proid: $(this).parents('.glitzItem').attr('data-id')
-            });
-          });*/
-          bindDetail(page,id);
+          // 进入产品详细页面事件绑定及收藏功能绑定
+          bindDetail(page, id);
           bindCollect(page);
           // 筛选弹窗
           $(page).find('#factory .search-list-title .titlename').click(function () {
             App.addLoading();
             var $xiala = null;
-            if (price && price !== 'all'){
+            if (price && price !== 'all') {
               $xiala = $('.xiala', $(page));
-            } else if(cat && cat !== 'all'){
+            } else if (cat && cat !== 'all') {
               $xiala = $('.xiala-price', $(page));
-            } else{
+            } else {
               $xiala = $('.xiala-cmp', $(page));
             }
             seajs.use(['dialog'], function (dialog) {
@@ -158,15 +143,15 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
                     var dataId = $(this).attr('data-id');
                     //TODO 搜索
                     App.addLoading();
-                    seajs.use(['Est'], function(Est){
+                    seajs.use(['Est'], function (Est) {
                       var _tempData = Est.cloneDeep(data);
-                      if (price && price !== 'all'){
+                      if (price && price !== 'all') {
                         // 过滤分类
                         _tempData.list = Est.filter(_tempData.list, {cat_name: dataId});
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
                         $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
-                      } else if(cat && cat !== 'all'){
+                      } else if (cat && cat !== 'all') {
                         // 过滤价格
                         _tempData.list = Est.filter(_tempData.list, {price: dataId});
                         if (dataId === 'all') _tempData = data;
@@ -181,7 +166,7 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
 
                       }
                       App.removeLoading();
-                      bindDetail(page,id);
+                      bindDetail(page, id);
                       bindCollect(page);
                     });
                   });
@@ -195,9 +180,7 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
           var i = 0;
           var listCont = $(page).find('#factory .search-list-cont');
           $(page).find('.icons-list').click(function () {
-            if (i === 3) {
-              i = 0;
-            }
+            if (i === 3) i = 0;
             switch (i) {
               case 0:
                 $(this).removeClass("icons-list").addClass("icons-larger");

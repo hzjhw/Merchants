@@ -77,26 +77,54 @@ App.show330 = function (page, callback) {
     callback && callback.call(this, window.dialog);
   });
 }
-App.initTopScroll = function (page) {
-  debug('【Util】App.initTopScroll:');
+App.autoHide = function (page, options) {
+  debug('【Util】App.autoHideScroll:');
   var $appContent = $('.app-content', $(page));
-  var $appLogo = $('#app-index-logo', $(page));
-  var $search = $('.app-search', $(page));
   var isHide = false;
   $('.app-content', $(page)).get(0) &&
   $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
     var scrollTop = $appContent.scrollTop();
-    if (scrollTop < 100) {
-      isHide = false;
-      $search.css({marginTop: 0});
-      $appLogo.show();
-    }
-    if (scrollTop > 100 && !isHide) {
+    if (scrollTop > 0 && !isHide) {
       isHide = true;
-      $search.css({marginTop: 7}, '100');
-      $appLogo.hide();
+      options.hide && options.hide.call(this, scrollTop);
+    } else if (scrollTop === 0 && isHide) {
+      isHide = false
+      options.show && options.show.call(this, scrollTop);
     }
   });
+}
+App.initTopScroll = function (page) {
+  setTimeout(function(){
+    var $appLogo = $('#app-index-logo', $(page));
+    var $search = $('.app-search', $(page));
+    App.autoHide(page, {
+      show: function (scrollTop) {
+        $search.css({marginTop: 0});
+        $appLogo.removeClass('index-logo-hide');
+      },
+      hide: function (scrollTop) {
+        $search.css({marginTop: 7});
+        $appLogo.addClass('index-logo-hide');
+      }
+    });
+  }, 100);
+};
+App.initBrandAutoHide = function(page){
+  setTimeout(function(){
+    var $topbar = $('.app-topbar', $(page));
+    var $bottom = $('.app-bottombar')
+    App.autoHide(page, {
+      show: function (scrollTop) {
+        $topbar.removeClass('brand-top-auto-hide');
+        $bottom.removeClass('brand-bottom-auto-show');
+
+      },
+      hide: function (scrollTop) {
+        $topbar.addClass('brand-top-auto-hide');
+        $bottom.addClass('brand-bottom-auto-show');
+      }
+    });
+  }, 100)
 }
 
 seajs.use(['App'], function (App) {
@@ -208,12 +236,12 @@ seajs.use(['App'], function (App) {
   App.controller('brand_list', function (page) {
     debug('【Controller】pageLoad: brand_list');
     var ctx = this;
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_list',appShow:function(page){
-       seajs.use(['IncludeListBottom'],function(IncludeListBottom){
-         new IncludeListBottom(page,'.buttombar-ul',{isLogin:App.LOGIN_CHANGE});
-       })
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appReady: function (page) {
+      seajs.use(['IncludeListBottom'], function (IncludeListBottom) {
+        new IncludeListBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
     }}, this);
-    console.log('brandlist:'+App.LOGIN_CHANGE);
+    console.log('brandlist:' + App.LOGIN_CHANGE);
 
     if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
     if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
@@ -233,12 +261,18 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
     localStorage['brand_detail_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_detail', appReady:function(page){
-      seajs.use('IncludeMessage',function(IncludeMessage){
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow: function (page) {
+
+    }, appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
+      seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
-      })
+      });
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
       App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
@@ -251,12 +285,16 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady:function(page){
-      seajs.use('IncludeMessage',function(IncludeMessage){
+    App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
+      seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       })
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
@@ -267,7 +305,12 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
     App._Stack.pop();
-    App.initLoad(page, { transition: 'fade', page: 'brand_product'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
+      App.initBrandAutoHide(page);
+    }}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
     seajs.use(['BrandProduct'], function (BrandProduct) {
@@ -281,12 +324,17 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady:function(page){
-      seajs.use('IncludeMessage',function(IncludeMessage){
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady: function (page) {
+
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
+      seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       })
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
       App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
@@ -299,12 +347,16 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady:function(page){
-      seajs.use('IncludeMessage',function(IncludeMessage){
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
+      seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
-      })
+      });
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandBlank'], function (BrandBlank) {
       App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);
@@ -395,13 +447,19 @@ seajs.use(['App'], function (App) {
     if (ctx.args.price || ctx.args.cat) {
       localStorage['product_list_args_id'] = null;
     }
-    App.initLoad(page, { transition: 'fade', page: 'product_list',appReady:function(page){
-      if(typeof ctx.args.price === 'undefined') {
-        seajs.use('IncludeMessage',function(IncludeMessage){
+    App.initLoad(page, { transition: 'fade', page: 'product_list', appShow: function (page) {
+
+    }, appReady: function (page) {
+      if (typeof ctx.args.price === 'undefined') {
+        seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+        })
+        seajs.use('IncludeMessage', function (IncludeMessage) {
           new IncludeMessage(page, '.message', {
             id: ctx.args.id
           });
-        })
+        });
+        App.initBrandAutoHide(page);
       }
     }}, ctx);
 
@@ -457,15 +515,15 @@ seajs.use(['App'], function (App) {
       if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
       if (location.hash.length > 0) {
         var _page = location.hash.substring(2, location.hash.length);
-        if (App._CustomStack.length > 0){
+        if (App._CustomStack.length > 0) {
           var item = App._CustomStack.pop();
           App.load(item[0], item[1]);
           return;
         }
         /*else if (!App._Stack.getPage(_page)) {
-          App.load('home');
-          return;
-        }*/
+         App.load('home');
+         return;
+         }*/
         var $back = $('.app-back');
         if ($back.size() > 0) {
           $back.click();
@@ -484,9 +542,9 @@ seajs.use(['App'], function (App) {
     //debugger
     if (location.hash.length > 0) {
       App._CustomStack = App._Stack.getRestoreStacks();
-      if (App._CustomStack.length === 0){
+      if (App._CustomStack.length === 0) {
         App.load('home');
-      } else{
+      } else {
         var item = App._CustomStack.pop();
         App.load(item[0], item[1]);
       }

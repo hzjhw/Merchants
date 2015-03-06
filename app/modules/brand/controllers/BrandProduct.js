@@ -19,10 +19,11 @@ define('BrandProduct', ['App', 'template/brand_product'], function (require, exp
       seajs.use(['IncludeHeader'], function (IncludeHeader) {
         data.header.id = id;
         data.header.icon = 3;
+        data.header.hide = false;
         new IncludeHeader(page, '#include_header', data.header);
       });
       // 底部导航
-      $(page).find('.buttombar-ul li').click(function () {
+      $(page).find('.bottombar-ul li').click(function () {
         App.load($(this).attr('data-target'));
       });
     }, 0);

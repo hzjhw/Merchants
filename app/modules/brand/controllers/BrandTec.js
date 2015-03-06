@@ -21,11 +21,12 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.header.id = id;
             result.header.icon = 4;
+            result.header.hide = false;
             new IncludeHeader(page, '#include_header', result.header);
           });
 
           // 底部导航
-          $(page).find('.buttombar-ul li').click(function () {
+          $(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
           });
           $(page).find('.go-back').click(function () {

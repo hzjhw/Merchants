@@ -28,6 +28,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           $(page).html(tpl(result.indexInfo));
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.indexInfo.icon = 1;
+            result.indexInfo.hide = false;
             new IncludeHeader(page, '#include_header', result.indexInfo);
           });
 

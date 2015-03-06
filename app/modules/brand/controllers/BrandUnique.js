@@ -62,7 +62,7 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
       $(page).find('.btn-category').click(function () {
         App.load('category');
       });
-      $(page).find('.buttombar-ul li').click(function () {
+      $(page).find('.bottombar-ul li').click(function () {
         App.load($(this).attr('data-target'));
       });
       var cate_temp = HandlebarsHelper.compile($(page).find('.mer-unique-ul').html());

@@ -13,18 +13,18 @@ define('IncludeListBottom', ['App', 'template/include_list_bottom', 'HandlebarsH
     renderObj.html(HandlebarsHelper.compile(template));
     if(data.isLogin)
     {
-      renderObj.append('<li class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
-      '<span class="buttombar-text">退出</span>'+
-      '<span class="icon-bg icon-buttombar-sep"></span></li>');
+      renderObj.append('<li class="app-btn"><span class="icon-bg icon-bottombar-login"></span>'+
+      '<span class="bottombar-text">退出</span>'+
+      '<span class="icon-bg icon-bottombar-sep"></span></li>');
     }else
     {
-      renderObj.append('<li data-url="login_dealers" class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
-      '<span class="buttombar-text">登录</span>'+
-      '<span class="icon-bg icon-buttombar-sep"></span></li>');
+      renderObj.append('<li data-url="login_dealers" class="app-btn"><span class="icon-bg icon-bottombar-login"></span>'+
+      '<span class="bottombar-text">登录</span>'+
+      '<span class="icon-bg icon-bottombar-sep"></span></li>');
     }
 
     // 底部导航
-    $(page).find('.buttombar-ul li').off().on('click',function () {
+    $(page).find('.bottombar-ul li').off().on('click',function () {
       var urlVal =$(this).attr('data-url');
       if(urlVal)
         App.load(urlVal);

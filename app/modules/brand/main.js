@@ -13,6 +13,7 @@ App.addModule('BrandBlank', 'modules/brand/controllers/BrandBlank.js');
 App.addModule('IncludeMessage', 'modules/brand/controllers/IncludeMessage.js');
 App.addModule('IncludeHeader', 'modules/brand/controllers/IncludeHeader.js');
 App.addModule('IncludeListBottom', 'modules/brand/controllers/IncludeListBottom.js');
+App.addModule('IncludeDetailBottom', 'modules/brand/controllers/IncludeDetailBottom.js');
 App.addModule('BrandUnique', 'modules/brand/controllers/BrandUnique.js');
 
 
@@ -53,4 +54,7 @@ App.addTemplate('template/brand_unique', function (require, exports, module) {
 });
 App.addTemplate('template/include_list_bottom', function (require, exports, module) {
   module.exports = require('modules/brand/views/include_list_bottom.html');
+});
+App.addTemplate('template/include_detail_bottom', function (require, exports, module) {
+  module.exports = require('modules/brand/views/include_detail_bottom.html');
 });

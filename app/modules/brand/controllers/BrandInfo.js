@@ -25,6 +25,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             data.header = {};
           }
           data.factInfo.id = id;
+          data.factInfo.hide = false;
           $(page).html(tpl(data.factInfo));
           $(page).find('.icon').removeClass('current');
           $(page).find('.data').addClass('current');
@@ -50,7 +51,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
               App.back(App.getBackPage());
           });
 // 底部导航
-          $(page).find('.buttombar-ul li').click(function () {
+          $(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
           });
         }
