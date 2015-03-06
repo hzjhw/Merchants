@@ -177,3 +177,9 @@ onZoomEnd: null
 4) 所有返回按钮需加app-back 选择符
 5) appReady、appShow里注册事件必需先注销事件   
 [appShow在App.back中有效， appReady无效， appReady在App.load中有效]
+
+6) 创建页面报addEventListener错误 
+   先在首页index.html中加入  <div class="app-page" data-page="brand_cooperate"><div class="loading-text">拼命加载中...</div></div>
+   然后在controllers.js中添加App.controller('brand_cooperate', function(page){
+    ......
+   });
