@@ -11,7 +11,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
 
   IncludeDetailBottom = function(page, render,data){
     var renderObj =$(page).find(render);
-    renderObj.html(HandlebarsHelper.compile(template));
+    renderObj.html(HandlebarsHelper.compile(template)(data));
     App.initBrandAutoHide(page);
     if(data.isLogin)
     {
@@ -29,7 +29,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     $(page).find('.bottombar-ul li').off().on('click',function (e) {
       e.preventDefault();
       var urlVal =$(this).attr('data-url');
-      if(urlVal)
+      if(urlVal.length > 0)
         App.load(urlVal);
       else
       {

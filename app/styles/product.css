@@ -52,7 +52,7 @@ a{text-decoration:none;}
 #factory .blank_area_title .red{color:#c90000;}
 #factory .blank_area_content{padding-top:40px;}
 #factory .blank_area_content p{font-size:24px;color:#4c4948;line-height:48px;}
-#factory .blank_area_content p .b{font-weight:bold;}
+#factory .blank_area_content p .b{font-weight:bold;font-size: 35px;}
 
 .product-search-title{font-size:24px;font-family:Microsoft Yahei;line-height:105px;}
 .product-search-title a.go-back{color:#000;}

@@ -16,6 +16,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
       App.query('/cmp/factgood/' + id, {
         cache: true,
         success: function (result) {
+          console.log(result.facPhone);
           $(page).html(tpl(result));
           if(!result.header) result.header={};
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
@@ -24,7 +25,12 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
             result.header.hide = false;
             new IncludeHeader(page, '#include_header', result.header);
           });
-
+          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+            new IncludeDetailBottom(page, '.bottombar-ul', {
+              isLogin: App.LOGIN_CHANGE,
+              facPhone: result.facPhone
+            });
+          });
           // 底部导航
           $(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));

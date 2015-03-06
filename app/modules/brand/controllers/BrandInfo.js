@@ -18,6 +18,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
       App.query('/cmp/factinfo/' + id, {
         cache: true,
         success: function (data) {
+          console.log(data.facPhone);
           if (!data.factInfo) {
             data.factInfo = {};
           }
@@ -34,6 +35,12 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             data.header.icon = 2;
             new IncludeHeader(page, '#include_header', data.header);
           });
+          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+            new IncludeDetailBottom(page, '.bottombar-ul', {
+              isLogin: App.LOGIN_CHANGE,
+              facPhone: data.facPhone
+            });
+          });
           $(page).find(".title_general").click(function () {
             var pDiv = $(this).find('p').eq(1);
             var nextDiv = $(this).next();
@@ -48,9 +55,9 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             }
           });
           $(page).find('.go-back').click(function () {
-              App.back(App.getBackPage());
+            App.back(App.getBackPage());
           });
-// 底部导航
+          // 底部导航
           $(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
           });

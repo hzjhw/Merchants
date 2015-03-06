@@ -69,6 +69,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
           pageSize: 500
         },
         success: function (data) {
+          console.log(data.facPhone);
           var colum = 'proList';
           // 判断选取的列表
           if (price) colum = 'productList';
@@ -99,6 +100,12 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
               data.header.icon = 3;
               data.header.hide = false;
               new IncludeHeader(page, '#include_header', data.header);
+            });
+            seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+              new IncludeDetailBottom(page, '.bottombar-ul', {
+                isLogin: App.LOGIN_CHANGE,
+                facPhone: data.facPhone
+              });
             });
           }
           // 返回按钮

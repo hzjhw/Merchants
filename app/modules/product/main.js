@@ -15,5 +15,9 @@ App.addTemplate('template/product_detail', function (require, exports, module) {
 
 App.addModule('ProductSearch', 'modules/product/controllers/ProductSearch.js');
 App.addTemplate('template/product_search', function (require, exports, module) {
-    module.exports = require('modules/product/views/product_search.html');
+  module.exports = require('modules/product/views/product_search.html');
 });
+App.addTemplate('template/product_brand_detail', function (require, exports, module) {
+  module.exports = require('modules/product/views/product_brand_detail.html');
+});
+App.addModule('ProductBrandDetail', 'modules/product/controllers/ProductBrandDetail.js');

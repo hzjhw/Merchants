@@ -18,6 +18,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
       App.query('/cmp/blankarea/' + id, {
         cache: true,
         success: function (result) {
+          console.log(result.facPhone);
           $(page).html(tpl(result));
           $(".blank_area", $(page)).hide();
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
@@ -29,6 +30,12 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
             result.header.icon = 5;
             result.header.hide = false;
             new IncludeHeader(page, '#include_header', result.header);
+          });
+          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+            new IncludeDetailBottom(page, '.bottombar-ul', {
+              isLogin: App.LOGIN_CHANGE,
+              facPhone: result.facPhone
+            });
           });
 
           var blkContent = $(".blank_area_content", $(page));

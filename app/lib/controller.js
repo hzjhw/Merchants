@@ -150,7 +150,7 @@ seajs.use(['App'], function (App) {
       App.removeLoading();
       App.initTopScroll(page);
       App._Stack.destroy();
-      App._CustomStack.length = 0;
+      if (App._CustomStack) App._CustomStack.length = 0;
       var phoneNum = localStorage[App.CELL_PHONE];
       if (phoneNum !== '')
         $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
@@ -283,9 +283,6 @@ seajs.use(['App'], function (App) {
           id: ctx.args.id
         });
       });
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
     }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
       App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
@@ -304,9 +301,6 @@ seajs.use(['App'], function (App) {
           id: ctx.args.id
         });
       });
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
@@ -318,9 +312,6 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App._Stack.pop();
     App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
     }}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
@@ -336,10 +327,6 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady: function (page) {
-
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -358,9 +345,6 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id

@@ -17,19 +17,26 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
       App.query('/cmp/' + id, {
         cache: true,
         success: function (result) {
-          if (!result.indexInfo) {
-            result.indexInfo = {
+          console.log(result.facPhone);
+          if (!result.header) {
+            result.header = {
               back_img: 'images/no-pic.jpg',
               header_img: 'images/no-pic.jpg',
               logo_img: 'images/no-pic.jpg'
             };
           }
-          result.indexInfo.id = id;
-          $(page).html(tpl(result.indexInfo));
+          result.header.id = id;
+          $(page).html(tpl(result.header));
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
-            result.indexInfo.icon = 1;
-            result.indexInfo.hide = false;
-            new IncludeHeader(page, '#include_header', result.indexInfo);
+            result.header.icon = 1;
+            result.header.hide = false;
+            new IncludeHeader(page, '#include_header', result.header);
+          });
+          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+            new IncludeDetailBottom(page, '.bottombar-ul', {
+              isLogin: App.LOGIN_CHANGE,
+              facPhone: result.facPhone
+            });
           });
 
           $(page).find('.go-back').click(function () {
