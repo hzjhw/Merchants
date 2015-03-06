@@ -26,7 +26,8 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     }
 
     // 底部导航
-    $(page).find('.bottombar-ul li').off().on('click',function () {
+    $(page).find('.bottombar-ul li').off().on('click',function (e) {
+      e.preventDefault();
       var urlVal =$(this).attr('data-url');
       if(urlVal)
         App.load(urlVal);
@@ -43,6 +44,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
           }
         })
       }
+      return false;
     });
   }
 
