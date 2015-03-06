@@ -137,7 +137,7 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
             } else if(cat && cat !== 'all'){
               $xiala = $('.xiala-price', $(page));
             } else{
-              $xiala = $('.xiala-price', $(page));
+              $xiala = $('.xiala-cmp', $(page));
             }
             seajs.use(['dialog'], function (dialog) {
               window.search_dialog = dialog({
@@ -172,6 +172,13 @@ define('ProductList', ['App', 'template/product_list','Est', 'HandlebarsHelper']
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
                         $(page).find('.search-list-cont').append(tpl($(tpl(_tempData)).find('.search-list-cont')));
+                      } else {
+                        debugger
+                        _tempData.list = Est.filter(_tempData.list, {cat_id: dataId});
+                        if (dataId === 'all') _tempData = data;
+                        $(page).find('.search-list-cont').empty();
+                        $(page).find('.search-list-cont').append(tpl($(tpl(_tempData)).find('.search-list-cont')));
+
                       }
                       App.removeLoading();
                       bindDetail(page,id);

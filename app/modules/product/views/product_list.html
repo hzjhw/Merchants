@@ -45,6 +45,23 @@
                     {{/each}}
                 </div>
             </div>
+            <div class="xiala-cmp" style="display:none;">
+                <div class="xiala-content">
+                    <div class="ygtvtable-div1">
+                        <div class="fenlei01" data-id="all">全部</div>
+                    </div>
+                    {{#each allCats}}
+                    <div class="ygtvtable-div1"><div class="fenlei01" data-id="{{cat_id}}">{{cat_name}}</div>
+                        <ul>
+                            {{#each children}}
+                            <li data-id="{{cat_id}}">{{cat_name}}</li>
+                            {{/each}}
+                            <div class="clear"></div>
+                        </ul>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
             <div class="search-list-cont list-view">
                 {{#each list}}
                 <div class="glitzItem" data-id="{{product_id}}">
