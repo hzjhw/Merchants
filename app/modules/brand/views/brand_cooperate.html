@@ -1,29 +1,38 @@
-<div class="app-logo-container app-topbar">
-    <div class="grid-3">
-        <div class="app-button app-back go-back app-btn">返回</div>
+<div class="app-content login_dealers">
+    <div class="top app-section">
+        <div class="wrap">
+            <div class="btn-back app-back  app-button app-btn">返回</div>
+            <div class="title" data-back>意向合作</div>
+        </div>
     </div>
-    <div class="grid-4 topbar-title" style="text-align: right; height: 100%;">
-        3.30{{title}}
-    </div>
-    <div class="grid-3">
-        <div class="app-button btn-category app-btn">分类</div>
-    </div>
-</div>
+    <div class="wrap registered">
+        <input type="text" id="phoneNum" class="mobile" placeholder="手机号码/330用户名">
+        <input type="text" name="" class="address" placeholder="经销地址">
+        <input type="text" name="" class="size x" placeholder="店面大小">
+        <span class="dw">平米</span>
+        <input type="text" name="" class="time x" placeholder="从业年数">
+        <span class="dw">年</span>
+        <style type="text/css">
+            #djq {float:left;margin-left:40px;}
+            #vouchers {width:380px;height:70px;font-size: 24px;margin-top: 25px;float: left;}
+            #djq .dw {width:190px;}
+            #djq textarea {float: left;width:530px;height:200px;border-radius:6px;margin-top:25px;}
 
-<div class="app-content merchant-cont-container">
-
-</div>
-    <!--页脚-->
-<div class="app-section merchant-footer">
-        <p>①2015 浙B2-20050229-3 用户反馈中心</p>
-        <img src="images/bottom-logo.png" alt="手机 3月30日"/>
-
-        <div><strong>足不出户逛展会</strong></div>
+        </style>
+        <div id="djq">
+            <select id="vouchers" class="valid">
+            <option value="1" selected="selected">0001</option>
+            <option value="2">0002</option>
+            <option value="3">0003</option>
+        </select>
+            <span class="dw">代金券ID</span>
+            <textarea></textarea>
+        </div>
+        <button type="submit">确认合作</button>
     </div>
-<div class="app-bottombar">
-    <div class="bottombar-cover"></div>
-    <div class="bottombar">
-        <ul class="bottombar-ul">
-        </ul>
+    <div class="wrap note">
+        <p><a href="#" >我的意向合作</a><a href="#">购买代金券</a></p>
+
+        <p>3·30门业招商节运营中心—上门网</p>
     </div>
 </div>
