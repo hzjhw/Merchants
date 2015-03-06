@@ -12,6 +12,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
   IncludeDetailBottom = function(page, render,data){
     var renderObj =$(page).find(render);
     renderObj.html(HandlebarsHelper.compile(template));
+    App.initBrandAutoHide(page);
     if(data.isLogin)
     {
      /* renderObj.append('<li class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+

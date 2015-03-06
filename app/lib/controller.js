@@ -79,22 +79,30 @@ App.show330 = function (page, callback) {
 }
 App.autoHide = function (page, options) {
   debug('【Util】App.autoHideScroll:');
-  var $appContent = $('.app-content', $(page));
-  var isHide = false;
+  var preScrollTop = 0,
+    isHide = false,
+    isBack = false,
+    $appContent = $('.app-content', $(page));
+
   $('.app-content', $(page)).get(0) &&
   $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
     var scrollTop = $appContent.scrollTop();
-    if (scrollTop > 0 && !isHide) {
+    if (preScrollTop < scrollTop) {
+      isBack = false;
+    }
+    if (scrollTop > 0 && !isHide && !isBack) {
       isHide = true;
       options.hide && options.hide.call(this, scrollTop);
-    } else if (scrollTop === 0 && isHide) {
-      isHide = false
+    } else if (scrollTop < 400 && isHide && preScrollTop > scrollTop) {
+      isHide = false;
+      isBack = true;
       options.show && options.show.call(this, scrollTop);
     }
+    preScrollTop = scrollTop;
   });
 }
 App.initTopScroll = function (page) {
-  setTimeout(function(){
+  setTimeout(function () {
     var $appLogo = $('#app-index-logo', $(page));
     var $search = $('.app-search', $(page));
     App.autoHide(page, {
@@ -109,8 +117,8 @@ App.initTopScroll = function (page) {
     });
   }, 100);
 };
-App.initBrandAutoHide = function(page){
-  setTimeout(function(){
+App.initBrandAutoHide = function (page) {
+  setTimeout(function () {
     var $topbar = $('.app-topbar', $(page));
     var $bottom = $('.app-bottombar')
     App.autoHide(page, {
@@ -190,30 +198,30 @@ seajs.use(['App'], function (App) {
         }
       }, 0);
       var $dom = $(this).find('.span-my').get(0);
-      if(!App.LOGIN_CHANGE)
-      {
+      if (!App.LOGIN_CHANGE) {
 
       }
-      setTimeout(function(){App.query('/userinfo', {
-        //cache: true,
-        success: function (data) {
-          if (data.msg == 'nologin') {
-            var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-            App.showConfirm('未登录', cntVal, $dom, function () {
-              App.load('login_dealers');
-            });
-            /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
-             App.load('login_dealers');
-             }*/
+      setTimeout(function () {
+        App.query('/userinfo', {
+          //cache: true,
+          success: function (data) {
+            if (data.msg == 'nologin') {
+              var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+              App.showConfirm('未登录', cntVal, $dom, function () {
+                App.load('login_dealers');
+              });
+              /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
+               App.load('login_dealers');
+               }*/
+            }
+            else {
+              App.show330(page, function (dialog) {
+                dialog.showModal($dom)
+              });
+            }
           }
-          else {
-            App.show330(page, function (dialog) {
-              dialog.showModal($dom)
-            });
-          }
-        }
-      });
-      },0);
+        });
+      }, 0);
 
       return false;
     });
@@ -270,15 +278,14 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow: function (page) {
 
     }, appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
-      App.initBrandAutoHide(page);
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
     }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
       App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
@@ -292,15 +299,14 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
-      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
-      })
-      App.initBrandAutoHide(page);
+      });
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+      });
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
@@ -315,7 +321,6 @@ seajs.use(['App'], function (App) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
         new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
       });
-      App.initBrandAutoHide(page);
     }}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
@@ -340,7 +345,6 @@ seajs.use(['App'], function (App) {
           id: ctx.args.id
         });
       })
-      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
       App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
@@ -362,12 +366,34 @@ seajs.use(['App'], function (App) {
           id: ctx.args.id
         });
       });
-      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandBlank'], function (BrandBlank) {
       App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);
     });
   });
+
+  /*意向合作*/
+  App.controller('brand_cooperate', function (page) {
+    debug('【Controller】pageLoad: brand_detail');
+    var ctx = this;
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_cooperate_args_id'];
+    localStorage['brand_cooperate_args_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_cooperate', appShow: function (page) {
+
+    }, appReady: function (page) {
+      seajs.use('IncludeMessage', function (IncludeMessage) {
+        new IncludeMessage(page, '.message', {
+          id: ctx.args.id
+        });
+      });
+    }}, ctx);
+    seajs.use(['BrandCooperate'], function (BrandCooperate) {
+      App.BrandCooperate = new BrandCooperate(page, ctx.args.id, ctx);
+    })
+  });
+
+
+
   /*特色门馆*/
   App.controller('brand_unique', function (page) {
     debug('【Controller】pageLoad: brand_unique');
@@ -465,7 +491,6 @@ seajs.use(['App'], function (App) {
             id: ctx.args.id
           });
         });
-        App.initBrandAutoHide(page);
       }
     }}, ctx);
 
