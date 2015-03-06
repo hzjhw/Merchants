@@ -3,7 +3,7 @@
  * @class main
  * @author yongjin<zjut_wyj@163.com> 2015/3/2
  */
-App.LOGIN_CHANGE = false;
+localStorage['LOGIN_CHANGE'] = false;
 App.CELL_PHONE = "cell_phone";
 
 App.scroll = function (scrollTo, time) {
@@ -79,30 +79,22 @@ App.show330 = function (page, callback) {
 }
 App.autoHide = function (page, options) {
   debug('【Util】App.autoHideScroll:');
-  var preScrollTop = 0,
-    isHide = false,
-    isBack = false,
-    $appContent = $('.app-content', $(page));
-
+  var $appContent = $('.app-content', $(page));
+  var isHide = false;
   $('.app-content', $(page)).get(0) &&
   $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
     var scrollTop = $appContent.scrollTop();
-    if (preScrollTop < scrollTop) {
-      isBack = false;
-    }
-    if (scrollTop > 0 && !isHide && !isBack) {
+    if (scrollTop > 0 && !isHide) {
       isHide = true;
       options.hide && options.hide.call(this, scrollTop);
-    } else if (scrollTop < 400 && isHide && preScrollTop > scrollTop) {
-      isHide = false;
-      isBack = true;
+    } else if (scrollTop === 0 && isHide) {
+      isHide = false
       options.show && options.show.call(this, scrollTop);
     }
-    preScrollTop = scrollTop;
   });
 }
 App.initTopScroll = function (page) {
-  setTimeout(function () {
+  setTimeout(function(){
     var $appLogo = $('#app-index-logo', $(page));
     var $search = $('.app-search', $(page));
     App.autoHide(page, {
@@ -117,8 +109,8 @@ App.initTopScroll = function (page) {
     });
   }, 100);
 };
-App.initBrandAutoHide = function (page) {
-  setTimeout(function () {
+App.initBrandAutoHide = function(page){
+  setTimeout(function(){
     var $topbar = $('.app-topbar', $(page));
     var $bottom = $('.app-bottombar')
     App.autoHide(page, {
@@ -150,7 +142,7 @@ seajs.use(['App'], function (App) {
       App.removeLoading();
       App.initTopScroll(page);
       App._Stack.destroy();
-      if (App._CustomStack) App._CustomStack.length = 0;
+      App._CustomStack.length = 0;
       var phoneNum = localStorage[App.CELL_PHONE];
       if (phoneNum !== '')
         $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
@@ -170,7 +162,7 @@ seajs.use(['App'], function (App) {
           success: function (result) {
             if (result.msg == 'success') {
               localStorage[App.CELL_PHONE] = '';
-              App.LOGIN_CHANGE = false;
+              localStorage['LOGIN_CHANGE'] = false;
               App.back('home');
             }
           }
@@ -198,30 +190,30 @@ seajs.use(['App'], function (App) {
         }
       }, 0);
       var $dom = $(this).find('.span-my').get(0);
-      if (!App.LOGIN_CHANGE) {
+      if(!localStorage['LOGIN_CHANGE'])
+      {
 
       }
-      setTimeout(function () {
-        App.query('/userinfo', {
-          //cache: true,
-          success: function (data) {
-            if (data.msg == 'nologin') {
-              var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-              App.showConfirm('未登录', cntVal, $dom, function () {
-                App.load('login_dealers');
-              });
-              /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
-               App.load('login_dealers');
-               }*/
-            }
-            else {
-              App.show330(page, function (dialog) {
-                dialog.showModal($dom)
-              });
-            }
+      setTimeout(function(){App.query('/userinfo', {
+        //cache: true,
+        success: function (data) {
+          if (data.msg == 'nologin') {
+            var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+            App.showConfirm('未登录', cntVal, $dom, function () {
+              App.load('login_dealers');
+            });
+            /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
+             App.load('login_dealers');
+             }*/
           }
-        });
-      }, 0);
+          else {
+            App.show330(page, function (dialog) {
+              dialog.showModal($dom)
+            });
+          }
+        }
+      });
+      },0);
 
       return false;
     });
@@ -252,10 +244,9 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appReady: function (page) {
       seajs.use(['IncludeListBottom'], function (IncludeListBottom) {
-        new IncludeListBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+        new IncludeListBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
       });
     }}, this);
-    console.log('brandlist:' + App.LOGIN_CHANGE);
 
     if (!ctx.args.id) ctx.args.id = localStorage['brand_list_args_id'];
     if (!ctx.args.title) ctx.args.title = localStorage['brand_list_args_title'];
@@ -278,11 +269,15 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow: function (page) {
 
     }, appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
       App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
@@ -296,11 +291,15 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
     localStorage['brand_info_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
-      });
+      })
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
@@ -312,6 +311,10 @@ seajs.use(['App'], function (App) {
     var ctx = this;
     App._Stack.pop();
     App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+      });
+      App.initBrandAutoHide(page);
     }}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
     localStorage['brand_product_args_id'] = ctx.args.id;
@@ -327,11 +330,16 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
     localStorage['brand_tec_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady: function (page) {
+
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       })
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
       App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
@@ -345,39 +353,20 @@ seajs.use(['App'], function (App) {
     if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
     localStorage['brand_blank_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
+      App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandBlank'], function (BrandBlank) {
       App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);
     });
   });
-
-  /*意向合作*/
-  App.controller('brand_cooperate', function (page) {
-    debug('【Controller】pageLoad: brand_detail');
-    var ctx = this;
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_cooperate_args_id'];
-    localStorage['brand_cooperate_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_cooperate', appShow: function (page) {
-
-    }, appReady: function (page) {
-      seajs.use('IncludeMessage', function (IncludeMessage) {
-        new IncludeMessage(page, '.message', {
-          id: ctx.args.id
-        });
-      });
-    }}, ctx);
-    seajs.use(['BrandCooperate'], function (BrandCooperate) {
-      App.BrandCooperate = new BrandCooperate(page, ctx.args.id, ctx);
-    })
-  });
-
-
-
   /*特色门馆*/
   App.controller('brand_unique', function (page) {
     debug('【Controller】pageLoad: brand_unique');
@@ -468,13 +457,14 @@ seajs.use(['App'], function (App) {
     }, appReady: function (page) {
       if (typeof ctx.args.price === 'undefined') {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.LOGIN_CHANGE});
+          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
         })
         seajs.use('IncludeMessage', function (IncludeMessage) {
           new IncludeMessage(page, '.message', {
             id: ctx.args.id
           });
         });
+        App.initBrandAutoHide(page);
       }
     }}, ctx);
 

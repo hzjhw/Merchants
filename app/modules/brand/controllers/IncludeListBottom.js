@@ -34,7 +34,7 @@ define('IncludeListBottom', ['App', 'template/include_list_bottom', 'HandlebarsH
           success:function(result){
             if(result.msg == 'success')
             {
-              App.LOGIN_CHANGE=false;
+              localStorage['LOGIN_CHANGE']=false;
               localStorage[App.CELL_PHONE]='';
               App.back('home');
             }

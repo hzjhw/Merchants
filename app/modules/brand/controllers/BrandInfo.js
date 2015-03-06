@@ -37,7 +37,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           });
           seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
-              isLogin: App.LOGIN_CHANGE,
+              isLogin: localStorage['LOGIN_CHANGE'],
               facPhone: data.facPhone
             });
           });

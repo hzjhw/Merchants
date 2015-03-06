@@ -27,7 +27,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
           });
           seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
-              isLogin: App.LOGIN_CHANGE,
+              isLogin: localStorage['LOGIN_CHANGE'],
               facPhone: result.facPhone
             });
           });

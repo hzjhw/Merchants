@@ -49,7 +49,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
         success: function (data) {
           if (data.result == 'success') {
             localStorage[App.CELL_PHONE]=data.phoneNum;
-            App.LOGIN_CHANGE=true;
+            localStorage['LOGIN_CHANGE']=true;
             if(App._Stack.size() > 0){
               App.back();
             } else{

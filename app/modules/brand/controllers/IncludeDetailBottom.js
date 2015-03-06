@@ -37,7 +37,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
           success:function(result){
             if(result.msg == 'success')
             {
-              App.LOGIN_CHANGE=false;
+              localStorage['LOGIN_CHANGE']=false;
               localStorage[App.CELL_PHONE]='';
               App.back('home');
             }

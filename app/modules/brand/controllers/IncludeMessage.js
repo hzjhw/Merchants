@@ -12,10 +12,9 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       debug('【Module】: Call IncludeMessage');
       template = require('template/include_message');
       var tpl = HandlebarsHelper.compile(template);
-      console.log("islogining:"+App.LOGIN_CHANGE);
       $(page).find(render).html(tpl(data));
       //TODO validate is login before submit
-      if(App.LOGIN_CHANGE)
+      if(localStorage['LOGIN_CHANGE'])
       {
         App.query('/cmp/custInfo', {
           cache:true,
@@ -28,7 +27,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         });
       }
       $(page).find('#custname,#cellphone,#levMsg').click(function () {
-        if (!App.LOGIN_CHANGE) {
+        if (!localStorage['LOGIN_CHANGE']) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
             App.load('login_dealers');
@@ -36,7 +35,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         }
       });
       $(page).find('#msgSub').click(function () {
-        if (!App.LOGIN_CHANGE) {
+        if (!localStorage['LOGIN_CHANGE']) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
             App.load('login_dealers');
