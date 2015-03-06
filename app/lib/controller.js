@@ -190,7 +190,11 @@ seajs.use(['App'], function (App) {
         }
       }, 0);
       var $dom = $(this).find('.span-my').get(0);
-      App.query('/userinfo', {
+      if(!App.LOGIN_CHANGE)
+      {
+
+      }
+      setTimeout(function(){App.query('/userinfo', {
         //cache: true,
         success: function (data) {
           if (data.msg == 'nologin') {
@@ -209,6 +213,8 @@ seajs.use(['App'], function (App) {
           }
         }
       });
+      },0);
+
       return false;
     });
 
