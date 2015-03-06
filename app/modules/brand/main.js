@@ -16,7 +16,12 @@ App.addModule('IncludeListBottom', 'modules/brand/controllers/IncludeListBottom.
 App.addModule('IncludeDetailBottom', 'modules/brand/controllers/IncludeDetailBottom.js');
 App.addModule('BrandUnique', 'modules/brand/controllers/BrandUnique.js');
 
+App.addModule('BrandCooperate', 'modules/brand/controllers/BrandCooperate.js');
 
+
+App.addTemplate('template/brand_cooperate', function (require, exports, module) {
+  module.exports = require('modules/brand/views/brand_cooperate.html');
+});
 App.addTemplate('template/brand_detail', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_detail.html');
 });
