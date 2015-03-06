@@ -19,7 +19,7 @@ define('ProductBrandDetail', ['App', 'template/product_brand_detail', 'Handlebar
       success: function (data) {
         try{
           $(page).find(render).html(tpl(data.factInfo));
-          $(page).find('.company .name').click(function(){
+          $(page).find('.company .name, .company .factory_logo').click(function(){
            App.load('brand_detail', {
               id:id
             });

@@ -122,6 +122,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
           bindCollect(page);
           // 筛选弹窗
           $(page).find('#factory .search-list-title .titlename').click(function () {
+            var $target = $(this).get(0);
             App.addLoading();
             var $xiala = null;
             if (price && price !== 'all') {
@@ -179,7 +180,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
                   });
                   App.Scrollable($('.clickxiala .ui-dialog-content').get(0), false);
                 }
-              }).showModal();
+              }).showModal($target);
             });
           });
 

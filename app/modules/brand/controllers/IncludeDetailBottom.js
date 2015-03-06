@@ -29,20 +29,8 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     $(page).find('.bottombar-ul li').off().on('click',function (e) {
       e.preventDefault();
       var urlVal =$(this).attr('data-url');
-      if(urlVal.length > 0)
+      if(urlVal.length > 0){
         App.load(urlVal);
-      else
-      {
-        App.query('/loginout',{
-          success:function(result){
-            if(result.msg == 'success')
-            {
-              localStorage['LOGIN_CHANGE']=false;
-              localStorage[App.CELL_PHONE]='';
-              App.back('home');
-            }
-          }
-        })
       }
       return false;
     });
