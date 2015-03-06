@@ -166,12 +166,16 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
                         $(page).find('.search-list-cont').empty();
                         $(page).find('.search-list-cont').append(tpl($(tpl(_tempData)).find('.search-list-cont')));
                       } else {
-                        debugger
-                        _tempData.list = Est.filter(_tempData.list, {cat_id: dataId});
+                        var filterObj = {};
+                        if (dataId.indexOf('f') !== -1) {
+                          filterObj = { cat_attr: dataId }
+                        } else {
+                          filterObj = { self_cat_id: dataId }
+                        }
+                        _tempData.list = Est.filter(_tempData.list, filterObj);
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
-                        $(page).find('.search-list-cont').append(tpl($(tpl(_tempData)).find('.search-list-cont')));
-
+                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
                       }
                       App.removeLoading();
                       bindDetail(page, id);
