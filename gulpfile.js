@@ -139,22 +139,7 @@ gulp.task('merge', function () {
 gulp.task('merge.min', function () {
   doTask('merge', false);
 });
-/*压缩handlebarsHelper帮助类*/
-paths['HandlebarsHelper'] = {
-  scripts: {
-    source: [
-      './app/vendor/handlebars/HandlebarsHelper.js'
-    ],
-    name: 'HandlebarsHelper.js',
-    dist: './app/scripts/helper'
-  }
-}
-gulp.task('HandlebarsHelper', function () {
-  doTask('HandlebarsHelper', true);
-});
-gulp.task('HandlebarsHelper.min', function () {
-  doTask('HandlebarsHelper', false);
-});
+
 /*包装define*/
 paths['app'] = {
   scripts: { source: ['./app/src/define_pre.js', './app/src/app.js', './app/src/define_last.js'
@@ -175,21 +160,16 @@ gulp.task('app.min', function () {
   doTask('app', false);
 });
 
-/** ==================================================== 本地调试 ====================================================*/
-
 // 合并JS但不压缩
 gulp.task('local', function () {
-  return [gulp.start('base'), gulp.start('HandlebarsHelper'), gulp.start('merge'), gulp.start('app')];
+  //［seajs & Application］　［app.js源代码］[包装]
+  return [gulp.start('base'), gulp.start('merge'), gulp.start('app')];
 });
 
 // 合并JS并压缩
 gulp.task('publish', function () {
-  return [gulp.start('base.min'), gulp.start('HandlebarsHelper.min'), gulp.start('merge.min'), gulp.start('app.min')];
+  return [gulp.start('base.min'), gulp.start('merge.min'), gulp.start('app.min')];
 });
-
-function cleanDist(){
-
-}
 
 
 /** ==================================================== 项目发布 ====================================================*/
@@ -208,7 +188,9 @@ gulp.task('files-move', function () {
 gulp.task('js-min', function () {
   return [gulp.src(DISTDIR + '/lib/*.js').pipe(uglify()).pipe(gulp.dest(DISTDIR + '/lib')),
     gulp.src(DISTDIR + '/modules/*/controllers/*.js').pipe(jshint()).pipe(jshint.reporter(stylish)).pipe(uglify()).pipe(gulp.dest(DISTDIR + '/modules')),
-    gulp.src(DISTDIR + '/vendor/**/*.js').pipe(uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } })).pipe(gulp.dest(DISTDIR + '/vendor'))];
+    gulp.src(DISTDIR + '/vendor/**/*.js').pipe(uglify({ preserveComments: 'some', mangle: false, compressor: { sequences: false, hoist_funs: false } })).pipe(gulp.dest(DISTDIR + '/vendor')),
+    gulp.src(DISTDIR + '/scripts/helper/**').pipe(uglify()).pipe(gulp.dest(DISTDIR + '/scripts/helper'))
+  ];
 });
 
 // html css\js合并

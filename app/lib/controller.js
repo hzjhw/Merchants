@@ -20,7 +20,7 @@ App.scroll = function (scrollTo, time) {
       clearInterval(interval);
     }
   }, runEvery);
-}
+};
 App.showMsg = function (titleVal, cntVal) {
   seajs.use(['dialog'], function (dialog) {
     window.dialog = dialog({
@@ -32,7 +32,7 @@ App.showMsg = function (titleVal, cntVal) {
       ]
     }).showModal();
   })
-}
+};
 App.showConfirm = function (titleVal, cntVal, curEle, callback) {
   seajs.use(['dialog'], function (dialog) {
     window.dialog = dialog({
@@ -51,7 +51,7 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
       ]
     }).showModal(curEle);
   })
-}
+};
 App.show330 = function (page, callback) {
   seajs.use(['dialog'], function (dialog) {
     window.dialog && window.dialog.close().remove();
@@ -76,23 +76,7 @@ App.show330 = function (page, callback) {
     });
     callback && callback.call(this, window.dialog);
   });
-}
-App.autoHide = function (page, options) {
-  debug('【Util】App.autoHideScroll:');
-  var $appContent = $('.app-content', $(page));
-  var isHide = false;
-  $('.app-content', $(page)).get(0) &&
-  $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
-    var scrollTop = $appContent.scrollTop();
-    if (scrollTop > 0 && !isHide) {
-      isHide = true;
-      options.hide && options.hide.call(this, scrollTop);
-    } else if (scrollTop === 0 && isHide) {
-      isHide = false
-      options.show && options.show.call(this, scrollTop);
-    }
-  });
-}
+};
 App.initTopScroll = function (page) {
   setTimeout(function(){
     var $appLogo = $('#app-index-logo', $(page));
@@ -125,7 +109,7 @@ App.initBrandAutoHide = function(page){
       }
     });
   }, 100)
-}
+};
 
 seajs.use(['App'], function (App) {
 
