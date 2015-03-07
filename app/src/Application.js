@@ -124,7 +124,7 @@ Application.prototype = {
     return false;
   },
   autoHide: function (page, options) {
-    debug('【Util】App.autoHideScroll:');
+    debug('【Util】App.autoHide:');
     var $appContent = $('.app-content', $(page));
     var isHide = false;
     $('.app-content', $(page)).get(0) &&
@@ -161,7 +161,7 @@ Application.prototype = {
         App.removeLoading();
         App.initPage(page);
         App.off('queryEvent');
-        App.on('queryEvent', function (data) { // 绑定事件
+        App.on('queryEvent', function (data) {
           App.initPage(page);
         })
         options.appReady && options.appReady.call(context, page);

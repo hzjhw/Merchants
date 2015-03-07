@@ -159,14 +159,10 @@ gulp.task('app', function () {
 gulp.task('app.min', function () {
   doTask('app', false);
 });
-
-// 合并JS但不压缩
 gulp.task('local', function () {
   //［seajs & Application］　［app.js源代码］[包装]
   return [gulp.start('base'), gulp.start('merge'), gulp.start('app')];
 });
-
-// 合并JS并压缩
 gulp.task('publish', function () {
   return [gulp.start('base.min'), gulp.start('merge.min'), gulp.start('app.min')];
 });
