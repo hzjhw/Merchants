@@ -33,7 +33,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           });
           seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
-              isLogin: localStorage['LOGIN_CHANGE'],
+              isLogin: App.isLogin(),
               facPhone: result.facPhone
             });
           });

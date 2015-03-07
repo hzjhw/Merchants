@@ -5,7 +5,9 @@
  */
 localStorage['LOGIN_CHANGE'] = false;
 App.CELL_PHONE = "cell_phone";
-
+App.isLogin = function(){
+  return localStorage['LOGIN_CHANGE'] ==='false'?false:true;
+}
 App.scroll = function (scrollTo, time) {
   debug('【Util】App.scroll:' + scrollTo);
   var scrollFrom = parseInt(document.body.scrollTop),
@@ -117,6 +119,27 @@ seajs.use(['App'], function (App) {
   App.Loading = $Loading.clone();
   $Loading.remove();
 
+  setTimeout(function(){App.query('/userinfo', {
+    //cache: true,
+    success: function (data) {
+      if (data.msg == 'nologin') {
+        var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+        App.showConfirm('未登录', cntVal, $dom, function () {
+          App.load('login_dealers');
+        });
+        /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
+         App.load('login_dealers');
+         }*/
+      }
+      else {
+        App.show330(page, function (dialog) {
+          dialog.showModal($dom)
+        });
+      }
+    }
+  });
+  },0);
+
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
@@ -174,31 +197,17 @@ seajs.use(['App'], function (App) {
         }
       }, 0);
       var $dom = $(this).find('.span-my').get(0);
-      if(!localStorage['LOGIN_CHANGE'])
-      {
-
+      if(App.isLogin()){
+        App.show330(page, function (dialog) {
+          dialog.showModal($dom)
+        })
       }
-      setTimeout(function(){App.query('/userinfo', {
-        //cache: true,
-        success: function (data) {
-          if (data.msg == 'nologin') {
-            var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-            App.showConfirm('未登录', cntVal, $dom, function () {
-              App.load('login_dealers');
-            });
-            /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
-             App.load('login_dealers');
-             }*/
-          }
-          else {
-            App.show330(page, function (dialog) {
-              dialog.showModal($dom)
-            });
-          }
-        }
-      });
-      },0);
-
+      else{
+          var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+          App.showConfirm('未登录', cntVal, $dom, function () {
+            App.load('login_dealers');
+          });
+      }
       return false;
     });
 
@@ -222,13 +231,28 @@ seajs.use(['App'], function (App) {
     });
   });
 
+  /*意向合作*/
+  App.controller('brand_cooperate', function (page) {
+    debug('【Controller】pageLoad: brand_cooperate');
+    var ctx = this;
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_cooperate_args_id'];
+    localStorage['brand_cooperate_args_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_cooperate'}, this);
+    if(!App.isLogin())
+    {
+
+    }
+    seajs.use(['BrandCooperate'], function (BrandCooperate) {
+      App.BrandCooperate = new BrandCooperate(page,{isLogin:App.isLogin(),facid:ctx.args.id});
+    });
+  });
   /*品牌列表*/
   App.controller('brand_list', function (page) {
     debug('【Controller】pageLoad: brand_list');
     var ctx = this;
     App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appReady: function (page) {
       seajs.use(['IncludeListBottom'], function (IncludeListBottom) {
-        new IncludeListBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+        new IncludeListBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
     }}, this);
 
@@ -254,7 +278,7 @@ seajs.use(['App'], function (App) {
 
     }, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
@@ -276,7 +300,7 @@ seajs.use(['App'], function (App) {
     localStorage['brand_info_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
@@ -296,7 +320,7 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
       App.initBrandAutoHide(page);
     }}, ctx);
@@ -316,7 +340,7 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady: function (page) {
 
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
@@ -338,7 +362,7 @@ seajs.use(['App'], function (App) {
     localStorage['brand_blank_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
@@ -441,7 +465,7 @@ seajs.use(['App'], function (App) {
     }, appReady: function (page) {
       if (typeof ctx.args.price === 'undefined') {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: localStorage['LOGIN_CHANGE']});
+          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
         })
         seajs.use('IncludeMessage', function (IncludeMessage) {
           new IncludeMessage(page, '.message', {

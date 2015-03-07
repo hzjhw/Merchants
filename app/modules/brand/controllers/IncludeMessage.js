@@ -14,7 +14,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data));
       //TODO validate is login before submit
-      if(localStorage['LOGIN_CHANGE'])
+      if(App.isLogin())
       {
         App.query('/cmp/custInfo', {
           cache:true,
@@ -27,7 +27,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         });
       }
       $(page).find('#custname,#cellphone,#levMsg').click(function () {
-        if (!localStorage['LOGIN_CHANGE']) {
+        if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
             App.load('login_dealers');
@@ -35,7 +35,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         }
       });
       $(page).find('#msgSub').click(function () {
-        if (!localStorage['LOGIN_CHANGE']) {
+        if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
             App.load('login_dealers');

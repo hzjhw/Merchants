@@ -4,7 +4,7 @@
  * @author yongjin<zjut_wyj@163.com> 2015/3/6
  */
 define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate'], function (require, exports, module) {
-  var BrandCooprate, App, HandlebarsHelper, template;
+  var BrandCooperate, App, HandlebarsHelper, template;
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');

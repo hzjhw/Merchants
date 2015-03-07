@@ -148,6 +148,14 @@ onZoomStart: null,
 onZoom: null,   
 onZoomEnd: null  
 
+
+9)登录弹窗
+var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+          App.showConfirm('未登录', cntVal, $dom, function () {
+            App.load('login_dealers');
+          });
+
+
 ### 响应速度方面
 1) 按钮点击响应速度
     在需要点击的按钮上添加app-btn选择符  如：<input type="button" class="app-button app-btn" value="确定"/>
@@ -183,3 +191,5 @@ onZoomEnd: null
    然后在controllers.js中添加App.controller('brand_cooperate', function(page){
     ......
    });
+
+

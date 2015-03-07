@@ -103,7 +103,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
             });
             seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
               new IncludeDetailBottom(page, '.bottombar-ul', {
-                isLogin: localStorage['LOGIN_CHANGE'],
+                isLogin: App.isLogin(),
                 facPhone: data.facPhone
               });
             });
