@@ -15,6 +15,7 @@ Application.prototype = {
     this.cache = {};
     this.topics = {};
     this.subUid = -1;
+    this.isLazyLoad = false;
   },
   addModule: function (name, val) {
     if (name in this['modules']) {
@@ -193,13 +194,16 @@ Application.prototype = {
     });
   },
   initLazyLoad: function (page) {
-    seajs.use(['LazyLoad'], function () {
-      var appContent = $('.app-content', $(page));
-      $('.lazy', $(appContent)).lazyload({
-        container: appContent,
-        effect: "fadeIn"
+    if (!this.isLazyLoad){
+      this.isLazyLoad = true;
+      seajs.use(['LazyLoad'], function () {
+        var appContent = $('.app-content', $(page));
+        $('.lazy', $(appContent)).lazyload({
+          container: appContent,
+          effect: "fadeIn"
+        });
       });
-    });
+    }
   },
   initPage: function (page, height) {
 
