@@ -13,7 +13,6 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
   FavInfo = function (page) {
     var tpl = HandlebarsHelper.compile(template);
     App.query('/userinfo', {
-      cache: true,
       success: function (result) {
         $(page).html(tpl(result.info));
 
