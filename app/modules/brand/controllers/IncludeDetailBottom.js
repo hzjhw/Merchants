@@ -13,23 +13,23 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     var renderObj =$(page).find(render);
     renderObj.html(HandlebarsHelper.compile(template)(data));
     App.initBrandAutoHide(page);
-    if(data.isLogin)
-    {
-     /* renderObj.append('<li class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
-        '<span class="buttombar-text">退出</span>'+
-        '<span class="icon-bg icon-buttombar-sep"></span></li>');*/
-    }else
-    {
-      /*renderObj.append('<li data-url="login_dealers" class="app-btn"><span class="icon-bg icon-buttombar-login"></span>'+
-        '<span class="buttombar-text">登录</span>'+
-        '<span class="icon-bg icon-buttombar-sep"></span></li>');*/
-    }
 
     // 底部导航
     $(page).find('.bottombar-ul li').off().on('click',function (e) {
       e.preventDefault();
       var urlVal =$(this).attr('data-url');
       if(urlVal.length > 0){
+        if(urlVal === 'brand_cooperate')
+        {
+          if(!App.isLogin())
+          {
+            var cntVal = '<span style="font-size: 20px"> 对不起,合作前需登录!现在就登录吗?</span>';
+            App.showConfirm('未登录', cntVal, null, function () {
+              App.load('login_dealers');
+            });
+            return;
+          }
+        }
         App.load(urlVal);
       }
       return false;

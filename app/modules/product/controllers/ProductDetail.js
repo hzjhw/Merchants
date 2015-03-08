@@ -47,6 +47,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
           $(page).find('.sc').click(function () {
             App.query("/userinfo/savePro/" + proid, {
               success: function (result) {
+                var cntVal = '搜藏失误';
                 if (result.msg == 'nologin') {
                   cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
                   App.showConfirm('未登录', cntVal, null, function () {

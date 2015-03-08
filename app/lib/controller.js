@@ -3,11 +3,14 @@
  * @class main
  * @author yongjin<zjut_wyj@163.com> 2015/3/2
  */
-localStorage['LOGIN_CHANGE'] = false;
+
 App.CELL_PHONE = "cell_phone";
 App.isLogin = function(){
-  return localStorage['LOGIN_CHANGE'] ==='false'?false:true;
-}
+  var phoneNum = localStorage[App.CELL_PHONE];
+  if(phoneNum)
+    return phoneNum.indexOf('1') == 0;
+  return false;
+};
 App.scroll = function (scrollTo, time) {
   debug('【Util】App.scroll:' + scrollTo);
   var scrollFrom = parseInt(document.body.scrollTop),
@@ -98,7 +101,7 @@ App.initTopScroll = function (page) {
 App.initBrandAutoHide = function(page){
   setTimeout(function(){
     var $topbar = $('.app-topbar', $(page));
-    var $bottom = $('.app-bottombar')
+    var $bottom = $('.app-bottombar');
     App.autoHide(page, {
       show: function (scrollTop) {
         $topbar.removeClass('brand-top-auto-hide');
@@ -118,27 +121,6 @@ seajs.use(['App'], function (App) {
   var $Loading = $('#Loading');
   App.Loading = $Loading.clone();
   $Loading.remove();
-
-  setTimeout(function(){App.query('/userinfo', {
-    //cache: true,
-    success: function (data) {
-      if (data.msg == 'nologin') {
-        var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-        App.showConfirm('未登录', cntVal, $dom, function () {
-          App.load('login_dealers');
-        });
-        /*if (window.confirm('对不起,您还未登录!现在就登录吗?')) {
-         App.load('login_dealers');
-         }*/
-      }
-      else {
-        App.show330(page, function (dialog) {
-          dialog.showModal($dom)
-        });
-      }
-    }
-  });
-  },0);
 
   /*首页*/
   App.controller('home', function (page) {
@@ -169,8 +151,7 @@ seajs.use(['App'], function (App) {
           success: function (result) {
             if (result.msg == 'success') {
               localStorage[App.CELL_PHONE] = '';
-              localStorage['LOGIN_CHANGE'] = false;
-              App.back('home');
+              App.load('home');
             }
           }
         })
@@ -234,17 +215,10 @@ seajs.use(['App'], function (App) {
   /*意向合作*/
   App.controller('brand_cooperate', function (page) {
     debug('【Controller】pageLoad: brand_cooperate');
-    var ctx = this;
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_cooperate_args_id'];
-    localStorage['brand_cooperate_args_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'slide-left', page: 'brand_cooperate'}, this);
-    if(!App.isLogin())
-    {
-
-    }
-    seajs.use(['BrandCooperate'], function (BrandCooperate) {
-      App.BrandCooperate = new BrandCooperate(page,{isLogin:App.isLogin(),facid:ctx.args.id});
-    });
+      seajs.use(['BrandCooperate'], function (BrandCooperate) {
+        App.BrandCooperate = new BrandCooperate(page,localStorage['brand_fact_id']);
+      });
   });
   /*品牌列表*/
   App.controller('brand_list', function (page) {
@@ -272,19 +246,19 @@ seajs.use(['App'], function (App) {
   App.controller('brand_detail', function (page) {
     debug('【Controller】pageLoad: brand_detail');
     var ctx = this;
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_detail_args_id'];
-    localStorage['brand_detail_args_id'] = ctx.args.id;
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
+    localStorage['brand_fact_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow: function (page) {
-
-    }, appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
-      });
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
+    }, appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+      });
+
       App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
@@ -296,17 +270,18 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
     App._Stack.pop();
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_info_args_id'];
-    localStorage['brand_info_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_info', appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
-      });
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
+    localStorage['brand_fact_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_info',  appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
-      })
+      });
+    },appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+      });
       App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
@@ -335,18 +310,19 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_tec');
     var ctx = this;
     App._Stack.pop();
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_tec_args_id'];
-    localStorage['brand_tec_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appReady: function (page) {
-
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
-      });
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
+    localStorage['brand_fact_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec',  appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
-      })
+      });
+    },appReady: function (page) {
+
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+      });
       App.initBrandAutoHide(page);
     }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
@@ -358,16 +334,17 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_blank');
     var ctx = this;
     App._Stack.pop();
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_blank_args_id'];
-    localStorage['brand_blank_args_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
-      });
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
+    localStorage['brand_fact_id'] = ctx.args.id;
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank',  appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
+      });
+    },appReady: function (page) {
+      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
       App.initBrandAutoHide(page);
     }}, ctx);
@@ -455,22 +432,23 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: product_list');
     var ctx = this;
 
-    if (!ctx.args.id) ctx.args.id = localStorage['product_list_args_id'];
-    localStorage['product_list_args_id'] = ctx.args.id;
+    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
+    localStorage['brand_fact_id'] = ctx.args.id;
     if (ctx.args.price || ctx.args.cat) {
-      localStorage['product_list_args_id'] = null;
+      localStorage['brand_fact_id'] = null;
     }
     App.initLoad(page, { transition: 'fade', page: 'product_list', appShow: function (page) {
-
+        if(!(ctx.args.price || ctx.args.cat)) {
+          seajs.use('IncludeMessage', function (IncludeMessage) {
+            new IncludeMessage(page, '.message', {
+              id: ctx.args.id
+            });
+          })
+        }
     }, appReady: function (page) {
-      if (typeof ctx.args.price === 'undefined') {
+      if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
           new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
-        })
-        seajs.use('IncludeMessage', function (IncludeMessage) {
-          new IncludeMessage(page, '.message', {
-            id: ctx.args.id
-          });
         });
         App.initBrandAutoHide(page);
       }

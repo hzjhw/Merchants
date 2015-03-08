@@ -151,10 +151,12 @@ onZoomEnd: null
 
 9)登录弹窗
 var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-          App.showConfirm('未登录', cntVal, $dom, function () {
+          App.showConfirm('未登录', cntVal, null, function () {
             App.load('login_dealers');
           });
 
+var cntVal = '<span style="font-size: 20px"> 无法找到该产品详细信息</span>';
+                  App.showMsg('收藏错误', cntVal);
 
 ### 响应速度方面
 1) 按钮点击响应速度
