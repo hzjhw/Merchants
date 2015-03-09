@@ -10,6 +10,9 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
   HandlebarsHelper = require('HandlebarsHelper');
   function bindDetail(page, id) {
     $(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click', function () {
+      if (id && id === 'null' || !id){
+        id =  $(this).parents('.glitzItem').attr('data-id');
+      }
       App.load('product_detail', {
         id: id,
         proid: $(this).parents('.glitzItem').attr('data-id')
@@ -164,7 +167,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
                         _tempData.list = Est.filter(_tempData.list, {price: dataId});
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
-                        $(page).find('.search-list-cont').append(tpl($(tpl(_tempData)).find('.search-list-cont')));
+                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
                       } else {
                         var filterObj = {};
                         if (dataId.indexOf('f') !== -1) {

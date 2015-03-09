@@ -28,7 +28,7 @@ App.scroll = function (scrollTo, time) {
 };
 App.showMsg = function (titleVal, cntVal) {
   seajs.use(['dialog'], function (dialog) {
-    window.dialog = dialog({
+    window.msgDialog = dialog({
       title: titleVal,
       content: cntVal,
       width: $(window).width() - 280,
@@ -40,7 +40,7 @@ App.showMsg = function (titleVal, cntVal) {
 };
 App.showConfirm = function (titleVal, cntVal, curEle, callback) {
   seajs.use(['dialog'], function (dialog) {
-    window.dialog = dialog({
+    window.confirmDialog = dialog({
       title: titleVal,
       content: cntVal,
       width: $(window).width() - 280,
@@ -59,8 +59,8 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
 };
 App.show330 = function (page, callback) {
   seajs.use(['dialog'], function (dialog) {
-    window.dialog && window.dialog.close().remove();
-    window.dialog = dialog({
+    window.myDialog && window.myDialog.close().remove();
+    window.myDialog = dialog({
       id: '330dialog',
       title: '我的330',
       align: 'bottom right',
@@ -79,7 +79,7 @@ App.show330 = function (page, callback) {
         }, 100);
       }
     });
-    callback && callback.call(this, window.dialog);
+    callback && callback.call(this, window.myDialog);
   });
 };
 App.initTopScroll = function (page) {
@@ -150,6 +150,7 @@ seajs.use(['App'], function (App) {
         App.query("/loginout", {
           success: function (result) {
             if (result.msg == 'success') {
+              App.disableLazyLoad();
               localStorage[App.CELL_PHONE] = '';
               App.load('home');
             }

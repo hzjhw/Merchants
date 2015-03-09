@@ -205,6 +205,9 @@ Application.prototype = {
       });
     }
   },
+  disableLazyLoad: function(){
+    this.isLazyLoad = false;
+  },
   initPage: function (page, height) {
 
     setTimeout(function () {
