@@ -85,6 +85,7 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
         }else if (data.msg == 'nologin'){
           var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
           App.showConfirm('未登录', cntVal, null, function () {
+            App.setBackPage('brand_cooperate')
             App.load('login_dealers');
           });
         }

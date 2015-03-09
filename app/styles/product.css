@@ -31,7 +31,7 @@ a{text-decoration:none;}
 #factory .search-list-cont .glitzItem a.glitzPic{border:1px solid #D5D5D5;}
 #factory .search-list-cont .glitzItem a.glitzPic img{max-width:100%;}
 #factory .search-list-cont .txt{font-family:Microsoft Yahei;}
-#factory .search-list-cont .txt p.title{color:#3b3a3a;font-size:24px;line-height:48px;border-bottom:1px solid #bbbaba;margin-bottom:8px;white-space: nowrap;overflow:hidden;}
+#factory .search-list-cont .txt p.title{color:#3b3a3a;font-size:24px;line-height:48px;border-bottom:1px dashed #959595;margin-bottom:8px;white-space: nowrap;overflow:hidden;}
 #factory .search-list-cont .txt p.feature{color:#6c6c6c;font-size:18px;line-height:30px; height:60px;overflow:hidden;}
 #factory .search-list-cont .txt p.price{color:#dd1460;font-size:24px;padding-top:26px;}
 #factory .search-list-cont .txt p.price a.collect{color:#909090;font-size:24px;padding-left:50px;background:url(img/icons-list.jpg) no-repeat -142px center; border-left:1px solid #ababab;margin-left:23px;}

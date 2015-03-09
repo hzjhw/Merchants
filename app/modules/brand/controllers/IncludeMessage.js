@@ -30,6 +30,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
+            App.setBackPage('brand_detail')
             App.load('login_dealers');
           });
         }
@@ -38,6 +39,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
+            App.setBackPage('brand_detail')
             App.load('login_dealers');
           });
           return;

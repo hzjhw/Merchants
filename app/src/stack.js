@@ -16,14 +16,16 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         break;
       case 'number':
         if (Math.abs(index) > stackSize) {
-          throw TypeError('absolute index cannot be greater than stack size, got ' + index);
+          alert('absolute index cannot be greater than stack size, got ' + index);
+          App.load('home');
         }
         if (index < 0) {
           index = stackSize + index;
         }
         break;
       default:
-        throw TypeError('page index must be a number if defined, got ' + index);
+        alert('page index must be a number if defined, got ' + index);
+        App.load('home');
     }
     return fetchPage(index);
   };
@@ -38,14 +40,15 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
       case 'number':
         if (Math.abs(startIndex) > stackSize) {
           App.back();
-          console.log('absolute start index cannot be greater than stack size, got ' + startIndex);
+          alert('absolute start index cannot be greater than stack size, got ' + startIndex);
         }
         if (startIndex < 0) {
           startIndex = stackSize + startIndex;
         }
         break;
       default:
-        throw TypeError('start index must be a number if defined, got ' + startIndex);
+        alert('start index must be a number if defined, got ' + startIndex);
+        App.load('home');
     }
     switch (typeof endIndex) {
       case 'undefined':
@@ -53,17 +56,20 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         break;
       case 'number':
         if (Math.abs(endIndex) > stackSize) {
-          throw TypeError ('absolute end index cannot be greater than stack size, got ' + endIndex);
+          alert('absolute end index cannot be greater than stack size, got ' + endIndex);
+          App.load('home');
         }
         if (endIndex < 0) {
           endIndex = stackSize + endIndex;
         }
         break;
       default:
-        throw TypeError('end index must be a number if defined, got ' + endIndex);
+        alert('end index must be a number if defined, got ' + endIndex);
+        App.load('home');
     }
     if (startIndex > endIndex) {
-      throw TypeError('start index cannot be greater than end index');
+      alert('start index cannot be greater than end index');
+      App.load('home');
     }
 
     removeFromStack(startIndex, endIndex);
@@ -78,17 +84,20 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         break;
       case 'number':
         if (Math.abs(index) > stackSize) {
-          throw TypeError('absolute index cannot be greater than stack size, got ' + index);
+          alert('absolute index cannot be greater than stack size, got ' + index);
+          App.load('home');
         }
         if (index < 0) {
           index = stackSize + index;
         }
         break;
       default:
-        throw TypeError('index must be a number if defined, got ' + index);
+        alert('index must be a number if defined, got ' + index);
+        App.load('home');
     }
     if ( !Utils.isArray(newPages) ) {
-      throw TypeError('added pages must be an array, got ' + newPages);
+      alert('added pages must be an array, got ' + newPages);
+      App.load('home');
     }
     newPages = newPages.slice();
     Utils.forEach(newPages, function (page, i) {
@@ -97,10 +106,12 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
       } else if ( Utils.isArray(page) ) {
         page = page.slice();
       } else {
-        throw TypeError('page description must be an array (page name, arguments), got ' + page);
+        alert('page description must be an array (page name, arguments), got ' + page);
+        App.load('home');
       }
       if (typeof page[0] !== 'string') {
-        throw TypeError('page name must be a string, got ' + page[0]);
+        alert('page name must be a string, got ' + page[0]);
+        App.load('home');
       }
       switch (typeof page[1]) {
         case 'undefined':
@@ -108,7 +119,8 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         case 'object':
           break;
         default:
-          throw TypeError('page arguments must be an object if defined, got ' + page[1]);
+          alert('page arguments must be an object if defined, got ' + page[1]);
+          App.load('home');
       }
       switch (typeof page[2]) {
         case 'undefined':
@@ -116,7 +128,8 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         case 'object':
           break;
         default:
-          throw TypeError('page options must be an object if defined, got ' + page[2]);
+          alert('page options must be an object if defined, got ' + page[2]);
+          App.load('home');
       }
       newPages[i] = page;
     });
@@ -319,7 +332,8 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
             break;
           }
         default:
-          throw TypeError('restore options must be an object if defined, got ' + options);
+          alert('restore options must be an object if defined, got ' + options);
+          App.load('home');
       }
 
       switch (typeof callback) {
@@ -328,20 +342,24 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         case 'function':
           break;
         default:
-          throw TypeError('restore callback must be a function if defined, got ' + callback);
+          alert('restore callback must be a function if defined, got ' + callback);
+          App.load('home');
       }
 
       if (+new Date()-storedTime >= options.maxAge) {
-        throw TypeError('restore content is too old');
+        alert('restore content is too old');
+        App.load('home');
       }
 
       if ( !Pages.has(lastPage[0]) ) {
-        throw TypeError(lastPage[0] + ' is not a known page');
+        alert(lastPage[0] + ' is not a known page');
+        App.load('home');
       }
 
       Utils.forEach(storedStack, function (pageData) {
         if ( !Pages.has(pageData[0]) ) {
-          throw TypeError(pageData[0] + ' is not a known page');
+          alert(pageData[0] + ' is not a known page');
+          App.load('home');
         }
       });
 

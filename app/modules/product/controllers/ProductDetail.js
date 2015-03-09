@@ -51,6 +51,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
                 if (result.msg == 'nologin') {
                   cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
                   App.showConfirm('未登录', cntVal, null, function () {
+                    App.setBackPage('product_detail')
                     App.load('login_dealers');
                   });
                 }

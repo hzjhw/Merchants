@@ -194,7 +194,7 @@ Application.prototype = {
     });
   },
   initLazyLoad: function (page) {
-    if (!this.isLazyLoad){
+    if (!this.isLazyLoad) {
       this.isLazyLoad = true;
       seajs.use(['LazyLoad'], function () {
         var appContent = $('.app-content', $(page));
@@ -205,8 +205,18 @@ Application.prototype = {
       });
     }
   },
-  disableLazyLoad: function(){
+  resetLazyLoad: function (render, page) {
+    if ($(render, $(page)).find('.lazy').size() > 0) {
+      App.disableLazyLoad();
+      App.initLazyLoad(page);
+      console.log('resetLazyLoad');
+    }
+  },
+  disableLazyLoad: function () {
     this.isLazyLoad = false;
+  },
+  isLazyLoad: function () {
+    return this.isLazyLoad;
   },
   initPage: function (page, height) {
 

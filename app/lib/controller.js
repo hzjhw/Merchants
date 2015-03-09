@@ -5,9 +5,9 @@
  */
 
 App.CELL_PHONE = "cell_phone";
-App.isLogin = function(){
+App.isLogin = function () {
   var phoneNum = localStorage[App.CELL_PHONE];
-  if(phoneNum)
+  if (phoneNum)
     return phoneNum.indexOf('1') == 0;
   return false;
 };
@@ -59,7 +59,11 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
 };
 App.show330 = function (page, callback) {
   seajs.use(['dialog'], function (dialog) {
-    window.myDialog && window.myDialog.close().remove();
+    try {
+      window.myDialog && window.myDialog.close && window.myDialog.close().remove();
+    } catch (e) {
+      console.log('myDialog not find!');
+    }
     window.myDialog = dialog({
       id: '330dialog',
       title: '我的330',
@@ -83,7 +87,7 @@ App.show330 = function (page, callback) {
   });
 };
 App.initTopScroll = function (page) {
-  setTimeout(function(){
+  setTimeout(function () {
     var $appLogo = $('#app-index-logo', $(page));
     var $search = $('.app-search', $(page));
     App.autoHide(page, {
@@ -98,8 +102,8 @@ App.initTopScroll = function (page) {
     });
   }, 100);
 };
-App.initBrandAutoHide = function(page){
-  setTimeout(function(){
+App.initBrandAutoHide = function (page) {
+  setTimeout(function () {
     var $topbar = $('.app-topbar', $(page));
     var $bottom = $('.app-bottombar');
     App.autoHide(page, {
@@ -115,6 +119,39 @@ App.initBrandAutoHide = function(page){
     });
   }, 100)
 };
+
+App.initBrandListBottom = function(renderObj, data){
+  renderObj.find('.login-li').off().remove();
+  if(data.isLogin)
+  {
+    renderObj.append('<li class="app-btn login-li"><span class="icon-bg icon-bottombar-login"></span>'+
+      '<span class="bottombar-text">退出</span>'+
+      '<span class="icon-bg icon-bottombar-sep"></span></li>');
+  }else
+  {
+    renderObj.append('<li data-url="login_dealers" class="app-btn login-li"><span class="icon-bg icon-bottombar-login"></span>'+
+      '<span class="bottombar-text">登录</span>'+
+      '<span class="icon-bg icon-bottombar-sep"></span></li>');
+  }
+  // 底部导航
+  $(renderObj).find('li').off().on('click',function () {
+    var urlVal =$(this).attr('data-url');
+    if(urlVal)
+      App.load(urlVal);
+    else
+    {
+      App.query('/loginout',{
+        success:function(result){
+          if(result.msg == 'success')
+          {
+            localStorage[App.CELL_PHONE]='';
+            App.load('home');
+          }
+        }
+      })
+    }
+  });
+}
 
 seajs.use(['App'], function (App) {
 
@@ -149,6 +186,7 @@ seajs.use(['App'], function (App) {
         App.load('register_dealers');
       });
       $(page).find('.btn-login').off().on('click', function () {
+        App.setBackPage('home')
         App.load('login_dealers');
       });
       $(page).find('.btn-out').off().on('click', function () {
@@ -162,6 +200,8 @@ seajs.use(['App'], function (App) {
           }
         })
       });
+      //TODO 重新lazyload
+      App.resetLazyLoad('#merchants-show', page);
     }}, this);
     try {
       $(page).find('[data-target="inputs"]')
@@ -177,23 +217,24 @@ seajs.use(['App'], function (App) {
     // 我的330
     $(page).find('.btn-my').click(function (e) {
       e.preventDefault();
-      setTimeout(function () {
-        if (!window.myDialog) {
-          App.show330(page);
-          window.myDialog = true;
-        }
-      }, 0);
+      /*setTimeout(function () {
+       if (!window.myDialog) {
+       App.show330(page);
+       window.myDialog = true;
+       }
+       }, 0);*/
       var $dom = $(this).find('.span-my').get(0);
-      if(App.isLogin()){
+      if (App.isLogin()) {
         App.show330(page, function (dialog) {
           dialog.showModal($dom)
         })
       }
-      else{
-          var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
-          App.showConfirm('未登录', cntVal, $dom, function () {
-            App.load('login_dealers');
-          });
+      else {
+        var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+        App.showConfirm('未登录', cntVal, $dom, function () {
+          App.setBackPage('home');
+          App.load('login_dealers');
+        });
       }
       return false;
     });
@@ -222,15 +263,19 @@ seajs.use(['App'], function (App) {
   App.controller('brand_cooperate', function (page) {
     debug('【Controller】pageLoad: brand_cooperate');
     App.initLoad(page, { transition: 'slide-left', page: 'brand_cooperate'}, this);
-      seajs.use(['BrandCooperate'], function (BrandCooperate) {
-        App.BrandCooperate = new BrandCooperate(page,localStorage['brand_fact_id']);
-      });
+    seajs.use(['BrandCooperate'], function (BrandCooperate) {
+      App.BrandCooperate = new BrandCooperate(page, localStorage['brand_fact_id']);
+    });
   });
   /*品牌列表*/
   App.controller('brand_list', function (page) {
     debug('【Controller】pageLoad: brand_list');
     var ctx = this;
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appReady: function (page) {
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appShow: function(page){
+      App.initBrandListBottom($(page).find('.bottombar-ul'), {
+        isLogin: App.isLogin()
+      });
+    }, appReady: function (page) {
       seajs.use(['IncludeListBottom'], function (IncludeListBottom) {
         new IncludeListBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
@@ -278,13 +323,13 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_info',  appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_info', appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
-    },appReady: function (page) {
+    }, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
         new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
@@ -318,13 +363,13 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_tec',  appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
-    },appReady: function (page) {
+    }, appReady: function (page) {
 
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
         new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
@@ -342,13 +387,13 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_blank',  appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
         });
       });
-    },appReady: function (page) {
+    }, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
         new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
       });
@@ -444,13 +489,13 @@ seajs.use(['App'], function (App) {
       localStorage['brand_fact_id'] = null;
     }
     App.initLoad(page, { transition: 'fade', page: 'product_list', appShow: function (page) {
-        if(!(ctx.args.price || ctx.args.cat)) {
-          seajs.use('IncludeMessage', function (IncludeMessage) {
-            new IncludeMessage(page, '.message', {
-              id: ctx.args.id
-            });
-          })
-        }
+      if (!(ctx.args.price || ctx.args.cat)) {
+        seajs.use('IncludeMessage', function (IncludeMessage) {
+          new IncludeMessage(page, '.message', {
+            id: ctx.args.id
+          });
+        })
+      }
     }, appReady: function (page) {
       if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {

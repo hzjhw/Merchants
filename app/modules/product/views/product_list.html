@@ -62,11 +62,14 @@
                     {{/each}}
                 </div>
             </div>
+            <style>
+                #factory .app-content .search-list-cont.largest-view .glitzItem{border-bottom: 1px dashed #bbbaba;margin-bottom: 20px; padding-bottom: 20px;}
+            </style>
             <div class="search-list-cont list-view">
                 {{#each list}}
                 <div class="glitzItem" data-id="{{product_id}}" cust-id="{{cust_id}}">
                     <a class="glitzPic btn-pro-detail app-btn" href="javascript:void(0)"><img
-                            src="{{CONST 'PIC_URL'}}{{img_path}}"></a>
+                            src="{{CONST 'PIC_URL'}}{{img_path}}" width="100%"></a>
 
                     <div class="txt">
                         <p class="title btn-pro-detail app-btn">{{title}}</p>

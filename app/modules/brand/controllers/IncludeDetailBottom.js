@@ -25,6 +25,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
           {
             var cntVal = '<span style="font-size: 20px"> 对不起,合作前需登录!现在就登录吗?</span>';
             App.showConfirm('未登录', cntVal, null, function () {
+              App.setBackPage('brand_detail');
               App.load('login_dealers');
             });
             return;

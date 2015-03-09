@@ -50,7 +50,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
           if (data.result == 'success') {
             localStorage[App.CELL_PHONE]=data.phoneNum;
             if(App._Stack.size() > 0){
-              App.back();
+              App.back(App.getBackPage());
             } else{
               App.load('home');
             }

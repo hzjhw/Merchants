@@ -97,6 +97,9 @@ App.setBackPage('brand_list'); // 获取 App.getBackPage()
  // js
 App.initLazyLoad(page);
 
+//TODO 刷新lazyload
+App.resetLazyLoad('#merchants-show', page);
+
 8) 设置DIV可滚动 解决ios scroll不可滚动问题
 App.Scrollable($('.clickxiala .ui-dialog-content').get(0), false); // 注意滚动区域内只能容纳一个元素
 或（有缓冲效果）

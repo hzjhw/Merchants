@@ -16,6 +16,7 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
       App.back();
     });
     $(page).find('#login').click(function () {
+      App.setBackPage('home')
       App.load('login_dealers');
     });
     $(page).find('#userRegister').click(function(){
@@ -57,7 +58,8 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
           if(data.result == 'success')
           {
             alert("恭喜您，注册成功！");
-            App.back();
+            App.setBackPage('home')
+            App.load('login_dealers');
           }
           else
           {
