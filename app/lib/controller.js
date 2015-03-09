@@ -121,7 +121,12 @@ seajs.use(['App'], function (App) {
   var $Loading = $('#Loading');
   App.Loading = $Loading.clone();
   $Loading.remove();
-
+    App.query('/phone',{
+      async:false,
+      success:function(data){
+        localStorage[App.CELL_PHONE] = data.phoneNum;
+      }
+    });
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
