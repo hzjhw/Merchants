@@ -167,6 +167,8 @@ seajs.use(['App'], function (App) {
       //App.cleanStack(); // 清除stack
       App._CustomStack.length = 0;
 
+      $('body').find('#tool .tool-back').remove();
+
       if (App.isLogin()) {
         $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
       } else {

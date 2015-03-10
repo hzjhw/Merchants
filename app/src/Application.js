@@ -187,7 +187,7 @@ Application.prototype = {
   },
   addTool: function (page, _page) {
     if (window.$tool) window.$tool.remove();
-    window.$tool = $(App.$tool);
+    window.$tool = $(App.$tool.clone());
     window.$tool.css('display', 'blcok');
     window.$tool.find('.tool-reflesh').attr('data-page', _page);
     window.$tool.find('.tool-totop').off().on('click', function () {
@@ -195,12 +195,19 @@ Application.prototype = {
     });
     window.$tool.find('.tool-reflesh').off().on('click', function () {
       if ($(this).attr('data-page').length > 0) {
+        App._Stack.pop();
         App.load($(this).attr('data-page'));
       } else {
         window.location.reload();
       }
     });
-    $('body').append(window.$tool);
+    if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home'){
+      window.$tool.find('.tool-back').remove();
+    }
+    window.$tool.find('.tool-back').off().on('click', function () {
+      App.back(App.getBackPage);
+    });
+    $(page).append(window.$tool);
     return window.$tool;
   },
   getLoading: function () {
@@ -227,11 +234,13 @@ Application.prototype = {
       });
       $(page).on('appShow', function () {
         debug('【Stack】Stack size: ' + App._Stack.size());
+        App.addTool(page, options.page);
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {
         App.removeLoading();
         App.initPage(page);
+        App.addTool(page, options.page);
         App.off('queryEvent');
         App.on('queryEvent', function (data) {
           App.initPage(page);
@@ -285,8 +294,7 @@ Application.prototype = {
         } else {
           debug('【LazyLoad】initLazyLoad');
           $lazyList.lazyload({
-            container: appContent,
-            effect: "fadeIn"
+            container: appContent
           });
         }
       }, 100);
