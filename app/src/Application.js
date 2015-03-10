@@ -113,36 +113,6 @@ Application.prototype = {
   hasBackPage: function () {
     return localStorage['backPage'];
   },
-  addLoading: function () {
-    if (window.$loading) window.$loading.remove();
-    window.$loading = $('<div class="loading"></div>');
-    $('body').append(window.$loading);
-    return window.$loading;
-  },
-  addTool: function(page, _page){
-    if (window.$tool) window.$tool.remove();
-    window.$tool = $(App.$tool);
-    window.$tool.css('display', 'blcok');
-    $tool.find('.tool-totop').on('click', function(){
-      App.scroll(0, 100, page);
-    });
-    $tool.find('.tool-reflesh').on('click', function(){
-      if (_page){
-        App.load(_page);
-      } else{
-        window.location.reload();
-      }
-    });
-    $('body').append(window.$tool);
-    return window.$tool;
-  },
-  getLoading: function () {
-    return $('');
-  },
-  removeLoading: function () {
-    if (window.$loading) window.$loading.remove();
-    else $('.loading').remove();
-  },
   trigger: function (topic, args) {
     var ctx = this;
     if (!this.topics[topic]) return false;
@@ -208,6 +178,37 @@ Application.prototype = {
         clearInterval(interval);
       }
     }, runEvery);
+  },
+  addLoading: function () {
+    if (window.$loading) window.$loading.remove();
+    window.$loading = $('<div class="loading"></div>');
+    $('body').append(window.$loading);
+    return window.$loading;
+  },
+  addTool: function (page, _page) {
+    if (window.$tool) window.$tool.remove();
+    window.$tool = $(App.$tool);
+    window.$tool.css('display', 'blcok');
+    window.$tool.find('.tool-reflesh').attr('data-page', _page);
+    window.$tool.find('.tool-totop').off().on('click', function () {
+      App.scroll(0, 100, page);
+    });
+    window.$tool.find('.tool-reflesh').off().on('click', function () {
+      if ($(this).attr('data-page').length > 0) {
+        App.load($(this).attr('data-page'));
+      } else {
+        window.location.reload();
+      }
+    });
+    $('body').append(window.$tool);
+    return window.$tool;
+  },
+  getLoading: function () {
+    return $('');
+  },
+  removeLoading: function () {
+    if (window.$loading) window.$loading.remove();
+    else $('.loading').remove();
   },
   initLoad: function (page, options, context) {
     if (page) {
