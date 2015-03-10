@@ -47,7 +47,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
           $(page).find('.sc').click(function () {
             App.query("/userinfo/savePro/" + proid, {
               success: function (result) {
-                var cntVal = '搜藏失误';
+                var cntVal = '收藏失误';
                 if (result.msg == 'nologin') {
                   cntVal = '<span style="font-size: 20px"> 收藏产品需要账号登录!现在就登录吗?</span>';
                   App.showConfirm('未登录', cntVal, null, function () {
@@ -56,7 +56,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
                   });
                 }
                 else if (result.msg == 'error') {
-                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
+                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,收藏失败!</span>';
                   App.showMsg('收藏失败', cntVal);
                 }
                 else if (result.msg == 'success') {

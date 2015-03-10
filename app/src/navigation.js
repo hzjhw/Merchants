@@ -10,7 +10,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   App.load = function (pageName, args, options, callback) {
     $('.loading').show();
     if (typeof pageName !== 'string') {
-      throw TypeError('page name must be a string, got ' + pageName);
+      debug('page name must be a string, got ' + pageName, {type: 'alert'});
+      App.load('home');
+      return;
     }
     switch (typeof args) {
       case 'function':
@@ -24,7 +26,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       case 'object':
         break;
       default:
-        throw TypeError('page arguments must be an object if defined, got ' + args);
+        debug('page arguments must be an object if defined, got ' + args, {type: 'alert'});
+        App.load('home');
+        return;
     }
     switch (typeof options) {
       case 'function':
@@ -37,7 +41,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
         options = { transition: options };
         break;
       default:
-        throw TypeError('options must be an object if defined, got ' + options);
+        debug('options must be an object if defined, got ' + options, {type: 'alert'});
+        App.load('home');
+        return;
     }
     switch (typeof callback) {
       case 'undefined':
@@ -46,7 +52,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       case 'function':
         break;
       default:
-        throw TypeError('callback must be a function if defined, got ' + callback);
+        debug('callback must be a function if defined, got ' + callback, {type: 'alert'});
+        App.load('home');
+        return;
     }
 
     return loadPage(pageName, args, options, callback);
@@ -77,7 +85,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       case 'string':
         break;
       default:
-        throw TypeError('pageName must be a string if defined, got ' + pageName);
+        debug('pageName must be a string if defined, got ' + pageName, {type: 'alert'});
+        App.load('home');
+        return;
     }
     switch (typeof callback) {
       case 'undefined':
@@ -86,7 +96,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       case 'function':
         break;
       default:
-        throw TypeError('callback must be a function if defined, got ' + callback);
+        debug('callback must be a function if defined, got ' + callback, {type: 'alert'});
+        App.load('home');
+        return;
     }
 
     return navigateBack(pageName, callback);
@@ -94,7 +106,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 
   App.pick = function (pageName, args, options, loadCallback, callback) {
     if (typeof pageName !== 'string') {
-      throw TypeError('page name must be a string, got ' + pageName);
+      debug('page name must be a string, got ' + pageName, {type: 'alert'});
+      App.load('home');
+      return;
     }
     switch (typeof args) {
       case 'function':
@@ -109,7 +123,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       case 'object':
         break;
       default:
-        throw TypeError('page arguments must be an object if defined, got ' + args);
+        debug('page arguments must be an object if defined, got ' + args, {type: 'alert'});
+        App.load('home');
+        return;
     }
     switch (typeof options) {
       case 'function':
@@ -123,10 +139,14 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
         options = { transition: options };
         break;
       default:
-        throw TypeError('options must be an object if defined, got ' + options);
+        debug('options must be an object if defined, got ' + options, {type: 'alert'});
+        App.load('home');
+        return;
     }
     if (typeof loadCallback !== 'function') {
-      throw TypeError('callback must be a function, got ' + loadCallback);
+      debug('callback must be a function, got ' + loadCallback, {type: 'alert'});
+      App.load('home');
+      return;
     }
     switch (typeof callback) {
       case 'undefined':
@@ -136,7 +156,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       case 'function':
         break;
       default:
-        throw TypeError('callback must be a function, got ' + callback);
+        debug('callback must be a function, got ' + callback, {type: 'alert'});
+        App.load('home');
+        return;
     }
 
     return pickPage(pageName, args, options, loadCallback, callback);

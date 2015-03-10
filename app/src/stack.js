@@ -16,16 +16,18 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         break;
       case 'number':
         if (Math.abs(index) > stackSize) {
-          alert('absolute index cannot be greater than stack size, got ' + index);
+          debug('absolute index cannot be greater than stack size, got ' + index, {type: 'alert'});
           App.load('home');
+          return;
         }
         if (index < 0) {
           index = stackSize + index;
         }
         break;
       default:
-        alert('page index must be a number if defined, got ' + index);
+        debug('page index must be a number if defined, got ' + index, {type: 'alert'});
         App.load('home');
+        return;
     }
     return fetchPage(index);
   };
@@ -40,15 +42,16 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
       case 'number':
         if (Math.abs(startIndex) > stackSize) {
           App.back();
-          alert('absolute start index cannot be greater than stack size, got ' + startIndex);
+          debug('absolute start index cannot be greater than stack size, got ' + startIndex, {type: 'alert'});
         }
         if (startIndex < 0) {
           startIndex = stackSize + startIndex;
         }
         break;
       default:
-        alert('start index must be a number if defined, got ' + startIndex);
+        debug('start index must be a number if defined, got ' + startIndex, {type: 'alert'});
         App.load('home');
+        return;
     }
     switch (typeof endIndex) {
       case 'undefined':
@@ -56,20 +59,23 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         break;
       case 'number':
         if (Math.abs(endIndex) > stackSize) {
-          alert('absolute end index cannot be greater than stack size, got ' + endIndex);
+          debug('absolute end index cannot be greater than stack size, got ' + endIndex, {type: 'alert'});
           App.load('home');
+          return;
         }
         if (endIndex < 0) {
           endIndex = stackSize + endIndex;
         }
         break;
       default:
-        alert('end index must be a number if defined, got ' + endIndex);
+        debug('end index must be a number if defined, got ' + endIndex, {type: 'alert'});
         App.load('home');
+        return;
     }
     if (startIndex > endIndex) {
-      alert('start index cannot be greater than end index');
+      debug('start index cannot be greater than end index', {type: 'alert'});
       App.load('home');
+      return;
     }
 
     removeFromStack(startIndex, endIndex);
@@ -84,20 +90,23 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         break;
       case 'number':
         if (Math.abs(index) > stackSize) {
-          alert('absolute index cannot be greater than stack size, got ' + index);
+          debug('absolute index cannot be greater than stack size, got ' + index, {type: 'alert'});
           App.load('home');
+          return;
         }
         if (index < 0) {
           index = stackSize + index;
         }
         break;
       default:
-        alert('index must be a number if defined, got ' + index);
+        debug('index must be a number if defined, got ' + index, {type: 'alert'});
         App.load('home');
+        return;
     }
     if ( !Utils.isArray(newPages) ) {
-      alert('added pages must be an array, got ' + newPages);
+      debug('added pages must be an array, got ' + newPages, {type: 'alert'});
       App.load('home');
+      return;
     }
     newPages = newPages.slice();
     Utils.forEach(newPages, function (page, i) {
@@ -106,12 +115,14 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
       } else if ( Utils.isArray(page) ) {
         page = page.slice();
       } else {
-        alert('page description must be an array (page name, arguments), got ' + page);
+        debug('page description must be an array (page name, arguments), got ' + page, {type: 'alert'});
         App.load('home');
+        return;
       }
       if (typeof page[0] !== 'string') {
-        alert('page name must be a string, got ' + page[0]);
+        debug('page name must be a string, got ' + page[0], {type: 'alert'});
         App.load('home');
+        return;
       }
       switch (typeof page[1]) {
         case 'undefined':
@@ -119,8 +130,9 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         case 'object':
           break;
         default:
-          alert('page arguments must be an object if defined, got ' + page[1]);
+          debug('page arguments must be an object if defined, got ' + page[1], {type: 'alert'});
           App.load('home');
+          return;
       }
       switch (typeof page[2]) {
         case 'undefined':
@@ -128,8 +140,9 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         case 'object':
           break;
         default:
-          alert('page options must be an object if defined, got ' + page[2]);
+          debug('page options must be an object if defined, got ' + page[2], {type: 'alert'});
           App.load('home');
+          return;
       }
       newPages[i] = page;
     });
@@ -195,13 +208,16 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
     if (stack.length !== 0){
       return stack[stack.length-1];
     }
-    return 'undefined';
+    return 'home';
   }
   function getBeforeStackItem(){
+    if (App._CustomStack.length > 0){
+      return App._CustomStack[App._CustomStack.length - 2];
+    }
     if (stack.length > 0){
       return stack[stack.length-2];
     }
-    return 'undefined';
+    return 'home';
   }
 
   function fetchLastStackItem () {
@@ -332,8 +348,9 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
             break;
           }
         default:
-          alert('restore options must be an object if defined, got ' + options);
+          debug('restore options must be an object if defined, got ' + options, {type: 'alert'});
           App.load('home');
+          return;
       }
 
       switch (typeof callback) {
@@ -342,24 +359,28 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
         case 'function':
           break;
         default:
-          alert('restore callback must be a function if defined, got ' + callback);
+          debug('restore callback must be a function if defined, got ' + callback, {type: 'alert'});
           App.load('home');
+          return;
       }
 
       if (+new Date()-storedTime >= options.maxAge) {
-        alert('restore content is too old');
+        debug('restore content is too old', {type: 'alert'});
         App.load('home');
+        return;
       }
 
       if ( !Pages.has(lastPage[0]) ) {
-        alert(lastPage[0] + ' is not a known page');
+        debug(lastPage[0] + ' is not a known page', {type: 'alert'});
         App.load('home');
+        return;
       }
 
       Utils.forEach(storedStack, function (pageData) {
         if ( !Pages.has(pageData[0]) ) {
-          alert(pageData[0] + ' is not a known page');
+          debug(pageData[0] + ' is not a known page', {type: 'alert'});
           App.load('home');
+          return;
         }
       });
 

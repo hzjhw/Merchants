@@ -209,7 +209,7 @@ gulp.task('html', function () {
 
 // 过滤无用内容， 减少上传流量
 gulp.task('dist-filter', function(){
-  del(DISTDIR + '/lib/controller.js');
+  del(DISTDIR + '/scripts/controller/**');
   del(DISTDIR + '/modules/*/main.js');
   del(DISTDIR + '/scripts/base.js');
 

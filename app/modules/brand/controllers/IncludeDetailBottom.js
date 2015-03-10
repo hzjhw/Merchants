@@ -17,21 +17,27 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     // 底部导航
     $(page).find('.bottombar-ul li').off().on('click',function (e) {
       e.preventDefault();
-      var urlVal =$(this).attr('data-url');
-      if(urlVal.length > 0){
-        if(urlVal === 'brand_cooperate')
-        {
-          if(!App.isLogin())
+      try{
+        var urlVal =$(this).attr('data-url');
+        if(urlVal.length > 0){
+          if(urlVal === 'brand_cooperate')
           {
-            var cntVal = '<span style="font-size: 20px"> 对不起,合作前需登录!现在就登录吗?</span>';
-            App.showConfirm('未登录', cntVal, null, function () {
-              App.setBackPage('brand_detail');
-              App.load('login_dealers');
-            });
-            return;
+            if(!App.isLogin())
+            {
+              var cntVal = '<span style="font-size: 20px"> 对不起,合作前需登录!现在就登录吗?</span>';
+              App.showConfirm('未登录', cntVal, null, function () {
+                App.setBackPage('brand_detail');
+                App.load('login_dealers');
+              });
+              return;
+            }
           }
+          App.load(urlVal);
+        } else{
+          $(this).find('a').click();
         }
-        App.load(urlVal);
+      }catch(e){
+        console.log(e);
       }
       return false;
     });

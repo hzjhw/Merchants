@@ -33,7 +33,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
             });
           }
           else if (result.msg == 'error') {
-            cntVal = '<span style="font-size: 20px"> 由于网络等因素,搜藏失败!</span>';
+            cntVal = '<span style="font-size: 20px"> 由于网络等因素,收藏失败!</span>';
             App.showMsg('收藏失败', cntVal);
           }
           else if (result.msg == 'success') {
@@ -105,12 +105,13 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
               data.header.hide = false;
               new IncludeHeader(page, '#include_header', data.header);
             });
-            seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+            /*seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
               new IncludeDetailBottom(page, '.bottombar-ul', {
                 isLogin: App.isLogin(),
                 facPhone: data.facPhone
               });
-            });
+            });*/
+            page.facPhone = data.facPhone;
           }
           // 返回按钮
           $(page).find('.go-back').click(function () {

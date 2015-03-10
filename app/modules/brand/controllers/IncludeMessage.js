@@ -26,7 +26,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           }
         });
       }
-      $(page).find('#custname,#cellphone,#levMsg').click(function () {
+      $(page).find('#custname,#cellphone,#levMsg').off().on('click',  function () {
         if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
@@ -35,7 +35,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           });
         }
       });
-      $(page).find('#msgSub').click(function () {
+      $(page).find('#msgSub').off().on('click', function () {
         if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){

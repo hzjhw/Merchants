@@ -25,16 +25,17 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
             result.header.hide = false;
             new IncludeHeader(page, '#include_header', result.header);
           });
-          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+          /*seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
               isLogin: App.isLogin(),
               facPhone: result.facPhone
             });
-          });
+          });*/
           // 底部导航
-          $(page).find('.bottombar-ul li').click(function () {
+         /* $(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
-          });
+          });*/
+          page.facPhone = result.facPhone;
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());
           });

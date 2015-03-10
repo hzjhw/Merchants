@@ -55,12 +55,9 @@ define('SearchIndex', ['App', 'template/search_index', 'HandlebarsHelper,'], fun
           });
         }
       });
-
-
-
       $(page).find('.category-close').click(function () {
         $(this).addClass('active');
-        App.back('home');
+        App.back(App.getBackPage());
       });
       $(page).find('.btn-search').click(function () {
         App.setBackPage('search');

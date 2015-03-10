@@ -23,7 +23,7 @@ App.query = function (query, options) {
         params += options.data[key];
       }
     }
-    debug('【Query】:' + query + '?' + params);
+    debug('【Query】:' + CONST.API + query + '?' + params);
     var cacheId = options.data ? ('_hash' + hash(query) + params) : '_hash' + hash(query);
     if (options.cache && App.getCache(cacheId)) {
       options.success && options.success.call(this, App.getCache(cacheId));

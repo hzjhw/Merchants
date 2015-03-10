@@ -29,6 +29,7 @@ App.scroll = function (scrollTo, time) {
 App.showMsg = function (titleVal, cntVal) {
   seajs.use(['dialog'], function (dialog) {
     window.msgDialog = dialog({
+      id: 'showMsg',
       title: titleVal,
       content: cntVal,
       width: $(window).width() - 280,
@@ -41,6 +42,7 @@ App.showMsg = function (titleVal, cntVal) {
 App.showConfirm = function (titleVal, cntVal, curEle, callback) {
   seajs.use(['dialog'], function (dialog) {
     window.confirmDialog = dialog({
+      id: 'comfirmDialog',
       title: titleVal,
       content: cntVal,
       width: $(window).width() - 280,
@@ -119,32 +121,29 @@ App.initBrandAutoHide = function (page) {
     });
   }, 100)
 };
-
-App.initBrandListBottom = function(renderObj, data){
+App.initBrandListBottom = function (renderObj, data) {
   renderObj.find('.login-li').off().remove();
-  if(data.isLogin)
-  {
-    renderObj.append('<li class="app-btn login-li"><span class="icon-bg icon-bottombar-login"></span>'+
-      '<span class="bottombar-text">退出</span>'+
-      '<span class="icon-bg icon-bottombar-sep"></span></li>');
-  }else
-  {
-    renderObj.append('<li data-url="login_dealers" class="app-btn login-li"><span class="icon-bg icon-bottombar-login"></span>'+
-      '<span class="bottombar-text">登录</span>'+
-      '<span class="icon-bg icon-bottombar-sep"></span></li>');
+  if (data.isLogin) {
+    renderObj.append('<li class="app-btn login-li"><span class="icon-bg icon-bottombar-login"></span>' +
+      '<span class="bottombar-text">退出</span>' +
+      '</li>');
+  } else {
+    renderObj.append('<li data-url="login_dealers" class="app-btn login-li"><span class="icon-bg icon-bottombar-login"></span>' +
+      '<span class="bottombar-text">登录</span>' +
+      '</li>');
   }
   // 底部导航
-  $(renderObj).find('li').off().on('click',function () {
-    var urlVal =$(this).attr('data-url');
-    if(urlVal)
+  $(renderObj).find('li').off().on('click', function () {
+    var urlVal = $(this).attr('data-url');
+    if (urlVal) {
+      App.setBackPage('brand_list');
       App.load(urlVal);
-    else
-    {
-      App.query('/loginout',{
-        success:function(result){
-          if(result.msg == 'success')
-          {
-            localStorage[App.CELL_PHONE]='';
+    }
+    else {
+      App.query('/loginout', {
+        success: function (result) {
+          if (result.msg == 'success') {
+            localStorage[App.CELL_PHONE] = '';
             App.load('home');
           }
         }
@@ -158,26 +157,28 @@ seajs.use(['App'], function (App) {
   var $Loading = $('#Loading');
   App.Loading = $Loading.clone();
   $Loading.remove();
-    App.query('/phone',{
-      async:false,
-      success:function(data){
-        localStorage[App.CELL_PHONE] = data.phoneNum;
-      }
-    });
+  App.query('/phone', {
+    async: false,
+    success: function (data) {
+      localStorage[App.CELL_PHONE] = data.phoneNum;
+    }
+  });
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
+    // App.cleanStack();// 清除stack
     App._Stack.destroy();
-
     App.initLoad(page, { transition: 'fade', page: 'home', appShow: function (page) {
-      App.removeLoading();
-      App.initTopScroll(page);
-      App._Stack.destroy();
-      App._CustomStack.length = 0;
       var phoneNum = localStorage[App.CELL_PHONE];
-      if (App.isLogin())
+
+      App.removeLoading(); // 移除载入动画
+      App.initTopScroll(page); // 顶部自动隐藏
+      //App.cleanStack(); // 清除stack
+      App._CustomStack.length = 0;
+
+      if (App.isLogin()) {
         $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
-      else {
+      } else {
         $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
           '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
       }
@@ -186,7 +187,7 @@ seajs.use(['App'], function (App) {
         App.load('register_dealers');
       });
       $(page).find('.btn-login').off().on('click', function () {
-        App.setBackPage('home')
+        App.setBackPage('home');
         App.load('login_dealers');
       });
       $(page).find('.btn-out').off().on('click', function () {
@@ -215,14 +216,13 @@ seajs.use(['App'], function (App) {
     } catch (e) {
     }
     // 我的330
+    setTimeout(function () {
+      if (!window.myDialog) {
+        App.show330(page);
+      }
+    }, 0);
     $(page).find('.btn-my').click(function (e) {
       e.preventDefault();
-      /*setTimeout(function () {
-       if (!window.myDialog) {
-       App.show330(page);
-       window.myDialog = true;
-       }
-       }, 0);*/
       var $dom = $(this).find('.span-my').get(0);
       if (App.isLogin()) {
         App.show330(page, function (dialog) {
@@ -271,7 +271,7 @@ seajs.use(['App'], function (App) {
   App.controller('brand_list', function (page) {
     debug('【Controller】pageLoad: brand_list');
     var ctx = this;
-    App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appShow: function(page){
+    App.initLoad(page, { transition: 'slide-left', page: 'brand_list', appShow: function (page) {
       App.initBrandListBottom($(page).find('.bottombar-ul'), {
         isLogin: App.isLogin()
       });
@@ -307,7 +307,7 @@ seajs.use(['App'], function (App) {
       });
     }, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
       });
 
       App.initBrandAutoHide(page);
@@ -331,7 +331,7 @@ seajs.use(['App'], function (App) {
       });
     }, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
       });
       App.initBrandAutoHide(page);
     }}, ctx);
@@ -346,7 +346,7 @@ seajs.use(['App'], function (App) {
     App._Stack.pop();
     App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
       });
       App.initBrandAutoHide(page);
     }}, ctx);
@@ -372,7 +372,7 @@ seajs.use(['App'], function (App) {
     }, appReady: function (page) {
 
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
       });
       App.initBrandAutoHide(page);
     }}, ctx);
@@ -395,7 +395,7 @@ seajs.use(['App'], function (App) {
       });
     }, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
       });
       App.initBrandAutoHide(page);
     }}, ctx);
@@ -499,7 +499,7 @@ seajs.use(['App'], function (App) {
     }, appReady: function (page) {
       if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin()});
+          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
         });
         App.initBrandAutoHide(page);
       }
@@ -562,6 +562,7 @@ seajs.use(['App'], function (App) {
           App.load(item[0], item[1]);
           return;
         }
+        if (_page === 'undefined') App.load('home');
         /*else if (!App._Stack.getPage(_page)) {
          App.load('home');
          return;

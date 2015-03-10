@@ -10,7 +10,7 @@
     </div>
     <div class="app-content">
         <div id="include_header">
-            <div class="loading-text">拼命加载中...</div>
+            <div class="loading-text">拼命加载中...<a href="javascript:App.load('brand_info');">刷新页面</a></div>
         </div>
         <div class="company x">
             <div class="name">企业名称：{{cust_name}}</div>
@@ -36,22 +36,22 @@
         </div>
         <div class="introduce x">
             <div class="title_general"><p>公司简介</p>
-
                 <p class="open">展开</p></div>
             <div class="detailed_general">
-                {{{cust_desc}}}<span class="lan">[查看更多请点展开]</span>
+                {{{cust_desc}}}
             </div>
+            <span class="lan">[查看更多请点展开]</span>
         </div>
         <div class="policy x">
             <div class="title_general"><p>招商政策</p>
-
                 <p class="open">展开</p></div>
             <div class="detailed_general">
-                {{{site_notice}}}<span class="lan">[查看更多请点展开]</span>
+                {{{site_notice}}}
             </div>
+            <span class="lan">[查看更多请点展开]</span>
         </div>
         <div class="message">
-            <div class="loading-text">拼命加载中...</div>
+            <div class="loading-text">拼命加载中...<a href="javascript:App.load('brand_info');">刷新页面</a></div>
         </div>
         <!--页脚-->
         <div class="app-section merchant-footer">

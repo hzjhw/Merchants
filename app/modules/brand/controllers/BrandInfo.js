@@ -35,12 +35,12 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
             data.header.icon = 2;
             new IncludeHeader(page, '#include_header', data.header);
           });
-          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+         /* seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
               isLogin: App.isLogin(),
               facPhone: data.facPhone
             });
-          });
+          });*/
           $(page).find(".title_general").click(function () {
             var pDiv = $(this).find('p').eq(1);
             var nextDiv = $(this).next();
@@ -54,13 +54,20 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
               $(this).addClass('clicked');
             }
           });
+          $(page).find('.lan').click(function(){
+            $(this).parents('.x').eq(0).find('.detailed_general').css({
+              height: 'auto'
+            });
+            $(this).remove();
+          });
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());
           });
+          page.facPhone = data.facPhone;
           // 底部导航
-          $(page).find('.bottombar-ul li').click(function () {
+          /*$(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
-          });
+          });*/
         }
       });
       $(page).find('.go-back').click(function () {

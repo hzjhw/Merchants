@@ -31,20 +31,20 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
             result.header.hide = false;
             new IncludeHeader(page, '#include_header', result.header);
           });
-          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+          /*seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
               isLogin: App.isLogin(),
               facPhone: result.facPhone
             });
-          });
+          });*/
 
           var blkContent = $(".blank_area_content", $(page));
 
           // 底部导航
-          $(page).find('.bottombar-ul li').click(function () {
-            App.load($(this).attr('data-target'));
-          });
-
+         /* $(page).find('.bottombar-ul li').click(function () {
+           App.load($(this).attr('data-target'));
+           });*/
+          page.facPhone = result.facPhone;
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());
           });

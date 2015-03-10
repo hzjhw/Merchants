@@ -68,7 +68,8 @@ Application.prototype = {
   getBackPage: function () {
     var backPage = localStorage['backPage'];
     var _back = backPage;
-    if (backPage === 'false') {
+    if (backPage === 'false'){
+
       _back = App._Stack.getBefore() ? App._Stack.getBefore()[0] : 'home';
     }
     localStorage['backPage'] = false;
@@ -196,20 +197,34 @@ Application.prototype = {
   initLazyLoad: function (page) {
     if (!this.isLazyLoad) {
       this.isLazyLoad = true;
-      seajs.use(['LazyLoad'], function () {
-        var appContent = $('.app-content', $(page));
-        $('.lazy', $(appContent)).lazyload({
+      var appContent = $('.app-content', $(page));
+      var $lazyList = $('.lazy', $(appContent));
+      if (!$lazyList.lazyload) {
+        seajs.use(['LazyLoad'], function (lazyload) {
+          try {
+            seajs.require('LazyLoad');
+            $lazyList.lazyload({
+              container: appContent
+            });
+            console.log('initLazyLoad');
+          } catch (e) {
+            console.log('[error]: lazyload is not find !');
+          }
+        });
+      } else {
+        console.log('initLazyLoad');
+        $lazyList.lazyload({
           container: appContent,
           effect: "fadeIn"
         });
-      });
+      }
     }
   },
   resetLazyLoad: function (render, page) {
     if ($(render, $(page)).find('.lazy').size() > 0) {
+      console.log('resetLazyLoad');
       App.disableLazyLoad();
       App.initLazyLoad(page);
-      console.log('resetLazyLoad');
     }
   },
   disableLazyLoad: function () {
@@ -218,34 +233,13 @@ Application.prototype = {
   isLazyLoad: function () {
     return this.isLazyLoad;
   },
-  initPage: function (page, height) {
-
+  initPage: function (page) {
     setTimeout(function () {
       App._Pages.fixContent(page)
     }, 0);
     setTimeout(function () {
-      App._Pages.fixContent(page)
-    }, 50);
-    setTimeout(function () {
-      App._Pages.fixContent(page)
-    }, 100);
-    setTimeout(function () {
-      App._Pages.fixContent(page)
-    }, 300);
-
-    setTimeout(function () {
       App._Scroll.setup(page)
     }, 0);
-    setTimeout(function () {
-      App._Scroll.setup(page)
-    }, 100);
-    setTimeout(function () {
-      App._Scroll.setup(page)
-    }, 1000);
-    setTimeout(function () {
-      App._Scroll.setup(page)
-    }, 3000);
-
     setTimeout(function () {
       App.initClick(page);
     }, 300);
@@ -256,6 +250,10 @@ Application.prototype = {
         App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
       }
     }, 5000);
+  },
+  cleanStack: function () {
+    App._Stack.destroy();
+    App._CustomStack.length = 0;
   },
   addCache: function (name, data) {
     this.cache[name] = data;

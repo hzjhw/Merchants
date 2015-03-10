@@ -32,12 +32,13 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
             result.header.hide = false;
             new IncludeHeader(page, '#include_header', result.header);
           });
-          seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+          page.facPhone = result.facPhone;
+          /*seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
             new IncludeDetailBottom(page, '.bottombar-ul', {
               isLogin: App.isLogin(),
               facPhone: result.facPhone
             });
-          });
+          });*/
 
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());
