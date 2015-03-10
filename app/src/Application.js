@@ -119,6 +119,23 @@ Application.prototype = {
     $('body').append(window.$loading);
     return window.$loading;
   },
+  addTool: function(page, _page){
+    if (window.$tool) window.$tool.remove();
+    window.$tool = $(App.$tool);
+    window.$tool.css('display', 'blcok');
+    $tool.find('.tool-totop').on('click', function(){
+      App.scroll(0, 100, page);
+    });
+    $tool.find('.tool-reflesh').on('click', function(){
+      if (_page){
+        App.load(_page);
+      } else{
+        window.location.reload();
+      }
+    });
+    $('body').append(window.$tool);
+    return window.$tool;
+  },
   getLoading: function () {
     return $('');
   },
@@ -176,9 +193,26 @@ Application.prototype = {
       }
     });
   },
+  scroll: function (scrollTo, time, page) {
+    debug('【Util】App.scroll:' + scrollTo);
+    var $appContent = $('.app-content', $(page));
+    var scrollFrom = parseInt($appContent.scrollTop()),
+      i = 0,
+      runEvery = 5; // run every 5ms
+    scrollTo = parseInt(scrollTo);
+    time /= runEvery;
+    var interval = setInterval(function () {
+      i++;
+      $appContent.scrollTop((scrollTo - scrollFrom) / time * i + scrollFrom);
+      if (i >= time) {
+        clearInterval(interval);
+      }
+    }, runEvery);
+  },
   initLoad: function (page, options, context) {
     if (page) {
       App.addLoading();
+      App.addTool(page, options.page);
       if (options.page) App.addHash('#/' + options.page);
       // show
       $(page).on('appForward', function () {

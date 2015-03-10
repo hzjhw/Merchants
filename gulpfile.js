@@ -231,8 +231,8 @@ gulp.task('dist-filter', function(){
   del(DISTDIR + '/const.js');
 });
 
-// 过滤一些经常不变的内容， 比如图片、第三方插件等等
-gulp.task('dist-min', function(){
+// 过滤一些经常不变的内容， 比如图片、第三方插件等等, 保留JS, CSS, MODULE
+gulp.task('dist-module', function(){
   gulp.start('dist-filter');
   del(DISTDIR + '/images/**');
   del(DISTDIR + '/vendor/**');
@@ -240,9 +240,8 @@ gulp.task('dist-min', function(){
   del(DISTDIR + '/styles/img/**');
 });
 
-// 过滤所有， 除了SRC源码
+// 过滤所有， 除了框架SRC源码、总的css文件
 gulp.task('dist-core', function(){
-  gulp.start('dist-min');
+  gulp.start('dist-module');
   del(DISTDIR + '/modules/**');
-  del(DISTDIR + '/styles/**');
 });

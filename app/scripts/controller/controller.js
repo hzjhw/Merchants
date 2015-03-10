@@ -11,21 +11,6 @@ App.isLogin = function () {
     return phoneNum.indexOf('1') == 0;
   return false;
 };
-App.scroll = function (scrollTo, time) {
-  debug('【Util】App.scroll:' + scrollTo);
-  var scrollFrom = parseInt(document.body.scrollTop),
-    i = 0,
-    runEvery = 5; // run every 5ms
-  scrollTo = parseInt(scrollTo);
-  time /= runEvery;
-  var interval = setInterval(function () {
-    i++;
-    document.body.scrollTop = (scrollTo - scrollFrom) / time * i + scrollFrom;
-    if (i >= time) {
-      clearInterval(interval);
-    }
-  }, runEvery);
-};
 App.showMsg = function (titleVal, cntVal) {
   seajs.use(['dialog'], function (dialog) {
     window.msgDialog = dialog({
@@ -153,16 +138,22 @@ App.initBrandListBottom = function (renderObj, data) {
 }
 
 seajs.use(['App'], function (App) {
-
+  // 加载动画
   var $Loading = $('#Loading');
   App.Loading = $Loading.clone();
   $Loading.remove();
+  // 浮动工具栏
+  var $tool = $('#tool');
+  App.$tool = $tool.clone();
+  $tool.remove();
+  // 初始化手机号码
   App.query('/phone', {
     async: false,
     success: function (data) {
       localStorage[App.CELL_PHONE] = data.phoneNum;
     }
   });
+
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
