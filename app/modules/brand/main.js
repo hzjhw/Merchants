@@ -15,9 +15,7 @@ App.addModule('IncludeHeader', 'modules/brand/controllers/IncludeHeader.js');
 App.addModule('IncludeListBottom', 'modules/brand/controllers/IncludeListBottom.js');
 App.addModule('IncludeDetailBottom', 'modules/brand/controllers/IncludeDetailBottom.js');
 App.addModule('BrandUnique', 'modules/brand/controllers/BrandUnique.js');
-
 App.addModule('BrandCooperate', 'modules/brand/controllers/BrandCooperate.js');
-
 
 App.addTemplate('template/brand_cooperate', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_cooperate.html');
@@ -40,19 +38,11 @@ App.addTemplate('template/brand_tec', function (require, exports, module) {
 App.addTemplate('template/brand_blank', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_blank.html');
 });
-
 App.addTemplate('template/include_message', function (require, exports, module) {
   module.exports = require('modules/brand/views/include_message.html');
 });
 App.addTemplate('template/include_header', function (require, exports, module) {
   module.exports = require('modules/brand/views/include_header.html');
-});
-
-
-App.addModule('BrandUnique', 'modules/brand/controllers/BrandUnique.js');
-
-App.addTemplate('template/include_message', function (require, exports, module) {
-  module.exports = require('modules/brand/views/include_message.html');
 });
 App.addTemplate('template/brand_unique', function (require, exports, module) {
   module.exports = require('modules/brand/views/brand_unique.html');

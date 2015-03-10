@@ -3,6 +3,41 @@
  * @class Application - 应用程序管理器
  * @author yongjin<zjut_wyj@163.com> 2014/12/28
  */
+/**
+ * 调试
+ *
+ * @method debug
+ * @param str
+ * @param options
+ * @author wyj 14.12.24
+ * @example
+ *   debug('test');
+ *   debug('test', {
+ *    type: 'error' // 打印红色字体
+ *   });
+ *   debug(function(){
+ *     return 'test';
+ *   });
+ * */
+window.debug = function (str, options) {
+  var opts, msg;
+  if (CONST.DEBUG_CONSOLE) {
+    try {
+      opts = Application.extend({ type: 'console' }, options);
+      msg = typeof str == 'function' ? str() : str;
+      if (msg && msg.length > 0) {
+        if (opts.type === 'error') {
+          console.error(msg);
+        } else if (opts.type === 'alert') {
+          alert(msg);
+        } else {
+          console.log(msg);
+        }
+      }
+    } catch (e) {
+    }
+  }
+};
 var Application = function (options) {
   this.options = options;
   this.initialize.apply(this, arguments);
@@ -19,7 +54,7 @@ Application.prototype = {
   },
   addModule: function (name, val) {
     if (name in this['modules']) {
-      console.log('已存在的模块：' + name);
+      debug('【Module】已存在的模块：' + name);
     }
     this['modules'][name] = val;
   },
@@ -37,7 +72,7 @@ Application.prototype = {
   },
   addTemplate: function (name, fn) {
     if (name in this['templates']) {
-      console.log('已存在的模板：' + name);
+      debug('【Template】已存在的模板：' + name);
     }
     this['templates'][name] = fn;
   },
@@ -68,7 +103,7 @@ Application.prototype = {
   getBackPage: function () {
     var backPage = localStorage['backPage'];
     var _back = backPage;
-    if (backPage === 'false'){
+    if (backPage === 'false') {
 
       _back = App._Stack.getBefore() ? App._Stack.getBefore()[0] : 'home';
     }
@@ -156,7 +191,7 @@ Application.prototype = {
         options.appLayout && options.appLayout.call(context, page);
       });
       $(page).on('appShow', function () {
-        console.log('【Stack】Stack size: ' + App._Stack.size());
+        debug('【Stack】Stack size: ' + App._Stack.size());
         options.appShow && options.appShow.call(context, page);
       });
       $(page).on('appReady', function () {
@@ -197,32 +232,34 @@ Application.prototype = {
   initLazyLoad: function (page) {
     if (!this.isLazyLoad) {
       this.isLazyLoad = true;
-      var appContent = $('.app-content', $(page));
-      var $lazyList = $('.lazy', $(appContent));
-      if (!$lazyList.lazyload) {
-        seajs.use(['LazyLoad'], function (lazyload) {
-          try {
-            seajs.require('LazyLoad');
-            $lazyList.lazyload({
-              container: appContent
-            });
-            console.log('initLazyLoad');
-          } catch (e) {
-            console.log('[error]: lazyload is not find !');
-          }
-        });
-      } else {
-        console.log('initLazyLoad');
-        $lazyList.lazyload({
-          container: appContent,
-          effect: "fadeIn"
-        });
-      }
+      setTimeout(function () {
+        var appContent = $('.app-content', $(page));
+        var $lazyList = $('.lazy', $(appContent));
+        if ($lazyList.size() > 0 && !$lazyList.lazyload) {
+          seajs.use(['LazyLoad'], function (lazyload) {
+            try {
+              seajs.require('LazyLoad');
+              $lazyList.lazyload({
+                container: appContent
+              });
+              debug('【LazyLoad】initLazyLoad');
+            } catch (e) {
+              debug('【Error】: lazyload is not find !');
+            }
+          });
+        } else {
+          debug('【LazyLoad】initLazyLoad');
+          $lazyList.lazyload({
+            container: appContent,
+            effect: "fadeIn"
+          });
+        }
+      }, 100);
     }
   },
   resetLazyLoad: function (render, page) {
     if ($(render, $(page)).find('.lazy').size() > 0) {
-      console.log('resetLazyLoad');
+      debug('【LazyLoad】resetLazyLoad');
       App.disableLazyLoad();
       App.initLazyLoad(page);
     }
@@ -250,6 +287,58 @@ Application.prototype = {
         App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
       }
     }, 5000);
+  },
+  initPageReady: function (App) {
+    window.onhashchange = function () {
+      try {
+        debug('【Hash】onhashchange: ' + App.getCurrentHash() + ' -> ' + location.hash);
+        if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
+        if (location.hash.length > 0) {
+          var _page = location.hash.substring(2, location.hash.length);
+          if (App._CustomStack.length > 0) {
+            var item = App._CustomStack.pop();
+            App.load(item[0], item[1]);
+            return;
+          }
+          if (_page === 'undefined') App.load('home');
+          /*else if (!App._Stack.getPage(_page)) {
+           App.load('home');
+           return;
+           }*/
+          var $back = $('.app-back');
+          if ($back.size() > 0) {
+            $back.click();
+          } else {
+            debug('【Hash】size stack is 0');
+            App.load('home');
+          }
+        }
+      } catch (e) {
+        App._Stack.destroy();
+        App.load('home');
+      }
+    }
+    App.enableDragTransition();
+    try {
+      //debugger
+      if (location.hash.length > 0) {
+        App._CustomStack = App._Stack.getRestoreStacks();
+        if (App._CustomStack.length === 0) {
+          App.load('home');
+        } else {
+          var item = App._CustomStack.pop();
+          App.load(item[0], item[1]);
+        }
+        //App.restore({ maxAge: 5 * 60 * 1000 });
+      } else {
+        App._Stack.destroy();
+        App.load('home');
+      }
+    } catch (err) {
+      App._Stack.destroy();
+      App.load('home');
+
+    }
   },
   cleanStack: function () {
     App._Stack.destroy();

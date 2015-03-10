@@ -64,7 +64,7 @@ App.show330 = function (page, callback) {
     try {
       window.myDialog && window.myDialog.close && window.myDialog.close().remove();
     } catch (e) {
-      console.log('myDialog not find!');
+      debug('【Error】myDialog not find!');
     }
     window.myDialog = dialog({
       id: '330dialog',
@@ -209,7 +209,7 @@ seajs.use(['App'], function (App) {
         .attr('data-target', null)
         .stickyClick(function (unlock) {
           App.pick('inputs', function (params) {
-            console.log(JSON.stringify(params));
+            debug(JSON.stringify(params));
             unlock();
           });
         });
@@ -254,7 +254,7 @@ seajs.use(['App'], function (App) {
     });
     // 门馆展示
     seajs.use(['HomeBrand'], function (HomeBrand) {
-      console.log('HomeBrand');
+      debug('【Module】call HomeBrand');
       App.HomeBrand = new HomeBrand(page);
     });
   });
@@ -549,56 +549,6 @@ seajs.use(['App'], function (App) {
       App.SearchIndex = new SearchIndex(page, ctx);
     });
   });
-
-
-  window.onhashchange = function () {
-    try {
-      debug('【Hash】onhashchange: ' + App.getCurrentHash() + ' -> ' + location.hash);
-      if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
-      if (location.hash.length > 0) {
-        var _page = location.hash.substring(2, location.hash.length);
-        if (App._CustomStack.length > 0) {
-          var item = App._CustomStack.pop();
-          App.load(item[0], item[1]);
-          return;
-        }
-        if (_page === 'undefined') App.load('home');
-        /*else if (!App._Stack.getPage(_page)) {
-         App.load('home');
-         return;
-         }*/
-        var $back = $('.app-back');
-        if ($back.size() > 0) {
-          $back.click();
-        } else {
-          debug('size stack is 0');
-          App.load('home');
-        }
-      }
-    } catch (e) {
-      App._Stack.destroy();
-      App.load('home');
-    }
-  }
-  App.enableDragTransition();
-  try {
-    //debugger
-    if (location.hash.length > 0) {
-      App._CustomStack = App._Stack.getRestoreStacks();
-      if (App._CustomStack.length === 0) {
-        App.load('home');
-      } else {
-        var item = App._CustomStack.pop();
-        App.load(item[0], item[1]);
-      }
-      //App.restore({ maxAge: 5 * 60 * 1000 });
-    } else {
-      App._Stack.destroy();
-      App.load('home');
-    }
-  } catch (err) {
-    App._Stack.destroy();
-    App.load('home');
-
-  }
+  // 初始化页面载入后事件
+  App.initPageReady(App);
 });

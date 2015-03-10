@@ -207,6 +207,8 @@ gulp.task('html', function () {
   })).pipe(gulp.dest(DISTDIR));
 });
 
+// =================== 以下为清除选项 ==============================================//
+
 // 过滤无用内容， 减少上传流量
 gulp.task('dist-filter', function(){
   del(DISTDIR + '/scripts/controller/**');
@@ -236,4 +238,11 @@ gulp.task('dist-min', function(){
   del(DISTDIR + '/vendor/**');
   del(DISTDIR + '/scripts/helper/**');
   del(DISTDIR + '/styles/img/**');
+});
+
+// 过滤所有， 除了SRC源码
+gulp.task('dist-core', function(){
+  gulp.start('dist-min');
+  del(DISTDIR + '/modules/**');
+  del(DISTDIR + '/styles/**');
 });

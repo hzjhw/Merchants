@@ -55,39 +55,3 @@ seajs.config({
 Application.each(App.getTemplates(), function (value, key) {
   define(key, value);
 });
-
-/**
- * 调试
- *
- * @method debug
- * @param str
- * @param options
- * @author wyj 14.12.24
- * @example
- *   debug('test');
- *   debug('test', {
- *    type: 'error' // 打印红色字体
- *   });
- *   debug(function(){
- *     return 'test';
- *   });
- * */
-window.debug = function (str, options) {
-  var opts, msg;
-  if (CONST.DEBUG_CONSOLE) {
-    try {
-      opts = Application.extend({ type: 'console' }, options);
-      msg = typeof str == 'function' ? str() : str;
-      if (msg && msg.length > 0) {
-        if (opts.type === 'error') {
-          console.error(msg);
-        } else if (opts.type === 'alert') {
-          alert(msg);
-        } else {
-          console.log(msg);
-        }
-      }
-    } catch (e) {
-    }
-  }
-};
