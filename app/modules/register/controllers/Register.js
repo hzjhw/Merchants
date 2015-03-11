@@ -19,12 +19,13 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
       App.setBackPage('home')
       App.load('login_dealers');
     });
-    $(page).find('#userRegister').click(function () {
-      var $phoneNum = $("#phoneNum", $(page));
-      var $passwd = $("#passwd", $(page));
-      var $passwd1 = $("#cfmpasswd", $(page));
+    $(page).find('#userRegister').click(function(){
+      var $phoneNum = $("#phoneNum",$(page));
+      var $passwd =  $("#passwd",$(page));
+      var $passwd1 =  $("#cfmpasswd",$(page));
       var reg = /^(1[3|5|8])[\d]{9}$/;
-      if ($.trim($phoneNum.val()) === '') {
+      if($.trim($phoneNum.val()) === '')
+      {
         alert('手机号不能为空！');
         $phoneNum.focus();
         return;
@@ -34,37 +35,38 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
         $phoneNum.focus();
         return;
       }
-      if ($.trim($passwd.val()) === '') {
+      if($.trim($passwd.val()) === '' )
+      {
         alert("密码不能为空！");
         $passwd.focus();
         return;
       }
 
-      if ($passwd.val() !== $passwd1.val()) {
+      if($passwd.val() !== $passwd1.val())
+      {
         alert("两次密码输入不一致!");
         $passwd1.focus();
         return;
       }
 
-      App.query('/register', {
-        data: {
-          phoneNum: $phoneNum.val(),
-          passwd: $passwd.val()
+      App.query('/register',{
+        data:{
+          phoneNum:$phoneNum.val(),
+          passwd:$passwd.val()
         },
-        success: function (data) {
-          if (data.result == 'success') {
+        success: function(data) {
+          if(data.result == 'success')
+          {
             alert("恭喜您，注册成功！");
-<<<<<<< Updated upstream
             App.setBackPage('home')
-=======
-            // 清空STACK栈
-            App._Stack.destroy();
->>>>>>> Stashed changes
             App.load('login_dealers');
           }
-          else {
-            if (data.msg == 'exists') {
-              if (window.confirm("该手机号已被注册,需要登录吗?")) {
+          else
+          {
+            if(data.msg == 'exists')
+            {
+              if(window.confirm("该手机号已被注册,需要登录吗?"))
+              {
                 App.load("login_dealers");
               }
             }
