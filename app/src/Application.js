@@ -190,22 +190,28 @@ Application.prototype = {
     window.$tool = $(App.$tool.clone());
     window.$tool.css('display', 'blcok');
     window.$tool.find('.tool-reflesh').attr('data-page', _page);
-    window.$tool.find('.tool-totop').off().on('click', function () {
+    window.$tool.find('.tool-totop').off().on('click', function (e) {
+      e.preventDefault();
       App.scroll(0, 100, page);
+      return false;
     });
-    window.$tool.find('.tool-reflesh').off().on('click', function () {
+    window.$tool.find('.tool-reflesh').off().on('click', function (e) {
+      e.preventDefault();
       if ($(this).attr('data-page').length > 0) {
         App._Stack.pop();
         App.load($(this).attr('data-page'));
       } else {
         window.location.reload();
       }
+      return false;
     });
-    if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home'){
+    if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home') {
       window.$tool.find('.tool-back').remove();
     }
-    window.$tool.find('.tool-back').off().on('click', function () {
+    window.$tool.find('.tool-back').off().on('click', function (e) {
+      e.preventDefault();
       App.back(App.getBackPage);
+      return false;
     });
     $(page).append(window.$tool);
     return window.$tool;
