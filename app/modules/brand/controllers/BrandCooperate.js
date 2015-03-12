@@ -58,6 +58,10 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
                 }else if(result.msg =='nofact'){
                   cntVal = '<span style="font-size: 20px"> 未知厂家信息</span>';
                   App.showMsg('未知厂家', cntVal);
+                }else if(result.msg =='nologin'){
+                  cntVal = '<span style="font-size: 20px"> 等太久了,合作超时!</span>';
+                  App.showMsg('合作超时', cntVal);
+                  App.load('home');
                 }else if (result.msg == 'erUpdate'){
                   cntVal = '<span style="font-size: 20px"> 由于网络等因素,造成合作失败!请重新合作</span>';
                   App.showMsg('合作失败', cntVal);
