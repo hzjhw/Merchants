@@ -18,6 +18,14 @@ define('FavPro', ['App','template/favPro','HandlebarsHelper'], function (require
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
           new IncludeBtm(page, '.footer_mes');
         });
+          $(page).find('.product li a').on('click', function () {
+             var id =  $(this).parents('li').attr('fact-id');
+             var proid =  $(this).parents('li').attr('pro-id');
+            App.load('product_detail', {
+              id: id,
+              proid: proid
+            });
+          });
         $(page).find('.btn-back').click(function () {
           App.back();
         });

@@ -107,6 +107,7 @@ App.initBrandAutoHide = function (page) {
     });
   }, 100)
 };
+
 App.initBrandListBottom = function (renderObj, data) {
   renderObj.find('.login-li').off().remove();
   if (data.isLogin) {
@@ -137,8 +138,41 @@ App.initBrandListBottom = function (renderObj, data) {
       })
     }
   });
-}
-
+};
+App.addStatus("useStatus", [
+  {
+    text: "待审核",
+    value: "03",
+    html: '<span class="h">等待厂家审核</span>'
+  },
+  {
+    text: "未通过",
+    value: "02",
+    html: '<span class="h">审核未通过</span>'
+  },
+  {
+    text: "已通过",
+    value: "01",
+    html: '<span class="l">已审核通过</span>'
+  }
+]);
+App.addStatus("resultStatus", [
+  {
+    text: "待审核",
+    value: "03",
+    html: "<span>厂家未审核</span>"
+  },
+  {
+    text: "未通过",
+    value: "02",
+    html: "<span>审核未通过</span>"
+  },
+  {
+    text: "已通过",
+    value: "01",
+    html: '<span class="yes">厂家审核通过</span>'
+  }
+]);
 seajs.use(['App'], function (App) {
   // 加载动画
   var $Loading = $('#Loading');
@@ -156,6 +190,8 @@ seajs.use(['App'], function (App) {
       localStorage[App.CNT_NAME] = data.cntName;
     }
   });
+
+
 
   /*首页*/
   App.controller('home', function (page) {

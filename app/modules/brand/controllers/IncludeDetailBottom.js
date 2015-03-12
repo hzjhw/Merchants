@@ -19,19 +19,42 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
       try{
         var urlVal =$(this).attr('data-url');
         if(urlVal.length > 0){
-          if(urlVal === 'brand_cooperate')
+          if(urlVal !== 'brand_cooperate')
+          {
+            App.load(urlVal);
+          }
+          else
           {
             if(!App.isLogin())
             {
               var cntVal = '<span style="font-size: 20px"> 对不起,合作前需登录!现在就登录吗?</span>';
               App.showConfirm('未登录', cntVal, null, function () {
-                App.setBackPage('brand_detail');
+                //App.setBackPage('brand_detail');
                 App.load('login_dealers');
               });
               return;
             }
+            else
+            {
+              var factid = localStorage['brand_fact_id'];
+              App.query('/cmp/hasCoped/'+factid,{
+                success:function(data){
+                  if(data.msg === 'hasCoped')
+                  {
+                    var cntVal = '<span style="font-size: 20px"> 您与该厂家已有合作!现在查看合作进展情况吗？</span>';
+                    App.showConfirm("已有合作",cntVal,null,function(){
+                      App.load("favorite_cooprate");
+                    })
+                  }
+                  else
+                  {
+                    App.load(urlVal);
+                  }
+                }
+              })
+            }
           }
-          App.load(urlVal);
+
         } else{
           $(this).find('a').click();
         }

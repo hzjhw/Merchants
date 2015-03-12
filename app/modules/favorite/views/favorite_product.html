@@ -8,10 +8,10 @@
     <div class="product app-content">
         <ul>
             {{#each colProList}}
-            <li>
+            <li pro-id="{{self_id}}" fact-id="{{cat_id}}">
                 <div class="imgs">
                     <div class="ver_pic">
-                        <a href="{{link_url}}"> <img src="{{CONST 'PIC_URL'}}{{img_url}}"></a>
+                        <a class="app-btn"  href="javascript:void(0)"> <img src="{{CONST 'PIC_URL'}}{{img_url}}"></a>
                     </div>
                 </div>
                 <div class="detailed">
