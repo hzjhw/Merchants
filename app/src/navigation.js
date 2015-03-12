@@ -63,11 +63,17 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   App.back = function (pageName, callback) {
     //debugger
     //TODO App.back
+    var item = null;
     if (App._Stack.size() === 0){
       App.load('home');
       return;
     } else if (App._CustomStack && App._CustomStack.length > 0){
-      var item = App._CustomStack.pop();
+      item = App._CustomStack.pop();
+      App.load(item[0], item[1]);
+      return;
+    } else if(typeof pageName === 'undefined'){
+      App._Stack.pop();
+      item = App._Stack.getLast();
       App.load(item[0], item[1]);
       return;
     }
@@ -290,6 +296,7 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
   }
 
   function navigateBack(backPageName, callback) {
+    if (typeof backPageName === 'undefined' || backPageName === 'undefined') return;
     App.addHash('#/' + backPageName); // 返回时此行不能删除
     App.addLoading();
     if (Dialog.status() && Dialog.close() && !backPageName) {

@@ -344,7 +344,7 @@ Application.prototype = {
         if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
         if (location.hash.length > 0) {
           var _page = location.hash.substring(2, location.hash.length);
-          if (App._CustomStack.length > 0) {
+          if (App._CustomStack && App._CustomStack.length > 0) {
             var item = App._CustomStack.pop();
             App.load(item[0], item[1]);
             return;
