@@ -12,7 +12,7 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
 
   BrandCooperate = function (page, facid) {
     App.query('/cmp/cooperate',{
-      cache:true,
+      //cache:true,
       success:function(data){
         if(data.msg == 'success') {
           var tpl = HandlebarsHelper.compile(template);
@@ -67,6 +67,9 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
                 }else if (result.msg == 'erMember'){
                   cntVal = '<span style="font-size: 20px"> 由于网络等因素,你的信息无法存储!</span>';
                   App.showMsg('资料无法存储', cntVal);
+                }else if (result.msg == 'hasCoped'){
+                  cntVal = '<span style="font-size: 20px">您与该厂家已有合作!</span>';
+                  App.showMsg('已有合作', cntVal);
                 }else{
                   cntVal = '<span style="font-size: 20px"> 由于网络等因素,信息无法提交!</span>';
                   App.showMsg('信息无法识别', cntVal);
