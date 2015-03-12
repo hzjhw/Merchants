@@ -24,8 +24,9 @@
                 </div>
                 {{#xif "this.use_state != '00'"}}
                 <div>使用对象：{{cust_name}}</div>
-                <div>使用日期：{{check_time}}</div>
-                <div>是否生效：{{useStatus useStatus}} </div>
+                <div>使用日期：{{use_time}}</div>
+                <div>是否生效：{{{useStatus use_state}}} </div>
+                <div>生效日期：{{check_time}} </div>
                 {{/xif}}
             </li>
             {{else}}
