@@ -5,6 +5,7 @@
  */
 
 App.CELL_PHONE = "cell_phone";
+App.CNT_NAME = "cntName";
 App.isLogin = function () {
   var phoneNum = localStorage[App.CELL_PHONE];
   if (phoneNum)
@@ -129,6 +130,7 @@ App.initBrandListBottom = function (renderObj, data) {
         success: function (result) {
           if (result.msg == 'success') {
             localStorage[App.CELL_PHONE] = '';
+            localStorage[App.CNT_NAME] = '';
             App.load('home');
           }
         }
@@ -151,6 +153,7 @@ seajs.use(['App'], function (App) {
     async: false,
     success: function (data) {
       localStorage[App.CELL_PHONE] = data.phoneNum;
+      localStorage[App.CNT_NAME] = data.cntName;
     }
   });
 
@@ -189,6 +192,7 @@ seajs.use(['App'], function (App) {
             if (result.msg == 'success') {
               App.disableLazyLoad();
               localStorage[App.CELL_PHONE] = '';
+              localStorage[App.CNT_NAME] = '';
               App.load('home');
             }
           }

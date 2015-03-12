@@ -53,6 +53,7 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
               success:function(result){
                 var cntVal = '<span style="font-size: 20px">成功发送合作信息,敬请关注厂家回复!</span>';
                 if(result.msg == 'success'){
+                  localStorage[App.CNT_NAME] = nameVal;
                   App.showMsg('合作成功', cntVal);
                 }else if(result.msg =='nofact'){
                   cntVal = '<span style="font-size: 20px"> 未知厂家信息</span>';

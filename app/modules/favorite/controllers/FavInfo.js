@@ -46,6 +46,7 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
               if(data.msg == 'success')
               {
                 alert('信息修改成功!');
+                localStorage[App.CNT_NAME] = name;
               }else if (data.msg == 'error')
               {
                 alert('由于网络等因素,信息修改失败!');

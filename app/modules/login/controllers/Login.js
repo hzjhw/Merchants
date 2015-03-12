@@ -49,6 +49,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
         success: function (data) {
           if (data.result == 'success') {
             localStorage[App.CELL_PHONE]=data.phoneNum;
+            localStorage[App.CNT_NAME]=data.cntName;
             if(App._Stack.size() > 0){
               App.back(App.getBackPage());
             } else{
@@ -72,6 +73,11 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
                {
                  App.load('register_dealers');
                }*/
+             }
+             else if (data.msg == 'factory')
+             {
+               var cntVal = '<span style="font-size: 20px"> 厂家手机号,不能登录!</span>';
+               App.showMsg('无法登陆', cntVal);
              }
           }
         }

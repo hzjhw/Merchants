@@ -16,21 +16,23 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       //TODO validate is login before submit
       if(App.isLogin())
       {
-        App.query('/cmp/custInfo', {
-          cache:true,
+        /*App.query('/cmp/custInfo', {
+          //cache:true,
           success: function (result) {
             if (result.msg == 'success') {
               $("#custname", $(page)).val(result.custInfo.contact_name);
               $("#cellphone", $(page)).val(result.custInfo.contact_cellphone);
             }
           }
-        });
+        });*/
+        $("#custname", $(page)).val(localStorage[App.CNT_NAME]);
+        $("#cellphone", $(page)).val(localStorage[App.CELL_PHONE]);
       }
       $(page).find('#custname,#cellphone,#levMsg').off().on('click',  function () {
         if (!App.isLogin()) {
           var cntVal = '<span style="font-size: 20px"> 需要登录账号,才能留言.现在登录吗？</span>';
           App.showConfirm('未登录', cntVal, null, function(){
-            App.setBackPage('brand_detail')
+            App.setBackPage('brand_detail');
             App.load('login_dealers');
           });
         }
@@ -64,6 +66,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
           },
           success: function (result) {
             if (result.msg == 'success') {
+              localStorage[App.CNT_NAME] = custName;
               alert("留言成功");
               $("#levMsg", $(page)).val("");
             }
