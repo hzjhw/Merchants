@@ -12,11 +12,11 @@
 
         <div id="include_header"></div>
         <div class="content" style="overflow: hidden;">
-            <img src="{{CONST 'PIC_URL'}}/{{mobile_img1}}" style="float:left;" alt=""/>
-            <img src="{{CONST 'PIC_URL'}}/{{mobile_img2}}" style="float:left;" alt=""/>
-            <img src="{{CONST 'PIC_URL'}}/{{mobile_img3}}" style="float:left;" alt=""/>
-            <img src="{{CONST 'PIC_URL'}}/{{mobile_img4}}" style="float:left;" alt=""/>
-            <img src="{{CONST 'PIC_URL'}}/{{mobile_img5}}" style="float:left;" alt=""/>
+            {{#if mobile_img1}}<img src="{{CONST 'PIC_URL'}}/{{mobile_img1}}" style="float:left;" alt=""/>{{/if}}
+            {{#if mobile_img2}}<img src="{{CONST 'PIC_URL'}}/{{mobile_img2}}" style="float:left;" alt=""/>{{/if}}
+            {{#if mobile_img3}}<img src="{{CONST 'PIC_URL'}}/{{mobile_img3}}" style="float:left;" alt=""/>{{/if}}
+            {{#if mobile_img4}}<img src="{{CONST 'PIC_URL'}}/{{mobile_img4}}" style="float:left;" alt=""/>{{/if}}
+            {{#if mobile_img5}}<img src="{{CONST 'PIC_URL'}}/{{mobile_img5}}" style="float:left;" alt=""/>{{/if}}
         </div>
         <div class="message">
             <div class="loading-text">拼命加载中...<a href="javascript:App.load('brand_detail');">刷新页面</a></div>

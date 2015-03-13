@@ -15,8 +15,8 @@
 </div>
 
 {{#compare hide '!==' true}}
-<div class="factory_logo"><img src="{{CONST 'PIC_URL'}}/{{$ logo_img ''}}" alt="330门业招商节"></div>
-<div class="factory_banner"><img src="{{CONST 'PIC_URL'}}/{{$ header_img ''}}" alt="330门业招商节"></div>
+<div class="factory_logo">{{#if logo_img}}<img src="{{CONST 'PIC_URL'}}/{{$ logo_img ''}}" alt="330门业招商节">{{/if}}</div>
+<div class="factory_banner">{{#if header_img}}<img src="{{CONST 'PIC_URL'}}/{{$ header_img ''}}" alt="330门业招商节">{{/if}}</div>
 <div></div>
 <div class="nav">
     <ul>
