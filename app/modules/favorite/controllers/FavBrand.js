@@ -19,7 +19,7 @@ define('FavBrand', ['App','template/favBrand','HandlebarsHelper'], function (req
           new IncludeBtm(page, '.footer_mes');
         });
         $(page).find('.btn-back').click(function () {
-          App.back();
+          App.back('home');
         });
       }
     });

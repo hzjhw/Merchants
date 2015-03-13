@@ -27,7 +27,7 @@ define('FavPro', ['App','template/favPro','HandlebarsHelper'], function (require
             });
           });
         $(page).find('.btn-back').click(function () {
-          App.back();
+          App.back('home');
         });
       }
     });
