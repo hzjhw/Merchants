@@ -53,12 +53,64 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
             var list = [];
             for (var j = 0; j < result[colum].list.length; j++) {
               var $node = $(item(result[colum].list[j]));
-              $node.click(function () {
+              $node.find('img').click(function () {
                 App.setBackPage('brand_list');
                 App.addLoading();
                 App.load('brand_detail', {
-                  id: $(this).attr('data-id')
+                  id: $(this).parents('li').attr('data-id')
                 });
+              });
+              //收藏品牌
+              $node.find('.collection').click(function(){
+                if(App.isLogin()){
+                  var factid = $(this).parents('li').attr('data-id');
+                  App.query('/userinfo/saveBrand/'+factid,{
+                    success:function(data){
+                      if(data.msg === 'success'){
+                        var cntVal = '<span style="font-size: 20px"> 成功收藏该企业!</span>';
+                        App.showMsg('收藏成功',cntVal);
+                      }else if(data.msg === 'noproid'){
+                        var cntVal = '<span style="font-size: 20px"> 无法找到企业相关信息!</span>';
+                        App.showMsg('收藏错误', cntVal);
+                      }else if(data.msg === 'hasCollect'){
+                        var cntVal = '<span style="font-size: 20px"> 您已收藏过该企业,不能重复搜藏!</span>';
+                        App.showMsg('重复收藏', cntVal);
+                      }
+                    }
+                  })
+                }
+                else
+                {
+                  var cntVal = '<span style="font-size: 20px"> 收藏品牌需要账号登录!现在就登录吗?</span>';
+                  App.showConfirm('未登录', cntVal, null, function () {
+                    App.load('login_dealers');
+                  });
+                }
+              });
+
+              $node.find('.intention').click(function(){
+                if(App.isLogin()){
+                  var factid = $(this).parents('li').attr('data-id');
+                  App.query('/cmp/hasCoped/'+factid,{
+                    success:function(data){
+                      if(data.msg === 'hasCoped'){
+                        var cntVal = '<span style="font-size: 20px"> 您与该厂家已有合作!现在查看合作进展情况吗？</span>';
+                        App.showConfirm("已有合作",cntVal,null,function(){
+                          App.load("favorite_cooprate");
+                        })
+                      }
+                      else{
+                        App.load("brand_cooperate",{factid:factid});
+                      }
+                    }
+                  })
+                }
+                else{
+                  var cntVal = '<span style="font-size: 20px"> 与企业合作需账号登录!现在就登录吗?</span>';
+                  App.showConfirm('未登录', cntVal, null, function () {
+                     App.load('login_dealers');
+                  });
+                }
               });
               list.push($node);
             }

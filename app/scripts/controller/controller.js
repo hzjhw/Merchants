@@ -296,15 +296,21 @@ seajs.use(['App'], function (App) {
   App.controller('forget_pwd',function(page){
     debug('【Controller】pageLoad: forget_pwd');
     seajs.use(['Forgetpwd'],function(Forgetpwd){
-      App.Forgetpwd = new Forgetpwd(page);
+      App.Forgetpwd = new Forgetpwd(page,this);
     });
   });
   /*意向合作*/
   App.controller('brand_cooperate', function (page) {
     debug('【Controller】pageLoad: brand_cooperate');
     App.initLoad(page, { transition: 'slide-left', page: 'brand_cooperate'}, this);
+    var factid = this.args.factid;
+    if(!factid){
+      var cntVal = '<span style="font-size: 20px"> 无法找到该厂相关信息!</span>';
+      App.showMsg('无厂家信息', cntVal);
+      return;
+    }
     seajs.use(['BrandCooperate'], function (BrandCooperate) {
-      App.BrandCooperate = new BrandCooperate(page, localStorage['brand_fact_id']);
+      App.BrandCooperate = new BrandCooperate(page, factid);
     });
   });
   /*品牌列表*/

@@ -48,7 +48,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
                   }
                   else
                   {
-                    App.load(urlVal);
+                    App.load(urlVal,{factid:factid});
                   }
                 }
               })
