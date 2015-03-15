@@ -204,6 +204,7 @@ seajs.use(['App'], function (App) {
       App.removeLoading(); // 移除载入动画
       App.initTopScroll(page); // 顶部自动隐藏
       //App.cleanStack(); // 清除stack
+      if(! App._CustomStack)  App._CustomStack={};
       App._CustomStack.length = 0;
 
       $('body').find('#tool .tool-back').remove();

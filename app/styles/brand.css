@@ -74,9 +74,10 @@
 #factory .product_other .show_pro span {display:block;height:20px;line-height:20px; font-size:12px;text-align:center;}
 #factory .product_other .show_pro a:link,.show_pro a:visited{color:#666;text-decoration:none;}
 #factory .product_other .show_pro a:hover,.show_pro a:active{color:#ff0000;}
+#my .messages {padding-top:30px;}
 #my .messages ul {width:93%;margin:auto;padding-bottom:15%;}
-#my .messages ul li {margin-bottom: 0; float: left; padding: 0; background: transparent; overflow: inherit;overflow:auto;background:#fff;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;margin-bottom:20px;padding:0 5% 8% 3.3%;}
-#my .messages .name {height:50px;line-height:50px;color:#e0246b;font-size:24px;margin:18px 0;}
+#my .messages ul li {width:92%;}
+#my .messages .name {height:50px;line-height:50px;color:#e0246b;font-size:24px;margin:18px 0;white-space:nowrap;overflow:hidden;}
 #my .messages .name span {height:50px;width:50px;background:#e0246b;float:left;font-size:34px;color:#fff;text-align:center;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;margin-right:10px;}
 #my .messages .detailed {color:#4e4e4e;font-size:24px;line-height:46px;margin-bottom:10px;}
 #my .messages .time {color:#929292;font-size:18px;}
@@ -94,7 +95,9 @@
 #my .messages .money .state .ck {height:44px;line-height:44px;padding:2px 15px;background:#e0246b;color:#fff;float:right;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;}
 #my .messages .money .h {color:#e40000;}
 #my .messages .money .l {color:#00a81c;}
-#my .product {width:93%;margin:auto;}
+#my .messages .money li,#my .messages .ly li,#my .messages .yxhz li{float:left;overflow:inherit;overflow:auto;background:#fff;margin-bottom:20px;padding:0 5% 8% 3.3%;width:92%;}
+#my .product {padding-top:30px;}
+#my .product ul {margin:auto;width:93%;}
 #my .product li {margin-bottom:20px;padding:15px 0;background:#fff;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;overflow:auto;}
 #my .product .imgs {float:left;margin-left:10px;}
 #my .product .ver_pic{margin-left:10px;width:225px;height:185px;border:1px solid #ccc;text-align:center;position:relative;display:table-cell;vertical-align:middle;}
