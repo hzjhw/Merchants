@@ -19,3 +19,5 @@
 .registered textarea {height:100px;background-image:none;padding:0 15px;width:250px;}
 .registered input.x {width:340px;float:left;margin-left:40px;}
 .registered .dw {width:135px;float:left;height:72px;line-height:72px;margin-top:25px;font-size:32px;color:#6D6C6C;}
+.registered input.yzm {width:50%;float:left;margin-left:40px;}
+.hqyzm {height:70px;line-height:70px;margin-top:25px;font-size:18px;color:#fff;float:left;background:#d21359;width:145px;}

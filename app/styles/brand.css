@@ -102,15 +102,18 @@
 #my .product .imgs {float:left;margin-left:10px;}
 #my .product .ver_pic{margin-left:10px;width:225px;height:185px;border:1px solid #ccc;text-align:center;position:relative;display:table-cell;vertical-align:middle;}
 #my .product .ver_pic img {max-width:215px;max-height:175px;}
-#my .product .detailed {float:left;padding-left:15px;font-size:24px;line-height:48px;padding-top:10px;}
-#my .product .detailed .ts {overflow:hidden;width:340px;height:72px;line-height:36px;color:#4f4f4f;}
-#my .product .detailed .h {color:#e0246b;}
+#my .product .detailed {float:left;padding-left:15px;font-size:24px;line-height:44px;padding-top:10px;width:340px;}
+#my .product .detailed p {white-space:nowrap;overflow:hidden;}
+#my .product .detailed .xh {color:#4f4f4f;}
+#my .product .detailed .h {color:#e0246b;line-height:40px;}
+#my .product .detailed .delete {border-radius:6px;background:#dd0404;width:150px;height:48px;line-height:48px;color:#fff;text-align:center;}
 #my .footer_mes {background:#c11153;font-size:22px;line-height:60px;overflow:auto;color:#fff;padding:4% 6.8% 6%;}
 #my .footer_mes li {margin-bottom: 0; float: left; padding: 0; background: transparent; overflow: inherit;}
 #my .footer_mes .a {width:22.4%;}
 #my .footer_mes .b {width:45%;text-align:center;}
 #my .footer_mes .c {width:32%;}
 #my .footer_mes .d {font-size:22px;text-align:center;color:#e7a3bc;width:100%;margin-top:5%;}
+
 
 
 
