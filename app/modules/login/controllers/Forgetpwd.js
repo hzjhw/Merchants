@@ -1,6 +1,6 @@
 /**
- * @description Login
- * @class Login
+ * @description Forgetpwd
+ * @class Forgetpwd
  * @author yongjin<zjut_wyj@163.com> 2015/2/8
  */
 define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, module) {
@@ -12,6 +12,9 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
   Forgetpwd = function (page) {
     debug('【Module】: Call forget passwd');
     $(page).html(template);
+    $(page).find('.btn-back').click(function () {
+      App.back();
+    });
   };
 
   module.exports = Forgetpwd;
