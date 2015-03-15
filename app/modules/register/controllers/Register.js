@@ -19,6 +19,10 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
       App.setBackPage('home')
       App.load('login_dealers');
     });
+    $(page).find('#forgetpwd').click(function(){
+      App.load('forget_pwd');
+    });
+
     $(page).find('#userRegister').click(function(){
       var $phoneNum = $("#phoneNum",$(page));
       var $passwd =  $("#passwd",$(page));

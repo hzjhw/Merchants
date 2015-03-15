@@ -292,7 +292,13 @@ seajs.use(['App'], function (App) {
       App.HomeBrand = new HomeBrand(page);
     });
   });
-
+  /*忘记密码*/
+  App.controller('forget_pwd',function(page){
+    debug('【Controller】pageLoad: forget_pwd');
+    seajs.use(['Forgetpwd'],function(Forgetpwd){
+      App.Forgetpwd = new Forgetpwd(page);
+    });
+  });
   /*意向合作*/
   App.controller('brand_cooperate', function (page) {
     debug('【Controller】pageLoad: brand_cooperate');

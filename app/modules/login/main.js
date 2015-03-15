@@ -11,3 +11,8 @@ App.addTemplate('template/dealers', function (require, exports, module) {
   module.exports = require('modules/login/views/dealers.html')
 });
 App.addModule('Dealers', 'modules/login/controllers/Dealers.js');
+
+App.addModule('Forgetpwd', 'modules/login/controllers/Forgetpwd.js');
+App.addTemplate('template/forgetpwd', function (require, exports, module) {
+  module.exports = require('modules/login/views/forget_pwd.html');
+});

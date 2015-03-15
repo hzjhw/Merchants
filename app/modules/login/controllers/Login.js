@@ -18,9 +18,8 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
     $(page).find('#register').click(function(){
       App.load('register_dealers');
     });
-    $(page).find('#chgpwd').click(function(){
-      App.load('register_dealers');
-
+    $(page).find('#forgetpwd').click(function(){
+      App.load('forget_pwd');
     });
     $(page).find('#userLogin').click(function () {
       var phoneNum = $("#phoneNum", $(page)).val();
