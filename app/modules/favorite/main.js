@@ -27,6 +27,14 @@ App.addTemplate('template/favMessage', function (require, exports, module) {
 App.addTemplate('template/incl', function (require, exports, module) {
   module.exports = require('modules/favorite/views/favorite_message.html')
 });
+App.addTemplate('template/favFactMsg', function (require, exports, module) {
+  module.exports = require('modules/favorite/views/favorite_factmsg.html')
+});
+App.addTemplate('template/favChgpwd', function (require, exports, module) {
+  module.exports = require('modules/favorite/views/favorite_chgpwd.html')
+});
+App.addModule('FavChgpwd', 'modules/favorite/controllers/FavChgpwd.js');
+App.addModule('FavFactMsg', 'modules/favorite/controllers/FavFactMsg.js');
 App.addModule('IncludeBtm', 'modules/favorite/controllers/IncludeBtm.js');
 App.addModule('FavBrand', 'modules/favorite/controllers/FavBrand.js');
 App.addModule('FavPro', 'modules/favorite/controllers/FavPro.js');

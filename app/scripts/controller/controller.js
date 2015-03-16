@@ -465,7 +465,14 @@ seajs.use(['App'], function (App) {
       App.CategoryCtrl = new CategoryCtrl(page, this);
     });
   });
-
+  /*修改密码*/
+  App.controller('favorite_chgpwd', function (page) {
+    debug('【Controller】pageLoad: favorite_chgpwd');
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_chgpwd'}, this);
+    seajs.use(['FavChgpwd'], function (FavChgpwd) {
+      App.FavChgpwd = new FavChgpwd(page);
+    });
+  });
   /*搜藏的产品*/
   App.controller('favorite_product', function (page) {
     debug('【Controller】pageLoad: favorite_product');
@@ -506,7 +513,14 @@ seajs.use(['App'], function (App) {
       App.FavMessage = new FavMessage(page);
     });
   });
-
+  /*私信留言*/
+  App.controller('favorite_factmsg', function (page) {
+    debug('【Controller】pageLoad: favorite_factmsg');
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_factmsg'}, this);
+    seajs.use(['FavFactMsg'], function (FavFactMsg) {
+      App.FavFactMsg = new FavFactMsg(page);
+    });
+  });
   /*登录页面*/
   App.controller('login_dealers', function (page) {
     debug('【Controller】pageLoad: login_dealers');
