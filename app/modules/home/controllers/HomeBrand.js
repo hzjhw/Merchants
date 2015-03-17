@@ -15,7 +15,7 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
       App.setBackPage('home');
       App.addLoading();
       App.load('brand_detail', {
-        id: $(this).attr('data-id')
+        id: $(this).parents('li').attr('data-id')
       });
     });
 
