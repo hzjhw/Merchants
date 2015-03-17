@@ -115,7 +115,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
           }
           // 返回按钮
           $(page).find('.go-back').click(function () {
-            App.back(App.getBackPage());
+            App.back();
           });
           // 列表显示样式选择
           $(page).find("#factory .search-list-title .icons-largest").click(function () {

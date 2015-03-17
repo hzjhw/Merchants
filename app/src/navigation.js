@@ -72,9 +72,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       App.load(item[0], item[1]);
       return;
     } else if(typeof pageName === 'undefined'){
-      App._Stack.pop();
-      item = App._Stack.getLast();
-      App.load(item[0], item[1]);
+      //App._Stack.pop();
+      item = App._Stack.getBefore();
+      App.back(item[0]);
       return;
     }
     if (pageName === 'home'){
