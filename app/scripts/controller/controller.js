@@ -589,7 +589,7 @@ seajs.use(['App'], function (App) {
     if (ctx.args.price || ctx.args.cat) {
       localStorage['brand_fact_id'] = null;
     }
-    App.initLoad(page, { transition: 'fade', page: 'product_list', appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'product_list?id=' + ctx.args.id, appShow: function (page) {
       if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use('IncludeMessage', function (IncludeMessage) {
           new IncludeMessage(page, '.message', {
