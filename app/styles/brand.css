@@ -96,6 +96,12 @@
 #my .messages .money .h {color:#e40000;}
 #my .messages .money .l {color:#00a81c;}
 #my .messages .money li,#my .messages .ly li,#my .messages .yxhz li{float:left;overflow:inherit;overflow:auto;background:#fff;margin-bottom:20px;padding:0 5% 8% 3.3%;width:92%;}
+#my .messages .tel {color:#e0246b;font-size:24px;overflow:auto;}
+#my .messages .tel span {float:left;width:260px;}
+#my .messages .tel span.r {float:right;}
+#my .messages .contact {height:70px;margin:30px 0;}
+#my .messages .contact div {text-align:center;width:260px;height:70px;float:left;color:#fff;background:#e0246b;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;font-size:24px;line-height:70px;}
+#my .messages .contact div.r { background:#00b3d9;float:right;}
 #my .product {padding-top:30px;}
 #my .product ul {margin:auto;width:93%;}
 #my .product li {margin-bottom:20px;padding:15px 0;background:#fff;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;overflow:auto;}
