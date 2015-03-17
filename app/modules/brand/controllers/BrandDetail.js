@@ -13,6 +13,12 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
   BrandDetail = function (page, id, context) {
     setTimeout(function () {
       debug('【Module】: Call BrandDetail');
+      if(id === 'null')
+      {
+        console.log('id为空值了!');
+        App.load('home');
+        return;
+      }
       var tpl = HandlebarsHelper.compile(template);
       App.query('/cmp/' + id, {
         cache: true,

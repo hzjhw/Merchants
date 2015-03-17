@@ -19,8 +19,8 @@ define('FavBrand', ['App','template/favBrand','HandlebarsHelper'], function (req
           new IncludeBtm(page, '.footer_mes');
         });
         $(page).find('.imgs').click(function(){
-          var facid = $(this).attr('fact-id');
-          App.load('brand_detail',{id:facid});
+          App.addLoading();
+          App.load('brand_detail',{id:$(this).attr('fact-id')});
         });
         $(page).find('.delete').click(function(){
           var parentObj = $(this).parent();

@@ -26,6 +26,23 @@ define('FavPro', ['App','template/favPro','HandlebarsHelper'], function (require
               proid: proid
             });
           });
+        $(page).find('.delete').click(function(){
+          var parentObj = $(this).parent();
+          var collid = parentObj.attr('data-id');
+          var name = parentObj.children('.h').text();
+          name = name.substring(name.indexOf('：')+1,name.length);
+          var cntVal = '<span style="font-size: 20px"> 删除'+name+'收藏吗?</span>';
+          App.showConfirm('删除收藏',cntVal,null,function () {
+            App.query('/userinfo/collectDel',{
+              data:{'collect.coll_id':collid},
+              success:function(result){
+                if(result.msg === 'success'){
+                  App.load('favorite_product');
+                }
+              }
+            })
+          });
+        });
         $(page).find('.btn-back').click(function () {
           App.back('home');
         });
