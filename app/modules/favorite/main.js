@@ -33,6 +33,10 @@ App.addTemplate('template/favFactMsg', function (require, exports, module) {
 App.addTemplate('template/favChgpwd', function (require, exports, module) {
   module.exports = require('modules/favorite/views/favorite_chgpwd.html')
 });
+App.addTemplate('template/favLove', function (require, exports, module) {
+  module.exports = require('modules/favorite/views/favorite_love.html')
+});
+App.addModule('FavLove', 'modules/favorite/controllers/FavLove.js');
 App.addModule('FavChgpwd', 'modules/favorite/controllers/FavChgpwd.js');
 App.addModule('FavFactMsg', 'modules/favorite/controllers/FavFactMsg.js');
 App.addModule('IncludeBtm', 'modules/favorite/controllers/IncludeBtm.js');

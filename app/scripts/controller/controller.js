@@ -498,6 +498,14 @@ seajs.use(['App'], function (App) {
       App.CategoryCtrl = new CategoryCtrl(page, this);
     });
   });
+  /*我的喜好*/
+  App.controller('favorite_love', function (page) {
+    debug('【Controller】pageLoad: favorite_love');
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_love'}, this);
+    seajs.use(['FavLove'], function (FavLove) {
+      App.FavLove = new FavLove(page);
+    });
+  });
   /*修改密码*/
   App.controller('favorite_chgpwd', function (page) {
     debug('【Controller】pageLoad: favorite_chgpwd');
