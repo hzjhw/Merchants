@@ -18,6 +18,10 @@ define('FavBrand', ['App','template/favBrand','HandlebarsHelper'], function (req
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
           new IncludeBtm(page, '.footer_mes');
         });
+        $(page).find('.imgs').click(function(){
+          var facid = $(this).attr('fact-id');
+          App.load('brand_detail',{id:facid});
+        });
         $(page).find('.delete').click(function(){
           var parentObj = $(this).parent();
           var collid = parentObj.attr('data-id');
