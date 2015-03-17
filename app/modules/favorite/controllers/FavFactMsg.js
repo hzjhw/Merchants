@@ -13,7 +13,7 @@ define('FavFactMsg', ['App','template/favFactMsg','HandlebarsHelper'], function 
   FavFactMsg = function (page) {
     var tpl = HandlebarsHelper.compile(template);
     $(page).html(template);
-    App.query('/userinfo/leaveMsg', {
+    App.query('/userinfo/factMsg', {
       success: function (result) {
         $(page).html(tpl(result));
         seajs.use(['IncludeBtm'], function (IncludeBtm) {
