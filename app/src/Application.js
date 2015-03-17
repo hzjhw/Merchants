@@ -95,7 +95,11 @@ Application.prototype = {
     window.location.hash = name;
   },
   getCurrentHash: function () {
-    return localStorage['_currentHash'];
+    var _hash = localStorage['_currentHash'];
+    if (_hash && _hash.indexOf('?') !== -1){
+      _hash = _hash.substring(0, _hash.indexOf('?'));
+    }
+    return _hash;
   },
   setBackPage: function (name) {
     localStorage['backPage'] = name;
@@ -146,6 +150,28 @@ Application.prototype = {
       }
     }
     return false;
+  },
+  getUrlParam: function (name, url) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    if (typeof url !== 'undefined')
+      url = url.substring(url.indexOf('?'), url.length);
+    /**/
+    var path = url || window.location.search;
+    var r = path.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+  },
+  setUrlParam: function(name, value, url){
+    var url_pre = '';
+    if (typeof url !== 'undefined'){
+      url_pre = url.substring(0, url.indexOf('?'));
+      url = url.substring(url.indexOf('?'), url.length);
+    }
+
+    /**/
+    var path = url || window.location.search;
+    var r = path.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
   },
   autoHide: function (page, options) {
     debug('【Util】App.autoHide:');
@@ -340,8 +366,8 @@ Application.prototype = {
   initPageReady: function (App) {
     window.onhashchange = function () {
       try {
-        debug('【Hash】onhashchange: ' + App.getCurrentHash() + ' -> ' + location.hash);
-        if (App.getCurrentHash() && (App.getCurrentHash() === location.hash)) return;
+        debug('【Hash】onhashchange: ' + localStorage['_currentHash'] + ' -> ' + location.hash);
+        if (localStorage['_currentHash'] && (localStorage['_currentHash'] === location.hash)) return;
         if (location.hash.length > 0) {
           var _page = location.hash.substring(2, location.hash.length);
           if (App._CustomStack && App._CustomStack.length > 0) {

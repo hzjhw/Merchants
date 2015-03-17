@@ -343,9 +343,16 @@ seajs.use(['App'], function (App) {
   App.controller('brand_detail', function (page) {
     debug('【Controller】pageLoad: brand_detail');
     var ctx = this;
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    if (argId) {
+      localStorage['brand_fact_id'] = argId;
+      ctx.args.id = argId;
+    }
+
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_detail', appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_detail?id=' + ctx.args.id, appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -367,6 +374,14 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
     App._Stack.pop();
+
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    if (argId) {
+      localStorage['brand_fact_id'] = argId;
+      ctx.args.id = argId;
+    }
+
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_info', appShow: function (page) {
@@ -390,6 +405,12 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
     App._Stack.pop();
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    if (argId) {
+      localStorage['brand_fact_id'] = argId;
+      ctx.args.id = argId;
+    }
     App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
         new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
@@ -407,6 +428,12 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_tec');
     var ctx = this;
     App._Stack.pop();
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    if (argId) {
+      localStorage['brand_fact_id'] = argId;
+      ctx.args.id = argId;
+    }
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_tec', appShow: function (page) {
@@ -431,6 +458,12 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: brand_blank');
     var ctx = this;
     App._Stack.pop();
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    if (argId) {
+      localStorage['brand_fact_id'] = argId;
+      ctx.args.id = argId;
+    }
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
     App.initLoad(page, { transition: 'fade', page: 'brand_blank', appShow: function (page) {
