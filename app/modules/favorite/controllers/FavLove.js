@@ -12,7 +12,10 @@ define('FavLove', ['App','template/favLove','HandlebarsHelper'], function (requi
 
   FavLove = function (page) {
     var tpl = HandlebarsHelper.compile(template);
-    $(page).html(tpl(result.info));
+    $(page).html(template);
+    $(page).find('.btn-back').click(function () {
+      App.back();
+    });
   };
   module.exports = FavLove;
 });
