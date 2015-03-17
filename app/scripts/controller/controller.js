@@ -384,7 +384,7 @@ seajs.use(['App'], function (App) {
 
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_info', appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_info?id=' + ctx.args.id, appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -411,7 +411,7 @@ seajs.use(['App'], function (App) {
       localStorage['brand_fact_id'] = argId;
       ctx.args.id = argId;
     }
-    App.initLoad(page, { transition: 'fade', page: 'brand_product', appReady: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_product?id=' + ctx.args.id, appReady: function (page) {
       seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
         new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
       });
@@ -436,7 +436,7 @@ seajs.use(['App'], function (App) {
     }
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_tec', appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_tec?id=' + ctx.args.id, appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
@@ -466,7 +466,7 @@ seajs.use(['App'], function (App) {
     }
     if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
     localStorage['brand_fact_id'] = ctx.args.id;
-    App.initLoad(page, { transition: 'fade', page: 'brand_blank', appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'brand_blank?id=' + ctx.args.id, appShow: function (page) {
       seajs.use('IncludeMessage', function (IncludeMessage) {
         new IncludeMessage(page, '.message', {
           id: ctx.args.id
