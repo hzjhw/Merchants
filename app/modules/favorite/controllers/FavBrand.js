@@ -34,6 +34,9 @@ define('FavBrand', ['App','template/favBrand','HandlebarsHelper'], function (req
               success:function(result){
                 if(result.msg === 'success'){
                   App.load('favorite_brand');
+                  /*App.render({ render: $('ul',$(page)), handlebars: HandlebarsHelper,page: page, template: template2, empty: true, data: {
+                    list: result.list
+                  }});*/
                 }
               }
             })

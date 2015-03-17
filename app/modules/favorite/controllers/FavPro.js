@@ -38,6 +38,12 @@ define('FavPro', ['App','template/favPro','HandlebarsHelper'], function (require
               success:function(result){
                 if(result.msg === 'success'){
                   App.load('favorite_product');
+                 /* $('ul', $(page)).html('');
+                  var $container2 = $('ul', $(page));
+                  var template2 = $container2.html();
+                  App.render({ render: 'ul', handlebars: HandlebarsHelper,page: page, template: template2, empty: true, data: {
+                    list: result.list
+                  }});*/
                 }
               }
             })
