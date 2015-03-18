@@ -95,6 +95,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
           // 如果是搜索页面隐藏底部导航
           if (price || cat || keywords) {
             $(page).find('.app-bottombar-cover').remove();
+            $(page).find('.hall').hide();
           }
           // 若不是搜索页面显示页头
           if (!price && !cat && !keywords) {

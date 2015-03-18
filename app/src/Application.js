@@ -395,7 +395,7 @@ Application.prototype = {
     }
     App.enableDragTransition();
     try {
-      debugger
+      //debugger
       if (location.hash.length > 0) {
         App._CustomStack = App._Stack.getRestoreStacks();
         if (App._CustomStack.length === 0) {
