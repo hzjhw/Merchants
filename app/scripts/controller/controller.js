@@ -15,10 +15,7 @@ App.isLogin = function () {
 App.showMsg = function (titleVal, cntVal) {
   seajs.use(['dialog'], function (dialog) {
     window.msgDialog = dialog({
-<<<<<<< Updated upstream:app/scripts/controller/controller.js
       id: 'showMsg',
-=======
->>>>>>> Stashed changes:app/lib/controller.js
       title: titleVal,
       content: cntVal,
       width: $(window).width() - 280,
@@ -31,10 +28,7 @@ App.showMsg = function (titleVal, cntVal) {
 App.showConfirm = function (titleVal, cntVal, curEle, callback) {
   seajs.use(['dialog'], function (dialog) {
     window.confirmDialog = dialog({
-<<<<<<< Updated upstream:app/scripts/controller/controller.js
       id: 'comfirmDialog',
-=======
->>>>>>> Stashed changes:app/lib/controller.js
       title: titleVal,
       content: cntVal,
       width: $(window).width() - 280,
@@ -53,15 +47,12 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
 };
 App.show330 = function (page, callback) {
   seajs.use(['dialog'], function (dialog) {
-<<<<<<< Updated upstream:app/scripts/controller/controller.js
     try {
       window.myDialog && window.myDialog.close && window.myDialog.close().remove();
     } catch (e) {
       debug('【Error】myDialog not find!');
     }
-=======
     window.myDialog && window.myDialog.close().remove();
->>>>>>> Stashed changes:app/lib/controller.js
     window.myDialog = dialog({
       id: '330dialog',
       title: '我的330',
@@ -209,15 +200,7 @@ seajs.use(['App'], function (App) {
     // App.cleanStack();// 清除stack
     App._Stack.destroy();
     App.initLoad(page, { transition: 'fade', page: 'home', appShow: function (page) {
-<<<<<<< Updated upstream:app/scripts/controller/controller.js
-=======
-      App.removeLoading();
-      App.initTopScroll(page);
-      App._Stack.destroy();
-      if (App._CustomStack){
-        App._CustomStack.length = 0;
-      }
->>>>>>> Stashed changes:app/lib/controller.js
+
       var phoneNum = localStorage[App.CELL_PHONE];
 
       App.removeLoading(); // 移除载入动画
