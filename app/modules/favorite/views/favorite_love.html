@@ -7,13 +7,12 @@
     </div>
     <div class="wrap registered">
         <div class="cate-item-sub-title">
-            请选择以下您的产品需求 <span class="icon-bg icon-down"></span>
+            请选择以下您的门种需求 <span class="icon-bg icon-down"></span>
         </div>
         <ul class="cate-pro-ul search-pro-ul">
-            {{#each allLove}}
-            <li data-id="{{para_value}}"  >{{para_key}}</li>
+            {{#each allLoves}}
+            <li data-id="{{para_value}}" {{#each ../myLoves}} {{#compare ../para_value '==' this}}class='red'{{/compare}} {{/each}} >{{para_key}}</li>
             {{/each}}
-            {{#each loveList}} ==={{this}}=== {{/each}}
         </ul>
         <button id="chglove" type="submit">修改需求</button>
     </div>
