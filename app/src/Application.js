@@ -395,12 +395,16 @@ Application.prototype = {
     }
     App.enableDragTransition();
     try {
-      //debugger
+      debugger
       if (location.hash.length > 0) {
         App._CustomStack = App._Stack.getRestoreStacks();
         if (App._CustomStack.length === 0) {
           App.load('home');
-        } else {
+        }
+        else if (location.href.indexOf('?') !== -1){
+          App.load(location.hash.substring(2, location.hash.indexOf('?')));
+        }
+        else {
           var item = App._CustomStack.pop();
           App.load(item[0], item[1]);
         }

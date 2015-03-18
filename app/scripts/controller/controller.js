@@ -625,7 +625,18 @@ seajs.use(['App'], function (App) {
   App.controller('product_detail', function (page) {
     debug('【Controller】pageLoad: product_detail');
     var ctx = this;
-    App.initLoad(page, { transition: 'fade', page: 'product_detail'}, ctx);
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    var proId = App.getUrlParam('proid', window.location.href);
+    if (argId) {
+      localStorage['product_detail_args_id'] = argId;
+      ctx.args.id = argId;
+    }
+    if (proId){
+      localStorage['product_detail_args_proid'] = proId;
+      ctx.args.proid = proId;
+    }
+    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_detail?id=' + ctx.args.id + '&proid=' + ctx.args.proid) :'product_detail'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
     if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
     localStorage['product_detail_args_id'] = ctx.args.id;
