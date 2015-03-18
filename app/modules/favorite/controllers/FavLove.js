@@ -12,9 +12,21 @@ define('FavLove', ['App','template/favLove','HandlebarsHelper'], function (requi
 
   FavLove = function (page) {
     var tpl = HandlebarsHelper.compile(template);
-    $(page).html(template);
-    $(page).find('.btn-back').click(function () {
-      App.back();
+    App.query('/userinfo/loveList',{
+      success:function(data){
+        $(page).html(tpl(data));
+        $(page).find('li').click(function(){
+          /*if($(this).hasClass('selected')){
+            $(this).removeClass('selected');
+          }else{
+            $(this).addClass('selected');
+          }*/
+          $(this).toggleClass('red');
+        });
+        $(page).find('.btn-back').click(function () {
+          App.back();
+        });
+      }
     });
   };
   module.exports = FavLove;

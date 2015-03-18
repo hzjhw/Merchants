@@ -10,9 +10,10 @@
             请选择以下您的产品需求 <span class="icon-bg icon-down"></span>
         </div>
         <ul class="cate-pro-ul search-pro-ul">
-            {{#each list}}
-            <li data-id="{{cat_id}}" class="app-btn">{{cat_name}}</li>
+            {{#each allLove}}
+            <li data-id="{{para_value}}"  >{{para_key}}</li>
             {{/each}}
+            {{#each loveList}} ==={{this}}=== {{/each}}
         </ul>
         <button id="chglove" type="submit">修改需求</button>
     </div>
