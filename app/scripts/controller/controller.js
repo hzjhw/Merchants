@@ -52,7 +52,6 @@ App.show330 = function (page, callback) {
     } catch (e) {
       debug('【Error】myDialog not find!');
     }
-    window.myDialog && window.myDialog.close().remove();
     window.myDialog = dialog({
       id: '330dialog',
       title: '我的330',
