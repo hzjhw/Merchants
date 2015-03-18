@@ -19,21 +19,16 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
       App.setBackPage('home')
       App.load('login_dealers');
     });
-<<<<<<< Updated upstream
+
     $(page).find('#forgetpwd').click(function(){
       App.load('forget_pwd');
     });
 
-    $(page).find('#userRegister').click(function(){
-      var $phoneNum = $("#phoneNum",$(page));
-      var $passwd =  $("#passwd",$(page));
-      var $passwd1 =  $("#cfmpasswd",$(page));
-=======
     $(page).find('#userRegister').click(function () {
       var $phoneNum = $("#phoneNum", $(page));
       var $passwd = $("#passwd", $(page));
       var $passwd1 = $("#cfmpasswd", $(page));
->>>>>>> Stashed changes
+
       var reg = /^(1[3|5|8])[\d]{9}$/;
       if ($.trim($phoneNum.val()) === '') {
         alert('手机号不能为空！');
@@ -65,12 +60,9 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
         success: function (data) {
           if (data.result == 'success') {
             alert("恭喜您，注册成功！");
-<<<<<<< Updated upstream
-            App.setBackPage('home')
-=======
             // 清空STACK栈
             App._Stack.destroy();
->>>>>>> Stashed changes
+
             App.load('login_dealers');
           }
           else {

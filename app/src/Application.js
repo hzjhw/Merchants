@@ -400,7 +400,7 @@ Application.prototype = {
     App.enableDragTransition();
     try {
       //debugger
-      if (location.hash.length > 0) {
+      if (location.hash.length > 0 && location.hash !== '#/home') {
         App._CustomStack = App._Stack.getRestoreStacks();
         if (App._CustomStack.length === 0) {
           App.load('home');
