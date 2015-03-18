@@ -23,9 +23,8 @@ define('FavLove', ['App','template/favLove','HandlebarsHelper'], function (requi
           var curLoves = '';
           $('li',$(page)).each(function(i){
             if($(this).hasClass('red'))
-              curLoves +=','+$(this).attr('data-id');
+              curLoves +=$(this).attr('data-id')+',';
           });
-          curLoves = curLoves.substring(1);
           App.query('/userinfo/chgLove',{
             data:{myLoves:curLoves},
             success:function(result){
