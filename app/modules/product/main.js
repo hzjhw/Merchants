@@ -21,3 +21,8 @@ App.addTemplate('template/product_brand_detail', function (require, exports, mod
   module.exports = require('modules/product/views/product_brand_detail.html');
 });
 App.addModule('ProductBrandDetail', 'modules/product/controllers/ProductBrandDetail.js');
+
+App.addModule('ProductOther', 'modules/product/controllers/ProductOther.js');
+App.addTemplate('template/product_other', function (require, exports, module) {
+  module.exports = require('modules/product/views/product_other.html');
+});

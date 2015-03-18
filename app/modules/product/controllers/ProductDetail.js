@@ -20,6 +20,9 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
         data: {proid: proid},
         success: function (result) {
           $(page).html(tpl(result));
+          seajs.use(['ProductOther'],function(ProductOther){
+            new ProductOther(page,'.product-other',id,proid);
+          });
           // 返回按钮
           $(page).find('.category-close').click(function () {
             App.back();
@@ -29,6 +32,13 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
           $(page).find('.cate-item').each(function (index) {
             $(this).click(function () {
               var isBrandDetail = $(this).hasClass('brand-detail');
+              var isBrandBase = $(this).hasClass('brand-base');
+              if(isBrandBase){
+                //基本信息
+                seajs.use(['ProductOther'],function(ProductOther){
+                  new ProductOther(page,'.product-other',id,proid);
+                })
+              }
               if (isBrandDetail) {
                 // 品牌详情
                 $(this).removeClass('brand-detail');
