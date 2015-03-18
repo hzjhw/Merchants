@@ -584,12 +584,22 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: product_list');
     var ctx = this;
 
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
-    localStorage['brand_fact_id'] = ctx.args.id;
+    // 获取url id值
+    var argId = App.getUrlParam('id', window.location.href);
+    if (argId) {
+      localStorage['brand_fact_id'] = argId;
+      ctx.args.id = argId;
+    }
+    if (!ctx.args.id && localStorage['brand_fact_id'] !== 'null'){
+      ctx.args.id = localStorage['brand_fact_id'];
+      localStorage['brand_fact_id'] = ctx.args.id;
+    }
     if (ctx.args.price || ctx.args.cat) {
       localStorage['brand_fact_id'] = null;
+      localStorage['product_search_price'] = ctx.args.price;
+      localStorage['product_search_cat'] = ctx.args.cat;
     }
-    App.initLoad(page, { transition: 'fade', page: 'product_list?id=' + ctx.args.id, appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_list?id=' + ctx.args.id) : 'product_list', appShow: function (page) {
       if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use('IncludeMessage', function (IncludeMessage) {
           new IncludeMessage(page, '.message', {
