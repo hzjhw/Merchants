@@ -75,6 +75,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
         success: function (data) {
           console.log(data.facPhone);
           var colum = 'proList';
+          var i = 0;
           // 判断选取的列表
           if (price) colum = 'productList';
           else if (cat) colum = 'catList';
@@ -158,19 +159,20 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
                     //TODO 搜索
                     App.addLoading();
                     seajs.use(['Est'], function (Est) {
+                      i=0;
                       var _tempData = Est.cloneDeep(data);
                       if (price && price !== 'all') {
                         // 过滤分类
                         _tempData.list = Est.filter(_tempData.list, {cat_name: dataId});
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
-                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
+                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont').html());
                       } else if (cat && cat !== 'all') {
                         // 过滤价格
                         _tempData.list = Est.filter(_tempData.list, {price: dataId});
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
-                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
+                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont').html());
                       } else {
                         var filterObj = {};
                         if (dataId.indexOf('f') !== -1) {
@@ -181,7 +183,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
                         _tempData.list = Est.filter(_tempData.list, filterObj);
                         if (dataId === 'all') _tempData = data;
                         $(page).find('.search-list-cont').empty();
-                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont'));
+                        $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont').html());
                       }
                       App.removeLoading();
                       bindDetail(page, id);
@@ -195,7 +197,6 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
           });
 
           //样式切换
-          var i = 0;
           var listCont = $(page).find('#factory .search-list-cont');
           $(page).find('.icons-list').click(function () {
             if (i === 3) i = 0;

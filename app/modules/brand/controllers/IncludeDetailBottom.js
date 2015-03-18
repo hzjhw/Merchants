@@ -15,7 +15,8 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     App.initBrandAutoHide(page);
 
     // 底部导航
-    $(page).find('.bottombar-ul li').off().on('click',function () {
+    $(page).find('.bottombar-ul li').off().on('click',function (e) {
+      e.preventDefault();
       try{
         var urlVal =$(this).attr('data-url');
         if(urlVal.length > 0){

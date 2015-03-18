@@ -296,6 +296,7 @@ seajs.use(['App'], function (App) {
   /*忘记密码*/
   App.controller('forget_pwd',function(page){
     debug('【Controller】pageLoad: forget_pwd');
+    App.initLoad(page, { transition: 'slide-left', page: 'forget_pwd' }, this);
     seajs.use(['Forgetpwd'],function(Forgetpwd){
       App.Forgetpwd = new Forgetpwd(page,this);
     });

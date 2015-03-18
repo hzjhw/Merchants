@@ -32,6 +32,10 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
         $("#factory .prolist").toggleClass("show");
       });
       $(page).find('.prolist a').click(function () {
+        if ($(this).attr('data-id').length === 0){
+          App.load('brand_unique');
+          return;
+        }
         App.load('brand_list', {
           id: $(this).attr('data-id'),
           title: $(this).attr('data-title'),

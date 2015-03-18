@@ -99,6 +99,7 @@ Application.prototype = {
     if (_hash && _hash.indexOf('?') !== -1){
       _hash = _hash.substring(0, _hash.indexOf('?'));
     }
+    //debug(_hash, {type: 'alert'});
     return _hash;
   },
   setBackPage: function (name) {
@@ -153,9 +154,12 @@ Application.prototype = {
   },
   getUrlParam: function (name, url) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    if (typeof url !== 'undefined')
+    if (typeof url !== 'undefined'){
+      if (location.href.indexOf('?') < location.href.indexOf('#/')){
+        url = url.replace('html?', '');
+      }
       url = url.substring(url.indexOf('?'), url.length);
-    /**/
+    }
     var path = url || window.location.search;
     var r = path.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
@@ -225,7 +229,7 @@ Application.prototype = {
       e.preventDefault();
       if ($(this).attr('data-page').length > 0) {
         App._Stack.pop();
-        App.load($(this).attr('data-page'));
+        App.load($(this).attr('data-page').replace(/^(.+)\?.*$/g, '$1'));
       } else {
         window.location.reload();
       }
@@ -402,7 +406,9 @@ Application.prototype = {
           App.load('home');
         }
         else if (location.href.indexOf('?') !== -1){
+          //alert('initPageReady:' + location.hash.substring(2, location.hash.indexOf('?')));
           App.load(location.hash.substring(2, location.hash.indexOf('?')));
+
         }
         else {
           var item = App._CustomStack.pop();

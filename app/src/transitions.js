@@ -416,7 +416,7 @@ App._Transitions = function (window, document, Swapper, App, Utils, Scroll, Page
 			oldBackground = currentPage[3].style.background;
 		currentPage[3].style.position   = 'fixed';
 		currentPage[3].style.zIndex     = '4000';
-		currentPage[3].style.background = 'none'; //TODO: this sucks
+		currentPage[3].style.background = oldBackground; //TODO: this sucks
 		if (currentPage[3].nextSibling) {
 			currentPage[3].parentNode.insertBefore(previousPage[3], currentPage[3].nextSibling);
 		}
