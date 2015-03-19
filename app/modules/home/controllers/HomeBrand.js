@@ -79,6 +79,8 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
       debug('【Module】: Call HomeBrand');
       App.query('/index', {
         cache: true,
+        data:{ brandPS:16,fangdaoPS:12,fanghuoPS:8,feibiaoPS:8,buxiugangPS:4,
+          mumenPS:8,shengtaiPS:8,gangmuPS:8,lvhejinPS:4},
         success: function (result) {
           $(page).find('#merchants-show').empty();
           App.render({ render: '#merchants-show', handlebars: HandlebarsHelper, page: page, template: template, data: {
@@ -86,12 +88,8 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
             list: result.brandList.list
           }, callback: bindBrandDetail});
           App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
-            title: '铝合金门馆',
-            list: result.lvhejinList.list
-          }, callback: bindBrandDetail});
-          App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
-            title: '生态木门/强化门馆',
-            list: result.shengtaiList.list
+            title: '防盗门馆',
+            list: result.fangdaoList.list
           }, callback: bindBrandDetail});
           App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
             title: '防火门馆',
@@ -102,21 +100,26 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
             list: result.feibiaoList.list
           }, callback: bindBrandDetail});
           App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
-            title: '防盗门馆',
-            list: result.fangdaoList.list
+            title: '木门馆',
+            list: result.mumenList.list
           }, callback: bindBrandDetail});
           App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
-            title: '不锈钢门馆',
-            list: result.buxiugangList.list
+            title: '生态木门/强化门馆',
+            list: result.shengtaiList.list
           }, callback: bindBrandDetail});
           App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
             title: '钢木门馆',
             list: result.gangmuList.list
           }, callback: bindBrandDetail});
           App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
-            title: '木门馆',
-            list: result.mumenList.list
+            title: '不锈钢门馆',
+            list: result.buxiugangList.list
           }, callback: bindBrandDetail});
+          App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
+            title: '铝合金门馆',
+            list: result.lvhejinList.list
+          }, callback: bindBrandDetail});
+
           App.initLazyLoad(page);
         }
       });
