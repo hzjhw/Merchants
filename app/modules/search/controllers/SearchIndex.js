@@ -60,7 +60,7 @@ define('SearchIndex', ['App', 'template/search_index', 'HandlebarsHelper,'], fun
         App.back(App.getBackPage());
       });
       $(page).find('.btn-search').click(function () {
-        App.setBackPage('search');
+        //App.setBackPage('search');
         var area = $.trim($(page).find('.input-search').val());
         if (area.length > 0) {
           App.load('brand_list', {

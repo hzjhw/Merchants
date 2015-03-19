@@ -91,7 +91,7 @@ App.setBackPage('brand_list'); // 获取 App.getBackPage()
 7) 图片延迟加载
  // html
  <!--品牌展示-->
-        <div id="merchants-show" class="app-lazyload">  // 这里必需加app-lazyload
+        <div id="merchants-show" class="app-lazyload">  // 这里必需加app-lazyload 且为滚动页面那个div
             <img class="lazy" data-original="{{CONST 'PIC_URL'}}{{brand_path}}" src="images/bottom-logo.png" alt="" width="284" height="347"/>
         </div>
  // js

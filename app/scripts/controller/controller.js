@@ -610,6 +610,7 @@ seajs.use(['App'], function (App) {
           });
         })
       }
+      App.resetLazyLoad('.app-lazyload', page);
     }, appReady: function (page) {
       if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
@@ -629,7 +630,7 @@ seajs.use(['App'], function (App) {
     debug('【Controller】pageLoad: product_detail');
     var ctx = this;
     // 获取url id值
-    var argId = App.getUrlParam('id', window.location.href);
+    var argId = App.getUrlParam('product_id', window.location.href);
     var proId = App.getUrlParam('proid', window.location.href);
     if (argId) {
       localStorage['product_detail_args_id'] = argId;
@@ -639,7 +640,7 @@ seajs.use(['App'], function (App) {
       localStorage['product_detail_args_proid'] = proId;
       ctx.args.proid = proId;
     }
-    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_detail?id=' + ctx.args.id + '&proid=' + ctx.args.proid) :'product_detail'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_detail?product_id=' + ctx.args.id + '&proid=' + ctx.args.proid) :'product_detail'}, ctx);
     if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
     if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
     localStorage['product_detail_args_id'] = ctx.args.id;

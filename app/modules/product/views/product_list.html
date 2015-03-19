@@ -8,7 +8,7 @@
             <div class="clear"></div>
         </div>
     </div>
-    <div class="app-content">
+    <div class="app-content app-lazyload">
         <div id="include_header"></div>
         <div class="search-list x">
             <div class="search-list-title"><span class="titlename app-btn">筛选</span><span class="name">全部</span>
@@ -65,11 +65,11 @@
             <style>
                 #factory .app-content .search-list-cont.largest-view .glitzItem{border-bottom: 1px dashed #bbbaba;margin-bottom: 20px; padding-bottom: 20px;}
             </style>
-            <div class="search-list-cont list-view">
+            <div class="search-list-cont list-view ">
                 {{#each list}}
                 <div class="glitzItem" data-id="{{product_id}}" cust-id="{{cust_id}}">
-                    <a class="glitzPic btn-pro-detail app-btn" href="javascript:void(0)"><img
-                            src="{{CONST 'PIC_URL'}}{{img_path}}" width="100%"></a>
+                    <a class="glitzPic btn-pro-detail app-btn" href="javascript:void(0)"><img class="lazy" data-original="{{CONST 'PIC_URL'}}{{img_path}}" src="images/space.png"
+                             width="100%"></a>
 
                     <div class="txt">
                         <p class="title btn-pro-detail app-btn">{{title}}</p>

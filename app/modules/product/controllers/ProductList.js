@@ -93,6 +93,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
           });
           // Dom插入
           $(page).html(tpl(data));
+          App.initLazyLoad(page);
           // 如果是搜索页面隐藏底部导航
           if (price || cat || keywords) {
             $(page).find('.app-bottombar-cover').remove();
@@ -185,6 +186,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
                         $(page).find('.search-list-cont').empty();
                         $(page).find('.search-list-cont').append($(tpl(_tempData)).find('.search-list-cont').html());
                       }
+                      App.initLazyLoad(page);
                       App.removeLoading();
                       bindDetail(page, id);
                       bindCollect(page);
@@ -195,7 +197,6 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
               }).showModal($target);
             });
           });
-
           //样式切换
           var listCont = $(page).find('#factory .search-list-cont');
           $(page).find('.icons-list').click(function () {

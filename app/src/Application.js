@@ -226,7 +226,7 @@ Application.prototype = {
       e.preventDefault();
       if ($(this).attr('data-page').length > 0) {
         var _data = App._Stack.getLast();
-        debugger
+        //debugger
         App._Stack.pop();
         //App.load($(this).attr('data-page').replace(/^(.+)\?.*$/g, '$1'));
         App.load(_data[0], _data[3]);
