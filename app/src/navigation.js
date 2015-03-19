@@ -74,7 +74,10 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
     } else if(typeof pageName === 'undefined'){
       //App._Stack.pop();
       item = App._Stack.getBefore();
+      if (item)
       App.back(item[0]);
+      else
+      App.back('home');
       return;
     }
     if (pageName === 'home'){

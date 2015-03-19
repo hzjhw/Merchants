@@ -21,7 +21,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
         success: function (result) {
           $(page).html(tpl(result));
           seajs.use(['ProductOther'],function(ProductOther){
-            new ProductOther(page,'.product-other',id,proid);
+            //new ProductOther(page,'.product-other',id,proid);
           });
           // 返回按钮
           $(page).find('.category-close').click(function () {

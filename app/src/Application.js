@@ -168,11 +168,8 @@ Application.prototype = {
   setUrlParam: function(name, value, url){
     var url_pre = '';
     if (typeof url !== 'undefined'){
-      url_pre = url.substring(0, url.indexOf('?'));
       url = url.substring(url.indexOf('?'), url.length);
     }
-
-    /**/
     var path = url || window.location.search;
     var r = path.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
@@ -228,8 +225,11 @@ Application.prototype = {
     window.$tool.find('.tool-reflesh').off().on('click', function (e) {
       e.preventDefault();
       if ($(this).attr('data-page').length > 0) {
+        var _data = App._Stack.getLast();
+        debugger
         App._Stack.pop();
-        App.load($(this).attr('data-page').replace(/^(.+)\?.*$/g, '$1'));
+        //App.load($(this).attr('data-page').replace(/^(.+)\?.*$/g, '$1'));
+        App.load(_data[0], _data[3]);
       } else {
         window.location.reload();
       }

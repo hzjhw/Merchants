@@ -20,6 +20,7 @@ define('ProductBrandDetail', ['App', 'template/product_brand_detail', 'Handlebar
         try{
           $(page).find(render).html(tpl(data.factInfo));
           $(page).find('.company .name, .company .factory_logo').click(function(){
+            localStorage['brand_fact_id'] = null;
            App.load('brand_detail', {
               id:id
             });
