@@ -20,7 +20,6 @@ define('ProductOther', ['App', 'template/product_other', 'HandlebarsHelper'], fu
         success:function(result){
           $(page).find(rend).html(tpl(result));
           $(page).find('td img').click(function(){
-            App.addHash('#/product_detail');
             App.load('product_detail', {
               id: $(this).attr('fact-id'),
               proid: $(this).attr('pro-id')

@@ -10,6 +10,7 @@ define('ProductList', ['App', 'template/product_list', 'Est', 'HandlebarsHelper'
   HandlebarsHelper = require('HandlebarsHelper');
   function bindDetail(page, id) {
     $(page).find('.search-list-cont .glitzItem .btn-pro-detail').on('click', function () {
+      App.setBackPage('product_list');
       if (id && id === 'null' || !id){
         id =  $(this).parents('.glitzItem').attr('data-id');
       }

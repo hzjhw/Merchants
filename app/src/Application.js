@@ -224,7 +224,7 @@ Application.prototype = {
     });
     window.$tool.find('.tool-reflesh').off().on('click', function (e) {
       e.preventDefault();
-      if ($(this).attr('data-page').length > 0) {
+      /*if ($(this).attr('data-page').length > 0) {
         var _data = App._Stack.getLast();
         //debugger
         App._Stack.pop();
@@ -232,7 +232,8 @@ Application.prototype = {
         App.load(_data[0], _data[3]);
       } else {
         window.location.reload();
-      }
+      }*/
+      window.location.reload();
       return false;
     });
     if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home') {

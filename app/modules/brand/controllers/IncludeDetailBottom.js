@@ -13,10 +13,9 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     var renderObj =$(page).find(render);
     renderObj.html(HandlebarsHelper.compile(template)(data));
     App.initBrandAutoHide(page);
-
+    window.stopCall = false;
     // 底部导航
-    $(page).find('.bottombar-ul li').off().on('click',function (e) {
-      e.preventDefault();
+    $(page).find('.bottombar-ul li.page-load').off().on('click', function () {
       try{
         var urlVal =$(this).attr('data-url');
         if(urlVal.length > 0){
@@ -56,8 +55,6 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
             }
           }
 
-        } else{
-          $(this).find('a').click();
         }
       }catch(e){
         console.log(e);

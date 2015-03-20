@@ -618,6 +618,7 @@ seajs.use(['App'], function (App) {
         });
         App.initBrandAutoHide(page);
       }
+      App.resetLazyLoad('.app-lazyload', page);
     }}, ctx);
 
     seajs.use(['ProductList'], function (ProductList) {
