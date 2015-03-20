@@ -53,9 +53,7 @@ Application.prototype = {
     this.isLazyLoad = false;
   },
   addModule: function (name, val) {
-    if (name in this['modules']) {
-      debug('【Module】已存在的模块：' + name);
-    }
+    if (name in this['modules']) debug('【Module】已存在的模块：' + name);
     this['modules'][name] = val;
   },
   getModules: function () {
@@ -71,35 +69,19 @@ Application.prototype = {
     return this.status;
   },
   addTemplate: function (name, fn) {
-    if (name in this['templates']) {
-      debug('【Template】已存在的模板：' + name);
-    }
+    if (name in this['templates']) debug('【Template】已存在的模板：' + name);
     this['templates'][name] = fn;
   },
   getTemplates: function () {
     return this['templates'];
   },
-  render: function (options) {
-    options = Application.extend({ empty: false }, options);
-    var $container = $(options.render, $(options.page || 'body')); // 渲染容器
-    var view = options.handlebars.compile(options.template || $container.html()); // 单视图
-    if (options.empty) $container.empty();
-    var $node = $(view(options.data));
-    if (options.callback) {
-      options.callback.call(null, $node);
-    }
-    $container.append($node);
-  },
-  addHash: function (name, page) {
+  addHash: function (name) {
     localStorage['_currentHash'] = name;
     window.location.hash = name;
   },
   getCurrentHash: function () {
     var _hash = localStorage['_currentHash'];
-    if (_hash && _hash.indexOf('?') !== -1){
-      _hash = _hash.substring(0, _hash.indexOf('?'));
-    }
-    //debug(_hash, {type: 'alert'});
+    if (_hash && _hash.indexOf('?') !== -1) _hash = _hash.substring(0, _hash.indexOf('?'));
     return _hash;
   },
   setBackPage: function (name) {
@@ -108,15 +90,21 @@ Application.prototype = {
   getBackPage: function () {
     var backPage = localStorage['backPage'];
     var _back = backPage;
-    if (backPage === 'false') {
-
-      _back = App._Stack.getBefore() ? App._Stack.getBefore()[0] : 'home';
-    }
+    if (backPage === 'false') _back = App._Stack.getBefore() ? App._Stack.getBefore()[0] : 'home';
     localStorage['backPage'] = false;
     return _back;
   },
   hasBackPage: function () {
     return localStorage['backPage'];
+  },
+  render: function (options) {
+    options = Application.extend({ empty: false }, options);
+    var $container = $(options.render, $(options.page || 'body'));
+    var view = options.handlebars.compile(options.template || $container.html());
+    if (options.empty) $container.empty();
+    var $node = $(view(options.data));
+    if (options.callback) options.callback.call(null, $node);
+    $container.append($node);
   },
   trigger: function (topic, args) {
     var ctx = this;
@@ -154,25 +142,14 @@ Application.prototype = {
   },
   getUrlParam: function (name, url) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    if (typeof url !== 'undefined'){
-      if (location.href.indexOf('?') < location.href.indexOf('#/')){
-        url = url.replace('html?', '');
-      }
+    if (typeof url !== 'undefined') {
+      if (location.href.indexOf('?') < location.href.indexOf('#/')) url = url.replace('html?', '');
       url = url.substring(url.indexOf('?'), url.length);
     }
     var path = url || window.location.search;
     var r = path.substr(1).match(reg);
     if (r != null) return unescape(r[2]);
     return null;
-  },
-  setUrlParam: function(name, value, url){
-    var url_pre = '';
-    if (typeof url !== 'undefined'){
-      url = url.substring(url.indexOf('?'), url.length);
-    }
-    var path = url || window.location.search;
-    var r = path.substr(1).match(reg);
-    if (r != null) return unescape(r[2]);
   },
   autoHide: function (page, options) {
     debug('【Util】App.autoHide:');
@@ -193,17 +170,13 @@ Application.prototype = {
   scroll: function (scrollTo, time, page) {
     debug('【Util】App.scroll:' + scrollTo);
     var $appContent = $('.app-content', $(page));
-    var scrollFrom = parseInt($appContent.scrollTop()),
-      i = 0,
-      runEvery = 5; // run every 5ms
+    var scrollFrom = parseInt($appContent.scrollTop()), i = 0, runEvery = 5;
     scrollTo = parseInt(scrollTo);
     time /= runEvery;
     var interval = setInterval(function () {
       i++;
       $appContent.scrollTop((scrollTo - scrollFrom) / time * i + scrollFrom);
-      if (i >= time) {
-        clearInterval(interval);
-      }
+      if (i >= time) clearInterval(interval);
     }, runEvery);
   },
   addLoading: function () {
@@ -224,7 +197,7 @@ Application.prototype = {
     });
     window.$tool.find('.tool-reflesh').off().on('click', function (e) {
       e.preventDefault();
-      /*if ($(this).attr('data-page').length > 0) {
+      if ($(this).attr('data-page').length > 0) {
         var _data = App._Stack.getLast();
         //debugger
         App._Stack.pop();
@@ -232,13 +205,10 @@ Application.prototype = {
         App.load(_data[0], _data[3]);
       } else {
         window.location.reload();
-      }*/
-      window.location.reload();
+      }
       return false;
     });
-    if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home') {
-      window.$tool.find('.tool-back').remove();
-    }
+    if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home') window.$tool.find('.tool-back').remove();
     window.$tool.find('.tool-back').off().on('click', function (e) {
       e.preventDefault();
       App.back(App.getBackPage);
@@ -372,25 +342,26 @@ Application.prototype = {
     window.onhashchange = function () {
       try {
         debug('【Hash】onhashchange: ' + localStorage['_currentHash'] + ' -> ' + location.hash);
-        if (localStorage['_currentHash'] && (localStorage['_currentHash'] === location.hash)) return;
-        if (location.hash.length > 0) {
-          var _page = location.hash.substring(2, location.hash.length);
-          if (App._CustomStack && App._CustomStack.length > 0) {
-            var item = App._CustomStack.pop();
-            App.load(item[0], item[1]);
-            return;
-          }
-          if (_page === 'undefined') App.load('home');
-          /*else if (!App._Stack.getPage(_page)) {
-           App.load('home');
-           return;
-           }*/
-          var $back = $('.app-back');
-          if ($back.size() > 0) {
-            $back.click();
-          } else {
-            debug('【Hash】size stack is 0');
-            App.load('home');
+        if (localStorage['_currentHash']) {
+          if (localStorage['_currentHash'] === location.hash) return;
+          if (location.hash.length > 0) {
+            var _page = location.hash.substring(2, location.hash.length);
+            if (App._CustomStack && App._CustomStack.length > 0) {
+              var item = App._CustomStack.pop();
+              /*if (App._CustomStack.length > 0 && (App._CustomStack[App._CustomStack.length - 1][0] === item[0])){
+                item = App._CustomStack[App._CustomStack.length - 2];
+              }*/
+              App.load(item[0], item[1]);
+              return;
+            }
+            if (_page === 'undefined') App.load('home');
+            var $back = $('.app-back');
+            if ($back.size() > 0) {
+              $back.click();
+            } else {
+              debug('【Hash】size stack is 0');
+              App.load('home');
+            }
           }
         }
       } catch (e) {
@@ -403,13 +374,11 @@ Application.prototype = {
       //debugger
       if (location.hash.length > 0 && location.hash !== '#/home') {
         App._CustomStack = App._Stack.getRestoreStacks();
-        if (App._CustomStack.length === 0) {
-          App.load('home');
-        }
-        else if (location.href.indexOf('?') !== -1){
-          //alert('initPageReady:' + location.hash.substring(2, location.hash.indexOf('?')));
+        if (location.href.indexOf('?') !== -1) {
           App.load(location.hash.substring(2, location.hash.indexOf('?')));
-
+        }
+        else if (App._CustomStack.length === 0) {
+          App.load('home');
         }
         else {
           var item = App._CustomStack.pop();
@@ -423,7 +392,6 @@ Application.prototype = {
     } catch (err) {
       App._Stack.destroy();
       App.load('home');
-
     }
   },
   cleanStack: function () {
@@ -437,7 +405,6 @@ Application.prototype = {
     return this.cache[name];
   }
 };
-Application.version = '00111114';
 Application.each = function (obj, callback, context) {
   var i, length;
   if (obj == null) return obj;
@@ -489,20 +456,16 @@ Application.getValue = function (object, path) {
     });
     return result;
   }
-
   return get(object, array);
-}
-Application.url = window.location.href;
-
+};
 Application.fromCharCode = function (code) {
   try {
     return String.fromCharCode(code);
   } catch (e) {
   }
 }
-  /*window.addEventListener( "load", function() {
-   FastClick.attach( document.body );
-   }, false );*/
+Application.version = '00111114';
+Application.url = window.location.href;
 ;
 (function () {
   /**

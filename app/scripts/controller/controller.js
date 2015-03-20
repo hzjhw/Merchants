@@ -191,25 +191,18 @@ seajs.use(['App'], function (App) {
     }
   });
 
-
-
   /*首页*/
   App.controller('home', function (page) {
     debug('【Controller】pageLoad: home');
     // App.cleanStack();// 清除stack
     App._Stack.destroy();
     App.initLoad(page, { transition: 'fade', page: 'home', appShow: function (page) {
-
       var phoneNum = localStorage[App.CELL_PHONE];
-
       App.removeLoading(); // 移除载入动画
       App.initTopScroll(page); // 顶部自动隐藏
-      //App.cleanStack(); // 清除stack
       if(! App._CustomStack)  App._CustomStack={};
       App._CustomStack.length = 0;
-
       $('body').find('#tool .tool-back').remove();
-
       if (App.isLogin()) {
         $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
       } else {
@@ -341,31 +334,41 @@ seajs.use(['App'], function (App) {
       App.BrandList = new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx.args.area);
     });
   });
-  /*品牌详细*/
-  App.controller('brand_detail', function (page) {
-    debug('【Controller】pageLoad: brand_detail');
-    var ctx = this;
+
+  App.initBrandCommon = function(page, ctx){
+    seajs.use('IncludeMessage', function (IncludeMessage) {
+      new IncludeMessage(page, '.message', {
+        id: ctx.args.id
+      });
+    });
+    seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+      new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
+    });
+    App.initBrandAutoHide(page);
+  };
+
+  App.initBrandId = function(ctx){
     // 获取url id值
     var argId = App.getUrlParam('fact_id', window.location.href);
     if (argId) {
       localStorage['brand_fact_id'] = argId;
       ctx.args.id = argId;
     }
+    if (!ctx.args.id && localStorage['brand_fact_id'] !== 'null'){
+      ctx.args.id = localStorage['brand_fact_id'];
+      localStorage['brand_fact_id'] = ctx.args.id;
+    }
+  };
 
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
-    localStorage['brand_fact_id'] = ctx.args.id;
+  /*品牌详细*/
+  App.controller('brand_detail', function (page) {
+    debug('【Controller】pageLoad: brand_detail');
+    var ctx = this;
+    App.initBrandId(ctx);
     App.initLoad(page, { transition: 'fade', page: 'brand_detail?fact_id=' + ctx.args.id, appShow: function (page) {
-      seajs.use('IncludeMessage', function (IncludeMessage) {
-        new IncludeMessage(page, '.message', {
-          id: ctx.args.id
-        });
-      });
+      App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-      });
-
-      App.initBrandAutoHide(page);
+      App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandDetail'], function (BrandDetail) {
       App.BrandDetail = new BrandDetail(page, ctx.args.id, ctx);
@@ -375,81 +378,84 @@ seajs.use(['App'], function (App) {
   App.controller('brand_info', function (page) {
     debug('【Controller】pageLoad: brand_info');
     var ctx = this;
-    App._Stack.pop();
-
-    // 获取url id值
-    var argId = App.getUrlParam('fact_id', window.location.href);
-    if (argId) {
-      localStorage['brand_fact_id'] = argId;
-      ctx.args.id = argId;
-    }
-
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
-    localStorage['brand_fact_id'] = ctx.args.id;
+    App.initBrandId(ctx);
     App.initLoad(page, { transition: 'fade', page: 'brand_info?fact_id=' + ctx.args.id, appShow: function (page) {
-      seajs.use('IncludeMessage', function (IncludeMessage) {
-        new IncludeMessage(page, '.message', {
-          id: ctx.args.id
-        });
-      });
+      App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-      });
-      App.initBrandAutoHide(page);
+      App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
     });
   });
-  /*厂家产品*/
-  App.controller('brand_product', function (page) {
-    debug('【Controller】pageLoad: brand_info');
+  /*产品列表*/
+  App.controller('product_list', function (page) {
+    debug('【Controller】pageLoad: product_list');
     var ctx = this;
-    App._Stack.pop();
+    App.initBrandId(ctx);
+    if (ctx.args.price || ctx.args.cat) {
+      ctx.args.id = null;
+      localStorage['brand_fact_id'] = null;
+      localStorage['product_search_price'] = ctx.args.price;
+      localStorage['product_search_cat'] = ctx.args.cat;
+    }
+    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_list?fact_id=' + ctx.args.id) : 'product_list', appShow: function (page) {
+      if (!(ctx.args.price || ctx.args.cat)) {
+        seajs.use('IncludeMessage', function (IncludeMessage) {
+          new IncludeMessage(page, '.message', {
+            id: ctx.args.id
+          });
+        });
+        App.initBrandAutoHide(page);
+      }
+      setTimeout(function(){App.resetLazyLoad('.app-lazyload', page);}, 100);
+    }, appReady: function (page) {
+      if (!(ctx.args.price || ctx.args.cat)) {
+        seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
+        });
+        App.initBrandAutoHide(page);
+      }
+      setTimeout(function(){App.resetLazyLoad('.app-lazyload', page);}, 100);
+    }}, ctx);
+
+    seajs.use(['ProductList'], function (ProductList) {
+      App.ProductList = new ProductList(page, ctx.args.id, ctx.args.price, ctx.args.cat, ctx.args.keywords, ctx);
+    });
+  });
+  /*产品详细*/
+  App.controller('product_detail', function (page) {
+    debug('【Controller】pageLoad: product_detail');
+    var ctx = this;
     // 获取url id值
     var argId = App.getUrlParam('fact_id', window.location.href);
+    var proId = App.getUrlParam('pro_id', window.location.href);
     if (argId) {
-      localStorage['brand_fact_id'] = argId;
+      localStorage['product_detail_args_id'] = argId;
       ctx.args.id = argId;
     }
-    App.initLoad(page, { transition: 'fade', page: 'brand_product?fact_id=' + ctx.args.id, appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-      });
-      App.initBrandAutoHide(page);
-    }}, ctx);
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_product_args_id'];
-    localStorage['brand_product_args_id'] = ctx.args.id;
-    seajs.use(['BrandProduct'], function (BrandProduct) {
-      App.BrandProduct = new BrandProduct(page, ctx.args.id, ctx);
+    if (proId){
+      localStorage['product_detail_args_proid'] = proId;
+      ctx.args.proid = proId;
+    }
+    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_detail?fact_id=' + ctx.args.id + '&pro_id=' + ctx.args.proid) :'product_detail'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
+    if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
+    localStorage['product_detail_args_id'] = ctx.args.id;
+    localStorage['product_detail_args_proid'] = ctx.args.proid;
+    seajs.use(['ProductDetail'], function (ProductDetail) {
+      App.ProductDetail = new ProductDetail(page, ctx.args.id, ctx.args.proid, ctx);
     });
   });
   /*厂家实力*/
   App.controller('brand_tec', function (page) {
     debug('【Controller】pageLoad: brand_tec');
     var ctx = this;
-    App._Stack.pop();
-    // 获取url id值
-    var argId = App.getUrlParam('fact_id', window.location.href);
-    if (argId) {
-      localStorage['brand_fact_id'] = argId;
-      ctx.args.id = argId;
-    }
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
-    localStorage['brand_fact_id'] = ctx.args.id;
+    App.initBrandId(ctx);
     App.initLoad(page, { transition: 'fade', page: 'brand_tec?fact_id=' + ctx.args.id, appShow: function (page) {
-      seajs.use('IncludeMessage', function (IncludeMessage) {
-        new IncludeMessage(page, '.message', {
-          id: ctx.args.id
-        });
-      });
+      App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-      });
-      App.initBrandAutoHide(page);
+      App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
       App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
@@ -459,26 +465,11 @@ seajs.use(['App'], function (App) {
   App.controller('brand_blank', function (page) {
     debug('【Controller】pageLoad: brand_blank');
     var ctx = this;
-    App._Stack.pop();
-    // 获取url id值
-    var argId = App.getUrlParam('fact_id', window.location.href);
-    if (argId) {
-      localStorage['brand_fact_id'] = argId;
-      ctx.args.id = argId;
-    }
-    if (!ctx.args.id) ctx.args.id = localStorage['brand_fact_id'];
-    localStorage['brand_fact_id'] = ctx.args.id;
+    App.initBrandId(ctx);
     App.initLoad(page, { transition: 'fade', page: 'brand_blank?fact_id=' + ctx.args.id, appShow: function (page) {
-      seajs.use('IncludeMessage', function (IncludeMessage) {
-        new IncludeMessage(page, '.message', {
-          id: ctx.args.id
-        });
-      });
+      App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-      seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-        new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-      });
-      App.initBrandAutoHide(page);
+      App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandBlank'], function (BrandBlank) {
       App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);
@@ -493,6 +484,7 @@ seajs.use(['App'], function (App) {
       App.BrandUnique = new BrandUnique(page, ctx);
     });
   });
+  /*分类*/
   App.controller('category', function (page) {
     debug('【Controller】pageLoad: category');
     App.initLoad(page, { transition: 'slideon-down', page: 'category'}, this);
@@ -581,75 +573,7 @@ seajs.use(['App'], function (App) {
       App.FavInfo = new FavInfo(page);
     });
   });
-  /*产品列表*/
-  App.controller('product_list', function (page) {
-    debug('【Controller】pageLoad: product_list');
-    var ctx = this;
-
-    // 获取url id值
-    var argId = App.getUrlParam('fact_id', window.location.href);
-    if (argId) {
-      localStorage['brand_fact_id'] = argId;
-      ctx.args.id = argId;
-    }
-    if (!ctx.args.id && localStorage['brand_fact_id'] !== 'null'){
-      ctx.args.id = localStorage['brand_fact_id'];
-      localStorage['brand_fact_id'] = ctx.args.id;
-    }
-    if (ctx.args.price || ctx.args.cat) {
-      ctx.args.id = null;
-      localStorage['brand_fact_id'] = null;
-      localStorage['product_search_price'] = ctx.args.price;
-      localStorage['product_search_cat'] = ctx.args.cat;
-    }
-    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_list?fact_id=' + ctx.args.id) : 'product_list', appShow: function (page) {
-      if (!(ctx.args.price || ctx.args.cat)) {
-        seajs.use('IncludeMessage', function (IncludeMessage) {
-          new IncludeMessage(page, '.message', {
-            id: ctx.args.id
-          });
-        })
-      }
-      App.resetLazyLoad('.app-lazyload', page);
-    }, appReady: function (page) {
-      if (!(ctx.args.price || ctx.args.cat)) {
-        seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-        });
-        App.initBrandAutoHide(page);
-      }
-      App.resetLazyLoad('.app-lazyload', page);
-    }}, ctx);
-
-    seajs.use(['ProductList'], function (ProductList) {
-      App.ProductList = new ProductList(page, ctx.args.id, ctx.args.price, ctx.args.cat, ctx.args.keywords, ctx);
-    });
-  });
-
-  /*产品详细*/
-  App.controller('product_detail', function (page) {
-    debug('【Controller】pageLoad: product_detail');
-    var ctx = this;
-    // 获取url id值
-    var argId = App.getUrlParam('product_id', window.location.href);
-    var proId = App.getUrlParam('proid', window.location.href);
-    if (argId) {
-      localStorage['product_detail_args_id'] = argId;
-      ctx.args.id = argId;
-    }
-    if (proId){
-      localStorage['product_detail_args_proid'] = proId;
-      ctx.args.proid = proId;
-    }
-    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_detail?product_id=' + ctx.args.id + '&proid=' + ctx.args.proid) :'product_detail'}, ctx);
-    if (!ctx.args.id) ctx.args.id = localStorage['product_detail_args_id'];
-    if (!ctx.args.id) ctx.args.proid = localStorage['product_detail_args_proid'];
-    localStorage['product_detail_args_id'] = ctx.args.id;
-    localStorage['product_detail_args_proid'] = ctx.args.proid;
-    seajs.use(['ProductDetail'], function (ProductDetail) {
-      App.ProductDetail = new ProductDetail(page, ctx.args.id, ctx.args.proid, ctx);
-    });
-  });
+  /*搜索*/
   App.controller('product_search', function (page) {
     debug('【Controller】pageLoad: product_search');
     var ctx = this;

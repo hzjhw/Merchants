@@ -36,9 +36,10 @@ define('BrandUnique', ['App', 'template/brand_unique', 'HandlebarsHelper'], func
             var $node = $(item(result.productList.list[j]));
             $node.click(function () {
               App.setBackPage('brand_unique');
+              App.addHash('#/product_detail?fact_id=' + $(this).attr('cust-id') + '&pro_id=' + $(this).attr('data-id'));
               App.load('product_detail', {
-                id: $(this).attr('data-proId'),
-                proid: $(this).attr('data-id')
+                fact_id: $(this).attr('cust-id'),
+                pro_id: $(this).attr('data-id')
               });
             });
             list.push($node);

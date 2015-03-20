@@ -69,6 +69,9 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
       return;
     } else if (App._CustomStack && App._CustomStack.length > 0){
       item = App._CustomStack.pop();
+      /*if (App._CustomStack.length > 0 && (App._CustomStack[App._CustomStack.length - 1][0] === item[0])){
+       item = App._CustomStack[App._CustomStack.length - 1];
+       }*/
       App.load(item[0], item[1]);
       return;
     } else if(typeof pageName === 'undefined'){

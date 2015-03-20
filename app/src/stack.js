@@ -42,7 +42,8 @@ App._Stack = function (window, document, App, Utils, Scroll, Pages) {
       case 'number':
         if (Math.abs(startIndex) > stackSize) {
           //debugger
-          App.back(App._Stack.getBefore()[0]);
+          App._Stack.pop(); // 移除最后一项
+          App.back(App._Stack.getLast()[0]);
           return;
           debug('absolute start index cannot be greater than stack size, got ' + startIndex, {type: 'alert'});
         }

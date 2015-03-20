@@ -25,7 +25,7 @@ define('ProductDetail', ['App', 'template/product_detail', 'HandlebarsHelper'], 
           });
           // 返回按钮
           $(page).find('.category-close').click(function () {
-            App.back(App.getBackPage());
+            App.back();
           });
           // tag选项
           var $sub = $(page).find('.cate-item-sub');
