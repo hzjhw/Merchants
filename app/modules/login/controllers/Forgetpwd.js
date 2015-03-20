@@ -60,7 +60,14 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
         data:{phone:phoneNum,newpwd:pwd},
         success:function(data){
           if(data.msg === 'success'){
-
+            cntVal = '<span style="font-size: 20px">密码修改成功!</span>';
+            App.showMsg('修改密码',cntVal);
+          }else if(data.msg === 'error'){
+            cntVal = '<span style="font-size: 20px">由于网络等因素,无法修改密码!</span>';
+            App.showMsg('无法修改',cntVal);
+          }else if (data.msg === ''){
+            cntVal = '<span style="font-size: 20px">手机号错误,无法修改!</span>';
+            App.showMsg('手机号错误',cntVal);
           }
         }
       })
