@@ -329,12 +329,10 @@ seajs.use(['App'], function (App) {
     localStorage['brand_list_args_id'] = ctx.args.id;
     localStorage['brand_list_args_title'] = ctx.args.title;
     localStorage['brand_list_args_banner'] = ctx.args.banner;
-
     seajs.use(['BrandList'], function (BrandList) {
       App.BrandList = new BrandList(page, ctx.args.id, ctx.args.title, ctx.args.banner, ctx.args.area);
     });
   });
-
   App.initBrandCommon = function(page, ctx){
     seajs.use('IncludeMessage', function (IncludeMessage) {
       new IncludeMessage(page, '.message', {
@@ -346,6 +344,7 @@ seajs.use(['App'], function (App) {
     });
     App.initBrandAutoHide(page);
   };
+  App.on('initBrandCommon', App.initBrandCommon);
 
   App.initBrandId = function(ctx){
     // 获取url id值

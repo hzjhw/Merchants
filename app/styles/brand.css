@@ -46,7 +46,7 @@
 #factory .power .title_power i {width:0px;height: 0px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #e0246b;font-size:0px;line-height:0px;background:none;margin-top:10px;padding:0px;}
 #factory .honor {}
 #factory .honor .detailed {padding:0 3.3%;margin-top:35px;}
-#factory .honor .detailed li{text-align:center;width:267px;}
+#factory .honor .detailed li{text-align:center;width:267px;margin-right: 10px;}
 #factory .honor .detailed li .img {width:265px;height:200px;border:1px solid #ccc;display:table-cell;vertical-align:middle;}
 #factory .honor .detailed li .img img {max-width:255px;max-height:190px;}
 #factory .honor .detailed li .txt {height:72px;line-height:36px;overflow:hidden;font-size:24px;margin:10px 0 25px;}

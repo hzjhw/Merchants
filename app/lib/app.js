@@ -4246,32 +4246,29 @@ App._Navigation = function (window, document, App, Dialog, Scroll, Pages, Stack,
 
   App.back = function (pageName, callback) {
     //debugger
-    //TODO App.back
     var item = null;
-    if (App._Stack.size() === 0){
-      App.load('home');
-      return;
-    } else if (App._CustomStack && App._CustomStack.length > 0){
-      item = App._CustomStack.pop();
-      /*if (App._CustomStack.length > 0 && (App._CustomStack[App._CustomStack.length - 1][0] === item[0])){
-       item = App._CustomStack[App._CustomStack.length - 1];
-       }*/
-      App.load(item[0], item[1]);
-      return;
-    } else if(typeof pageName === 'undefined'){
-      //App._Stack.pop();
-      item = App._Stack.getBefore();
-      if (item)
-      App.back(item[0]);
-      else
-      App.back('home');
-      return;
+    try{
+      if (App._Stack.size() === 0){
+        App.load('home');
+        return;
+      } else if (App._CustomStack && App._CustomStack.length > 0){
+        item = App._CustomStack.pop();
+        App.load(item[0], item[1]);
+        return;
+      } else if(typeof pageName === 'undefined'){
+        item = App._Stack.getBefore();
+        if (item)
+          App.back(item[0]);
+        else
+          App.back('home');
+        return;
+      }
+      if (pageName === 'home'){
+        App._Stack.destroy();
+      }
+    }catch(e){
+      debug('【Error】App.back' + e);
     }
-    if (pageName === 'home'){
-      App._Stack.destroy();
-    }
-    //TODO end
-
 
     switch (typeof pageName) {
       case 'function':

@@ -21,6 +21,7 @@ define('BrandBlank', ['App', 'template/brand_blank', 'HandlebarsHelper', 'Est'],
           console.log(result.facPhone);
           $(page).html(tpl(result));
           $(".blank_area", $(page)).hide();
+          //App.trigger('initBrandCommon', page, context);
           seajs.use(['IncludeMessage', 'IncludeHeader'], function (IncludeMessage, IncludeHeader) {
             new IncludeMessage(page, '.message', {
               id: id

@@ -329,68 +329,83 @@ Application.prototype = {
   },
   autoHide: function (page, options) {
     debug('【Util】App.autoHide:');
-    var $appContent = $('.app-content', $(page));
-    var isHide = false;
-    $('.app-content', $(page)).get(0) &&
-    $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
-      var scrollTop = $appContent.scrollTop();
-      if (scrollTop > 0 && !isHide) {
-        isHide = true;
-        options.hide && options.hide.call(this, scrollTop);
-      } else if (scrollTop === 0 && isHide) {
-        isHide = false
-        options.show && options.show.call(this, scrollTop);
-      }
-    });
+    try{
+      var $appContent = $('.app-content', $(page));
+      var isHide = false;
+      $('.app-content', $(page)).get(0) &&
+      $('.app-content', $(page)).get(0).addEventListener("scroll", function (event) {
+        var scrollTop = $appContent.scrollTop();
+        if (scrollTop > 0 && !isHide) {
+          isHide = true;
+          options.hide && options.hide.call(this, scrollTop);
+        } else if (scrollTop === 0 && isHide) {
+          isHide = false
+          options.show && options.show.call(this, scrollTop);
+        }
+      });
+    }catch(e){
+      debug('【Error】' + e);
+    }
   },
   scroll: function (scrollTo, time, page) {
     debug('【Util】App.scroll:' + scrollTo);
-    var $appContent = $('.app-content', $(page));
-    var scrollFrom = parseInt($appContent.scrollTop()), i = 0, runEvery = 5;
-    scrollTo = parseInt(scrollTo);
-    time /= runEvery;
-    var interval = setInterval(function () {
-      i++;
-      $appContent.scrollTop((scrollTo - scrollFrom) / time * i + scrollFrom);
-      if (i >= time) clearInterval(interval);
-    }, runEvery);
+    try{
+      var $appContent = $('.app-content', $(page));
+      var scrollFrom = parseInt($appContent.scrollTop()), i = 0, runEvery = 5;
+      scrollTo = parseInt(scrollTo);
+      time /= runEvery;
+      var interval = setInterval(function () {
+        i++;
+        $appContent.scrollTop((scrollTo - scrollFrom) / time * i + scrollFrom);
+        if (i >= time) clearInterval(interval);
+      }, runEvery);
+    }catch(e){
+      debug('【Error】' + e);
+    }
   },
   addLoading: function () {
-    if (window.$loading) window.$loading.remove();
-    window.$loading = $('<div class="loading"></div>');
-    $('body').append(window.$loading);
+    try{
+      if (window.$loading) window.$loading.remove();
+      window.$loading = $('<div class="loading"></div>');
+      $('body').append(window.$loading);
+    }catch(e){
+      debug('【Error】' + e);
+    }
     return window.$loading;
   },
   addTool: function (page, _page) {
-    if (window.$tool) window.$tool.remove();
-    window.$tool = $(App.$tool.clone());
-    window.$tool.css('display', 'blcok');
-    window.$tool.find('.tool-reflesh').attr('data-page', _page);
-    window.$tool.find('.tool-totop').off().on('click', function (e) {
-      e.preventDefault();
-      App.scroll(0, 100, page);
-      return false;
-    });
-    window.$tool.find('.tool-reflesh').off().on('click', function (e) {
-      e.preventDefault();
-      if ($(this).attr('data-page').length > 0) {
-        var _data = App._Stack.getLast();
-        //debugger
-        App._Stack.pop();
-        //App.load($(this).attr('data-page').replace(/^(.+)\?.*$/g, '$1'));
-        App.load(_data[0], _data[3]);
-      } else {
-        window.location.reload();
-      }
-      return false;
-    });
-    if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home') window.$tool.find('.tool-back').remove();
-    window.$tool.find('.tool-back').off().on('click', function (e) {
-      e.preventDefault();
-      App.back(App.getBackPage);
-      return false;
-    });
-    $(page).append(window.$tool);
+    try{
+      if (window.$tool) window.$tool.remove();
+      window.$tool = $(App.$tool.clone());
+      window.$tool.css('display', 'blcok');
+      window.$tool.find('.tool-reflesh').attr('data-page', _page);
+      window.$tool.find('.tool-totop').off().on('click', function (e) {
+        e.preventDefault();
+        App.scroll(0, 100, page);
+        return false;
+      });
+      window.$tool.find('.tool-reflesh').off().on('click', function (e) {
+        e.preventDefault();
+        if ($(this).attr('data-page').length > 0) {
+          var _data = App._Stack.getLast();
+          //debugger
+          App._Stack.pop();
+          //App.load($(this).attr('data-page').replace(/^(.+)\?.*$/g, '$1'));
+          App.load(_data[0], _data[3]);
+        } else {
+          window.location.reload();
+        }
+        return false;
+      });
+      if (window.$tool.find('.tool-reflesh').attr('data-page') === 'home') window.$tool.find('.tool-back').remove();
+      window.$tool.find('.tool-back').off().on('click', function (e) {
+        e.preventDefault();
+        App.back(App.getBackPage);
+        return false;
+      });
+      $(page).append(window.$tool);
+    }catch(e){
+    }
     return window.$tool;
   },
   getLoading: function () {
@@ -401,60 +416,68 @@ Application.prototype = {
     else $('.loading').remove();
   },
   initLoad: function (page, options, context) {
-    if (page) {
-      App.addLoading();
-      App.addTool(page, options.page);
-      if (options.page) App.addHash('#/' + options.page);
-      // show
-      $(page).on('appForward', function () {
-        setTimeout(function () {
+    try{
+      if (page) {
+        App.addLoading();
+        App.addTool(page, options.page);
+        if (options.page) App.addHash('#/' + options.page);
+        // show
+        $(page).on('appForward', function () {
+          setTimeout(function () {
+            App.removeLoading();
+          }, 500);
+          options.appForward && options.appForward.call(context, page);
+        });
+        $(page).on('appLayout', function () {
+          options.appLayout && options.appLayout.call(context, page);
+        });
+        $(page).on('appShow', function () {
+          debug('【Stack】Stack size: ' + App._Stack.size());
+          App.addTool(page, options.page);
+          options.appShow && options.appShow.call(context, page);
+        });
+        $(page).on('appReady', function () {
           App.removeLoading();
-        }, 500);
-        options.appForward && options.appForward.call(context, page);
-      });
-      $(page).on('appLayout', function () {
-        options.appLayout && options.appLayout.call(context, page);
-      });
-      $(page).on('appShow', function () {
-        debug('【Stack】Stack size: ' + App._Stack.size());
-        App.addTool(page, options.page);
-        options.appShow && options.appShow.call(context, page);
-      });
-      $(page).on('appReady', function () {
-        App.removeLoading();
-        App.initPage(page);
-        App.addTool(page, options.page);
-        App.off('queryEvent');
-        App.on('queryEvent', function (data) {
           App.initPage(page);
-        })
-        options.appReady && options.appReady.call(context, page);
-      });
-      // back
-      $(page).on('appBeforeBack', function () {
-        options.appBeforeBack && options.appBeforeBack.call(context, page);
-      });
-      $(page).on('appBack', function () {
-        options.appBack && options.appBack.call(context, page);
-      });
-      $(page).on('appHide', function () {
-        App.removeLoading();
-        options.appHide && options.appHide.call(context, page);
-      });
-      $(page).on('appDestroy', function () {
-        App.removeLoading();
-        options.appDestroy && options.appDestroy.call(context, page);
-      });
-      if (options && options.transition) {
-        context && (context.transition = options.transition);
+          App.addTool(page, options.page);
+          App.off('queryEvent');
+          App.on('queryEvent', function (data) {
+            App.initPage(page);
+          })
+          options.appReady && options.appReady.call(context, page);
+        });
+        // back
+        $(page).on('appBeforeBack', function () {
+          options.appBeforeBack && options.appBeforeBack.call(context, page);
+        });
+        $(page).on('appBack', function () {
+          options.appBack && options.appBack.call(context, page);
+        });
+        $(page).on('appHide', function () {
+          App.removeLoading();
+          options.appHide && options.appHide.call(context, page);
+        });
+        $(page).on('appDestroy', function () {
+          App.removeLoading();
+          options.appDestroy && options.appDestroy.call(context, page);
+        });
+        if (options && options.transition) {
+          context && (context.transition = options.transition);
+        }
       }
+    }catch(e){
+      debug('【Error】' + e);
     }
   },
   initContent: function (page, height) {
-    $(page).find('.app-content').height($(window).height() - (height || 0));
-    $(page).on('appShow', function () {
+    try{
       $(page).find('.app-content').height($(window).height() - (height || 0));
-    });
+      $(page).on('appShow', function () {
+        $(page).find('.app-content').height($(window).height() - (height || 0));
+      });
+    }catch(e){
+      debug('【Error】App.initContent' + e);
+    }
   },
   initLazyLoad: function (page) {
     var ctx = this;
@@ -514,22 +537,20 @@ Application.prototype = {
     return this.isLazyLoad;
   },
   initPage: function (page) {
-    setTimeout(function () {
-      App._Pages.fixContent(page)
-    }, 0);
-    setTimeout(function () {
-      App._Scroll.setup(page)
-    }, 0);
-    setTimeout(function () {
-      App.initClick(page);
-    }, 300);
-    setTimeout(function () {
-      var $content = $(page).find('.app-content');
-      if ($content.height() > $(window).height()) {
-        var $topbar = $(page).find('.app-topbar');
-        App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
-      }
-    }, 5000);
+    try{
+      setTimeout(function () { App._Pages.fixContent(page) }, 0);
+      setTimeout(function () { App._Scroll.setup(page) }, 0);
+      setTimeout(function () { App.initClick(page); }, 300);
+      setTimeout(function () {
+        var $content = $(page).find('.app-content');
+        if ($content.height() > $(window).height()) {
+          var $topbar = $(page).find('.app-topbar');
+          App.initContent(page, $topbar.size() > 0 ? $topbar.eq(0).height() : 0);
+        }
+      }, 5000);
+    }catch(e){
+      debug('【Error】: App.initPage' + e);
+    }
   },
   initPageReady: function (App) {
     window.onhashchange = function () {

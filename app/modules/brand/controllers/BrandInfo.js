@@ -30,6 +30,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           $(page).html(tpl(data.factInfo));
           $(page).find('.icon').removeClass('current');
           $(page).find('.data').addClass('current');
+          //App.trigger('initBrandCommon', page, context);
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             data.header.id = id;
             data.header.icon = 2;

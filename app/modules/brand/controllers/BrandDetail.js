@@ -34,6 +34,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           result.header.id = id;
           if (!result.inxImgs) result.inxImgs = [];
           $(page).html(tpl(result.inxImgs));
+          //App.trigger('initBrandCommon', page, context);
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.header.icon = 1;
             result.header.hide = false;

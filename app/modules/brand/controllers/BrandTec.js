@@ -19,6 +19,7 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
           console.log(result.facPhone);
           $(page).html(tpl(result));
           if(!result.header) result.header={};
+          //App.trigger('initBrandCommon', page, context);
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.header.id = id;
             result.header.icon = 4;
