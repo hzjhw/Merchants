@@ -74,7 +74,7 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
 
     });
 
-    var wait = 10;
+    var wait = 90;
     var bindClick = function(){
       var _this = this;
       var phoneNum = $(_this).prevAll('#phoneNum').val();
