@@ -32,6 +32,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
             };
           }
           result.header.id = id;
+          if (!result.inxImgs) result.inxImgs = [];
           $(page).html(tpl(result.inxImgs));
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             result.header.icon = 1;

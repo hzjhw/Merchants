@@ -51,6 +51,7 @@ Application.prototype = {
     this.topics = {};
     this.subUid = -1;
     this.isLazyLoad = false;
+    this.lazyLoadCount = 0;
   },
   addModule: function (name, val) {
     if (name in this['modules']) debug('【Module】已存在的模块：' + name);
@@ -281,6 +282,7 @@ Application.prototype = {
     });
   },
   initLazyLoad: function (page) {
+    var ctx = this;
     if (!this.isLazyLoad) {
       this.isLazyLoad = true;
       setTimeout(function () {
@@ -295,6 +297,22 @@ Application.prototype = {
               });
               debug('【LazyLoad】initLazyLoad');
             } catch (e) {
+              var Module = seajs.Module;
+              var url = seajs.resolve('LazyLoad');
+              try{
+                delete Module.cache[url];
+              }catch(e){
+                delete seajs.cache[url];
+              }
+              if (ctx.lazyLoadCount === 10){
+                window.location.reload();
+                return;
+              } else {
+                ctx.lazyLoadCount++;
+                setTimeout(function () {
+                  App.resetLazyLoad(page)
+                }, 50)
+              }
               debug('【Error】: lazyload is not find !');
             }
           });
@@ -304,11 +322,11 @@ Application.prototype = {
             container: appContent
           });
         }
-      }, 100);
+      }, 0);
     }
   },
-  resetLazyLoad: function (render, page) {
-    if ($(render, $(page)).find('.lazy').size() > 0) {
+  resetLazyLoad: function (page) {
+    if ($(page).find('.lazy').size() > 0) {
       debug('【LazyLoad】resetLazyLoad');
       App.disableLazyLoad();
       App.initLazyLoad(page);
@@ -349,8 +367,8 @@ Application.prototype = {
             if (App._CustomStack && App._CustomStack.length > 0) {
               var item = App._CustomStack.pop();
               /*if (App._CustomStack.length > 0 && (App._CustomStack[App._CustomStack.length - 1][0] === item[0])){
-                item = App._CustomStack[App._CustomStack.length - 2];
-              }*/
+               item = App._CustomStack[App._CustomStack.length - 2];
+               }*/
               App.load(item[0], item[1]);
               return;
             }
@@ -456,6 +474,7 @@ Application.getValue = function (object, path) {
     });
     return result;
   }
+
   return get(object, array);
 };
 Application.fromCharCode = function (code) {

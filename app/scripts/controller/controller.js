@@ -230,7 +230,7 @@ seajs.use(['App'], function (App) {
         })
       });
       //TODO 重新lazyload
-      App.resetLazyLoad('#merchants-show', page);
+      App.resetLazyLoad(page);
     }}, this);
     try {
       $(page).find('[data-target="inputs"]')
@@ -342,7 +342,7 @@ seajs.use(['App'], function (App) {
       });
     });
     seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-      new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
+      new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone, factId: ctx.args.id});
     });
     App.initBrandAutoHide(page);
   };
@@ -406,17 +406,25 @@ seajs.use(['App'], function (App) {
             id: ctx.args.id
           });
         });
-        App.initBrandAutoHide(page);
-      }
-      setTimeout(function(){App.resetLazyLoad('.app-lazyload', page);}, 100);
-    }, appReady: function (page) {
-      if (!(ctx.args.price || ctx.args.cat)) {
         seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
           new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
         });
         App.initBrandAutoHide(page);
       }
-      setTimeout(function(){App.resetLazyLoad('.app-lazyload', page);}, 100);
+      App.resetLazyLoad(page);
+    }, appReady: function (page) {
+      if (!(ctx.args.price || ctx.args.cat)) {
+        seajs.use('IncludeMessage', function (IncludeMessage) {
+          new IncludeMessage(page, '.message', {
+            id: ctx.args.id
+          });
+        });
+        seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
+          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
+        });
+        App.initBrandAutoHide(page);
+      }
+      App.resetLazyLoad(page);
     }}, ctx);
 
     seajs.use(['ProductList'], function (ProductList) {

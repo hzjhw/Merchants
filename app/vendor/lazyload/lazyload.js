@@ -3,6 +3,7 @@
  * see https://github.com/jieyou/lazyload
  * part of the code fork from tuupola's https://github.com/tuupola/jquery_lazyload
  */
+define('LazyLoad', [], function(require, exports, module){
 ;(function(factory){
     if(typeof define === 'function' && define.amd){ // AMD
         // you may need to change `define([------>'jquery'<------], factory)` 
@@ -10,12 +11,9 @@
         // if your jquery|zepto lib is in other path, change it such as `define(['lib\jquery.min'], factory)`
         define(['jquery'], factory)
     }
-    /*else if (typeof define === 'function' && define.cmd){
-      define("LazyLoad", ['Zepto'], function(require, exports, module) {
-        var jquery = require('Zepto');
-        module.exports = factory(jquery);
-      });
-    }*/
+    else if (typeof define === 'function' && define.cmd){
+        module.exports = factory($);
+    }
     else{ // Global
         factory(window.jQuery || window.Zepto)
     }
@@ -321,4 +319,5 @@
             return this
         }
     }
+});
 })

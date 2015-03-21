@@ -10,6 +10,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
   template=require('template/include_detail_bottom');
 
   IncludeDetailBottom = function(page, render,data){
+    debug('【Module】: Call IncludeDetailBottom');
     var renderObj =$(page).find(render);
     renderObj.html(HandlebarsHelper.compile(template)(data));
     App.initBrandAutoHide(page);
@@ -36,7 +37,8 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
             }
             else
             {
-              var factid = localStorage['brand_fact_id'];
+              var factid = $(this).attr('data-factid');
+              //alert(factid);
               App.query('/cmp/hasCoped/'+factid,{
                 success:function(data){
                   if(data.msg === 'hasCoped')
