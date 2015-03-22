@@ -381,7 +381,7 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'fade', page: 'brand_info?fact_id=' + ctx.args.id, appShow: function (page) {
       App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-      App.initBrandCommon(page, ctx);
+      //App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandInfo'], function (BrandInfo) {
       App.BrandInfo = new BrandInfo(page, ctx.args.id, ctx);
@@ -400,30 +400,14 @@ seajs.use(['App'], function (App) {
     }
     App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_list?fact_id=' + ctx.args.id) : 'product_list', appShow: function (page) {
       if (!(ctx.args.price || ctx.args.cat)) {
-        seajs.use('IncludeMessage', function (IncludeMessage) {
-          new IncludeMessage(page, '.message', {
-            id: ctx.args.id
-          });
-        });
-        seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-        });
-        App.initBrandAutoHide(page);
+        App.initBrandCommon(page, ctx);
       }
       App.resetLazyLoad(page);
     }, appReady: function (page) {
-      if (!(ctx.args.price || ctx.args.cat)) {
-        seajs.use('IncludeMessage', function (IncludeMessage) {
-          new IncludeMessage(page, '.message', {
-            id: ctx.args.id
-          });
-        });
-        seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {
-          new IncludeDetailBottom(page, '.bottombar-ul', {isLogin: App.isLogin(), facPhone: page.facPhone});
-        });
-        App.initBrandAutoHide(page);
+     /* if (!(ctx.args.price || ctx.args.cat)) {
+        App.initBrandCommon(page, ctx);
       }
-      App.resetLazyLoad(page);
+      App.resetLazyLoad(page);*/
     }}, ctx);
 
     seajs.use(['ProductList'], function (ProductList) {
@@ -462,12 +446,13 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'fade', page: 'brand_tec?fact_id=' + ctx.args.id, appShow: function (page) {
       App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-      App.initBrandCommon(page, ctx);
+      //App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandTec'], function (BrandTec) {
       App.BrandTec = new BrandTec(page, ctx.args.id, ctx);
     });
   });
+
   /*空白区域*/
   App.controller('brand_blank', function (page) {
     debug('【Controller】pageLoad: brand_blank');
@@ -476,7 +461,7 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'fade', page: 'brand_blank?fact_id=' + ctx.args.id, appShow: function (page) {
       App.initBrandCommon(page, ctx);
     }, appReady: function (page) {
-      App.initBrandCommon(page, ctx);
+      //App.initBrandCommon(page, ctx);
     }}, ctx);
     seajs.use(['BrandBlank'], function (BrandBlank) {
       App.BrandBlank = new BrandBlank(page, ctx.args.id, ctx);

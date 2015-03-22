@@ -33,7 +33,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
           //App.trigger('initBrandCommon', page, context);
           seajs.use(['IncludeHeader'], function (IncludeHeader) {
             data.header.id = id;
-            data.header.icon = 2;
+            data.header.icon = 5;
             new IncludeHeader(page, '#include_header', data.header);
           });
          /* seajs.use(['IncludeDetailBottom'], function (IncludeDetailBottom) {

@@ -25,11 +25,16 @@
 
             <div>首页</div>
         </li>
-        <li data-id="{{$ id ''}}" class="app-btn" data-url="brand_info" data-target-args='{"id":"{{id}}"}'><i
+        <li data-id="{{$ id ''}}" class="app-btn" data-url="" data-target-args='{"id":"{{id}}"}'><i
+                class="icon data {{#xif 'this.icon===2'}}current{{/xif}}"></i>
+
+            <div>意向合作</div>
+        </li>
+        <!--<li data-id="{{$ id ''}}" class="app-btn" data-url="brand_info" data-target-args='{"id":"{{id}}"}'><i
                 class="icon data {{#xif 'this.icon===2'}}current{{/xif}}"></i>
 
             <div>厂家信息</div>
-        </li>
+        </li>-->
         <li data-id="{{$ id ''}}" class="app-btn" data-url="product_list" data-target-args='{"id":"{{id}}"}'><i
                 class="icon product {{#xif 'this.icon===3'}}current{{/xif}}"></i>
 
@@ -40,10 +45,15 @@
 
             <div>厂家实力</div>
         </li>
-        <li data-id="{{$ id ''}}" class="app-btn" data-url="brand_blank" data-target-args='{"id":"{{id}}"}'><i
+        <!--<li data-id="{{$ id ''}}" class="app-btn" data-url="brand_blank" data-target-args='{"id":"{{id}}"}'><i
                 class="icon area {{#xif 'this.icon===5'}}current{{/xif}}"></i>
 
             <div>空白区域</div>
+        </li>-->
+        <li data-id="{{$ id ''}}" class="app-btn" data-url="brand_info" data-target-args='{"id":"{{id}}"}'><i
+                class="icon area {{#xif 'this.icon===5'}}current{{/xif}}"></i>
+
+            <div>招商政策</div>
         </li>
     </ul>
 </div>
