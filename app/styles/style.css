@@ -484,7 +484,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .icon-bottombar-sep{background-position: -189px -667px; width: 5px; display: inline-block; height: 70px; vertical-align: middle;}
 .bottombar-ul{overflow:hidden;}
 .bottombar-ul li{float: left;width: 25%;}
-.bottombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size: 20px;display: inline-block; vertical-align: middle; padding-right: 15px;}
+.bottombar-text{text-align: center; line-height: 70px; padding-left: 0px; font-size:24px;display: inline-block; vertical-align: middle; padding-right: 15px;}
 
 .brand-bottom-auto-show{ margin-bottom:0px; animation:brandbottomautohide .5s forwards; -webkit-animation:brandbottomautohide .5s forwards; }
 @keyframes brandbottomautohide { from {margin-bottom:-90px;} to {margin-bottom:0px;} }
