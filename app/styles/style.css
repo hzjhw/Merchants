@@ -404,7 +404,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .merchant-t-tl, .merchant-t-tr{ text-align: right; color: red; font-weight: bold; width: 85%; }
 .merchant-t-tr{ text-align: left; width: 85%; padding-left: 15%; }
 .merchant-content-ul{ overflow:hidden; background: #fff; }
-.merchant-content-ul li{ float: left; width: 50%; margin-bottom: 10px; height:500px; overflow:hidden; }
+.merchant-content-ul li{ float: left; width: 50%; margin-bottom: 10px; height:530px; overflow:hidden; }
 .merchant-content-ul li .merchant-cont-img{ padding: 12px; }
 .merchant-cont-imt{ }
 .merchant-cont-title, .merchant-cont-brand{text-align: center;}
@@ -513,7 +513,7 @@ span.text-price { color: #e0246b; }
 #tool{position: fixed; bottom: 100px; right: -8px; z-index: 99999999; padding: 15px; background: #FFF; border-radius: 10px; color: #fff; font-size: 24px; border: 1px solid #AAAAAA;}
 #tool a{color: #999;}
 /*品牌收藏意向*/
-.scyx {margin:0 12% 3% 8%;height:40px;line-height:40px;font-size:24px;font-family:微软雅黑;color:#3c479b;}
+.scyx {margin:3% 12% 5% 8%;height:40px;line-height:40px;font-size:26px;font-family:微软雅黑;color:#3c479b;}
 .scyx .collection {float:left;}
 .scyx .intention {float:right;}
 .scyx .collection {background:url(/styles/img/icon.png) no-repeat;padding-left:40px;background-position:0 -727px;}
