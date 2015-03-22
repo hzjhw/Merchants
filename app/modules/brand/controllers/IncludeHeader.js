@@ -14,6 +14,7 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
   IncludeHeader = function (page, render, data) {
     setTimeout(function(){
       debug('【Module】: Call IncludeHeader');
+      $("#nowtitle").text(data.web_title);
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data || {
         logo_img: null
