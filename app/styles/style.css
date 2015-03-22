@@ -356,6 +356,7 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .grid-3{width: 30%;float:left;}
 .grid-35{width: 35%;float:left;}
 .grid-4{width: 40%;float:left;}
+.grid-4 .btn-register {margin: 0 10px 0 20px;}
 .grid-45{width: 45%;float:left;}
 .grid-5{width: 50%;float:left;}
 .grid-55{width: 55%;float:left;}
@@ -382,14 +383,14 @@ ul.colour-picker li.active:before { position: absolute; height: 100%; width: 100
 .cate-r{margin-left: 1%;}
 .cate_01{ background: url(img/cate_01.jpg) no-repeat scroll right center transparent; }
 .cate_02{ background: url(img/cate_02.jpg) no-repeat scroll right center transparent; }
-.cate_03{ background: url(img/cate_03.jpg) no-repeat scroll right center transparent; }
-.cate_04{ background: url(img/cate_04.jpg) no-repeat scroll right center transparent; }
-.cate_05{ background: url(img/cate_05.jpg) no-repeat scroll right center transparent; }
-.cate_06{ background: url(img/cate_06.jpg) no-repeat scroll right center transparent; }
-.cate_07{ background: url(img/cate_07.jpg) no-repeat scroll right center transparent; }
-.cate_08{ background: url(img/cate_08.jpg) no-repeat scroll right center transparent; }
-.cate_09{ background: url(img/cate_09.jpg) no-repeat scroll right center transparent; }
-.cate_10{ background: url(img/cate_10.jpg) no-repeat scroll right center transparent; }
+.cate_03{ background: url(img/cate_07.jpg) no-repeat scroll right center transparent; }
+.cate_04{ background: url(img/cate_08.jpg) no-repeat scroll right center transparent; }
+.cate_05{ background: url(img/cate_09.jpg) no-repeat scroll right center transparent; }
+.cate_06{ background: url(img/cate_10.jpg) no-repeat scroll right center transparent; }
+.cate_07{ background: url(img/cate_03.jpg) no-repeat scroll right center transparent; }
+.cate_08{ background: url(img/cate_04.jpg) no-repeat scroll right center transparent; }
+.cate_09{ background: url(img/cate_05.jpg) no-repeat scroll right center transparent; }
+.cate_10{ background: url(img/cate_06.jpg) no-repeat scroll right center transparent; }
 .cate-title{ padding-left: 15px; padding-top: 25px; font-size: 26px; height: 85px;font-weight: bold; }
 .cate-title p{ font-size: 18px; font-weight: normal; padding-top: 6px; padding-left: 4px; color: #A6A6A6; width: 150px;}
 .section-title{ font-size: 24px; font-weight: bold; padding-top: 30px; padding-bottom: 15px; padding-left: 20px; }
