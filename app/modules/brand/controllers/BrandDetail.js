@@ -49,7 +49,7 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
           });*/
 
           $(page).find('.go-back').click(function () {
-            App.back(App.getBackPage());
+            App.back('home');
           });
         }
       });

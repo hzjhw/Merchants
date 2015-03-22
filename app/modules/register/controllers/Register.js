@@ -62,8 +62,9 @@ define('Register', ['App', 'template/register'], function (require, exports, mod
             alert("恭喜您，注册成功！");
             // 清空STACK栈
             App._Stack.destroy();
-
-            App.load('login_dealers');
+            localStorage[App.CELL_PHONE]=data.phoneNum;
+            //localStorage[App.CNT_NAME]=data.cntName;
+            App.load('home');
           }
           else {
             if (data.msg == 'exists') {
