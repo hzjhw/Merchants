@@ -17,7 +17,7 @@ App.showMsg = function (titleVal, cntVal) {
     window.msgDialog = dialog({
       id: 'showMsg',
       title: titleVal,
-      content: cntVal,
+      content: '<span style="font-size: 25px">' +cntVal+'</span>',
       width: $(window).width() - 280,
       button: [
         {value: '确定'}
@@ -30,7 +30,7 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
     window.confirmDialog = dialog({
       id: 'comfirmDialog',
       title: titleVal,
-      content: cntVal,
+      content: '<span style="font-size: 25px">'+cntVal+'</span>',
       width: $(window).width() - 280,
       button: [
         {
@@ -258,7 +258,7 @@ seajs.use(['App'], function (App) {
         })
       }
       else {
-        var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+        var cntVal = '对不起,您还未登录!现在就登录吗?';
         App.showConfirm('未登录', cntVal, $dom, function () {
           App.setBackPage('home');
           App.load('login_dealers');
@@ -300,7 +300,7 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'slide-left', page: 'brand_cooperate'}, this);
     var factid = this.args.factid;
     if(!factid){
-      var cntVal = '<span style="font-size: 20px"> 无法找到该厂相关信息!</span>';
+      var cntVal = '无法找到该厂相关信息!';
       App.showMsg('无厂家信息', cntVal);
       return;
     }

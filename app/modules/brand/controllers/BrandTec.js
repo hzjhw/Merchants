@@ -36,6 +36,12 @@ define('BrandTec', ['App', 'template/brand_tec', 'HandlebarsHelper'], function (
          /* $(page).find('.bottombar-ul li').click(function () {
             App.load($(this).attr('data-target'));
           });*/
+          $(page).find('.lan').click(function(){
+            $(this).parents('.x').eq(0).find('.detailed_general').css({
+              height: 'auto'
+            });
+            $(this).remove();
+          });
           page.facPhone = result.facPhone;
           $(page).find('.go-back').click(function () {
             App.back(App.getBackPage());

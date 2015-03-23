@@ -19,29 +19,29 @@ define('FavChgpwd', ['App','template/favChgpwd'], function (require, exports, mo
       var newpwd = $('#newpwd',$(page)).val();
       var cfmpwd = $('#cfmpwd',$(page)).val();
       if($.trim(oldpwd) === ''){
-        var cntVal = '<span style="font-size: 20px"> 旧密码不能为空!</span>';
+        var cntVal = '旧密码不能为空!';
         App.showMsg('密码为空', cntVal);
       }
       if($.trim(newpwd) === ''){
-        var cntVal = '<span style="font-size: 20px"> 新密码不能为空!</span>';
+        var cntVal = '新密码不能为空!';
         App.showMsg('密码为空', cntVal);
       }
       if(newpwd !== cfmpwd){
-        var cntVal = '<span style="font-size: 20px"> 新密码和确认密码不一致!</span>';
+        var cntVal = '新密码和确认密码不一致!';
         App.showMsg('密码不一致', cntVal);
       }
       App.query('/userinfo/chgpwd',{
         data:{oldpwd:oldpwd,newpwd:newpwd},
         success:function(result){
           if(result.msg === 'success'){
-            var cntVal = '<span style="font-size: 20px"> 密码修改成功!</span>';
+            var cntVal = '密码修改成功!';
             App.showMsg('修改成功', cntVal);
             App.back('home');
           }else if(result.msg === 'nopasswd'){
-            var cntVal = '<span style="font-size: 20px"> 旧密码不正确!</span>';
+            var cntVal = '旧密码不正确!';
             App.showMsg('密码不正确', cntVal);
           }else if(result.msg === 'error'){
-            var cntVal = '<span style="font-size: 20px">由于网络等因素,密码修改失败!</span>';
+            var cntVal = '由于网络等因素,密码修改失败!';
             App.showMsg('修改失败', cntVal);
           }
         }

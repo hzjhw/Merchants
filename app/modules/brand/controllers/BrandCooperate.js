@@ -29,13 +29,13 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
 
             if($.trim(nameVal) == '')
             {
-              var cntVal = '<span style="font-size: 20px"> 真实姓名不能为空!</span>';
+              var cntVal = '真实姓名不能为空!';
               App.showMsg('姓名为空', cntVal);
               return;
             }
             if($.trim(vouchMsg) == '')
             {
-              var cntVal = '<span style="font-size: 20px"> 留言内容不能为空!</span>';
+              var cntVal = '留言内容不能为空!';
               App.showMsg('内容为空', cntVal);
               return;
             }
@@ -51,31 +51,31 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
                 'fact_id': facid
               },
               success:function(result){
-                var cntVal = '<span style="font-size: 20px">成功发送合作信息,敬请关注厂家回复!</span>';
+                var cntVal = '成功发送合作信息,敬请关注厂家回复!';
                 if(result.msg == 'success'){
                   localStorage[App.CNT_NAME] = nameVal;
                   App.showMsg('合作成功', cntVal);
                 }else if(result.msg =='nofact'){
-                  cntVal = '<span style="font-size: 20px"> 未知厂家信息</span>';
+                  cntVal = '未知厂家信息';
                   App.showMsg('未知厂家', cntVal);
                 }else if(result.msg =='nologin'){
-                  cntVal = '<span style="font-size: 20px"> 等太久了,合作超时!</span>';
+                  cntVal = '等太久了,合作超时!';
                   App.showMsg('合作超时', cntVal);
                   App.load('home');
                 }else if (result.msg == 'erUpdate'){
-                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,造成合作失败!请重新合作</span>';
+                  cntVal = '由于网络等因素,造成合作失败!请重新合作';
                   App.showMsg('合作失败', cntVal);
                 }else if (result.msg == 'erSave'){
-                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,造成无法合作!请重新合作</span>';
+                  cntVal = '由于网络等因素,造成无法合作!请重新合作';
                   App.showMsg('合作错误', cntVal);
                 }else if (result.msg == 'erMember'){
-                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,你的信息无法存储!</span>';
+                  cntVal = '由于网络等因素,你的信息无法存储!';
                   App.showMsg('资料无法存储', cntVal);
                 }else if (result.msg == 'hasCoped'){
-                  cntVal = '<span style="font-size: 20px">您与该厂家已有合作!</span>';
+                  cntVal = '您与该厂家已有合作!';
                   App.showMsg('已有合作', cntVal);
                 }else{
-                  cntVal = '<span style="font-size: 20px"> 由于网络等因素,信息无法提交!</span>';
+                  cntVal = '由于网络等因素,信息无法提交!';
                   App.showMsg('信息无法识别', cntVal);
                 }
                 App.back();
@@ -91,7 +91,7 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
         }else if (data.msg == 'nofact'){
           console.error('【意向合作】没有厂家id值');
         }else if (data.msg == 'nologin'){
-          var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+          var cntVal = '对不起,您还未登录!现在就登录吗?';
           App.showConfirm('未登录', cntVal, null, function () {
             App.setBackPage('brand_cooperate')
             App.load('login_dealers');

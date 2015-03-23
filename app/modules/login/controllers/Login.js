@@ -63,7 +63,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
              }
              else if(data.msg == 'nophone')
              {
-               var cntVal = '<span style="font-size: 20px"> 该手机号还未注册！立即注册吗?</span>';
+               var cntVal = '该手机号还未注册！立即注册吗?';
                App.showConfirm('未注册',cntVal,null,function(){
                  App.load('register_dealers');
                });
@@ -75,7 +75,7 @@ define('Login', ['App', 'template/login'], function (require, exports, module) {
              }
              else if (data.msg == 'factory')
              {
-               var cntVal = '<span style="font-size: 20px"> 厂家手机号,不能登录!</span>';
+               var cntVal = '厂家手机号,不能登录!';
                App.showMsg('无法登陆', cntVal);
              }
           }

@@ -42,7 +42,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
               facPhone: data.facPhone
             });
           });*/
-          $(page).find(".title_general").click(function () {
+         /* $(page).find(".title_general").click(function () {
             var pDiv = $(this).find('p').eq(1);
             var nextDiv = $(this).next();
             if ($(this).hasClass('clicked')) {
@@ -54,7 +54,7 @@ define('BrandInfo', ['App', 'template/brand_info', 'HandlebarsHelper'], function
               nextDiv.hide();
               $(this).addClass('clicked');
             }
-          });
+          });*/
           $(page).find('.lan').click(function(){
             $(this).parents('.x').eq(0).find('.detailed_general').css({
               height: 'auto'

@@ -25,33 +25,33 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
       var checkpwd = $("#checkpwd",$(page)).val();
       var cntVal ='';
       if("" === phoneNum.trim()){
-        cntVal = '<span style="font-size: 20px">手机号不能为空!</span>';
+        cntVal = '手机号不能为空!';
         App.showMsg('手机号为空',cntVal);
         return;
       }else if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(phoneNum))){
-        cntVal = '<span style="font-size: 20px">手机号格式不正确!</span>';
+        cntVal = '手机号格式不正确!';
         App.showMsg('格式错误',cntVal);
         return;
       }
 
       if('' === checkval.trim()){
-        cntVal = '<span style="font-size: 20px">验证码不能为空!</span>';
+        cntVal = '验证码不能为空!';
         App.showMsg('验证码为空',cntVal);
         return;
       }else if(checkNum !== checkval){
-        cntVal = '<span style="font-size: 20px">验证码不正确!</span>';
+        cntVal = '验证码不正确!';
         App.showMsg('验证码错误',cntVal);
         return;
       }
 
       if("" === pwd.trim()){
-        cntVal = '<span style="font-size: 20px">密码不能为空!</span>';
+        cntVal = '密码不能为空!';
         App.showMsg('密码为空',cntVal);
         return;
       }
 
       if(pwd !== checkpwd){
-        cntVal = '<span style="font-size: 20px">密码和确认密码不一致!</span>';
+        cntVal = '密码和确认密码不一致!';
         App.showMsg('密码不一致',cntVal);
         return;
       }
@@ -60,13 +60,13 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
         data:{phone:phoneNum,newpwd:pwd},
         success:function(data){
           if(data.msg === 'success'){
-            cntVal = '<span style="font-size: 20px">密码修改成功!</span>';
+            cntVal = '密码修改成功!';
             App.showMsg('修改密码',cntVal);
           }else if(data.msg === 'error'){
-            cntVal = '<span style="font-size: 20px">由于网络等因素,无法修改密码!</span>';
+            cntVal = '由于网络等因素,无法修改密码!';
             App.showMsg('无法修改',cntVal);
           }else if (data.msg === ''){
-            cntVal = '<span style="font-size: 20px">手机号错误,无法修改!</span>';
+            cntVal = '手机号错误,无法修改!';
             App.showMsg('手机号错误',cntVal);
           }
         }
@@ -79,7 +79,7 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
       var _this = this;
       var phoneNum = $(_this).prevAll('#phoneNum').val();
       if(!(/^1[3|4|5|8][0-9]\d{8}$/.test(phoneNum)) ) {
-        var cntVals = '<span style="font-size: 20px">请先正确填写手机号!</span>';
+        var cntVals = '请先正确填写手机号!';
         App.showMsg('号码错误',cntVals);
         return;
       }
@@ -92,10 +92,10 @@ define('Forgetpwd', ['App', 'template/forgetpwd'], function (require, exports, m
               console.log('你的验证码是:'+data.randNum);
               checkNum = data.randNum;
             }else if(data.msg === 'error'){
-              var cntVals = '<span style="font-size: 20px">该区域短信无法接收,请重发!</span>';
+              var cntVals = '该区域短信无法接收,请重发!';
               App.showMsg('短信错误',cntVals);
             }else if(data.msg === 'errPhone'){
-              var cntVals = '<span style="font-size: 20px">请核对手机号!</span>';
+              var cntVals = '请核对手机号!';
               App.showMsg('手机号错误',cntVals);
             }
           }
