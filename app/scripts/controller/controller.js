@@ -17,7 +17,7 @@ App.showMsg = function (titleVal, cntVal) {
     window.msgDialog = dialog({
       id: 'showMsg',
       title: titleVal,
-      content: '<span style="font-size: 25px">' +cntVal+'</span>',
+      content: '<span style="font-size: 30px">' +cntVal+'</span>',
       width: $(window).width() - 280,
       button: [
         {value: '确定'}
@@ -30,7 +30,7 @@ App.showConfirm = function (titleVal, cntVal, curEle, callback) {
     window.confirmDialog = dialog({
       id: 'comfirmDialog',
       title: titleVal,
-      content: '<span style="font-size: 25px">'+cntVal+'</span>',
+      content: '<span style="font-size: 30px">'+cntVal+'</span>',
       width: $(window).width() - 280,
       button: [
         {
