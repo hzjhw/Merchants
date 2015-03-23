@@ -65,7 +65,7 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
         })
       }
       else{
-        var cntVal = '与企业合作需账号登录!现在就登录吗?';
+        var cntVal = '登录看最牛招商政策';
         App.showConfirm('未登录', cntVal, null, function () {
           App.load('login_dealers');
         });

@@ -24,7 +24,7 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
         {
           if(!App.isLogin())
           {
-            var cntVal = '对不起,合作前需登录!现在就登录吗?';
+            var cntVal = '登录看最牛招商政策';
             App.showConfirm('未登录', cntVal, null, function () {
               //App.setBackPage('brand_detail');
               App.load('login_dealers');

@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="wrap registered">
-
+        {{#if policy.site_desc}}<div id="keywd">{{policy.site_desc}}</div>{{/if}}
         <input type="text" id="phoneNum" readonly="readonly" class="mobile" placeholder="手机号码/330用户名" value="{{custInfo.contact_cellphone}}">
         <input type="text" id="name"  class="name" placeholder="真实姓名" value="{{custInfo.contact_name}}">
         <input type="text" id="address"  class="address" placeholder="经销地址" value="{{custInfo.address}}">
@@ -33,7 +33,7 @@
         <button id="confirm" type="submit">确认合作</button>
     </div>
     <div class="wrap note">
-        <p><a href="#" >我的意向合作</a><a href="#">购买代金券</a></p>
+        <p><a href="javascript:void(0);" id="mycoop" >我的意向合作</a><a href="javascript:void(0);" id="myvch">申领代金券</a></p>
         <p>3·30门业招商节运营中心—上门网</p>
     </div>
 </div>

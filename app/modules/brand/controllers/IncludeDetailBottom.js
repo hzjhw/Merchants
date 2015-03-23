@@ -28,7 +28,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
           {
             if(!App.isLogin())
             {
-              var cntVal = '对不起,合作前需登录!现在就登录吗?';
+              var cntVal = '登陆后即可提交，轻松搞定，厂家第一时间与您联系！';
               App.showConfirm('未登录', cntVal, null, function () {
                 //App.setBackPage('brand_detail');
                 App.load('login_dealers');

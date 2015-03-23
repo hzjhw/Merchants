@@ -30,7 +30,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       }
       $(page).find('#custname,#cellphone,#levMsg').off().on('click',  function () {
         if (!App.isLogin()) {
-          var cntVal = '需要登录账号,才能留言.现在登录吗?';
+          var cntVal = '登录马上留言，3秒搞定';
           App.showConfirm('未登录', cntVal, null, function(){
             App.setBackPage('brand_detail');
             App.load('login_dealers');
@@ -39,7 +39,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
       });
       $(page).find('#msgSub').off().on('click', function () {
         if (!App.isLogin()) {
-          var cntVal = '需要登录账号,才能留言.现在登录吗？';
+          var cntVal = '登录马上留言，3秒搞定';
           App.showConfirm('未登录', cntVal, null, function(){
             App.setBackPage('brand_detail')
             App.load('login_dealers');

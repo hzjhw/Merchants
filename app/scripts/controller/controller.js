@@ -258,7 +258,7 @@ seajs.use(['App'], function (App) {
         })
       }
       else {
-        var cntVal = '对不起,您还未登录!现在就登录吗?';
+        var cntVal = '请先登录';
         App.showConfirm('未登录', cntVal, $dom, function () {
           App.setBackPage('home');
           App.load('login_dealers');
@@ -482,6 +482,14 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'slideon-down', page: 'category'}, this);
     seajs.use(['CategoryCtrl'], function (CategoryCtrl) {
       App.CategoryCtrl = new CategoryCtrl(page, this);
+    });
+  });
+  /*申请代金券*/
+  App.controller('favorite_vouch', function (page) {
+    debug('【Controller】pageLoad: favorite_vouch');
+    App.initLoad(page, { transition: 'slide-left', page: 'favorite_vouch'}, this);
+    seajs.use(['FavVouch'], function (FavVouch) {
+      App.FavVouch = new FavVouch(page);
     });
   });
   /*我的喜好*/

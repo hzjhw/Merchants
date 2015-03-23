@@ -11,13 +11,13 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
   template = require('template/brand_cooperate');
 
   BrandCooperate = function (page, facid) {
-    App.query('/cmp/cooperate',{
+    App.query('/cmp/cooperate/'+facid,{
       //cache:true,
       success:function(data){
         if(data.msg == 'success') {
           var tpl = HandlebarsHelper.compile(template);
           $(page).html(tpl(data));
-
+          $(page).find('#keywd').html($(page).find('#site_desc').html());
           $(page).find('#confirm').click(function(){
             var nameVal  = $(page).find('#name').val();
             var address  = $(page).find('#address').val();
@@ -81,8 +81,13 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
                 App.back();
               }
             })
-          })
-
+          });
+          $(page).find('#myvch').click(function(){
+            App.load('favorite_vouch');
+          });
+          $(page).find('#mycoop').click(function(){
+            App.load('favorite_cooprate');
+          });
           $(page).find('.btn-back').click(function () {
             //App.load('brand_detail',{id:facid});
             App.back();
@@ -91,9 +96,9 @@ define('BrandCooperate', ['App', 'HandlebarsHelper', 'template/brand_cooperate']
         }else if (data.msg == 'nofact'){
           console.error('【意向合作】没有厂家id值');
         }else if (data.msg == 'nologin'){
-          var cntVal = '对不起,您还未登录!现在就登录吗?';
+          var cntVal = '登录看最牛招商政策';
           App.showConfirm('未登录', cntVal, null, function () {
-            App.setBackPage('brand_cooperate')
+            App.setBackPage('brand_cooperate');
             App.load('login_dealers');
           });
         }
