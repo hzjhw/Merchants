@@ -29,13 +29,13 @@ define('FavLove', ['App','template/favLove','HandlebarsHelper'], function (requi
             data:{myLoves:curLoves},
             success:function(result){
               if(result.msg === 'success'){
-                var cntVal = '<span style="font-size: 20px"> 您的需求更新成功!</span>';
+                var cntVal = '您的需求更新成功!';
                 App.showMsg('修改成功', cntVal);
               }else if(result.msg === 'error'){
-                var cntVal = '<span style="font-size: 20px"> 由于网络等因素,您的需求更新失败!</span>';
+                var cntVal = '由于网络等因素,您的需求更新失败!';
                 App.showMsg('修改失败', cntVal);
               }else if(result.msg === 'nologin'){
-                var cntVal = '<span style="font-size: 20px"> 对不起,您还未登录!现在就登录吗?</span>';
+                var cntVal = '对不起,您还未登录!现在就登录吗?';
                 App.showConfirm('未登录', cntVal, null, function () {
                   App.load('login_dealers');
                 });

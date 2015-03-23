@@ -28,7 +28,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
           {
             if(!App.isLogin())
             {
-              var cntVal = '<span style="font-size: 20px"> 对不起,合作前需登录!现在就登录吗?</span>';
+              var cntVal = '对不起,合作前需登录!现在就登录吗?';
               App.showConfirm('未登录', cntVal, null, function () {
                 //App.setBackPage('brand_detail');
                 App.load('login_dealers');
@@ -43,7 +43,7 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
                 success:function(data){
                   if(data.msg === 'hasCoped')
                   {
-                    var cntVal = '<span style="font-size: 20px"> 您与该厂家已有合作!现在查看合作进展情况吗？</span>';
+                    var cntVal = '您与该厂家已有合作!现在查看合作进展情况吗？';
                     App.showConfirm("已有合作",cntVal,null,function(){
                       App.load("favorite_cooprate");
                     })

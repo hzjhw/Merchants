@@ -31,7 +31,7 @@ define('FavPro', ['App','template/favPro','HandlebarsHelper'], function (require
           var collid = parentObj.attr('data-id');
           var name = parentObj.children('.h').text();
           name = name.substring(name.indexOf('：')+1,name.length);
-          var cntVal = '<span style="font-size: 20px"> 删除'+name+'收藏吗?</span>';
+          var cntVal = '删除'+name+'收藏吗?';
           App.showConfirm('删除收藏',cntVal,null,function () {
             App.query('/userinfo/collectDel',{
               data:{'collect.coll_id':collid},

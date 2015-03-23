@@ -67,13 +67,13 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
                   App.query('/userinfo/saveBrand/'+factid,{
                     success:function(data){
                       if(data.msg === 'success'){
-                        var cntVal = '<span style="font-size: 20px"> 成功收藏该企业!</span>';
+                        var cntVal = '成功收藏该企业!';
                         App.showMsg('收藏成功',cntVal);
                       }else if(data.msg === 'noproid'){
-                        var cntVal = '<span style="font-size: 20px"> 无法找到企业相关信息!</span>';
+                        var cntVal = '无法找到企业相关信息!';
                         App.showMsg('收藏错误', cntVal);
                       }else if(data.msg === 'hasCollect'){
-                        var cntVal = '<span style="font-size: 20px"> 您已收藏过该企业,不能重复搜藏!</span>';
+                        var cntVal = '您已收藏过该企业,不能重复搜藏!';
                         App.showMsg('重复收藏', cntVal);
                       }
                     }
@@ -81,7 +81,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
                 }
                 else
                 {
-                  var cntVal = '<span style="font-size: 20px"> 收藏品牌需要账号登录!现在就登录吗?</span>';
+                  var cntVal = '收藏品牌需要账号登录!现在就登录吗?';
                   App.showConfirm('未登录', cntVal, null, function () {
                     App.load('login_dealers');
                   });
@@ -94,7 +94,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
                   App.query('/cmp/hasCoped/'+factid,{
                     success:function(data){
                       if(data.msg === 'hasCoped'){
-                        var cntVal = '<span style="font-size: 20px"> 您与该厂家已有合作!现在查看合作进展情况吗？</span>';
+                        var cntVal = '您与该厂家已有合作!现在查看合作进展情况吗？';
                         App.showConfirm("已有合作",cntVal,null,function(){
                           App.load("favorite_cooprate");
                         })
@@ -106,7 +106,7 @@ define('BrandList', ['App', 'template/brand_list', 'HandlebarsHelper'], function
                   })
                 }
                 else{
-                  var cntVal = '<span style="font-size: 20px"> 与企业合作需账号登录!现在就登录吗?</span>';
+                  var cntVal = '与企业合作需账号登录!现在就登录吗?';
                   App.showConfirm('未登录', cntVal, null, function () {
                      App.load('login_dealers');
                   });
