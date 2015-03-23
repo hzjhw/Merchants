@@ -45,11 +45,18 @@ define('FavInfo', ['App','template/favInfo','HandlebarsHelper'], function (requi
             success:function(data){
               if(data.msg == 'success')
               {
-                alert('信息修改成功!');
+                var need = data.member.cust_stock;
+                if(!need) {
+                  App.showConfirm('修改成功', '是否继续完善您的需求资料？', null, function () {
+                    App.load('favorite_love');
+                  });
+                }else{
+                  App.showMsg('修改成功','成功修改资料');
+                }
                 localStorage[App.CNT_NAME] = name;
               }else if (data.msg == 'error')
               {
-                alert('由于网络等因素,信息修改失败!');
+                App.showMsg('由于网络等因素,信息修改失败!');
               }
             }
           });
