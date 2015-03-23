@@ -16,20 +16,13 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
     App.initBrandAutoHide(page);
     window.stopCall = false;
     // 底部导航
-    $(page).find('.bottombar-ul li.page-load').off().on('click', function () {
+    $(page).find('.bottombar-ul li.app-btn').off().on('click', function () {
       try{
-        var urlVal =$(this).attr('data-url');
-        if(urlVal.length > 0){
-          if(urlVal !== 'brand_cooperate')
-          {
-            App.load(urlVal);
-          }
-          else
-          {
             if(!App.isLogin())
             {
               var cntVal = '登陆后即可提交，轻松搞定，厂家第一时间与您联系！';
               App.showConfirm('未登录', cntVal, null, function () {
+                $('.app-bottombar',$(page)).removeClass('brand-bottom-auto-show');
                 //App.setBackPage('brand_detail');
                 App.load('login_dealers');
               });
@@ -50,13 +43,10 @@ define('IncludeDetailBottom', ['App', 'template/include_detail_bottom', 'Handleb
                   }
                   else
                   {
-                    App.load(urlVal,{factid:factid});
+                    App.load('brand_cooperate',{factid:factid});
                   }
                 }
               })
-            }
-          }
-
         }
       }catch(e){
         console.log(e);
