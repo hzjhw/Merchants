@@ -515,7 +515,7 @@ span.text-price { color: #e0246b; }
 #tool{position: fixed; bottom: 100px; right: -8px; z-index: 99999999; padding: 15px; background: #FFF; border-radius: 10px; color: #fff; font-size: 24px; border: 1px solid #AAAAAA;}
 #tool a{color: #999;}
 /*品牌收藏意向*/
-.scyx {margin:3% 12% 5% 8%;height:40px;line-height:40px;font-size:26px;font-family:微软雅黑;color:#3c479b;}
+.scyx {margin:7% 12% 7% 8%;height:40px;line-height:40px;font-size:26px;font-family:微软雅黑;color:#3c479b;}
 .scyx .collection {float:left;}
 .scyx .intention {float:right;}
 .scyx .collection {background:url(/styles/img/icon.png) 13px -438px no-repeat;padding-left:40px;background-size:190%;}
