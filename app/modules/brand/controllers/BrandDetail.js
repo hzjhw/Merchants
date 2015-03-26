@@ -47,7 +47,9 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
               facPhone: result.facPhone
             });
           });*/
-
+          $(page).find("#imgtovch").click(function(){
+            App.load('brand_cooperate',{factid:id});
+          });
           $(page).find('.go-back').click(function () {
             App.back('home');
           });
