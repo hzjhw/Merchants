@@ -476,6 +476,14 @@ seajs.use(['App'], function (App) {
       App.BrandUnique = new BrandUnique(page, ctx);
     });
   });
+  /*冰点优惠*/
+  App.controller('other_ice',function(page){
+    debug('【Controller】pageLoad: other_ice');
+    App.initLoad(page, { transition: 'fade', page: 'other_ice'}, this);
+    seajs.use(['IceCtrl'], function (IceCtrl) {
+      App.IceCtrl = new IceCtrl(page, this);
+    });
+  });
   /*分类*/
   App.controller('category', function (page) {
     debug('【Controller】pageLoad: category');

@@ -15,6 +15,10 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
     setTimeout(function(){
       debug('【Module】: Call IncludeHeader');
       $("#nowtitle").text(data.web_title);
+      if(data.id === '20399' || data.id == '944' || data.id == '20398')
+      {
+        data.header_img = null;
+      }
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data || {
         logo_img: null
