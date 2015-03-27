@@ -88,7 +88,7 @@
                     <li data-target="favorite_message">
                         <div class="icon-bg icon-message app-button"></div>
                         <p>我的留言</p></li>
-                    <!--<li data-target="favorite_factmsg">
+                    <li data-target="favorite_factmsg">
                         <div class="icon-bg icon-message app-button"></div>
                         <p>私信留言</p></li>
                     <li data-target="other_iceindex">
@@ -108,7 +108,7 @@
                         <p>六折优惠</p></li>
                     <li data-target="other_ice8">
                         <div class="icon-bg icon-message app-button"></div>
-                        <p>八折优惠</p></li>-->
+                        <p>八折优惠</p></li>
                 </ul>
             </div>
 
@@ -117,127 +117,97 @@
     <style type="text/css">
         .cate-title { font-size:30px;}
     </style>
-
     <div class="app-content">
-
         <!--banner-->
-        <div class="scroll relative">
-            <div class="scroll_box" id="scroll_img">
-                <ul class="scroll_wrap">
-                    <li><img src="http://m.331.11door.com/images/banner.jpg" /></li>
-                    <li><a href="http://331.11door.com/seckill.html"><img src="http://m.331.11door.com/images/miaosha.jpg" /></a></li>
-                </ul>
-            </div>
-            <ul class="scroll_position" id="scroll_positiona">
-                <li class="on"><a href="javascript:void(0);"></a></li>
-                <li><a href="javascript:void(0);"></a></li>
-            </ul>
+        <div class="app-banner" style="overflow:hidden;">
+            <a href="http://331.11door.com/seckill.html"> <img src="images/banner_index1.jpg" alt="" width="50%" style="float:left;"/></a>
+            <img id="iceindex" src="images/banner_index2.jpg" alt="" width="50%" style="float:right;"/>
         </div>
-        <script src="http://demo.ykit.net/wytx/wap1/js/jquery.min.js" type="text/javascript"></script>
-        <script src='http://demo.ykit.net/wytx/wap1/js/hhSwipe.js'></script>
-        <script>
-            var bullets = document.getElementById('scroll_positiona').getElementsByTagName('li');
-            var slider = Swipe(document.getElementById('scroll_img'), {
-                auto: 2500,
-                continuous: true,
-                callback: function(pos) {
-                    var i = bullets.length;
-                    while (i--) {
-                        bullets[i].className = ' ';
-                    }
-                    bullets[pos].className = 'on';
-                }
-            });
-            $(function(){
-                $('.scroll_position_bg').css({
-                    width:$('#scroll_positiona').width()
-                });
-            });
-        </script>
         <!--banner end-->
         <!--<div class="app-banner" style="overflow:hidden;">
            <a href="http://331.11door.com/seckill.html"> <img src="images/miaosha.jpg" alt="" width="100%"/></a>
         </div>-->
-        <!--品牌/产品展示馆-->
-        <div class="app-section section-title">
-            品牌/产品展示馆 &nbsp;&nbsp;&nbsp;
-        </div>
-        <div class="app-section">
-            <ul class="cate-ul">
-                <li class="cate_01 cate-l" data-id="4361326338 " data-title="品牌展示馆" data-banner="banner">
-                    <div class="cate-title  app-button">
-                        品牌展示馆
-                        <!--<p>海量品牌等你来选</p>-->
-                    </div>
-                </li>
-                <li class="cate_02 cate-r" data-id="" data-title="特色门馆" data-banner="banner">
-                    <div class="cate-title app-button">
-                        特色门馆
-                        <!--<p>各厂家最待色的门</p>-->
-                    </div>
-                </li>
-                <li class="cate_03 cate-l" data-id="1417272248" data-title="防盗门馆" data-banner="fangdaomen_banner">
-                    <div class="cate-title app-button">
-                        防盗门馆
-                        <!--<p>工艺上具备原木的天然待性与环保性</p>-->
-                    </div>
-                </li>
-                <li class="cate_04 cate-r" data-id="4432837154" data-title="防火门馆" data-banner="fanghuomen_banner">
-                    <div class="cate-title app-button">
-                        防火门馆
-                        <!--<p>工艺上具备原木的天然待性与环保性</p>-->
-                    </div>
-                </li>
-                <li class="cate_05 cate-l" data-id="3818678422" data-title="非标门馆" data-banner="feibiaomen_banner">
-                    <div class="cate-title app-button">
-                        非标门馆
-                        <!--<p>工艺上具备原木的天然待性与环保性</p>-->
-                    </div>
-                </li>
-                <li class="cate_06 cate-r" data-id="8636812455" data-title="铜门/不锈钢门馆" data-banner="buxiugangmen_banner">
-                    <div class="cate-title app-button">
-                        铜门<br />不锈钢门馆
-                        <!--<p>工艺上具备原木的天然待性与环保性</p>-->
-                    </div>
-                </li>
-                <li class="cate_07 cate-l" data-id="4531876237" data-title="木门馆" data-banner="mumen_banner">
-                    <div class="cate-title app-button">
-                        木门馆
-                        <!--<p>工艺上具备原木的天然待性与环保性</p>-->
-                    </div>
-                </li>
-                <li class="cate_08 cate-r" data-id="5276256741" data-title="生态木门/强化门" data-banner="shengtaimen_banner">
-                    <div class="cate-title app-button">
-                        生态木门<br />强化门
-                        <!--<p>拥有更长的使用寿命</p>-->
-                    </div>
-                </li>
-                <li class="cate_09 cate-l" data-id="4412667554" data-title="钢木门馆" data-banner="gangmumen_banner">
-                    <div class="cate-title app-button">
-                        钢木门馆
-                        <!--<p>无毒绿色健康环保</p>-->
-                    </div>
-                </li>
-                <li class="cate_10 cate-r" data-id="3486245445" data-title="铝合金门馆" data-banner="lvhejinmen_banner">
-                    <div class="cate-title app-button">
-                        铝合金门馆
-                        <!--<p>防尘、防水、隔音效果突出</p>-->
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!--品牌展示-->
-        <div id="merchants-show" class="app-lazyload">
-            <div class="loading-text">拼命加载中...<a href="javascript:App.load('home');">刷新页面</a></div>
-        </div>
-        <!--页脚-->
-        <div class="app-section merchant-footer">
-            <p>①2015 浙B2-20050229-3 用户反馈中心</p>
-            <img src="images/bottom-logo.png" alt="手机 3月30日"/>
-
-            <div><strong>足不出户逛展会</strong></div>
-        </div>
     </div>
+    <!--品牌/产品展示馆-->
+    <div class="app-section section-title">
+        品牌/产品展示馆 &nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="app-section">
+        <ul class="cate-ul">
+            <li class="cate_01 cate-l" data-id="4361326338 " data-title="品牌展示馆" data-banner="banner">
+                <div class="cate-title  app-button">
+                    品牌展示馆
+                    <!--<p>海量品牌等你来选</p>-->
+                </div>
+            </li>
+            <li class="cate_02 cate-r" data-id="" data-title="特色门馆" data-banner="banner">
+                <div class="cate-title app-button">
+                    特色门馆
+                    <!--<p>各厂家最待色的门</p>-->
+                </div>
+            </li>
+            <li class="cate_03 cate-l" data-id="1417272248" data-title="防盗门馆" data-banner="fangdaomen_banner">
+                <div class="cate-title app-button">
+                    防盗门馆
+                    <!--<p>工艺上具备原木的天然待性与环保性</p>-->
+                </div>
+            </li>
+            <li class="cate_04 cate-r" data-id="4432837154" data-title="防火门馆" data-banner="fanghuomen_banner">
+                <div class="cate-title app-button">
+                    防火门馆
+                    <!--<p>工艺上具备原木的天然待性与环保性</p>-->
+                </div>
+            </li>
+            <li class="cate_05 cate-l" data-id="3818678422" data-title="非标门馆" data-banner="feibiaomen_banner">
+                <div class="cate-title app-button">
+                    非标门馆
+                    <!--<p>工艺上具备原木的天然待性与环保性</p>-->
+                </div>
+            </li>
+            <li class="cate_06 cate-r" data-id="8636812455" data-title="铜门/不锈钢门馆" data-banner="buxiugangmen_banner">
+                <div class="cate-title app-button">
+                    铜门<br />不锈钢门馆
+                    <!--<p>工艺上具备原木的天然待性与环保性</p>-->
+                </div>
+            </li>
+            <li class="cate_07 cate-l" data-id="4531876237" data-title="木门馆" data-banner="mumen_banner">
+                <div class="cate-title app-button">
+                    木门馆
+                    <!--<p>工艺上具备原木的天然待性与环保性</p>-->
+                </div>
+            </li>
+            <li class="cate_08 cate-r" data-id="5276256741" data-title="生态木门/强化门" data-banner="shengtaimen_banner">
+                <div class="cate-title app-button">
+                    生态木门<br />强化门
+                    <!--<p>拥有更长的使用寿命</p>-->
+                </div>
+            </li>
+            <li class="cate_09 cate-l" data-id="4412667554" data-title="钢木门馆" data-banner="gangmumen_banner">
+                <div class="cate-title app-button">
+                    钢木门馆
+                    <!--<p>无毒绿色健康环保</p>-->
+                </div>
+            </li>
+            <li class="cate_10 cate-r" data-id="3486245445" data-title="铝合金门馆" data-banner="lvhejinmen_banner">
+                <div class="cate-title app-button">
+                    铝合金门馆
+                    <!--<p>防尘、防水、隔音效果突出</p>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--品牌展示-->
+    <div id="merchants-show" class="app-lazyload">
+        <div class="loading-text">拼命加载中...<a href="javascript:App.load('home');">刷新页面</a></div>
+    </div>
+    <!--页脚-->
+    <div class="app-section merchant-footer">
+        <p>①2015 浙B2-20050229-3 用户反馈中心</p>
+        <img src="images/bottom-logo.png" alt="手机 3月30日"/>
+
+        <div><strong>足不出户逛展会</strong></div>
+    </div>
+</div>
 </div>
 <div class="app-page" data-page="category"></div>
 <div class="app-page login_dealers" data-page="login_dealers"></div>
@@ -289,7 +259,6 @@
 <script type="text/javascript" src="config.js"></script>
 
 <script type="text/javascript" src="scripts/controller/controller.js"></script>
-<script src='http://demo.ykit.net/wytx/wap1/js/hhSwipe.js'></script>
 <!-- endbuild -->
 </body>
 </html>
