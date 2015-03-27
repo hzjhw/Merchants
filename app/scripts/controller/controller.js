@@ -477,11 +477,51 @@ seajs.use(['App'], function (App) {
     });
   });
   /*冰点优惠*/
-  App.controller('other_ice',function(page){
-    debug('【Controller】pageLoad: other_ice');
-    App.initLoad(page, { transition: 'fade', page: 'other_ice'}, this);
-    seajs.use(['IceCtrl'], function (IceCtrl) {
-      App.IceCtrl = new IceCtrl(page, this);
+  App.controller('other_iceindex',function(page){
+    debug('【Controller】pageLoad: other_iceindex');
+    App.initLoad(page, { transition: 'fade', page: 'other_iceindex'}, this);
+    seajs.use(['IceIndexCtrl'], function (IceIndexCtrl) {
+      App.IceIndexCtrl = new IceIndexCtrl(page, this);
+    });
+  });
+  /*冰点其它优惠*/
+  App.controller('other_iceother',function(page){
+    debug('【Controller】pageLoad: other_iceother');
+    App.initLoad(page, { transition: 'fade', page: 'other_iceother'}, this);
+    seajs.use(['IceOtherCtrl'], function (IceOtherCtrl) {
+      App.IceOtherCtrl = new IceOtherCtrl(page, this);
+    });
+  });
+  /*冰点免费*/
+  App.controller('other_ice0',function(page){
+    debug('【Controller】pageLoad: other_ice0');
+    App.initLoad(page, { transition: 'fade', page: 'other_ice0'}, this);
+    seajs.use(['Ice0Ctrl'], function (Ice0Ctrl) {
+      App.Ice0Ctrl = new Ice0Ctrl(page, this);
+    });
+  });
+  /*冰点五折优惠*/
+  App.controller('other_ice5',function(page){
+    debug('【Controller】pageLoad: other_ice5');
+    App.initLoad(page, { transition: 'fade', page: 'other_ice5'}, this);
+    seajs.use(['Ice5Ctrl'], function (Ice5Ctrl) {
+      App.Ice5Ctrl = new Ice5Ctrl(page, this);
+    });
+  });
+  /*冰点六折优惠*/
+  App.controller('other_ice6',function(page){
+    debug('【Controller】pageLoad: other_ice6');
+    App.initLoad(page, { transition: 'fade', page: 'other_ice6'}, this);
+    seajs.use(['Ice6Ctrl'], function (Ice6Ctrl) {
+      App.Ice6Ctrl = new Ice6Ctrl(page, this);
+    });
+  });
+  /*冰点八折优惠*/
+  App.controller('other_ice8',function(page){
+    debug('【Controller】pageLoad: other_ice8');
+    App.initLoad(page, { transition: 'fade', page: 'other_ice8'}, this);
+    seajs.use(['Ice8Ctrl'], function (Ice8Ctrl) {
+      App.Ice8Ctrl = new Ice8Ctrl(page, this);
     });
   });
   /*分类*/
