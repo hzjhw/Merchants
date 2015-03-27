@@ -10,25 +10,24 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
   IncludeMessage = function (page, render, data) {
     setTimeout(function () {
       debug('【Module】: Call IncludeMessage');
+      var msgType = '0';
       template = require('template/include_message');
+      if (App.isLogin()){
+        data.hadlogin = '1';
+        msgType ='1';
+      }else{
+        data.hadlogin = '0';
+        msgType='0';
+      }
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data));
       //TODO validate is login before submit
       if(App.isLogin())
       {
-        /*App.query('/cmp/custInfo', {
-          //cache:true,
-          success: function (result) {
-            if (result.msg == 'success') {
-              $("#custname", $(page)).val(result.custInfo.contact_name);
-              $("#cellphone", $(page)).val(result.custInfo.contact_cellphone);
-            }
-          }
-        });*/
         $("#custname", $(page)).val(localStorage[App.CNT_NAME]);
         $("#cellphone", $(page)).val(localStorage[App.CELL_PHONE]);
       }
-      $(page).find('#custname,#cellphone,#levMsg').off().on('click',  function () {
+      /*$(page).find('#custname,#cellphone,#levMsg').off().on('click',  function () {
         if (!App.isLogin()) {
           var cntVal = '登录马上留言，3秒搞定';
           App.showConfirm('未登录', cntVal, null, function(){
@@ -36,21 +35,29 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
             App.load('login_dealers');
           });
         }
-      });
+      });*/
       $(page).find('#msgSub').off().on('click', function () {
-        if (!App.isLogin()) {
+        /*if (!App.isLogin()) {
           var cntVal = '登录马上留言，3秒搞定';
           App.showConfirm('未登录', cntVal, null, function(){
             App.setBackPage('brand_detail')
             App.load('login_dealers');
           });
           return;
-        }
+        }*/
         //TODO submit
         var custName = $("#custname", $(page)).val();
         var levMsg = $("#levMsg", $(page)).val();
+        var cellphone = $("#cellphone", $(page)).val();
         if ($.trim(custName) === '') {
-          alert("留言前需填写您的姓名！");
+          App.showMsg("姓名为空","留言前需填写您的姓名！");
+          return;
+        }
+        if($.trim(cellphone) === ''){
+          App.showMsg("手机号为空","留言前需填写您的手机号！");
+          return;
+        }else if (!/^1[3|4|5|8][0-9]\d{8}$/.test(cellphone)){
+          App.showMsg("格式错误","手机号码格式不正确！");
           return;
         }
         if ($.trim(levMsg) === '') {
@@ -59,6 +66,7 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         }
         App.query('/cmp/custMsg', {
           data: {
+            'msgType':msgType,
             'custName': custName,
             'custmsg.fact_id': data.id,
             'custmsg.content': $("#levMsg", $(page)).val(),

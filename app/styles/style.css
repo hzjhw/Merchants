@@ -550,7 +550,17 @@ span.text-price { color: #e0246b; }
 .ice_index .detailed li {margin-bottom:20px;}
 .ice_index .detailed li img {width:100%;}
 
-
+/*首页切换*/
+.scroll{margin:0 auto;max-width:640px;position:relative;}
+.scroll_box{overflow:hidden;visibility:hidden;position:relative;}
+.scroll_wrap{overflow:hidden; position:relative;margin:0;padding:0;}
+.scroll_wrap li{position:relative;display:block;width:100%;float:left;}
+.scroll_wrap li a{display:block;margin:0 auto;position:relative;}
+.scroll_wrap li img {width:100%;}
+.scroll_position{position:absolute;left:43%;z-index:400;bottom:5px;margin:0;}
+.scroll_position li{display:inline-block;width:15px;height:15px;border-radius:12px;background:#ff7800;cursor: pointer;}
+.scroll_position li a{}
+.scroll_position li.on{background-color:#ff4e00;}
 
 
 
