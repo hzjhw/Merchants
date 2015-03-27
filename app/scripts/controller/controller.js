@@ -283,6 +283,11 @@ seajs.use(['App'], function (App) {
         banner: $(this).attr('data-banner')
       });
     });
+    // 门馆展示
+    seajs.use(['HomeBrand'], function (HomeBrand) {
+      debug('【Module】call HomeBrand');
+      App.HomeBrand = new HomeBrand(page);
+    });
   });
   /*忘记密码*/
   App.controller('forget_pwd',function(page){
