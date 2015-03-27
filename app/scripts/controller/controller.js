@@ -213,6 +213,9 @@ seajs.use(['App'], function (App) {
       $(page).find('.btn-register').off().on('click', function () {
         App.load('register_dealers');
       });
+      $(page).find('#iceindex').click(function(){
+        App.load('other_iceindex');
+      });
       $(page).find('.btn-login').off().on('click', function () {
         App.setBackPage('home');
         App.load('login_dealers');
@@ -279,11 +282,6 @@ seajs.use(['App'], function (App) {
         title: $(this).attr('data-title'),
         banner: $(this).attr('data-banner')
       });
-    });
-    // 门馆展示
-    seajs.use(['HomeBrand'], function (HomeBrand) {
-      debug('【Module】call HomeBrand');
-      App.HomeBrand = new HomeBrand(page);
     });
   });
   /*忘记密码*/

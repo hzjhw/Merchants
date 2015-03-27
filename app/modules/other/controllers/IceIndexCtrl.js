@@ -31,7 +31,7 @@ define('IceIndexCtrl', ['App', 'template/ice_index'], function (require, exports
         App.load('register_dealers');
       });
       $(page).find('.btn-login').off().on('click', function () {
-        App.setBackPage('home');
+        App.setBackPage('other_iceindex');
         App.load('login_dealers');
       });
       $(page).find('.btn-out').off().on('click', function () {
@@ -41,7 +41,7 @@ define('IceIndexCtrl', ['App', 'template/ice_index'], function (require, exports
               App.disableLazyLoad();
               localStorage[App.CELL_PHONE] = '';
               localStorage[App.CNT_NAME] = '';
-              App.load('home');
+              App.load('other_iceindex');
             }
           }
         })
@@ -77,11 +77,17 @@ define('IceIndexCtrl', ['App', 'template/ice_index'], function (require, exports
       else {
         var cntVal = '请先登录';
         App.showConfirm('未登录', cntVal, $dom, function () {
-          App.setBackPage('home');
+          App.setBackPage('other_iceindex');
           App.load('login_dealers');
         });
       }
-    })
+    });
+
+    // 门馆展示
+    seajs.use(['HomeBrand'], function (HomeBrand) {
+      debug('【Module】call HomeBrand');
+      App.HomeBrand = new HomeBrand(page);
+    });
     /*头部 结尾*/
 
     $(page).find('.detailed li').click(function(){
