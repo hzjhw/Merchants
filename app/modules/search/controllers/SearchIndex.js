@@ -3,7 +3,7 @@
  * @class SearchIndex
  * @author yongjin<zjut_wyj@163.com> 2015/2/28
  */
-define('SearchIndex', ['App', 'template/search_index', 'HandlebarsHelper,'], function (require, exports, module) {
+define('SearchIndex', ['App', 'template/search_index', 'HandlebarsHelper'], function (require, exports, module) {
   var SearchIndex, App, template, HandlebarsHelper;
 
   App = require('App');
