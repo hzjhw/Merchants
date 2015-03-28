@@ -531,6 +531,7 @@ span.text-price { color: #e0246b; }
 #vouchers .benefits .title {font-size:30px;margin-top:50px;}
 /*冰点优惠*/
 .login_dealers div.discount {width:530px;margin:40px auto 60px;}
+.discount .tishi {font-size:28px;margin-bottom:40px;color:#ff0000;font-weight:bold;}
 .discount div.all {padding-right:5px;}
 .discount .brand {text-align:left;background:white;padding:10px 20px;margin-bottom:30px;min-height:338px;overflow:auto;}
 .discount .brand .imgs {float:left;width:223px;}
