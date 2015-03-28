@@ -48,7 +48,15 @@ define('BrandDetail', ['App', 'template/brand_detail', 'HandlebarsHelper'], func
             });
           });*/
           $(page).find("#imgtovch").click(function(){
-            App.load('brand_cooperate',{factid:id});
+            if(App.isLogin())
+              App.load('brand_cooperate',{factid:id});
+            else{
+              var cntVal = '登录看最牛招商政策';
+              App.showConfirm('未登录', cntVal, null, function () {
+                App.setBackPage('brand_cooperate');
+                App.load('login_dealers');
+              });
+            }
           });
           $(page).find('.go-back').click(function () {
             App.back('home');
