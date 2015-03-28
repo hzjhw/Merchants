@@ -532,18 +532,15 @@ span.text-price { color: #e0246b; }
 /*冰点优惠*/
 .login_dealers div.discount {width:530px;margin:40px auto 60px;}
 .discount div.all {padding-right:5px;}
-.discount .brand {text-align:left;background:white;padding:10px 20px;margin-bottom:30px;height:338px;}
+.discount .brand {text-align:left;background:white;padding:10px 20px;margin-bottom:30px;min-height:338px;overflow:auto;}
 .discount .brand .imgs {float:left;width:223px;}
 .discount .brand .imgs img {width:223px;height:271px;border:0;}
 .discount .brand .imgs p {font-size:18px;line-height:24px;margin: 15px 10px 0;font-family: 微软雅黑;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .discount .brand .imgs p span {color:#878787;font-size:12px;display:block;}
-.discount .brand .detailed {width:205px;margin-left:15px;float:left;margin-top:35px;position:relative;height:300px;}
-.discount .brand .detailed p {font-size:14px;line-height:24px;}
-.discount .brand .detailed .t {font-size:18px;padding:10px 0;line-height:24px;}
-.discount .brand .detailed .yx {font-size:24px;font-family:微软雅黑;color:#fff;position:absolute;bottom:0;left:0;width:124px;height:48px;line-height:48px;padding-left:66px;background:#df000a url(/styles/img/yx.jpg) no-repeat 25px 9px;border-radius:5px;}
-.discount .all .detailed {float:right;width:265px;margin-top:0;height:335px;}
-.discount .all .detailed .t {font-size:13px;padding:0 0 10px 0;line-height:20px;font-weight:bold;}
-.discount .all .detailed p {font-size:12px;line-height:20px;}
+.discount .brand .detailed {width:250px;margin-left:15px;float:left;}
+.discount .brand .detailed p {font-size:16px;padding-bottom:10px;line-height:24px;}
+.discount .brand .detailed .t {font-size:20px;padding:10px 0;line-height:30px;margin-bottom:10px;}
+.discount .brand .detailed .yx {margin:30px 0;font-size:24px;font-family:微软雅黑;color:#fff;width:124px;height:48px;line-height:48px;padding-left:66px;background:#df000a url(/styles/img/yx.jpg) no-repeat 25px 9px;border-radius:5px;}
 .login_dealers .top div.title_ice {color:#2e2e2e;font-size:35px;}
 .ice_index {width:580px;margin:auto;}
 .ice_index .title {font-size:22px;font-weight:bold;font-family:微软雅黑;padding:20px 0;}
