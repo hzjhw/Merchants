@@ -10,14 +10,11 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
   IncludeMessage = function (page, render, data) {
     setTimeout(function () {
       debug('【Module】: Call IncludeMessage');
-      var msgType = '0';
       template = require('template/include_message');
       if (App.isLogin()){
         data.hadlogin = '1';
-        msgType ='1';
       }else{
         data.hadlogin = '0';
-        msgType='0';
       }
       var tpl = HandlebarsHelper.compile(template);
       $(page).find(render).html(tpl(data));
@@ -66,7 +63,6 @@ define('IncludeMessage', ['App', 'template/include_message', 'HandlebarsHelper']
         }
         App.query('/cmp/custMsg', {
           data: {
-            'msgType':msgType,
             'custName': custName,
             'custmsg.fact_id': data.id,
             'custmsg.content': $("#levMsg", $(page)).val(),
