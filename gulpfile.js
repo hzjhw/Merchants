@@ -128,7 +128,7 @@ gulp.task('base.min', function () {
 
 /*[1]APP*/
 paths['merge'] = {
-  scripts: { source: ['./app/src/zepto.min.js', './app/src/fx.js', './app/src/clickable.js', './app/src/swapper.js', './app/src/scrollable.js',
+  scripts: { source: ['./app/src/zepto.min.js', './app/src/fx.js','./app/src/offsetRelative.js', './app/src/clickable.js', './app/src/swapper.js', './app/src/scrollable.js',
     './app/src/utils.js', './app/src/dialog.js', './app/src/events.js', './app/src/form.js', './app/src/metrics.js', './app/src/scroll.js','./app/src/scroll-fix.js',
     './app/src/pages.js', './app/src/stack.js', './app/src/transitions.js', './app/src/navigation.js' , './app/src/api.js'
   ], dist: './app/src', name: 'app.js' }
