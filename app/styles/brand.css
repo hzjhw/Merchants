@@ -29,6 +29,8 @@
 #factory .comment .form i {float:left;width:20%; font-style: normal;text-align:right;padding-right:2%;}
 #factory .comment .form i span {color:#ec7865;padding-right:10%;}
 #factory .comment .button {line-height:90px;text-align:center;background:#0090d3;font-size:36px;margin: 3% 4%;height:90px;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;color:#fff;}
+#factory .comment .cmtlist li {color:#2f2f2f;margin: 3% 4%;border-bottom:1px dotted #000;padding-bottom:20px;}
+#factory .comment .cmtlist li span {font-size:18px;color:#686868;display:block;padding-bottom:10px;}
 
 #factory .company {font-size:22px;overflow: auto;margin-top:4.4% }
 #factory .company .data {overflow:auto;margin: 30px 0;}
