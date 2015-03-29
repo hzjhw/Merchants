@@ -23,12 +23,13 @@
 #factory .comment .form {font-size:20px;margin:3% 4%;height:64px;line-height:64px;border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
 #factory .comment input {border:none;width:70%;float:left;height:40px;margin-top:14px;font-size:18px;}
 #factory .comment .tex {border:none;height:145px;}
-#factory .comment textarea {height:140px;width:98%;}
+#factory .comment textarea {height:140px;width:98%;font-size:24px;}
 #factory .comment #codeVal {width:50%;}
 #factory .comment #chgcode {float:left;width:100px;height:40px;margin-top:14px;margin-left:20px;border: :none;}
 #factory .comment .form i {float:left;width:20%; font-style: normal;text-align:right;padding-right:2%;}
 #factory .comment .form i span {color:#ec7865;padding-right:10%;}
 #factory .comment .button {line-height:90px;text-align:center;background:#0090d3;font-size:36px;margin: 3% 4%;height:90px;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;color:#fff;}
+#factory .comment .cmtlist {padding-bottom:400px;}
 #factory .comment .cmtlist li {color:#2f2f2f;margin: 3% 4%;border-bottom:1px dotted #000;padding-bottom:20px;}
 #factory .comment .cmtlist li span {font-size:18px;color:#686868;display:block;padding-bottom:10px;}
 
