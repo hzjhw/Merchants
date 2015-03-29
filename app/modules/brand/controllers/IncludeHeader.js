@@ -23,7 +23,7 @@ define('IncludeHeader', ['App', 'template/include_header', 'HandlebarsHelper'], 
       $(page).find(render).html(tpl(data || {
         logo_img: null
       }));
-      $(page).find('.nav ul li').click(function () {
+      $(page).find('.nav ul li').off('click').on('click', function () {
         if($(this).attr('data-url') === '')
         {
           if(!App.isLogin())
