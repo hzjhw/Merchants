@@ -480,12 +480,12 @@ seajs.use(['App'], function (App) {
     });
   });
   /*评论*/
-  App.controller('other_comment', function (page) {
-    debug('【Controller】pageLoad: other_comment');
+  App.controller('comment_index', function (page) {
+    debug('【Controller】pageLoad: comment_index');
     var ctx = this;
-    App.initLoad(page, { transition: 'fade', page: 'other_comment'}, ctx);
-    seajs.use(['CommentCtrl'], function (CommentCtrl) {
-      App.CommentCtrl = new CommentCtrl(page, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'comment_index'}, ctx);
+    seajs.use(['CommentIndexCtrl'], function (CommentIndexCtrl) {
+      App.CommentIndexCtrl = new CommentIndexCtrl(page, ctx);
     });
   });
   /*冰点优惠*/
@@ -665,6 +665,30 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'slide-left', page: 'favorite_info'}, this);
     seajs.use(['FavInfo'], function (FavInfo) {
       App.FavInfo = new FavInfo(page);
+    });
+  });
+  /*评论*/
+  App.controller('product_comment', function (page) {
+    debug('【Controller】pageLoad: product_comment');
+    var ctx = this;
+    // 获取url id值
+    var argId = App.getUrlParam('fact_id', window.location.href);
+    var proId = App.getUrlParam('pro_id', window.location.href);
+    if (argId) {
+      localStorage['product_comment_args_id'] = argId;
+      ctx.args.id = argId;
+    }
+    if (proId){
+      localStorage['product_comment_args_proid'] = proId;
+      ctx.args.proid = proId;
+    }
+    App.initLoad(page, { transition: 'fade', page: ctx.args.id ? ('product_comment?fact_id=' + ctx.args.id + '&pro_id=' + ctx.args.proid) :'product_comment'}, ctx);
+    if (!ctx.args.id) ctx.args.id = localStorage['product_comment_args_id'];
+    if (!ctx.args.id) ctx.args.proid = localStorage['product_comment_args_proid'];
+    localStorage['product_comment_args_id'] = ctx.args.id;
+    localStorage['product_comment_args_proid'] = ctx.args.proid;
+    seajs.use(['ProductComment'], function (ProductComment) {
+      App.ProductComment = new ProductComment(page, ctx.args.id, ctx.args.proid, ctx);
     });
   });
   /*搜索*/

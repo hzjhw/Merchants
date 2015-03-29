@@ -1,0 +1,12 @@
+
+<div class="prompt h">我对此产品感兴趣，我想对此评论</div>
+<!--<div class="prompt">企业温馨提示：您的留言我们会第一时间反馈！</div>
+<div class="form"><i><span>*</span>姓名：</i><input type="text" id="custname"  placeholder="如 王先生"></div>
+<div class="form"><i><span>*</span>手机：</i>
+    <input type="text" id="cellphone" {{#xif "this.hadlogin == '1'"}} readonly="readonly" {{/xif}}  placeholder="如 13575695737" />
+</div>-->
+<div class="form"><i>留言：</i><input type="text" id="cmtMsg" placeholder="我对此产品很感兴趣，请联系我们。"></div>
+<div class="form"><img id="chgcode" src="/product/chgCode" onclick="javascript:this.src='/product/chgCode?' + new Date().getTime();" />&nbsp;<input type="text" size="30" id="codeVal" placeholder="验证码"/></div>
+<div id="commentSub" class="button app-button">提交评论</div>
+<div class="prompt h">用户评论：</div>
+<div class="cmtlist"></div>

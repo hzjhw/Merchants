@@ -3,8 +3,8 @@
  * @class BrandUnique
  * @author yongjin<zjut_wyj@163.com> 2015/2/9
  */
-define('CommentCtrl', ['App', 'template/other_comment', 'HandlebarsHelper'], function (require, exports, module) {
-  var CommentCtrl, App, template, HandlebarsHelper;
+define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper'], function (require, exports, module) {
+  var CommentIndexCtrl, App, template, HandlebarsHelper;
 
   App = require('App');
   HandlebarsHelper = require('HandlebarsHelper');
@@ -35,8 +35,8 @@ define('CommentCtrl', ['App', 'template/other_comment', 'HandlebarsHelper'], fun
           for (var j = 0; j < result.productList.list.length; j++) {
             var $node = $(item(result.productList.list[j]));
             $node.click(function () {
-              App.setBackPage('other_comment');
-              App.addHash('#/product_detail?fact_id=' + $(this).attr('cust-id') + '&pro_id=' + $(this).attr('data-id'));
+              App.setBackPage('comment_index');
+              App.addHash('#/product_comment?fact_id=' + $(this).attr('cust-id') + '&pro_id=' + $(this).attr('data-id'));
               App.load('product_comment', {
                 fact_id: $(this).attr('cust-id'),
                 pro_id: $(this).attr('data-id')
@@ -53,10 +53,10 @@ define('CommentCtrl', ['App', 'template/other_comment', 'HandlebarsHelper'], fun
     });
   }
 
-  CommentCtrl = function (page, context) {
+  CommentIndexCtrl = function (page, context) {
     setTimeout(function () {
       debug('【Module】: Call comment');
-      template = require('template/other_comment');
+      template = require('template/comment_index');
       $(page).html(template);
       $(page).find('.go-back').click(function () {
         App.back(App.getBackPage());
@@ -103,5 +103,5 @@ define('CommentCtrl', ['App', 'template/other_comment', 'HandlebarsHelper'], fun
     }, 0);
   };
 
-  module.exports = CommentCtrl;
+  module.exports = CommentIndexCtrl;
 });

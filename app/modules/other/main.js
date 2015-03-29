@@ -9,9 +9,17 @@ App.addModule('Ice8Ctrl', 'modules/other/controllers/Ice8Ctrl.js');
 App.addModule('Ice0Ctrl', 'modules/other/controllers/Ice0Ctrl.js');
 App.addModule('IceOtherCtrl', 'modules/other/controllers/IceOtherCtrl.js');
 App.addModule('IceIndexCtrl', 'modules/other/controllers/IceIndexCtrl.js');
-App.addModule('CommentCtrl', 'modules/other/controllers/CommentCtrl.js');
-App.addTemplate('template/other_comment', function (require, exports, module) {
-  module.exports = require('modules/other/views/other_comment.html');
+App.addModule('CommentIndexCtrl', 'modules/other/controllers/CommentIndexCtrl.js');
+App.addModule('IncludeCommentCtrl', 'modules/other/controllers/IncludeCommentCtrl.js');
+App.addModule('IncludeCmtlist', 'modules/other/controllers/IncludeCmtlist.js');
+App.addTemplate('template/include_cmtlist', function (require, exports, module) {
+  module.exports = require('modules/other/views/include_cmtlist.html');
+});
+App.addTemplate('template/include_comment', function (require, exports, module) {
+  module.exports = require('modules/other/views/include_comment.html');
+});
+App.addTemplate('template/comment_index', function (require, exports, module) {
+  module.exports = require('modules/other/views/comment_index.html');
 });
 App.addTemplate('template/ice_index', function (require, exports, module) {
   module.exports = require('modules/other/views/ice_index.html');
