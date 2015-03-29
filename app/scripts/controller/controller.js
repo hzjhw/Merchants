@@ -214,7 +214,7 @@ seajs.use(['App'], function (App) {
         App.load('register_dealers');
       });
       $(page).find('#iceindex').click(function(){
-        App.load('other_iceindex');
+        App.load('action_index');
       });
       $(page).find('.btn-login').off().on('click', function () {
         App.setBackPage('home');
@@ -483,15 +483,97 @@ seajs.use(['App'], function (App) {
   App.controller('comment_index', function (page) {
     debug('【Controller】pageLoad: comment_index');
     var ctx = this;
-    App.initLoad(page, { transition: 'fade', page: 'comment_index'}, ctx);
+    App.initLoad(page, { transition: 'fade', page: 'comment_index', appShow: function (page) {
+      var phoneNum = localStorage[App.CELL_PHONE];
+      App.removeLoading(); // 移除载入动画
+      App.initTopScroll(page); // 顶部自动隐藏
+      if(! App._CustomStack)  App._CustomStack={};
+      App._CustomStack.length = 0;
+      $('body').find('#tool .tool-back').remove();
+      if (App.isLogin()) {
+        $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
+      } else {
+        $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
+        '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
+      }
+      // appReady里注册事件必需先注销事件
+      $(page).find('.app-logo').off().on('click',function(){
+        App.load('home');
+      });
+      $(page).find('.btn-register').off().on('click', function () {
+        App.load('register_dealers');
+      });
+      $(page).find('.btn-login').off().on('click', function () {
+        App.setBackPage('comment_index');
+        App.load('login_dealers');
+      });
+      $(page).find('.btn-out').off().on('click', function () {
+        App.query("/loginout", {
+          success: function (result) {
+            if (result.msg == 'success') {
+              App.disableLazyLoad();
+              localStorage[App.CELL_PHONE] = '';
+              localStorage[App.CNT_NAME] = '';
+              App.load('comment_index');
+            }
+          }
+        })
+      });
+    }}, this);
+
     seajs.use(['CommentIndexCtrl'], function (CommentIndexCtrl) {
       App.CommentIndexCtrl = new CommentIndexCtrl(page, ctx);
     });
   });
+  /*活动首页*/
+  App.controller('action_index',function(page){
+    debug('【Controller】pageLoad: action_index');
+    App.initLoad(page, { transition: 'fade', page: 'action_index', appShow: function (page) {
+      var phoneNum = localStorage[App.CELL_PHONE];
+      App.removeLoading(); // 移除载入动画
+      App.initTopScroll(page); // 顶部自动隐藏
+      if(! App._CustomStack)  App._CustomStack={};
+      App._CustomStack.length = 0;
+      $('body').find('#tool .tool-back').remove();
+      if (App.isLogin()) {
+        $(page).find(".app-top-login").html("<div class='sj'>手机号:" + phoneNum + "</div><div class='app-btn btn-out' style='float:right;margin-right:30px;color:#fff;'>退出</div> ");
+      } else {
+        $(page).find(".app-top-login").html(' <div class="app-button btn-register"  style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">注册</div>' +
+        '<div class="app-button btn-login" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0);">登录</div>');
+      }
+      // appReady里注册事件必需先注销事件
+      $(page).find('.app-logo').off().on('click',function(){
+        App.load('home');
+      });
+      $(page).find('.btn-register').off().on('click', function () {
+        App.load('register_dealers');
+      });
+      $(page).find('.btn-login').off().on('click', function () {
+        App.setBackPage('action_index');
+        App.load('login_dealers');
+      });
+      $(page).find('.btn-out').off().on('click', function () {
+        App.query("/loginout", {
+          success: function (result) {
+            if (result.msg == 'success') {
+              App.disableLazyLoad();
+              localStorage[App.CELL_PHONE] = '';
+              localStorage[App.CNT_NAME] = '';
+              App.load('action_index');
+            }
+          }
+        })
+      });
+    }}, this);
+
+    seajs.use(['ActionIndex'], function (ActionIndex) {
+      App.ActionIndex = new ActionIndex(page, this);
+    });
+  });
   /*冰点优惠*/
-  App.controller('other_iceindex',function(page){
-    debug('【Controller】pageLoad: other_iceindex');
-    App.initLoad(page, { transition: 'fade', page: 'other_iceindex', appShow: function (page) {
+  App.controller('ice_index',function(page){
+    debug('【Controller】pageLoad: ice_index');
+    App.initLoad(page, { transition: 'fade', page: 'ice_index', appShow: function (page) {
       var phoneNum = localStorage[App.CELL_PHONE];
       App.removeLoading(); // 移除载入动画
       App.initTopScroll(page); // 顶部自动隐藏
@@ -509,7 +591,7 @@ seajs.use(['App'], function (App) {
         App.load('register_dealers');
       });
       $(page).find('.btn-login').off().on('click', function () {
-        App.setBackPage('other_iceindex');
+        App.setBackPage('ice_index');
         App.load('login_dealers');
       });
       $(page).find('.btn-out').off().on('click', function () {
@@ -519,7 +601,7 @@ seajs.use(['App'], function (App) {
               App.disableLazyLoad();
               localStorage[App.CELL_PHONE] = '';
               localStorage[App.CNT_NAME] = '';
-              App.load('other_iceindex');
+              App.load('ice_index');
             }
           }
         })

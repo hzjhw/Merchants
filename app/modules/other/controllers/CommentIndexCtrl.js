@@ -58,6 +58,53 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
       debug('【Module】: Call comment');
       template = require('template/comment_index');
       $(page).html(template);
+      /*首页 开始*/
+      try {
+        $(page).find('[data-target="inputs"]')
+          .attr('data-target', null)
+          .stickyClick(function (unlock) {
+            App.pick('inputs', function (params) {
+              debug(JSON.stringify(params));
+              unlock();
+            });
+          });
+      } catch (e) {
+      }
+
+
+      // 我的330
+      setTimeout(function () {
+        if (!window.myDialog) {
+          App.show330(page);
+        }
+      }, 0);
+
+      $(page).find('.app-search').click(function(e){
+        e.preventDefault();
+        App.load('search');
+      });
+      $(page).find('.btn-menu').click(function(e){
+        e.preventDefault();
+        App.load('category');
+      });
+
+      $(page).find('.btn-my').click(function (e) {
+        e.preventDefault();
+        var $dom = $(this).find('.span-my').get(0);
+        if (App.isLogin()) {
+          App.show330(page, function (dialog) {
+            dialog.showModal($dom)
+          })
+        }
+        else {
+          var cntVal = '请先登录';
+          App.showConfirm('未登录', cntVal, $dom, function () {
+            App.setBackPage('other_iceindex');
+            App.load('login_dealers');
+          });
+        }
+      });
+      /*首页 结束*/
       $(page).find('.go-back').click(function () {
         App.back(App.getBackPage());
       });
@@ -96,6 +143,9 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
           $(page).find('.mer-unique-ul li').click(function () {
             $(this).addClass('current').siblings().removeClass('current');
             loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
+          });
+          $(page).find('.btn-back').click(function(){
+            App.back();
           });
           loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
         }

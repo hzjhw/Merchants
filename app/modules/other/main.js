@@ -12,6 +12,10 @@ App.addModule('IceIndexCtrl', 'modules/other/controllers/IceIndexCtrl.js');
 App.addModule('CommentIndexCtrl', 'modules/other/controllers/CommentIndexCtrl.js');
 App.addModule('IncludeCommentCtrl', 'modules/other/controllers/IncludeCommentCtrl.js');
 App.addModule('IncludeCmtlist', 'modules/other/controllers/IncludeCmtlist.js');
+App.addModule('ActionIndex', 'modules/other/controllers/ActionIndex.js');
+App.addTemplate('template/action_index', function (require, exports, module) {
+  module.exports = require('modules/other/views/action_index.html');
+});
 App.addTemplate('template/include_cmtlist', function (require, exports, module) {
   module.exports = require('modules/other/views/include_cmtlist.html');
 });
