@@ -1,0 +1,34 @@
+<div class="top app-topbar">
+    <div class="wrap app-section">
+        <div class="btn-back app-back app-btn">返回</div>
+        <div class="title title_ice" data-back>其它优惠</div>
+    </div>
+</div>
+<div class="app-content merchant-cont-container">
+    <div class="merchant-content">
+        <div id="merchant-unique-left" class="merchant-unique-left">
+            <ul id="mer-unique-ul" class="mer-unique-ul">
+                {{#each list}}
+                <li data-id="{{cat_id}}"  class="{{#compare @index '===' 0}}current{{/compare}}" >{{cat_name}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="merchant-unique-right">
+            <div id="merchant-unique-right-inner" class="merchant-unique-right-inner">
+                <ul class="mer-unique-right-ul">
+                    <li data-id="{{product_id}}" cust-id="{{cust_id}}" style="padding-bottom: 30px;">
+                        <div class="mer-unique-img">
+                            <img src="{{CONST 'PIC_URL'}}/{{picUrl img_path 3}}" alt="" height="300"/>
+                        </div>
+                        <div class="mer-unique-title app-btn">
+                            {{title}}
+                        </div>
+                        <div class="mer-unique-info">
+                            产品特点：{{{recom_desc}}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
