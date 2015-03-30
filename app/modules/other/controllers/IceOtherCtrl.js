@@ -47,6 +47,10 @@ define('IceOtherCtrl', ['App', 'template/ice_other'], function (require, exports
         })
       }
     });
+    $(page).find('#first').click(function () {
+      var url =encodeURIComponent("http://331.11door.com/ent/lottery/detail.jsp");
+      window.location.href ='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx50258f41b8aa6b1c&redirect_uri='+url+'&response_type=code&scope=snsapi_base&state=0#wechat_redirect';
+    });
     $(page).find('.btn-back').click(function () {
       App.back();
     });

@@ -12,7 +12,7 @@ define('ActionIndex', ['App', 'template/action_index'], function (require, expor
   ActionIndex = function (page, ctx) {
     debug('【Module】: Call action_index');
     $(page).html(template);
-    $('#nowtitle').text('330门业招商节狂欢48小时倒计时！看门业流行趋势，呼朋唤友，扫码不停，奖励加倍！送钱送门送红包！');
+    $('#nowtitle').text('看2015门业趋势ˇ2天1万个红包派送ˇ倒计时27小时…招商节你来了吗');
     /*首页 开始*/
     try {
       $(page).find('[data-target="inputs"]')
