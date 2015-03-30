@@ -528,7 +528,7 @@ seajs.use(['App'], function (App) {
   /*活动首页*/
   App.controller('action_index',function(page){
     debug('【Controller】pageLoad: action_index');
-    App.initLoad(page, { transition: 'fade', page: 'action_index', appShow: function (page) {
+    App.initLoad(page, { transition: 'fade', page: 'action_index?id=1', appShow: function (page) {
       var phoneNum = localStorage[App.CELL_PHONE];
       App.removeLoading(); // 移除载入动画
       App.initTopScroll(page); // 顶部自动隐藏

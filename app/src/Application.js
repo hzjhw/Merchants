@@ -510,9 +510,12 @@ Application.prototype = {
     try {
       if (location.hash.length > 0 && location.hash !== '#/home') {
         App._CustomStack = App._Stack.getRestoreStacks();
-        if (location.href.indexOf('?') !== -1) {
+        if (location.href.indexOf('?') !== -1 && location.hash.indexOf('?') !== -1) {
           App.load(location.hash.substring(2, location.hash.indexOf('?')));
         }
+       /* else if (location.hash.length > 0 && location.hash.indexOf('?') === -1){
+          App.load(location.hash.substring(2, location.hash.length - 1));
+        }*/
         else if (App._CustomStack.length === 0) {
           App.load('home');
         }
