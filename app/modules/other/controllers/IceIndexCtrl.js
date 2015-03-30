@@ -59,7 +59,7 @@ define('IceIndexCtrl', ['App', 'template/ice_index'], function (require, exports
       }
     });
     /*首页 结束*/
-
+    $("#nowtitle").text('一线品牌最震撼招商政策，绝无仅有，全年最低折扣！');
     $(page).find('.app-logo').click(function(){
       App.back('home');
     });

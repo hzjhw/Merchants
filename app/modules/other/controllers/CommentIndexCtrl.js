@@ -105,6 +105,7 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
         }
       });
       /*首页 结束*/
+      $("#nowtitle").text('2015门业流行趋势抢先看，与行业大咖共同指点门业商业变幻！');
       $(page).find('.go-back').click(function () {
         App.back(App.getBackPage());
       });
