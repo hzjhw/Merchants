@@ -65,6 +65,13 @@ define('ActionIndex', ['App', 'template/action_index'], function (require, expor
     });
     $(page).find('.detailed li').click(function(){
       var ids = $(this).attr('data-id');
+      if(ids ==='first')
+      {
+        var url =encodeURIComponent("http://331.11door.com/ent/lottery/detail.jsp");
+        window.location.href ='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx50258f41b8aa6b1c&redirect_uri='+url+'&response_type=code&scope=snsapi_base&state=0#wechat_redirect';
+        return;
+      }
+
       if(ids.length > 0)
         App.load(ids,ctx);
     });
