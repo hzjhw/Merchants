@@ -8,7 +8,7 @@
 #factory .nav li i.product { background-position: 0 -100px;}
 #factory .nav li i.power { background-position: 0 -150px;}
 #factory .nav li i.area { background-position: 0 -200px;}
-#factory .message {margin:4.4% 3.1%;background:#fff;border:1px solid #b4b4b4;font-size:24px;color:#555555;}
+#factory .message {margin:4.4% 3.1%;background:#fff;border:1px solid #b4b4b4;font-size:24px;color:#555555;background:#fff;}
 #factory .message .prompt {height:90px;line-height:90px;padding-left:3.3%;}
 #factory .message .h {color:#e0246b;height:74px;line-height:74px;border-bottom: 1px solid #b4b4b4;}
 #factory .message .form {font-size:20px;margin:3% 4%;height:64px;line-height:64px;border:1px solid #ccc;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
@@ -25,7 +25,7 @@
 #factory .comment .tex {border:none;height:145px;}
 #factory .comment textarea {height:140px;width:98%;font-size:24px;}
 #factory .comment #codeVal {width:50%;}
-#factory .comment #chgcode {float:left;width:100px;height:40px;margin-top:14px;margin-left:20px;border: :none;}
+#factory .comment #chgcode {float:left;width:100px;height:40px;margin-top:14px;margin-left:20px;border:none;}
 #factory .comment .form i {float:left;width:20%; font-style: normal;text-align:right;padding-right:2%;}
 #factory .comment .form i span {color:#ec7865;padding-right:10%;}
 #factory .comment .button {line-height:90px;text-align:center;background:#0090d3;font-size:36px;margin: 3% 4%;height:90px;cursor:pointer;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px;color:#fff;}
