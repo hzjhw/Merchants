@@ -277,6 +277,10 @@ seajs.use(['App'], function (App) {
         App.load('brand_unique');
         return;
       }
+      if ($(this).attr('data-id') === 'comment_index') {
+        App.load('comment_index');
+        return;
+      }
       App.load('brand_list', {
         id: $(this).attr('data-id'),
         title: $(this).attr('data-title'),

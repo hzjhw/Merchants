@@ -80,7 +80,7 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
       App.query('/index', {
         cache: true,
         data:{ brandPS:16,fangdaoPS:12,fanghuoPS:8,feibiaoPS:8,buxiugangPS:4,
-          mumenPS:8,shengtaiPS:8,gangmuPS:8,lvhejinPS:4},
+          mumenPS:8,shengtaiPS:8,gangmuPS:8,lvhejinPS:4,gangzhiPS:4},
         success: function (result) {
           $(page).find('#merchants-show').empty();
           App.render({ render: '#merchants-show', handlebars: HandlebarsHelper, page: page, template: template, data: {
@@ -119,7 +119,10 @@ define('HomeBrand', ['App', 'template/home_brand', 'HandlebarsHelper'], function
             title: '铝合金门馆',
             list: result.lvhejinList.list
           }, callback: bindBrandDetail});
-
+          App.render({ render: '#merchants-show',handlebars: HandlebarsHelper, page: page, template: template, data: {
+            title: '钢质室内门馆',
+            list: result.gangzhiList.list
+          }, callback: bindBrandDetail});
           App.initLazyLoad(page);
         }
       });

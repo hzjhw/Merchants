@@ -71,7 +71,6 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
       } catch (e) {
       }
 
-
       // 我的330
       setTimeout(function () {
         if (!window.myDialog) {
@@ -105,6 +104,7 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
         }
       });
       /*首页 结束*/
+      $("#nowtitle").text('2015门业流行趋势抢先看，与行业大咖共同指点门业商业变幻！');
       $(page).find('.go-back').click(function () {
         App.back(App.getBackPage());
       });
@@ -139,7 +139,7 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
             mouseWheel: true,
             scrollbars: false
           });
-          //Scrollable($(page).find('.mer-unique-ul'), false);
+
           $(page).find('.mer-unique-ul li').click(function () {
             $(this).addClass('current').siblings().removeClass('current');
             loadBrand(page, '.mer-unique-right-ul', $(this).attr('data-id'), tpl);
@@ -147,7 +147,7 @@ define('CommentIndexCtrl', ['App', 'template/comment_index', 'HandlebarsHelper']
           $(page).find('.btn-back').click(function(){
             App.back();
           });
-          loadBrand(page, '.mer-unique-right-ul', result.catList[0].cat_id, tpl);
+          loadBrand(page, '.mer-unique-right-ul', 3376238744, tpl);
         }
       });
     }, 0);
