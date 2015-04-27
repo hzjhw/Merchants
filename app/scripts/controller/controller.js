@@ -216,6 +216,9 @@ seajs.use(['App'], function (App) {
       $(page).find('#iceindex').click(function(){
         App.load('action_index');
       });
+      $(page).find('#topicindex').click(function(){
+        App.load('topic_index');
+      });
       $(page).find('.btn-login').off().on('click', function () {
         App.setBackPage('home');
         App.load('login_dealers');
@@ -299,6 +302,15 @@ seajs.use(['App'], function (App) {
     App.initLoad(page, { transition: 'slide-left', page: 'forget_pwd' }, this);
     seajs.use(['Forgetpwd'],function(Forgetpwd){
       App.Forgetpwd = new Forgetpwd(page,this);
+    });
+  });
+
+  /*专题*/
+  App.controller('topic_index',function(page){
+    debug('【Controller】pageLoad: topic_index');
+    App.initLoad(page, { transition: 'slide-left', page: 'topic_index' }, this);
+    seajs.use(['TopicIndex'],function(TopicIndex){
+      App.TopicIndex = new TopicIndex(page,this);
     });
   });
   /*意向合作*/
